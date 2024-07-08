@@ -1,0 +1,134 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Kiosk\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\lenovo\\source\\repos\\kiosk-project\\kiosk\\ppanel\\charttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\charttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\lenovo\\source\\repos\\kiosk-project\\kiosk\\ppanel\\chart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\chart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\lenovo\\source\\repos\\kiosk-project\\kiosk\\ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\lenovo\\source\\repos\\kiosk-project\\kiosk\\ppanel\\charttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\charttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\lenovo\\source\\repos\\kiosk-project\\kiosk\\ppanel\\common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "list.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Kiosk\\pPanel\\list.cs",
+              "RelativeDocumentMoniker": "pPanel\\list.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Kiosk\\pPanel\\list.cs",
+              "RelativeToolTip": "pPanel\\list.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAAAEwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-08T11:23:42.275Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "oGlobal.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Kiosk\\pPanel\\common\\oGlobal.cs",
+              "RelativeDocumentMoniker": "pPanel\\common\\oGlobal.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Kiosk\\pPanel\\common\\oGlobal.cs",
+              "RelativeToolTip": "pPanel\\common\\oGlobal.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-08T12:32:25.92Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ChartTable.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Kiosk\\pPanel\\ChartTable.cs",
+              "RelativeDocumentMoniker": "pPanel\\ChartTable.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Kiosk\\pPanel\\ChartTable.cs",
+              "RelativeToolTip": "pPanel\\ChartTable.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAYwB4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-08T11:39:43.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Chart.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Kiosk\\pPanel\\Chart.cs",
+              "RelativeDocumentMoniker": "pPanel\\Chart.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Kiosk\\pPanel\\Chart.cs",
+              "RelativeToolTip": "pPanel\\Chart.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAkwCcAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-08T10:05:58.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ChartTable.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Kiosk\\pPanel\\ChartTable.cs",
+              "RelativeDocumentMoniker": "pPanel\\ChartTable.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Kiosk\\pPanel\\ChartTable.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "pPanel\\ChartTable.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-08T11:19:57.93Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

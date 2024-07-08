@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kiosk", "Kiosk.csproj", "{AD4218D2-247D-4EE2-860A-0C134FF2C758}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD4218D2-247D-4EE2-860A-0C134FF2C758}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD4218D2-247D-4EE2-860A-0C134FF2C758}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD4218D2-247D-4EE2-860A-0C134FF2C758}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD4218D2-247D-4EE2-860A-0C134FF2C758}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {563C6C3A-EB90-4D5A-B4B4-C711DFF809C1}
+	EndGlobalSection
+EndGlobal

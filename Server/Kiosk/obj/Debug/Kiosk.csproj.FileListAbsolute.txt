@@ -1,0 +1,13 @@
+C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\bin\Debug\Kiosk.exe.config
+C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\bin\Debug\Kiosk.exe
+C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\bin\Debug\Kiosk.pdb
+C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.csproj.AssemblyReference.cache
+C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.Form1.resources
+C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.pPanel.Chart.resources
+C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.Properties.Resources.resources
+C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.csproj.GenerateResource.cache
+C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.exe
+C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.pdb
+C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.pPanel.list.resources
+C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.pPanel.ChartTable.resources
