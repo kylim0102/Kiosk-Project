@@ -38,27 +38,31 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(374, 84);
+            this.label1.Location = new System.Drawing.Point(327, 67);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(232, 37);
+            this.label1.Size = new System.Drawing.Size(189, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "admin Page";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(117, 240);
+            this.button1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.button1.Location = new System.Drawing.Point(102, 192);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(190, 150);
+            this.button1.Size = new System.Drawing.Size(166, 120);
             this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
+            this.button1.Text = "Order";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.Location = new System.Drawing.Point(396, 240);
+            this.button2.Location = new System.Drawing.Point(346, 192);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(190, 150);
+            this.button2.Size = new System.Drawing.Size(166, 120);
             this.button2.TabIndex = 2;
             this.button2.Text = "통계";
             this.button2.UseVisualStyleBackColor = true;
@@ -66,22 +70,24 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(653, 240);
+            this.button3.Location = new System.Drawing.Point(571, 192);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(190, 150);
+            this.button3.Size = new System.Drawing.Size(166, 120);
             this.button3.TabIndex = 3;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1009, 603);
+            this.ClientSize = new System.Drawing.Size(883, 482);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

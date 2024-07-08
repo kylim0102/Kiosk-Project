@@ -13,6 +13,7 @@ namespace Kiosk
     public partial class Form1 : Form
     {
         pPanel.Chart chart = new pPanel.Chart();
+        Order.Order_Manage order = new Order.Order_Manage();
         public Form1()
         {
             InitializeComponent();
@@ -26,6 +27,11 @@ namespace Kiosk
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            order.Show();
         }
     }
 }

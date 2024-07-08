@@ -53,6 +53,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Order\Order_Manage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order\Order_Manage.Designer.cs">
+      <DependentUpon>Order_Manage.cs</DependentUpon>
+    </Compile>
     <Compile Include="pPanel\Chart.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order\Order_Manage.resx">
+      <DependentUpon>Order_Manage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pPanel\Chart.resx">
       <DependentUpon>Chart.cs</DependentUpon>

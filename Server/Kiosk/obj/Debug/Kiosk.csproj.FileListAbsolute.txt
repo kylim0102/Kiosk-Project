@@ -11,3 +11,17 @@ C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.exe
 C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.pdb
 C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.pPanel.list.resources
 C:\Users\Lenovo\source\repos\Kiosk-Project\Kiosk\obj\Debug\Kiosk.pPanel.ChartTable.resources
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\bin\Debug\Kiosk.exe.config
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\bin\Debug\Kiosk.exe
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\bin\Debug\Kiosk.pdb
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.csproj.AssemblyReference.cache
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.Form1.resources
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.pPanel.Chart.resources
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.pPanel.ChartTable.resources
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.pPanel.list.resources
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.Properties.Resources.resources
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.csproj.GenerateResource.cache
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.csproj.CoreCompileInputs.cache
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.exe
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.pdb
+C:\Users\이동훈\Desktop\Kiosk-Project\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.Order.Order_Manage.resources
