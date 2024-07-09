@@ -3,7 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\\uC774\uB3D9\uD6C8\\desktop\\kiosk-project\\kiosk-project\\server\\kiosk\\order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -11,15 +15,15 @@
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\\uC774\uB3D9\uD6C8\\desktop\\kiosk-project\\kiosk-project\\server\\kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\\uC774\uB3D9\uD6C8\\desktop\\kiosk-project\\kiosk-project\\server\\kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -27,16 +31,12 @@
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\chart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\\uC774\uB3D9\uD6C8\\desktop\\kiosk-project\\kiosk-project\\server\\kiosk\\ppanel\\charttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\ppanel\\charttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\charttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\ppanel\\charttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\charttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\\uC774\uB3D9\uD6C8\\desktop\\kiosk-project\\kiosk-project\\server\\kiosk\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\ppanel\\common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,11 +50,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "list.cs",
               "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\pPanel\\list.cs",
               "RelativeDocumentMoniker": "pPanel\\list.cs",
@@ -63,21 +63,7 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAEwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-08T11:23:42.275Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Order_Manage.cs",
-              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\Order\\Order_Manage.cs",
-              "RelativeDocumentMoniker": "Order\\Order_Manage.cs",
-              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\Order\\Order_Manage.cs",
-              "RelativeToolTip": "Order\\Order_Manage.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAD4vxoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T15:16:13.516Z",
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -109,7 +95,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "Order_Manage.cs",
+              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\Order\\Order_Manage.cs",
+              "RelativeDocumentMoniker": "Order\\Order_Manage.cs",
+              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\Order\\Order_Manage.cs",
+              "RelativeToolTip": "Order\\Order_Manage.cs",
+              "ViewState": "AQIAAGQAAAAAAAAAAADgv4IAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-08T15:16:13.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Order_Manage.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\Order\\Order_Manage.cs",
               "RelativeDocumentMoniker": "Order\\Order_Manage.cs",
@@ -127,32 +126,30 @@
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAADgvyEAAAAZAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAADgvxcAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T15:07:27.693Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T15:07:27.693Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Form1.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\Form1.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "Form1.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T15:06:13.949Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2024-07-08T15:06:13.949Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAABIAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-08T15:06:12.851Z",
               "EditorCaption": ""
@@ -167,12 +164,11 @@
               "RelativeToolTip": "pPanel\\common\\oGlobal.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T12:32:25.92Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T12:32:25.92Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ChartTable.cs",
               "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\pPanel\\ChartTable.cs",
               "RelativeDocumentMoniker": "pPanel\\ChartTable.cs",
@@ -180,12 +176,11 @@
               "RelativeToolTip": "pPanel\\ChartTable.cs",
               "ViewState": "AQIAABgAAAAAAAAAAAAYwB4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T11:39:43.922Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T11:39:43.922Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Chart.cs",
               "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\pPanel\\Chart.cs",
               "RelativeDocumentMoniker": "pPanel\\Chart.cs",
@@ -193,20 +188,18 @@
               "RelativeToolTip": "pPanel\\Chart.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T10:05:58.668Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T10:05:58.668Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ChartTable.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\pPanel\\ChartTable.cs",
               "RelativeDocumentMoniker": "pPanel\\ChartTable.cs",
               "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Kiosk-Project\\Server\\Kiosk\\pPanel\\ChartTable.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "pPanel\\ChartTable.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T11:19:57.93Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2024-07-08T11:19:57.93Z"
             }
           ]
         },
