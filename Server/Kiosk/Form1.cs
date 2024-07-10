@@ -14,6 +14,7 @@ namespace Kiosk
     {
         //pPanel.Chart chart = new pPanel.Chart();
         //Order.Order_Manage order = new Order.Order_Manage();
+        pPanel.Chart chart;
         public Form1()
         {
             InitializeComponent();
@@ -21,9 +22,10 @@ namespace Kiosk
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //chart.Show();
-            pPanel.Chart chart = new pPanel.Chart();
+            chart = new pPanel.Chart();
             chart.Show();
+        }
+            
 
             /*
                 chart.Show();
@@ -53,7 +55,7 @@ namespace Kiosk
                         ShowDialog()와 반대 개념
                                
              */
-        }
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
