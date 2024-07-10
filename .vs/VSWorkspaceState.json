@@ -1,12 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-<<<<<<< HEAD
-=======
-    "\\Client",
->>>>>>> bec2461155b783f19bd93999f92776cec2ec73cd
-    "\\Server"
+    "\\Server",
+    "\\Server\\Kiosk",
+    "\\Server\\Kiosk\\pPanel"
   ],
-  "SelectedNode": "\\Server\\Server.txt",
+  "SelectedNode": "\\Server\\Kiosk\\pPanel\\list.cs",
   "PreviewInSolutionExplorer": false
 }
