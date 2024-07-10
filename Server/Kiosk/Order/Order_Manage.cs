@@ -94,14 +94,8 @@ namespace Kiosk.Order
         }
 
         private void select_menu(string menu_name)
-        {
-            if(Convert.ToInt32(take_money.Text) < Convert.ToInt32(payment.Text))
-            {
-                MessageBox.Show("금액이 부족합니다!","Payment Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                return;
-            }
-            else
-            {
+        { 
+
                 DataGridViewRow row = null;
 
                 // DataGridView 목록의 수를 가져옴
@@ -134,12 +128,9 @@ namespace Kiosk.Order
                 total_payment();
 
                 // 거스름돈 계산
-                int taked = Convert.ToInt32(take_money.Text); // 받은 금액
+                //int taked = Convert.ToInt32(take_money.Text); // 받은 금액
                 int payed = Convert.ToInt32(payment.Text); // 결제 금액
-                change_money.Text = (taked - payed) + "";
-
-            }
-            
+                //change_money.Text = (taked - payed) + "";
            
         }
 
@@ -161,26 +152,7 @@ namespace Kiosk.Order
                     payments.Add(menu_pay);
                 }
             }
-
-            if(payments.Count == 0)
-            {
-                payment.Text = "0";
-            }
-            else
-            {
-                int taked = Convert.ToInt32(take_money.Text); // 받은 금액
-                int payed = Convert.ToInt32(payment.Text); // 결제 금액
-
-                if(taked>payed)
-                {
-                    int total = payments.Sum();
-                    payment.Text = total + "";
-                }
-                else
-                {
-                    MessageBox.Show("ERROR");
-                }
-            }
+            payment.Text = payments.Sum()+"";
         }
 
         private void button1_Click(object sender, EventArgs e)
