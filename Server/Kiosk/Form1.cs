@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using Kiosk.pPanel.common;
 
 namespace Kiosk
 {
@@ -59,7 +61,34 @@ namespace Kiosk
 
         private void Form1_Load(object sender, EventArgs e)
         {
+              // DB 연결 확인
+            MySqlConnection conn = oGlobal.GetConnection();
 
+            try
+            {
+                string query = "SELECT * FROM test WHERE idx = 1"; // 테이블 쿼리
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                       
+                        int id = reader.GetInt32("idx"); // idx 컬럼의 값 가져오기
+                        string data = reader.GetString("name"); // name 컬럼의 값 가져오기, 
+                        MessageBox.Show($"ID: {id}, name: {data}");      
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"오류 발생: {ex.Message}");
+            }
+            finally
+            {
+                conn.Close();
+            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

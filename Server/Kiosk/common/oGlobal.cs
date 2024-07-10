@@ -5,11 +5,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.DataVisualization.Charting;
+using MySql.Data.MySqlClient;
 
 namespace Kiosk.pPanel.common
 {
     internal class oGlobal
     {
+       #region 전역 데이터베이스 연결
+        public static MySqlConnection DBconnection;
+
+        public static void DB_Connection()
+        {
+            if (DBconnection == null)
+            {
+                MySqlConnectionStringBuilder connStringBuilder = new MySqlConnectionStringBuilder
+                {
+                    Server = "kiosk.mysql.database.azure.com",
+                    Port = 3306,
+                    Database = "kiosk",
+                    UserID = "youngjin",
+                    Password = "admin123456789;"
+                };
+
+                DBconnection = new MySqlConnection(connStringBuilder.ConnectionString);
+                DBconnection.Open();
+            }
+            #endregion
+        }
+        #region oGlobal.GetConnection(); 을 쓰면 db 연결
+        public static MySqlConnection GetConnection()
+        {
+            if (DBconnection == null)
+            {
+                DB_Connection();
+            }
+
+            return DBconnection;
+        }
+        #endregion
     }
 
     // UserControl에서 Main으로 DataTable 값을 전달 하기 위한 Delegate 정의    
