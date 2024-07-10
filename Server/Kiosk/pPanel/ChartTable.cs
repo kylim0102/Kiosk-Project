@@ -18,7 +18,9 @@ namespace Kiosk.pPanel
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             SeriesChartType cType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), chartType.SelectedItem.ToString());
+           
             _cData.ChartType = cType;
             ChartDataLoad(_cData);
         }
@@ -28,6 +30,9 @@ namespace Kiosk.pPanel
             _cData = cData;
             ChartDataLoad(_cData);
         }
+
+
+
 
         private void ChartDataLoad(ChartData cData)
         {

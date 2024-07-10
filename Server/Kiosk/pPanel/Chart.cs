@@ -16,15 +16,18 @@ namespace Kiosk.pPanel
     {
         pPanel.list list = new pPanel.list();
         pPanel.ChartTable chart = new pPanel.ChartTable();
-
-        
-
         ChartData cData = new ChartData();
+
+
+
+        #region 리스트, 차트 폼 보여주기
         public Chart()
         {
             InitializeComponent();
 
+            //list 데이터 받아오기
             list.eDataTableSender += List_eDataTableSender;
+            //chart 데이터 받아옥;
             chart.eChartTypeSender += Chart_eChartTypeSender;
         }
 
@@ -38,10 +41,16 @@ namespace Kiosk.pPanel
             cData.ChartType = cType;
             chart.SetData(cData);
         }
+        #endregion
+
+
         private void Chart_Load(object sender, EventArgs e)
         {
 
         }
+
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {

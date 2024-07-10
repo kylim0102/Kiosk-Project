@@ -232,5 +232,7 @@ namespace Kiosk.Order
         {
             select_menu(coffee_hot_menu5.Text);
         }
+
+       
     }
 }

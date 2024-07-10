@@ -71,7 +71,7 @@
     <Compile Include="pPanel\ChartTable.Designer.cs">
       <DependentUpon>ChartTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="pPanel\common\oGlobal.cs" />
+    <Compile Include="common\oGlobal.cs" />
     <Compile Include="pPanel\list.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -28,14 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.change_money = new System.Windows.Forms.Label();
+            this.take_money = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.payment = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.option1 = new System.Windows.Forms.TabPage();
+            this.op4 = new System.Windows.Forms.Button();
+            this.op3 = new System.Windows.Forms.Button();
+            this.op2 = new System.Windows.Forms.Button();
+            this.op1 = new System.Windows.Forms.Button();
             this.menulist = new System.Windows.Forms.TabControl();
             this.menu1 = new System.Windows.Forms.TabPage();
             this.coffee_hot_menu10 = new System.Windows.Forms.Button();
@@ -67,18 +79,6 @@
             this.Etc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.date = new System.Windows.Forms.Label();
-            this.op1 = new System.Windows.Forms.Button();
-            this.op2 = new System.Windows.Forms.Button();
-            this.op3 = new System.Windows.Forms.Button();
-            this.op4 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.payment = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.take_money = new System.Windows.Forms.Label();
-            this.change_money = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.option1.SuspendLayout();
@@ -111,6 +111,92 @@
             this.groupBox1.Text = "주문 관리";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // change_money
+            // 
+            this.change_money.AutoSize = true;
+            this.change_money.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
+            this.change_money.Location = new System.Drawing.Point(297, 583);
+            this.change_money.Name = "change_money";
+            this.change_money.Size = new System.Drawing.Size(80, 24);
+            this.change_money.TabIndex = 15;
+            this.change_money.Text = "50000";
+            // 
+            // take_money
+            // 
+            this.take_money.AutoSize = true;
+            this.take_money.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
+            this.take_money.Location = new System.Drawing.Point(297, 496);
+            this.take_money.Name = "take_money";
+            this.take_money.Size = new System.Drawing.Size(80, 24);
+            this.take_money.TabIndex = 14;
+            this.take_money.Text = "50000";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.LightGray;
+            this.button2.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold);
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button2.Location = new System.Drawing.Point(269, 637);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(173, 67);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "카드";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LightGray;
+            this.button1.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold);
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button1.Location = new System.Drawing.Point(49, 637);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(169, 67);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "현금";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // payment
+            // 
+            this.payment.AutoSize = true;
+            this.payment.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
+            this.payment.Location = new System.Drawing.Point(297, 430);
+            this.payment.Name = "payment";
+            this.payment.Size = new System.Drawing.Size(24, 24);
+            this.payment.TabIndex = 9;
+            this.payment.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(63, 583);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(137, 24);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "거스름돈 : ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(63, 503);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(146, 24);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "받은 금액 : ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(63, 430);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(171, 24);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "총 결제 금액: ";
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.option1);
@@ -135,6 +221,52 @@
             this.option1.Size = new System.Drawing.Size(510, 130);
             this.option1.TabIndex = 0;
             this.option1.Text = "옵션";
+            // 
+            // op4
+            // 
+            this.op4.BackColor = System.Drawing.Color.DarkViolet;
+            this.op4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.op4.Location = new System.Drawing.Point(403, 18);
+            this.op4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.op4.Name = "op4";
+            this.op4.Size = new System.Drawing.Size(86, 94);
+            this.op4.TabIndex = 14;
+            this.op4.UseVisualStyleBackColor = false;
+            // 
+            // op3
+            // 
+            this.op3.BackColor = System.Drawing.Color.DarkViolet;
+            this.op3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.op3.Location = new System.Drawing.Point(280, 18);
+            this.op3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.op3.Name = "op3";
+            this.op3.Size = new System.Drawing.Size(86, 94);
+            this.op3.TabIndex = 13;
+            this.op3.UseVisualStyleBackColor = false;
+            // 
+            // op2
+            // 
+            this.op2.BackColor = System.Drawing.Color.DarkViolet;
+            this.op2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.op2.Location = new System.Drawing.Point(146, 18);
+            this.op2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.op2.Name = "op2";
+            this.op2.Size = new System.Drawing.Size(86, 94);
+            this.op2.TabIndex = 12;
+            this.op2.Text = "연하게";
+            this.op2.UseVisualStyleBackColor = false;
+            // 
+            // op1
+            // 
+            this.op1.BackColor = System.Drawing.Color.DarkViolet;
+            this.op1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.op1.Location = new System.Drawing.Point(13, 18);
+            this.op1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.op1.Name = "op1";
+            this.op1.Size = new System.Drawing.Size(86, 94);
+            this.op1.TabIndex = 11;
+            this.op1.Text = "샷추가";
+            this.op1.UseVisualStyleBackColor = false;
             // 
             // menulist
             // 
@@ -452,14 +584,14 @@
             this.Count,
             this.Price,
             this.Etc});
-            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle45.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle45.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle45.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle45.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.selected_menu.DefaultCellStyle = dataGridViewCellStyle45;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.selected_menu.DefaultCellStyle = dataGridViewCellStyle25;
             this.selected_menu.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.selected_menu.Location = new System.Drawing.Point(49, 36);
             this.selected_menu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -475,8 +607,8 @@
             // 
             // Menu
             // 
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Menu.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Menu.DefaultCellStyle = dataGridViewCellStyle21;
             this.Menu.HeaderText = "메뉴";
             this.Menu.MinimumWidth = 6;
             this.Menu.Name = "Menu";
@@ -485,8 +617,8 @@
             // 
             // Count
             // 
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Count.DefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Count.DefaultCellStyle = dataGridViewCellStyle22;
             this.Count.HeaderText = "수량";
             this.Count.MinimumWidth = 6;
             this.Count.Name = "Count";
@@ -495,8 +627,8 @@
             // 
             // Price
             // 
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle23;
             this.Price.HeaderText = "금액";
             this.Price.MinimumWidth = 6;
             this.Price.Name = "Price";
@@ -505,8 +637,8 @@
             // 
             // Etc
             // 
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Etc.DefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Etc.DefaultCellStyle = dataGridViewCellStyle24;
             this.Etc.HeaderText = "비고";
             this.Etc.MinimumWidth = 6;
             this.Etc.Name = "Etc";
@@ -530,138 +662,6 @@
             this.date.Size = new System.Drawing.Size(45, 15);
             this.date.TabIndex = 2;
             this.date.Text = "label2";
-            // 
-            // op1
-            // 
-            this.op1.BackColor = System.Drawing.Color.DarkViolet;
-            this.op1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.op1.Location = new System.Drawing.Point(13, 18);
-            this.op1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.op1.Name = "op1";
-            this.op1.Size = new System.Drawing.Size(86, 94);
-            this.op1.TabIndex = 11;
-            this.op1.Text = "샷추가";
-            this.op1.UseVisualStyleBackColor = false;
-            // 
-            // op2
-            // 
-            this.op2.BackColor = System.Drawing.Color.DarkViolet;
-            this.op2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.op2.Location = new System.Drawing.Point(146, 18);
-            this.op2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.op2.Name = "op2";
-            this.op2.Size = new System.Drawing.Size(86, 94);
-            this.op2.TabIndex = 12;
-            this.op2.Text = "연하게";
-            this.op2.UseVisualStyleBackColor = false;
-            // 
-            // op3
-            // 
-            this.op3.BackColor = System.Drawing.Color.DarkViolet;
-            this.op3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.op3.Location = new System.Drawing.Point(280, 18);
-            this.op3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.op3.Name = "op3";
-            this.op3.Size = new System.Drawing.Size(86, 94);
-            this.op3.TabIndex = 13;
-            this.op3.UseVisualStyleBackColor = false;
-            // 
-            // op4
-            // 
-            this.op4.BackColor = System.Drawing.Color.DarkViolet;
-            this.op4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.op4.Location = new System.Drawing.Point(403, 18);
-            this.op4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.op4.Name = "op4";
-            this.op4.Size = new System.Drawing.Size(86, 94);
-            this.op4.TabIndex = 14;
-            this.op4.UseVisualStyleBackColor = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(63, 430);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(171, 24);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "총 결제 금액: ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(63, 503);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 24);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "받은 금액 : ";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(63, 583);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(137, 24);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "거스름돈 : ";
-            // 
-            // payment
-            // 
-            this.payment.AutoSize = true;
-            this.payment.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
-            this.payment.Location = new System.Drawing.Point(297, 430);
-            this.payment.Name = "payment";
-            this.payment.Size = new System.Drawing.Size(24, 24);
-            this.payment.TabIndex = 9;
-            this.payment.Text = "0";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.LightGray;
-            this.button1.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(49, 637);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 67);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "현금";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.LightGray;
-            this.button2.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold);
-            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(269, 637);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(173, 67);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "카드";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // take_money
-            // 
-            this.take_money.AutoSize = true;
-            this.take_money.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
-            this.take_money.Location = new System.Drawing.Point(297, 496);
-            this.take_money.Name = "take_money";
-            this.take_money.Size = new System.Drawing.Size(80, 24);
-            this.take_money.TabIndex = 14;
-            this.take_money.Text = "50000";
-            // 
-            // change_money
-            // 
-            this.change_money.AutoSize = true;
-            this.change_money.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
-            this.change_money.Location = new System.Drawing.Point(297, 583);
-            this.change_money.Name = "change_money";
-            this.change_money.Size = new System.Drawing.Size(80, 24);
-            this.change_money.TabIndex = 15;
-            this.change_money.Text = "50000";
             // 
             // Order_Manage
             // 
