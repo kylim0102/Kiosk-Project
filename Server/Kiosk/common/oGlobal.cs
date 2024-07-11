@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms.DataVisualization.Charting;
+using Azure.Storage.Blobs;
 using MySql.Data.MySqlClient;
 
 namespace Kiosk.pPanel.common
@@ -43,6 +45,20 @@ namespace Kiosk.pPanel.common
             return DBconnection;
         }
         #endregion
+    }
+
+
+    internal class StorageConnection
+    {
+        // Azure Storage 연결 문자열 초기화
+        private string connectionString = null;
+        // Azure Storage Name
+        private string contanerName = null;
+
+        public static BlobClient GetBlobClient()
+        {
+            return null;
+        }
     }
 
     // UserControl에서 Main으로 DataTable 값을 전달 하기 위한 Delegate 정의    
