@@ -19,6 +19,7 @@ namespace Kiosk.ItemManage.ItemPanel
             InitializeComponent();
         }
 
+<<<<<<< HEAD
         public void OptionPanel_Load(object sender, EventArgs e)
         {
 
@@ -32,5 +33,11 @@ namespace Kiosk.ItemManage.ItemPanel
         {
             public static string Option { get; set; }
         }
+=======
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+>>>>>>> fa99af22c0efeef6f33690cc7c3c5d2931df18c2
     }
 }

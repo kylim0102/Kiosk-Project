@@ -34,30 +34,36 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(87, 34);
+            this.textBox1.Location = new System.Drawing.Point(76, 27);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(208, 25);
+            this.textBox1.Size = new System.Drawing.Size(182, 21);
             this.textBox1.TabIndex = 3;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 37);
+            this.label1.Location = new System.Drawing.Point(21, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 15);
+            this.label1.Size = new System.Drawing.Size(45, 12);
             this.label1.TabIndex = 2;
             this.label1.Text = "옵션 명";
             // 
             // OptionPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "OptionPanel";
+<<<<<<< HEAD
             this.Size = new System.Drawing.Size(816, 455);
             this.Load += new System.EventHandler(this.OptionPanel_Load);
+=======
+            this.Size = new System.Drawing.Size(714, 364);
+>>>>>>> fa99af22c0efeef6f33690cc7c3c5d2931df18c2
             this.ResumeLayout(false);
             this.PerformLayout();
 
