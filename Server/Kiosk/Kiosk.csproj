@@ -132,6 +132,30 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ItemManage\ItemPanel\CategoryPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ItemManage\ItemPanel\CategoryPanel.Designer.cs">
+      <DependentUpon>CategoryPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemManage\ItemPanel\ItemPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ItemManage\ItemPanel\ItemPanel.Designer.cs">
+      <DependentUpon>ItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemManage\ItemPanel\OptionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ItemManage\ItemPanel\OptionPanel.Designer.cs">
+      <DependentUpon>OptionPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemManage\MainPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ItemManage\MainPage.Designer.cs">
+      <DependentUpon>MainPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Order\Order_Manage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +185,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemManage\ItemPanel\CategoryPanel.resx">
+      <DependentUpon>CategoryPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemManage\ItemPanel\ItemPanel.resx">
+      <DependentUpon>ItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemManage\ItemPanel\OptionPanel.resx">
+      <DependentUpon>OptionPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemManage\MainPage.resx">
+      <DependentUpon>MainPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Order\Order_Manage.resx">
       <DependentUpon>Order_Manage.cs</DependentUpon>
@@ -197,5 +233,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

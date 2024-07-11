@@ -99,5 +99,11 @@ namespace Kiosk
             }
             
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ItemManage.MainPage mainPage = new ItemManage.MainPage();
+            mainPage.Show();
+        }
     }
 }
