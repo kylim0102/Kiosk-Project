@@ -138,6 +138,12 @@
     <Compile Include="ItemManage\ItemPanel\CategoryPanel.Designer.cs">
       <DependentUpon>CategoryPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="ItemManage\ItemPanel\Itemmanage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ItemManage\ItemPanel\Itemmanage.Designer.cs">
+      <DependentUpon>Itemmanage.cs</DependentUpon>
+    </Compile>
     <Compile Include="ItemManage\ItemPanel\ItemPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -188,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ItemManage\ItemPanel\CategoryPanel.resx">
       <DependentUpon>CategoryPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemManage\ItemPanel\Itemmanage.resx">
+      <DependentUpon>Itemmanage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ItemManage\ItemPanel\ItemPanel.resx">
       <DependentUpon>ItemPanel.cs</DependentUpon>

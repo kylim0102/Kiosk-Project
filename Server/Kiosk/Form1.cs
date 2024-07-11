@@ -61,7 +61,7 @@ namespace Kiosk
 
         private void Form1_Load(object sender, EventArgs e)
         {
-              // DB 연결 확인
+             /* // DB 연결 확인
             MySqlConnection conn = oGlobal.GetConnection();
 
             try
@@ -88,7 +88,7 @@ namespace Kiosk
             {
                 conn.Close();
             }
-            
+            */
         }
 
         private void button1_Click(object sender, EventArgs e)

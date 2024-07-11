@@ -147,6 +147,7 @@ namespace Kiosk.pPanel.common
     public delegate void delDataTableSender(object oSender, DataTable dt);     
     // UserControl에서 Main으로 ChartType 값을 전달 하기 위한 Delegate 정의  
     public delegate void delChartTypeSender(object oSender, SeriesChartType ct);
+    public delegate void delTextSender(object oSender, string text);
 
     public class ChartData
     {
