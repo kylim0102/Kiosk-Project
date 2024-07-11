@@ -226,7 +226,7 @@ C:\Users\YJ\Desktop\Kiosk-Project\Server\Kiosk\bin\Debug\System.Memory.Data.xml
 C:\Users\YJ\Desktop\Kiosk-Project\Server\Kiosk\bin\Debug\System.Text.Encodings.Web.xml
 C:\Users\YJ\Desktop\Kiosk-Project\Server\Kiosk\bin\Debug\System.Text.Json.xml
 C:\Users\YJ\Desktop\Kiosk-Project\Server\Kiosk\bin\Debug\System.ValueTuple.xml
-C:\Users\YJ\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.ItemManage.ItemPanel.CategoryPanel.resources
 C:\Users\YJ\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.ItemManage.ItemPanel.ItemPanel.resources
 C:\Users\YJ\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.ItemManage.ItemPanel.OptionPanel.resources
 C:\Users\YJ\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.ItemManage.MainPage.resources
+C:\Users\YJ\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.ItemManage.ItemPanel.Category_Manage.resources
