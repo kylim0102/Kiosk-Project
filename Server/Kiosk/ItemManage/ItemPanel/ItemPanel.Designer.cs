@@ -28,239 +28,177 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.Item_Register = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.file_scan = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.file_path = new System.Windows.Forms.TextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.storagename = new System.Windows.Forms.TextBox();
-            this.storagekey = new System.Windows.Forms.TextBox();
-            this.download = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.Item_Register.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // Item_Register
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(51, 61);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "제품명";
+            this.Item_Register.Controls.Add(this.comboBox1);
+            this.Item_Register.Controls.Add(this.label5);
+            this.Item_Register.Controls.Add(this.file_path);
+            this.Item_Register.Controls.Add(this.file_scan);
+            this.Item_Register.Controls.Add(this.label4);
+            this.Item_Register.Controls.Add(this.textBox3);
+            this.Item_Register.Controls.Add(this.textBox2);
+            this.Item_Register.Controls.Add(this.textBox1);
+            this.Item_Register.Controls.Add(this.label3);
+            this.Item_Register.Controls.Add(this.label2);
+            this.Item_Register.Controls.Add(this.label1);
+            this.Item_Register.Location = new System.Drawing.Point(121, 3);
+            this.Item_Register.Name = "Item_Register";
+            this.Item_Register.Size = new System.Drawing.Size(490, 353);
+            this.Item_Register.TabIndex = 20;
+            this.Item_Register.TabStop = false;
+            this.Item_Register.Text = "Item_Register";
+            this.Item_Register.Enter += new System.EventHandler(this.Item_Register_Enter);
             // 
-            // label2
+            // textBox3
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(51, 112);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "제품가격";
+            this.textBox3.Location = new System.Drawing.Point(101, 195);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(367, 65);
+            this.textBox3.TabIndex = 11;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(101, 132);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(367, 21);
+            this.textBox2.TabIndex = 10;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(101, 77);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(367, 21);
+            this.textBox1.TabIndex = 9;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(51, 168);
+            this.label3.Location = new System.Drawing.Point(29, 195);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 15);
-            this.label3.TabIndex = 2;
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 8;
             this.label3.Text = "제품설명";
             // 
-            // textBox1
+            // label2
             // 
-            this.textBox1.Location = new System.Drawing.Point(144, 58);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(176, 25);
-            this.textBox1.TabIndex = 3;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 135);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "제품가격";
             // 
-            // textBox2
+            // label1
             // 
-            this.textBox2.Location = new System.Drawing.Point(144, 109);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(176, 25);
-            this.textBox2.TabIndex = 4;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 80);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "제품명";
             // 
-            // textBox3
+            // file_scan
             // 
-            this.textBox3.Location = new System.Drawing.Point(55, 198);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(305, 232);
-            this.textBox3.TabIndex = 5;
+            this.file_scan.Location = new System.Drawing.Point(383, 293);
+            this.file_scan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.file_scan.Name = "file_scan";
+            this.file_scan.Size = new System.Drawing.Size(85, 23);
+            this.file_scan.TabIndex = 27;
+            this.file_scan.Text = "찾아보기";
+            this.file_scan.UseVisualStyleBackColor = true;
+            this.file_scan.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(377, 61);
+            this.label4.Location = new System.Drawing.Point(29, 296);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 15);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Storage Name";
+            this.label4.Size = new System.Drawing.Size(57, 12);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "제품 사진";
+            // 
+            // file_path
+            // 
+            this.file_path.Location = new System.Drawing.Point(101, 293);
+            this.file_path.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.file_path.Name = "file_path";
+            this.file_path.Size = new System.Drawing.Size(274, 21);
+            this.file_path.TabIndex = 29;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(377, 112);
+            this.label5.Location = new System.Drawing.Point(29, 37);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 15);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Storage Key";
+            this.label5.Size = new System.Drawing.Size(53, 12);
+            this.label5.TabIndex = 30;
+            this.label5.Text = "카테고리";
             // 
-            // label6
+            // comboBox1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(377, 168);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(99, 15);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "File Download";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(377, 231);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 15);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "File Upload";
-            // 
-            // storagename
-            // 
-            this.storagename.Location = new System.Drawing.Point(491, 58);
-            this.storagename.Name = "storagename";
-            this.storagename.Size = new System.Drawing.Size(228, 25);
-            this.storagename.TabIndex = 10;
-            // 
-            // storagekey
-            // 
-            this.storagekey.Location = new System.Drawing.Point(491, 109);
-            this.storagekey.Name = "storagekey";
-            this.storagekey.Size = new System.Drawing.Size(228, 25);
-            this.storagekey.TabIndex = 11;
-            // 
-            // download
-            // 
-            this.download.Location = new System.Drawing.Point(491, 165);
-            this.download.Name = "download";
-            this.download.Size = new System.Drawing.Size(206, 25);
-            this.download.TabIndex = 12;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(491, 228);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(206, 25);
-            this.textBox7.TabIndex = 13;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(380, 284);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(420, 139);
-            this.listBox1.TabIndex = 14;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(725, 59);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 73);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "조회";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(703, 163);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(97, 25);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "Download";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(703, 211);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(97, 25);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "Scan";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(703, 242);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(97, 25);
-            this.button4.TabIndex = 18;
-            this.button4.Text = "Upload";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "COFFEE",
+            "NON COFFEE",
+            "ADE",
+            "TEA"});
+            this.comboBox1.Location = new System.Drawing.Point(101, 28);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(367, 20);
+            this.comboBox1.TabIndex = 31;
             // 
             // ItemPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.download);
-            this.Controls.Add(this.storagekey);
-            this.Controls.Add(this.storagename);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Item_Register);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ItemPanel";
-            this.Size = new System.Drawing.Size(816, 455);
+            this.Size = new System.Drawing.Size(714, 364);
+            this.Item_Register.ResumeLayout(false);
+            this.Item_Register.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.GroupBox Item_Register;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button file_scan;
+        private System.Windows.Forms.TextBox file_path;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox storagename;
-        private System.Windows.Forms.TextBox storagekey;
-        private System.Windows.Forms.TextBox download;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
     }
 }

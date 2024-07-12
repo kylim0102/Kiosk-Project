@@ -31,9 +31,6 @@ namespace Kiosk.pPanel
             ChartDataLoad(_cData);
         }
 
-
-
-
         private void ChartDataLoad(ChartData cData)
         {
             chart1.Series.Clear();

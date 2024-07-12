@@ -15,7 +15,6 @@ namespace Kiosk.Order
     public partial class Order_Manage : Form
     {
         private Timer timer;
-        
 
         public Order_Manage()
         {
@@ -51,8 +50,11 @@ namespace Kiosk.Order
         private void groupBox1_Enter(object sender, EventArgs e)
         {
             MySqlConnection con = oGlobal.GetConnection();
-
-            con.Open();
+            if(con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            
 
             string sql = "select * from itemtable";
             MySqlCommand cmd = new MySqlCommand(sql, con);
@@ -91,14 +93,15 @@ namespace Kiosk.Order
                     button.Text = item_name;
                     button.Tag = new {idx, item_name, price, content, regdate, category, power };
 
+
                     // 버튼 위치 설정
                     button.Top = buttonTop;
                     button.Left = 10; // x 좌표는 고정
-                    MenuInfo menuInfo = new MenuInfo();
-                    menuInfo.menu_name = item_name;
 
-                    button.Click += sql_btn_click;
-                    
+                    // 생성한 버튼에 이벤트 추가
+                    button.Click += Button_Click;
+
+
                     mysql_tab.Controls.Add(button);
 
                     Console.WriteLine($"Button added: Name={button.Name}, Text={button.Text}, Top={button.Top}, Left={button.Left}");
@@ -111,7 +114,45 @@ namespace Kiosk.Order
 
         private void Button_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("test!");
+            Button button = sender as Button;
+            dynamic tagData = button.Tag;
+
+            string menu_name = tagData.item_name;
+            int price = tagData.price;
+
+            int count = selected_menu.Rows.Count;
+
+
+            DataGridViewRow row = null;
+            // 메뉴 명에 따라 가격을 초기화
+            
+
+            // DataGridView의 목록 수만큼 for문을 돌려 중복을 확인
+            for (int a = 0; a < count; a++)
+            {
+                row = selected_menu.Rows[a];
+
+                if (a < row.Cells.Count && row.Cells[a].Value != null && row.Cells["Menu"].Value.ToString().Equals(menu_name))// Datagridview에 선택한 메뉴가 이미 있다면
+                {
+                    int menu_count = Convert.ToInt32(row.Cells["Count"].Value);
+
+                    row.Cells["Count"].Value = menu_count + 1;
+                    row.Cells["Price"].Value = price * (menu_count + 1);
+                    break;
+                }
+                else if (a < row.Cells.Count && row.Cells[a].Value == null) // DataGridView에 선택한 메뉴가 없다면
+                {
+                    selected_menu.Rows.Add(menu_name, 1, price, "");
+                }
+            }
+
+            // 총 결제 금액 계산
+            total_payment();
+
+            // 거스름돈 계산
+            //int taked = Convert.ToInt32(take_money.Text); // 받은 금액
+            int payed = Convert.ToInt32(payment.Text); // 결제 금액
+                                                       //change_money.Text = (taked - payed) + "";
         }
 
         private void Order_Manage_Load(object sender, EventArgs e)
@@ -121,11 +162,6 @@ namespace Kiosk.Order
 
             // Timer 시작
             timer.Start();
-        }
-
-        private class MenuInfo
-        {
-            public string menu_name { get; set; }
         }
         
         private int menu_price(string menu_name)
@@ -220,11 +256,6 @@ namespace Kiosk.Order
                 }
             }
             payment.Text = payments.Sum()+"";
-        }
-
-        private void sql_btn_click(object sender, EventArgs e)
-        {
-            MessageBox.Show("동적 생성 버튼","Welcome",MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
 
         private void button1_Click(object sender, EventArgs e)
