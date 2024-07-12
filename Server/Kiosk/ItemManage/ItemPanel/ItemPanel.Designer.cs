@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.Item_Register = new System.Windows.Forms.GroupBox();
+            this.Reset = new System.Windows.Forms.Button();
+            this.Register = new System.Windows.Forms.Button();
             this.Item_category = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.file_path = new System.Windows.Forms.TextBox();
@@ -41,15 +43,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.Item_Register.SuspendLayout();
             this.SuspendLayout();
             // 
             // Item_Register
             // 
-            this.Item_Register.Controls.Add(this.button4);
-            this.Item_Register.Controls.Add(this.button3);
+            this.Item_Register.Controls.Add(this.Reset);
+            this.Item_Register.Controls.Add(this.Register);
             this.Item_Register.Controls.Add(this.Item_category);
             this.Item_Register.Controls.Add(this.label5);
             this.Item_Register.Controls.Add(this.file_path);
@@ -68,6 +68,26 @@
             this.Item_Register.TabStop = false;
             this.Item_Register.Text = "Item_Register";
             this.Item_Register.Enter += new System.EventHandler(this.Item_Register_Enter);
+            // 
+            // Reset
+            // 
+            this.Reset.Location = new System.Drawing.Point(267, 357);
+            this.Reset.Name = "Reset";
+            this.Reset.Size = new System.Drawing.Size(75, 23);
+            this.Reset.TabIndex = 35;
+            this.Reset.Text = "리셋";
+            this.Reset.UseVisualStyleBackColor = true;
+            this.Reset.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // Register
+            // 
+            this.Register.Location = new System.Drawing.Point(151, 357);
+            this.Register.Name = "Register";
+            this.Register.Size = new System.Drawing.Size(75, 23);
+            this.Register.TabIndex = 34;
+            this.Register.Text = "등록";
+            this.Register.UseVisualStyleBackColor = true;
+            this.Register.Click += new System.EventHandler(this.Register_Click);
             // 
             // Item_category
             // 
@@ -97,6 +117,7 @@
             this.file_path.Location = new System.Drawing.Point(101, 310);
             this.file_path.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.file_path.Name = "file_path";
+            this.file_path.ReadOnly = true;
             this.file_path.Size = new System.Drawing.Size(274, 21);
             this.file_path.TabIndex = 29;
             // 
@@ -178,25 +199,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(151, 357);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 34;
-            this.button3.Text = "등록";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(267, 357);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 35;
-            this.button4.Text = "리셋";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // ItemPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -224,8 +226,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button Reset;
+        private System.Windows.Forms.Button Register;
         public System.Windows.Forms.ComboBox Item_category;
     }
 }
