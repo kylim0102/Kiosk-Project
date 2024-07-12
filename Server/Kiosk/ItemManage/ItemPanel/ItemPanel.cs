@@ -70,5 +70,23 @@ namespace Kiosk.ItemManage.ItemPanel
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // 리셋 버튼 클릭 시 모든 입력 값을 초기화
+            Item_category.SelectedIndex = -1;
+
+
+        }
     }
 }

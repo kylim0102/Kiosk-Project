@@ -29,60 +29,64 @@
         private void InitializeComponent()
         {
             this.Item_Register = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.Item_category = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.file_path = new System.Windows.Forms.TextBox();
             this.file_scan = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Item_content = new System.Windows.Forms.TextBox();
+            this.Item_price = new System.Windows.Forms.TextBox();
+            this.Item_name = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.Item_Register.SuspendLayout();
             this.SuspendLayout();
             // 
             // Item_Register
             // 
-            this.Item_Register.Controls.Add(this.comboBox1);
+            this.Item_Register.Controls.Add(this.button4);
+            this.Item_Register.Controls.Add(this.button3);
+            this.Item_Register.Controls.Add(this.Item_category);
             this.Item_Register.Controls.Add(this.label5);
             this.Item_Register.Controls.Add(this.file_path);
             this.Item_Register.Controls.Add(this.file_scan);
             this.Item_Register.Controls.Add(this.label4);
-            this.Item_Register.Controls.Add(this.textBox3);
-            this.Item_Register.Controls.Add(this.textBox2);
-            this.Item_Register.Controls.Add(this.textBox1);
+            this.Item_Register.Controls.Add(this.Item_content);
+            this.Item_Register.Controls.Add(this.Item_price);
+            this.Item_Register.Controls.Add(this.Item_name);
             this.Item_Register.Controls.Add(this.label3);
             this.Item_Register.Controls.Add(this.label2);
             this.Item_Register.Controls.Add(this.label1);
             this.Item_Register.Location = new System.Drawing.Point(121, 3);
             this.Item_Register.Name = "Item_Register";
-            this.Item_Register.Size = new System.Drawing.Size(490, 353);
+            this.Item_Register.Size = new System.Drawing.Size(490, 403);
             this.Item_Register.TabIndex = 20;
             this.Item_Register.TabStop = false;
             this.Item_Register.Text = "Item_Register";
             this.Item_Register.Enter += new System.EventHandler(this.Item_Register_Enter);
             // 
-            // comboBox1
+            // Item_category
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.Item_category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Item_category.FormattingEnabled = true;
+            this.Item_category.Items.AddRange(new object[] {
             "COFFEE",
             "NON COFFEE",
             "ADE",
             "TEA"});
-            this.comboBox1.Location = new System.Drawing.Point(101, 28);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(367, 20);
-            this.comboBox1.TabIndex = 31;
+            this.Item_category.Location = new System.Drawing.Point(101, 39);
+            this.Item_category.Name = "Item_category";
+            this.Item_category.Size = new System.Drawing.Size(367, 20);
+            this.Item_category.TabIndex = 31;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 37);
+            this.label5.Location = new System.Drawing.Point(29, 42);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 30;
@@ -90,7 +94,7 @@
             // 
             // file_path
             // 
-            this.file_path.Location = new System.Drawing.Point(101, 293);
+            this.file_path.Location = new System.Drawing.Point(101, 310);
             this.file_path.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.file_path.Name = "file_path";
             this.file_path.Size = new System.Drawing.Size(274, 21);
@@ -98,7 +102,7 @@
             // 
             // file_scan
             // 
-            this.file_scan.Location = new System.Drawing.Point(383, 293);
+            this.file_scan.Location = new System.Drawing.Point(383, 310);
             this.file_scan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.file_scan.Name = "file_scan";
             this.file_scan.Size = new System.Drawing.Size(85, 23);
@@ -110,41 +114,42 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(29, 296);
+            this.label4.Location = new System.Drawing.Point(29, 313);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 12);
             this.label4.TabIndex = 12;
             this.label4.Text = "제품 사진";
             // 
-            // textBox3
+            // Item_content
             // 
-            this.textBox3.Location = new System.Drawing.Point(101, 195);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(367, 65);
-            this.textBox3.TabIndex = 11;
+            this.Item_content.Location = new System.Drawing.Point(101, 212);
+            this.Item_content.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Item_content.Multiline = true;
+            this.Item_content.Name = "Item_content";
+            this.Item_content.Size = new System.Drawing.Size(367, 65);
+            this.Item_content.TabIndex = 11;
             // 
-            // textBox2
+            // Item_price
             // 
-            this.textBox2.Location = new System.Drawing.Point(101, 132);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(367, 21);
-            this.textBox2.TabIndex = 10;
+            this.Item_price.Location = new System.Drawing.Point(101, 149);
+            this.Item_price.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Item_price.Name = "Item_price";
+            this.Item_price.Size = new System.Drawing.Size(367, 21);
+            this.Item_price.TabIndex = 10;
             // 
-            // textBox1
+            // Item_name
             // 
-            this.textBox1.Location = new System.Drawing.Point(101, 77);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(367, 21);
-            this.textBox1.TabIndex = 9;
+            this.Item_name.Location = new System.Drawing.Point(101, 88);
+            this.Item_name.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Item_name.Name = "Item_name";
+            this.Item_name.Size = new System.Drawing.Size(367, 21);
+            this.Item_name.TabIndex = 9;
+            this.Item_name.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 195);
+            this.label3.Location = new System.Drawing.Point(29, 212);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 8;
@@ -153,7 +158,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 135);
+            this.label2.Location = new System.Drawing.Point(29, 152);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 7;
@@ -162,15 +167,35 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 80);
+            this.label1.Location = new System.Drawing.Point(29, 91);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 6;
             this.label1.Text = "제품명";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(151, 357);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 34;
+            this.button3.Text = "등록";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(267, 357);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 35;
+            this.button4.Text = "리셋";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // ItemPanel
             // 
@@ -188,9 +213,9 @@
 
         #endregion
         private System.Windows.Forms.GroupBox Item_Register;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox Item_content;
+        private System.Windows.Forms.TextBox Item_price;
+        private System.Windows.Forms.TextBox Item_name;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -198,7 +223,9 @@
         private System.Windows.Forms.TextBox file_path;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        public System.Windows.Forms.ComboBox Item_category;
     }
 }
