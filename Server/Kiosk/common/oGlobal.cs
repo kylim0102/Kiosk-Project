@@ -106,6 +106,7 @@ namespace Kiosk.pPanel.common
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 MessageBox.Show("파일 업로드에 실패했습니다.", "Fail Upload", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
