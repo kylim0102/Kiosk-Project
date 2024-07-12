@@ -1,4 +1,6 @@
-﻿using Google.Protobuf.WellKnownTypes;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Google.Protobuf.WellKnownTypes;
 using Kiosk.pPanel.common;
 using MySql.Data.MySqlClient;
 using System;
@@ -6,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +18,9 @@ namespace Kiosk.ItemManage.ItemPanel
 {
     public partial class Itemmanage : UserControl
     {
+        StorageConnection storageConnection = new StorageConnection();
+
+
         MySqlConnection conn = oGlobal.GetConnection();
         public Itemmanage()
         {
@@ -49,7 +55,7 @@ namespace Kiosk.ItemManage.ItemPanel
                         string data = reader.GetString("itemName"); // name 컬럼의 값 가져오기, 
                         int price = reader.GetInt32("price");
                         //MessageBox.Show($"ID: {id}, name: {data}"); 확인용
-                        listBox1.Items.Add("상품번호 : "+id +" 이름 : " + data + " 가격 : " + price);
+                        listBox1.Items.Add("상품번호 : " + id + " 이름 : " + data + " 가격 : " + price);
                     }
                 }
             }
@@ -57,7 +63,7 @@ namespace Kiosk.ItemManage.ItemPanel
             {
                 Console.WriteLine($"오류 발생: {ex.Message}");
             }
-            
+
             #endregion
             #region on/off 가 y 인 것
             try
@@ -83,12 +89,28 @@ namespace Kiosk.ItemManage.ItemPanel
                 Console.WriteLine($"오류 발생: {ex.Message}");
             }
             #endregion
+
+
+            #region 스토리지 연결
+            storageConnection.BlobContainerClient(); // 스토리지 연결
+
+            List<BlobItem> items = new List<BlobItem>();
+
+            items = storageConnection.GetBlobs();
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                listBox3.Items.Add(items[i].Name);
+            }
+            #endregion
         }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
             #region 상품 사용 on (y)로 바꾸기
-            int idx = Convert.ToInt32(listBox1.SelectedItem.ToString().Substring(7,1));
+            int idx = Convert.ToInt32(listBox1.SelectedItem.ToString().Substring(7, 1));
             if (MessageBox.Show("추가하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
@@ -156,6 +178,52 @@ namespace Kiosk.ItemManage.ItemPanel
             }
             #endregion
         }
+
+        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 다운하고자 하는  파일 이름 들고오기                     
+            String name = listBox3.SelectedItem.ToString();
+            textBox1.Text = name;
+        }
+
+        private async void button3_Click(object sender, EventArgs e)
+        {
+            //경로 + 파일명 *****저장되는곳 경로 설정*********
+            string url = @"C:\Users\YJ\"+textBox1.Text;
+            //다운로드 버튼
+            await Download(textBox1.Text, url);
+        }
+
+        public async Task Download(string blobName, string downloadFilepath)
+        {
+            #region 스토리지에 존재하는 파일 다운로드
+
+            // Storage 연결
+            var containerClient = storageConnection.BlobContainerClient();
+            BlobClient blobClient = containerClient.GetBlobClient(blobName);
+            bool exists = await blobClient.ExistsAsync();
+
+            if (!exists) // 다운로드 하려는 파일이 Storage에 없는 경우
+            {
+                MessageBox.Show("Storage에 해당 파일이 존재하지 않습니다.", "Download ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                MessageBox.Show("다운로드를 시작합니다.", "Download", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Blob의 내용을 다운로드하여 BlobDownloadInfo 객체에 저장
+                BlobDownloadInfo download = await blobClient.DownloadAsync();
+
+                // 로컬 Storage에 저장
+                using (FileStream fs = File.OpenWrite(downloadFilepath))
+                {
+                    await download.Content.CopyToAsync(fs);
+                    MessageBox.Show("다운로드 성공", "Download Success !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    fs.Close();
+                }
+            }
+            #endregion
+
+        }
     }
-    
 }
