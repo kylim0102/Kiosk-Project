@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.Item_Register = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.file_path = new System.Windows.Forms.TextBox();
+            this.file_scan = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.file_scan = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.file_path = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.Item_Register.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +64,57 @@
             this.Item_Register.TabStop = false;
             this.Item_Register.Text = "Item_Register";
             this.Item_Register.Enter += new System.EventHandler(this.Item_Register_Enter);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "COFFEE",
+            "NON COFFEE",
+            "ADE",
+            "TEA"});
+            this.comboBox1.Location = new System.Drawing.Point(101, 28);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(367, 20);
+            this.comboBox1.TabIndex = 31;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(29, 37);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 12);
+            this.label5.TabIndex = 30;
+            this.label5.Text = "카테고리";
+            // 
+            // file_path
+            // 
+            this.file_path.Location = new System.Drawing.Point(101, 293);
+            this.file_path.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.file_path.Name = "file_path";
+            this.file_path.Size = new System.Drawing.Size(274, 21);
+            this.file_path.TabIndex = 29;
+            // 
+            // file_scan
+            // 
+            this.file_scan.Location = new System.Drawing.Point(383, 293);
+            this.file_scan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.file_scan.Name = "file_scan";
+            this.file_scan.Size = new System.Drawing.Size(85, 23);
+            this.file_scan.TabIndex = 27;
+            this.file_scan.Text = "찾아보기";
+            this.file_scan.UseVisualStyleBackColor = true;
+            this.file_scan.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(29, 296);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(57, 12);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "제품 사진";
             // 
             // textBox3
             // 
@@ -117,60 +168,9 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "제품명";
             // 
-            // file_scan
-            // 
-            this.file_scan.Location = new System.Drawing.Point(383, 293);
-            this.file_scan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.file_scan.Name = "file_scan";
-            this.file_scan.Size = new System.Drawing.Size(85, 23);
-            this.file_scan.TabIndex = 27;
-            this.file_scan.Text = "찾아보기";
-            this.file_scan.UseVisualStyleBackColor = true;
-            this.file_scan.Click += new System.EventHandler(this.button3_Click_1);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(29, 296);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 12);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "제품 사진";
-            // 
-            // file_path
-            // 
-            this.file_path.Location = new System.Drawing.Point(101, 293);
-            this.file_path.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.file_path.Name = "file_path";
-            this.file_path.Size = new System.Drawing.Size(274, 21);
-            this.file_path.TabIndex = 29;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 37);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 30;
-            this.label5.Text = "카테고리";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "COFFEE",
-            "NON COFFEE",
-            "ADE",
-            "TEA"});
-            this.comboBox1.Location = new System.Drawing.Point(101, 28);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(367, 20);
-            this.comboBox1.TabIndex = 31;
             // 
             // ItemPanel
             // 
@@ -179,7 +179,7 @@
             this.Controls.Add(this.Item_Register);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ItemPanel";
-            this.Size = new System.Drawing.Size(714, 364);
+            this.Size = new System.Drawing.Size(714, 409);
             this.Item_Register.ResumeLayout(false);
             this.Item_Register.PerformLayout();
             this.ResumeLayout(false);

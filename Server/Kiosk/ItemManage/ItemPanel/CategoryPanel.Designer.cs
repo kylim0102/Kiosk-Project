@@ -43,14 +43,12 @@
             // 
             // categorys
             // 
-
             this.categorys.Location = new System.Drawing.Point(101, 31);
             this.categorys.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.categorys.Name = "categorys";
             this.categorys.Size = new System.Drawing.Size(182, 21);
             this.categorys.TabIndex = 1;
             this.categorys.TextChanged += new System.EventHandler(this.categorys_TextChanged);
-
             // 
             // Category_Manage
             // 
@@ -60,7 +58,7 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Category_Manage";
-            this.Size = new System.Drawing.Size(714, 364);
+            this.Size = new System.Drawing.Size(714, 409);
             this.Load += new System.EventHandler(this.Category_Manage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

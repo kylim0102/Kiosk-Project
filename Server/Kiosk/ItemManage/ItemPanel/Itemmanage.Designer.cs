@@ -41,10 +41,11 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Location = new System.Drawing.Point(3, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(810, 449);
+            this.tabControl1.Size = new System.Drawing.Size(714, 409);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -53,10 +54,11 @@
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.listBox2);
             this.tabPage1.Controls.Add(this.listBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(802, 420);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage1.Size = new System.Drawing.Size(706, 383);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "아이템 관리";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -64,9 +66,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(633, 376);
+            this.button2.Location = new System.Drawing.Point(554, 301);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 23);
+            this.button2.Size = new System.Drawing.Size(120, 18);
             this.button2.TabIndex = 3;
             this.button2.Text = "제거";
             this.button2.UseVisualStyleBackColor = true;
@@ -74,9 +77,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(237, 376);
+            this.button1.Location = new System.Drawing.Point(207, 301);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 23);
+            this.button1.Size = new System.Drawing.Size(94, 18);
             this.button1.TabIndex = 2;
             this.button1.Text = "추가";
             this.button1.UseVisualStyleBackColor = true;
@@ -85,29 +89,32 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 15;
-            this.listBox2.Location = new System.Drawing.Point(426, 36);
+            this.listBox2.ItemHeight = 12;
+            this.listBox2.Location = new System.Drawing.Point(373, 29);
+            this.listBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(344, 334);
+            this.listBox2.Size = new System.Drawing.Size(302, 268);
             this.listBox2.TabIndex = 1;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(30, 36);
+            this.listBox1.ItemHeight = 12;
+            this.listBox1.Location = new System.Drawing.Point(26, 29);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(315, 334);
+            this.listBox1.Size = new System.Drawing.Size(276, 268);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // Itemmanage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Itemmanage";
-            this.Size = new System.Drawing.Size(816, 455);
+            this.Size = new System.Drawing.Size(714, 364);
             this.Load += new System.EventHandler(this.Itemmanage_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
