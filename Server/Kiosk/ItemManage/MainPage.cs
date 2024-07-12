@@ -91,13 +91,6 @@ namespace Kiosk.ItemManage
                 conn.Close();
             }*/
 
-            Category_Manage categorys = new ItemPanel.Category_Manage();
-            String names = Category_Manage.category_name.category;
-
-
-
-
-
         }
 
         private void button5_Click(object sender, EventArgs e)
