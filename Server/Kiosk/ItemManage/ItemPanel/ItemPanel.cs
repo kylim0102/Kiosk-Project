@@ -10,11 +10,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Kiosk.pPanel.common;
 
 namespace Kiosk.ItemManage.ItemPanel
 {
     public partial class ItemPanel : UserControl
     {
+        StorageConnection connection = new StorageConnection();
+
         public ItemPanel()
         {
             InitializeComponent();
@@ -87,40 +90,16 @@ namespace Kiosk.ItemManage.ItemPanel
             }
 
         }
-        private async Task LoadStorageList()
-        {
-            try
-            {
-                connectionString = storagekey.Text;
-                containerName = storagename.Text;
-                // Blob 서비스 클라이언트 생성
-                var blobServiceClient = new BlobServiceClient(connectionString);
-
-                // 컨테이너 클라이언트 생성
-                var containerClient = blobServiceClient.GetBlobContainerClient(containerName);
-
-                int size = containerClient.GetBlobs().Count();
-
-                List<BlobItem> items = containerClient.GetBlobs().ToList();
-
-                listBox1.Items.Clear();
-
-                for (int i = 0; i < size; i++)
-                {
-                    listBox1.Items.Add(items[i].Name);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoadStorageList();
+            List<BlobItem> list = connection.GetBlobs();
+            listBox1.Items.Clear();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                listBox1.Items.Add(list[i].Name);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)

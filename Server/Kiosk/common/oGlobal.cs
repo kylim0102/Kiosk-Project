@@ -64,8 +64,10 @@ namespace Kiosk.pPanel.common
 
             // Azure Storage 이름
             string containerName = "kiosk";
+            string connectionString = connectionString1 + connectionString2 + connectionString3 + connectionString4;
+
             //Azure Storage 연결
-            BlobContainerClient containerClient = new BlobContainerClient(connectionString1 + connectionString2 + connectionString3 + connectionString4, containerName);
+            BlobContainerClient containerClient = new BlobContainerClient(connectionString, containerName);
 
             return containerClient;
         }
