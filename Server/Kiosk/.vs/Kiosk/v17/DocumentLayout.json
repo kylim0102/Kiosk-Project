@@ -1,52 +1,7 @@
 {
   "Version": 1,
-<<<<<<< HEAD
-  "WorkspaceRootPath": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\lenovo\\source\\repos\\kiosk-project\\server\\kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\lenovo\\source\\repos\\kiosk-project\\server\\kiosk\\itemmanage\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\lenovo\\source\\repos\\kiosk-project\\server\\kiosk\\itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-=======
-  "WorkspaceRootPath": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\\uC774\uB3D9\uD6C8\\desktop\\kiosk-project\\server\\kiosk\\order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\\uC774\uB3D9\uD6C8\\desktop\\kiosk-project\\server\\kiosk\\order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
->>>>>>> fa99af22c0efeef6f33690cc7c3c5d2931df18c2
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -54,25 +9,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-<<<<<<< HEAD
-          "SelectedChildIndex": 7,
-=======
-          "SelectedChildIndex": 8,
->>>>>>> fa99af22c0efeef6f33690cc7c3c5d2931df18c2
+          "SelectedChildIndex": -1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Form1.cs",
-              "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAADkAAAAAAAAAAAAgwGEAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-10T07:55:34.149Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
               "$type": "Bookmark",
@@ -93,125 +38,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-<<<<<<< HEAD
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\Form1.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "Form1.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T15:37:06.371Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainPage.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\MainPage.cs",
-              "RelativeDocumentMoniker": "ItemManage\\MainPage.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\MainPage.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "ItemManage\\MainPage.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T15:37:02.66Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Itemmanage.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs",
-              "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\Itemmanage.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs [Design]",
-              "RelativeToolTip": "ItemManage\\ItemPanel\\Itemmanage.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T15:07:48.288Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Itemmanage.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs",
-              "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\Itemmanage.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs",
-              "RelativeToolTip": "ItemManage\\ItemPanel\\Itemmanage.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAqwFkAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T14:33:30.35Z",
-=======
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Order_Manage.cs",
-              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Order\\Order_Manage.cs",
-              "RelativeDocumentMoniker": "Order\\Order_Manage.cs",
-              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Order\\Order_Manage.cs",
-              "RelativeToolTip": "Order\\Order_Manage.cs",
-              "ViewState": "AQIAAEQAAAAAAAAAAAAYwGMAAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T12:14:38.16Z",
->>>>>>> fa99af22c0efeef6f33690cc7c3c5d2931df18c2
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-<<<<<<< HEAD
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\Form1.cs",
-              "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAApwFcAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T04:55:18.336Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "oGlobal.cs",
-              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\oGlobal.cs",
-              "RelativeDocumentMoniker": "common\\oGlobal.cs",
-              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\oGlobal.cs",
-              "RelativeToolTip": "common\\oGlobal.cs",
-              "ViewState": "AQIAAIAAAAAAAAAAAAAqwJUAAABEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T05:38:43.939Z"
-=======
-              "Title": "Order_Manage.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Order\\Order_Manage.cs",
-              "RelativeDocumentMoniker": "Order\\Order_Manage.cs",
-              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Order\\Order_Manage.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "Order\\Order_Manage.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T12:12:59.817Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "oGlobal.cs",
-              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\oGlobal.cs",
-              "RelativeDocumentMoniker": "common\\oGlobal.cs",
-              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\oGlobal.cs",
-              "RelativeToolTip": "common\\oGlobal.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAB4AAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T06:10:10.092Z",
-              "EditorCaption": ""
->>>>>>> fa99af22c0efeef6f33690cc7c3c5d2931df18c2
             }
           ]
         },

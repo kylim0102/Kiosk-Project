@@ -58,12 +58,12 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "OptionPanel";
-<<<<<<< HEAD
+
             this.Size = new System.Drawing.Size(816, 455);
             this.Load += new System.EventHandler(this.OptionPanel_Load);
-=======
-            this.Size = new System.Drawing.Size(714, 364);
->>>>>>> fa99af22c0efeef6f33690cc7c3c5d2931df18c2
+
+
+
             this.ResumeLayout(false);
             this.PerformLayout();
 

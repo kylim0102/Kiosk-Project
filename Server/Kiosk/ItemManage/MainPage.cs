@@ -11,14 +11,13 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-<<<<<<< HEAD
+
 using static Kiosk.ItemManage.ItemPanel.OptionPanel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-=======
+
 using Kiosk.ItemManage.ItemPanel;
-using Kiosk.pPanel.common;
-using MySql.Data.MySqlClient;
->>>>>>> fa99af22c0efeef6f33690cc7c3c5d2931df18c2
+
+
 
 namespace Kiosk.ItemManage
 {
@@ -55,7 +54,7 @@ namespace Kiosk.ItemManage
 
         private void button4_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
+
 
             /*MySqlConnection conn = oGlobal.GetConnection();
             conn.Open();
@@ -91,41 +90,19 @@ namespace Kiosk.ItemManage
             {
                 conn.Close();
             }*/
-=======
+
             Category_Manage categorys = new ItemPanel.Category_Manage();
             String names = Category_Manage.category_name.category;
 
 
 
-            //string names = (categorys.Controls["categorys"] as TextBox).Text;
-
-            try
-            {
-                using (MySqlConnection mySql = oGlobal.GetConnection())
-                {
-                    mySql.Open();
-                    string sql = "insert into test values (@id, @name)";
-                    MySqlCommand cmd = new MySqlCommand(sql, mySql);
-
-                    cmd.Parameters.AddWithValue("@id", 55);
-                    cmd.Parameters.AddWithValue("name", names);
-
-                    //cmd.ExecuteNonQuery();
-                    MessageBox.Show(names, "Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                }
-            }
-            catch(MySqlException) 
-            {
-                MessageBox.Show("입력 실패! ","ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error); 
-            }
 
 
->>>>>>> fa99af22c0efeef6f33690cc7c3c5d2931df18c2
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void MainPage_Load(object sender, EventArgs e)

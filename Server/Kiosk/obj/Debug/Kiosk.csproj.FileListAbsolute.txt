@@ -327,3 +327,4 @@ C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.csproj.Up2
 C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.exe
 C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.pdb
 >>>>>>> fa99af22c0efeef6f33690cc7c3c5d2931df18c2
+C:\Users\YJ\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.ItemManage.ItemPanel.Itemmanage.resources

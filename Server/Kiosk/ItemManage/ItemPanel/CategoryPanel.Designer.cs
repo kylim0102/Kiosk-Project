@@ -43,20 +43,14 @@
             // 
             // categorys
             // 
-<<<<<<< HEAD
-            this.textBox1.Location = new System.Drawing.Point(115, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(208, 25);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-=======
+
             this.categorys.Location = new System.Drawing.Point(101, 31);
             this.categorys.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.categorys.Name = "categorys";
             this.categorys.Size = new System.Drawing.Size(182, 21);
             this.categorys.TabIndex = 1;
             this.categorys.TextChanged += new System.EventHandler(this.categorys_TextChanged);
->>>>>>> fa99af22c0efeef6f33690cc7c3c5d2931df18c2
+
             // 
             // Category_Manage
             // 
