@@ -104,6 +104,9 @@ namespace Kiosk.ItemManage.ItemPanel
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("데이터가 성공적으로 삽입되었습니다.");
+                        listBox1.Items.Clear();
+                        listBox2.Items.Clear();
+                        Itemmanage_Load(sender, e); // 다시 로드
                     }
                     else
                     {
@@ -137,6 +140,9 @@ namespace Kiosk.ItemManage.ItemPanel
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("데이터가 성공적으로 제거되었습니다.");
+                        listBox1.Items.Clear();
+                        listBox2.Items.Clear();
+                        Itemmanage_Load(sender, e); // 다시 로드
                     }
                     else
                     {
