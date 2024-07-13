@@ -98,10 +98,61 @@ namespace Kiosk.pPanel.common
     }
     #endregion
 
+
     #region To ItemPanel.cs
     internal class ItemTable
     {
+        private MySqlConnection mysql = oGlobal.GetConnection();
+        private string sql = null;
+        int result = 0;
 
+        public int ItemRegister(string name, int price, string content, string category)
+        {
+            try
+            {
+                string now = DateTime.Now.ToString("yyyy-MM-dd");
+                string sql = "insert into itemtable(itemName, price, content, regdate, category) values(@itemName, @price, @content, @regdate, @category)";
+
+                MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+                cmd.Parameters.AddWithValue("@itemName", name);
+                cmd.Parameters.AddWithValue("@price", price);
+                cmd.Parameters.AddWithValue("@content", content);
+                cmd.Parameters.AddWithValue("@regdate", now);
+                cmd.Parameters.AddWithValue("@category", category);
+
+                result = cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex) 
+            {
+                MessageBox.Show(ex.Message, "MySql ERROR !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return result;
+        }
+
+        public List<string> GetCategory()
+        {
+            List<string> category_names = new List<string>();
+
+            try
+            {
+                string sql = "select cg_name from categorytable";
+                MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    category_names.Add(reader.GetString("cg_name"));
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return category_names;
+        }
     }
     #endregion
 
