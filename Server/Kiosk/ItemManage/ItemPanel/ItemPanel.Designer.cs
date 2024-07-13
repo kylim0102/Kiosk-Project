@@ -93,11 +93,6 @@
             // 
             this.Item_category.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Item_category.FormattingEnabled = true;
-            this.Item_category.Items.AddRange(new object[] {
-            "COFFEE",
-            "NON COFFEE",
-            "ADE",
-            "TEA"});
             this.Item_category.Location = new System.Drawing.Point(101, 39);
             this.Item_category.Name = "Item_category";
             this.Item_category.Size = new System.Drawing.Size(367, 20);
@@ -207,6 +202,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ItemPanel";
             this.Size = new System.Drawing.Size(714, 409);
+            this.Load += new System.EventHandler(this.ItemPanel_Load);
             this.Item_Register.ResumeLayout(false);
             this.Item_Register.PerformLayout();
             this.ResumeLayout(false);

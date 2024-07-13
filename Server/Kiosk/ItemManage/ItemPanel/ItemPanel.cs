@@ -183,5 +183,38 @@ namespace Kiosk.ItemManage.ItemPanel
                 }
             }
         }
+
+        private void ItemPanel_Load(object sender, EventArgs e)
+        {
+            List<string> list = GetCategory();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                Item_category.Items.Add(list[i]);
+            }
+        }
+
+        private List<string> GetCategory()
+        {
+            List<string> category_names = new List<string>();
+
+            try
+            {
+                string sql = "select cg_name from categorytable";
+                MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    category_names.Add(reader.GetString("cg_name"));
+                }
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message,"MYSQL ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+
+            return category_names;
+        }
     }
 }
