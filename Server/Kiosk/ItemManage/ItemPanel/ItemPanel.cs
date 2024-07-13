@@ -20,7 +20,8 @@ namespace Kiosk.ItemManage.ItemPanel
     {
         private StorageConnection storage = new StorageConnection();
         private MySqlConnection mysql = oGlobal.GetConnection();
-        private ItemTable table = new ItemTable();
+        private ItemTable item_table = new ItemTable();
+        private CategoryTable category_table = new CategoryTable();
 
         public ItemPanel()
         {
@@ -101,7 +102,7 @@ namespace Kiosk.ItemManage.ItemPanel
                 int result = 0;
 
                 // MySql DB Register
-                result = table.ItemRegister(Item_name.Text, Convert.ToInt32(Item_price.Text), Item_content.Text, Item_category.Text);
+                result = item_table.ItemRegister(Item_name.Text, Convert.ToInt32(Item_price.Text), Item_content.Text, Item_category.Text);
 
                 // Azure Storage Upload Start
                 if (file_path.Text.Equals(""))
@@ -137,7 +138,7 @@ namespace Kiosk.ItemManage.ItemPanel
 
         private void ItemPanel_Load(object sender, EventArgs e)
         {
-            List<string> list = table.GetCategory();
+            List<string> list = category_table.GetCategory();
 
             for (int i = 0; i < list.Count; i++)
             {

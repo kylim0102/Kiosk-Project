@@ -24,12 +24,13 @@ namespace Kiosk.pPanel.common
 
         public int CategoryTableCount()
         {
+            MySqlDataReader reader = null;
             try
             {
                 sql = "select count(*) as count from categorytable";
                 MySqlCommand cmd = new MySqlCommand(sql, mysql);
 
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                using (reader = cmd.ExecuteReader())
                 {
                     reader.Read();
                     result = reader.GetInt32("count");
@@ -38,6 +39,10 @@ namespace Kiosk.pPanel.common
             catch(MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                reader.Close();
             }
 
             return result;
@@ -76,13 +81,14 @@ namespace Kiosk.pPanel.common
 
         public int CategoryMaxCode()
         {
+            MySqlDataReader reader = null;
             try
             {
                 sql = "select max(cg_code) as max from categorytable";
 
                 MySqlCommand cmd = new MySqlCommand(sql, mysql);
 
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                using (reader = cmd.ExecuteReader())
                 {
                     reader.Read();
                     result = reader.GetInt32("max") + 10;
@@ -92,12 +98,43 @@ namespace Kiosk.pPanel.common
             {
                 MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                reader.Close();
+            }
 
             return result;
         }
+
+        public List<string> GetCategory()
+        {
+            List<string> category_names = new List<string>();
+            MySqlDataReader reader = null;
+
+            try
+            {
+                string sql = "select cg_name from categorytable";
+                MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    category_names.Add(reader.GetString("cg_name"));
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                reader.Close();
+            }
+
+            return category_names;
+        }
     }
     #endregion
-
 
     #region To ItemPanel.cs
     internal class ItemTable
@@ -129,29 +166,6 @@ namespace Kiosk.pPanel.common
             }
 
             return result;
-        }
-
-        public List<string> GetCategory()
-        {
-            List<string> category_names = new List<string>();
-
-            try
-            {
-                string sql = "select cg_name from categorytable";
-                MySqlCommand cmd = new MySqlCommand(sql, mysql);
-
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    category_names.Add(reader.GetString("cg_name"));
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            return category_names;
         }
     }
     #endregion

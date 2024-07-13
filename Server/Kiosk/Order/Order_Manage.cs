@@ -76,7 +76,6 @@ namespace Kiosk.Order
 
                 while (reader.Read())
                 {
-                    Console.WriteLine("Reading data for idx: " + reader.GetInt32("idx"));
 
                     idx = reader.GetInt32("idx");
                     item_name = reader.GetString("itemName");
