@@ -138,14 +138,28 @@ namespace Kiosk.ItemManage.ItemPanel
 
         private void ItemPanel_Load(object sender, EventArgs e)
         {
+            #region 제품 등록 부분 카테고리
             List<string> list = category_table.GetCategory();
 
             for (int i = 0; i < list.Count; i++)
             {
                 Item_category.Items.Add(list[i]);
             }
+            #endregion
+
+
+            #region datagridview 리스트 뽑아오기
+
+
+
+
+            #endregion
+
         }
 
-        
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

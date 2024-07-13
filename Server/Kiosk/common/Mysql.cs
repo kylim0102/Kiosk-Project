@@ -236,4 +236,21 @@ namespace Kiosk.pPanel.common
 
     }
     #endregion
+
+
+
+    #region 제품 수정 / 삭제
+    internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근 가능
+    {
+        //private MySqlConnection mysql = oGlobal.GetConnection(); 
+       
+        //datagiridview 데이터 불러오기 class
+
+        // 수정 class  
+
+        // 삭제 class
+    }
+    #endregion
+
+
 }
