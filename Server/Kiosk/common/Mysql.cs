@@ -53,7 +53,7 @@ namespace Kiosk.pPanel.common
             try
             {
                 string now = DateTime.Now.ToString("yyyy-MM-dd");
-                sql = "insert into categorytable(cg_code, cg_name, regdate) values(@cg_code, @cg_name, regdate)";
+                sql = "insert into categorytable(cg_code, cg_name, regdate) values(@cg_code, @cg_name, @regdate)";
                 MySqlCommand cmd = new MySqlCommand(sql, mysql);
 
                 cmd.Parameters.AddWithValue("@cg_code", category_code);
@@ -113,7 +113,7 @@ namespace Kiosk.pPanel.common
 
             try
             {
-                string sql = "select cg_name from categorytable";
+                sql = "select cg_name from categorytable";
                 MySqlCommand cmd = new MySqlCommand(sql, mysql);
 
                 reader = cmd.ExecuteReader();
@@ -132,6 +132,65 @@ namespace Kiosk.pPanel.common
             }
 
             return category_names;
+        }
+
+        public DataTable AddGridView()
+        {
+            MySqlDataReader reader = null;
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("NO");
+            dataTable.Columns.Add("CODE");
+            dataTable.Columns.Add("NAME");
+            dataTable.Columns.Add("DATE");
+            /*
+            dataTable.Columns.Add("category_tb_idx");
+            dataTable.Columns.Add("category_tb_code");
+            dataTable.Columns.Add("category_tb_name");
+            dataTable.Columns.Add("category_tb_regdate");
+            */
+            /*
+            DataColumn data_idx = new DataColumn("No",typeof(int));
+            DataColumn data_code = new DataColumn("CODE", typeof(string));
+            DataColumn data_name = new DataColumn("NAME", typeof(string));
+            DataColumn data_regdate = new DataColumn("DATE", typeof(string));
+            
+            dataTable.Columns.Add(data_idx);
+            dataTable.Columns.Add(data_code);
+            dataTable.Columns.Add(data_name);
+            dataTable.Columns.Add(data_regdate);
+            */
+            try
+            {
+                sql = "select * from categorytable";
+                MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+                reader = cmd.ExecuteReader();
+
+                int idx = 0;
+                string cg_code = null;
+                string cg_name = null;
+                string regdate;
+
+                while (reader.Read())
+                {
+                    idx = reader.GetInt32("idx");
+                    cg_code = reader.GetString("cg_code");
+                    cg_name = reader.GetString("cg_name");
+                    regdate = reader.GetDateTime("regdate").ToString("yyyy-MM-dd");
+
+                    dataTable.Rows.Add(idx, cg_code, cg_name, regdate);
+                }
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                reader.Close();
+            }
+            
+            return dataTable;
         }
     }
     #endregion

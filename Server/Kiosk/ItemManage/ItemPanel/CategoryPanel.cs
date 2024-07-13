@@ -35,6 +35,9 @@ namespace Kiosk.ItemManage.ItemPanel
             {
                 Category_code.Text = table.CategoryMaxCode().ToString();
             }
+            DataTable data = table.AddGridView();
+            category_tbl_list.AutoGenerateColumns = true;
+            category_tbl_list.DataSource = data;
         }
 
         private void Reset_Click(object sender, EventArgs e)
@@ -47,6 +50,15 @@ namespace Kiosk.ItemManage.ItemPanel
         {
             int result = table.CategoryRegister(Category_code.Text, Category_name.Text);
             Category_name.Text = string.Empty;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            category_tbl_list.DataSource = null;
+
+            DataTable data = table.AddGridView();
+            category_tbl_list.AutoGenerateColumns = true;
+            category_tbl_list.DataSource = data;
         }
     }
 }
