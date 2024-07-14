@@ -15,6 +15,7 @@ namespace Kiosk.Order
     public partial class Order_Manage : Form
     {
         private Timer timer;
+        private CategoryTable table = new CategoryTable();
 
         public Order_Manage()
         {
@@ -161,6 +162,17 @@ namespace Kiosk.Order
 
             // Timer 시작
             timer.Start();
+
+            List<string> categorys = table.GetCategory();
+            TabPage tab = null;
+
+            for(int a=0; a<categorys.Count; a++)
+            {
+                tab = new TabPage(categorys[a]);
+                tab.Name = categorys[a].ToString();
+
+                menulist.TabPages.Add(tab);
+            }
         }
         
         private int menu_price(string menu_name)
@@ -257,59 +269,10 @@ namespace Kiosk.Order
             payment.Text = payments.Sum()+"";
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            select_menu(coffee_ice_menu1.Text);
-        }
-
-        private void coffee_ice_menu2_Click(object sender, EventArgs e)
-        {
-            select_menu(coffee_ice_menu2.Text);
-        }
-
-        private void coffee_ice_menu3_Click(object sender, EventArgs e)
-        {
-            select_menu(coffee_ice_menu3.Text);
-        }
-
-        private void coffee_ice_menu4_Click(object sender, EventArgs e)
-        {
-            select_menu(coffee_ice_menu4.Text);
-        }
-
-        private void coffee_ice_menu5_Click(object sender, EventArgs e)
-        {
-            select_menu(coffee_ice_menu5.Text);
-        }
-
-        private void coffee_hot_menu1_Click(object sender, EventArgs e)
-        {
-            select_menu(coffee_hot_menu1.Text);
-        }
-
-        private void coffee_hot_menu2_Click(object sender, EventArgs e)
-        {
-            select_menu(coffee_hot_menu2.Text);
-        }
-
-        private void coffee_hot_menu3_Click(object sender, EventArgs e)
-        {
-            select_menu(coffee_hot_menu3.Text);
-        }
-
-        private void coffee_hot_menu4_Click(object sender, EventArgs e)
-        {
-            select_menu(coffee_hot_menu4.Text);
-        }
-
-        private void coffee_hot_menu5_Click(object sender, EventArgs e)
-        {
-            select_menu(coffee_hot_menu5.Text);
-        }
 
         private void mysql_menu1_Click(object sender, EventArgs e)
         {
-
+            TabControl tab = menulist;
         }
     }
 }
