@@ -19,12 +19,12 @@ namespace Kiosk.pPanel.common
     internal class CategoryTable
     {
         private MySqlConnection mysql = oGlobal.GetConnection();
+        private MySqlDataReader reader = null;
         private string sql = null;
         int result = 0;
 
         public int CategoryTableCount()
         {
-            MySqlDataReader reader = null;
             try
             {
                 sql = "select count(*) as count from categorytable";
@@ -68,7 +68,6 @@ namespace Kiosk.pPanel.common
                 else
                 {
                     MessageBox.Show("카테고리 등록에 성공했습니다!", "CATEGORY REGISTER", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
                 }
             }
             catch (MySqlException ex)
@@ -81,7 +80,6 @@ namespace Kiosk.pPanel.common
 
         public int CategoryMaxCode()
         {
-            MySqlDataReader reader = null;
             try
             {
                 sql = "select max(cg_code) as max from categorytable";
@@ -109,8 +107,6 @@ namespace Kiosk.pPanel.common
         public List<string> GetCategory()
         {
             List<string> category_names = new List<string>();
-            MySqlDataReader reader = null;
-
             try
             {
                 sql = "select cg_name from categorytable";
@@ -138,18 +134,14 @@ namespace Kiosk.pPanel.common
         {
             MySqlDataReader reader = null;
             DataTable dataTable = new DataTable();
+            /*
             dataTable.Columns.Add("NO");
             dataTable.Columns.Add("CODE");
             dataTable.Columns.Add("NAME");
             dataTable.Columns.Add("DATE");
-            /*
-            dataTable.Columns.Add("category_tb_idx");
-            dataTable.Columns.Add("category_tb_code");
-            dataTable.Columns.Add("category_tb_name");
-            dataTable.Columns.Add("category_tb_regdate");
             */
-            /*
-            DataColumn data_idx = new DataColumn("No",typeof(int));
+            
+            DataColumn data_idx = new DataColumn("NO", typeof(int));
             DataColumn data_code = new DataColumn("CODE", typeof(string));
             DataColumn data_name = new DataColumn("NAME", typeof(string));
             DataColumn data_regdate = new DataColumn("DATE", typeof(string));
@@ -158,7 +150,7 @@ namespace Kiosk.pPanel.common
             dataTable.Columns.Add(data_code);
             dataTable.Columns.Add(data_name);
             dataTable.Columns.Add(data_regdate);
-            */
+            
             try
             {
                 sql = "select * from categorytable";
@@ -191,6 +183,107 @@ namespace Kiosk.pPanel.common
             }
             
             return dataTable;
+        }
+
+        public List<string> GetCategoryInfoForName(string cg_name)
+        {
+            List<string> list = new List<string>();
+            try
+            {
+                sql = "select idx, cg_code, cg_name from categorytable where cg_name = @cg_name";
+                MySqlCommand cmd = new MySqlCommand(sql, mysql);
+                cmd.Parameters.AddWithValue("@cg_name", cg_name);
+
+                reader = cmd.ExecuteReader();
+
+                reader.Read();
+
+                list.Add(reader.GetInt32("idx")+"");
+                list.Add(reader.GetString("cg_code"));
+                list.Add(reader.GetString("cg_name"));
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                reader.Close();
+            }
+            return list;
+        }
+
+        public bool CategoryModify(string category_idx, string category_name)
+        {
+            try
+            {
+                sql = "update categorytable set cg_name = @cg_name where idx = @idx";
+   
+                MySqlCommand cmd = new MySqlCommand(sql, mysql);
+                cmd.Parameters.AddWithValue("@cg_name", category_name);
+                cmd.Parameters.AddWithValue("@idx",category_idx);
+
+                result = cmd.ExecuteNonQuery();
+                if (result < 0)
+                {
+                    MessageBox.Show("카테고리 수정에 실패했습니다! \n관리자에게 문의하세요.", "CODE : MS-ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("성공적으로 카테고리를 수정했습니다!", "CATEGORY MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                reader.Close();
+            }
+
+            if (result < 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool CategoryDelete(string idx)
+        {
+            try
+            {
+                sql = "delete from categorytable where idx = @idx";
+
+                MySqlCommand cmd = new MySqlCommand(sql, mysql);
+                cmd.Parameters.AddWithValue("@idx",idx);
+
+                result = cmd.ExecuteNonQuery();
+                if (result < 0)
+                {
+                    MessageBox.Show("카테고리 삭제에 실패했습니다! \n관리자에게 문의하세요.", "CODE : MS-ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("성공적으로 카테고리를 삭제했습니다!", "CATEGORY MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (result < 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
     #endregion

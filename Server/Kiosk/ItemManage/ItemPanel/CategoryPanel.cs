@@ -25,6 +25,8 @@ namespace Kiosk.ItemManage.ItemPanel
 
         private void Category_Manage_Load(object sender, EventArgs e)
         {
+
+            // Category Register
             // 데이터베이스가 비어 있다면 카테고리 코드를 10으로 등록
             if (table.CategoryTableCount() == 0)
             {
@@ -35,9 +37,18 @@ namespace Kiosk.ItemManage.ItemPanel
             {
                 Category_code.Text = table.CategoryMaxCode().ToString();
             }
+
+            // Category List View
             DataTable data = table.AddGridView();
             category_tbl_list.AutoGenerateColumns = true;
             category_tbl_list.DataSource = data;
+
+            // Category Manage
+            List<string> list = table.GetCategory();
+            for(int a = 0; a< list.Count; a++)
+            {
+                category_manage_list.Items.Add(list[a]);
+            }
         }
 
         private void Reset_Click(object sender, EventArgs e)
@@ -59,6 +70,95 @@ namespace Kiosk.ItemManage.ItemPanel
             DataTable data = table.AddGridView();
             category_tbl_list.AutoGenerateColumns = true;
             category_tbl_list.DataSource = data;
+            category_tbl_list.Columns["NO"].Width = 150;
+            category_tbl_list.Columns["CODE"].Width = 150;
+            category_tbl_list.Columns["NAME"].Width = 150;
+            category_tbl_list.Columns["DATE"].Width = 150;
+        }
+
+        private void category_tbl_list_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void category_manage_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = category_manage_list.SelectedItem.ToString();
+            List<string> list = table.GetCategoryInfoForName(category_manage_list.SelectedItem.ToString());
+            category_manage_idx.Text = list[0].ToString();
+            category_manage_code.Text = list[1].ToString();
+            category_manage_name.Text = list[2].ToString();
+        }
+
+        private void category_manage_modify_Click(object sender, EventArgs e)
+        {
+            if (category_manage_idx.Text.Equals("") || category_manage_code.Text.Equals("") || category_manage_name.Text.Equals(""))
+            {
+                MessageBox.Show("수정하려는 카테고리를 선택해주세요!","CATEGORY MANAGE ERROR",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                bool result = table.CategoryModify(category_manage_idx.Text, category_manage_name.Text);
+                category_manage_name.Text = string.Empty;
+                category_manage_code.Text = string.Empty;
+                category_manage_idx.Text = string.Empty;
+
+                // Category Manage
+                category_manage_list.Items.Clear();
+
+                List<string> list = table.GetCategory();
+                for (int a = 0; a < list.Count; a++)
+                {
+                    category_manage_list.Items.Add(list[a]);
+                }
+            }
+        }
+
+        private void category_manage_reset_Click(object sender, EventArgs e)
+        {
+            // Category Manage
+            category_manage_list.Items.Clear();
+
+            List<string> list = table.GetCategory();
+            for (int a = 0; a < list.Count; a++)
+            {
+                category_manage_list.Items.Add(list[a]);
+            }
+        }
+
+        private void category_manage_delete_Click(object sender, EventArgs e)
+        {
+            if (category_manage_idx.Text.Equals("") || category_manage_code.Text.Equals("") || category_manage_name.Text.Equals(""))
+            {
+                MessageBox.Show("삭제하려는 카테고리를 선택해주세요!", "CATEGORY MANAGE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                DialogResult message = MessageBox.Show("선택하신 카테고리를 삭제하시겠습니까? \n삭제후에는 복구할 수 없습니다.","CATEGORY MANAGER",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+
+                if (message == DialogResult.OK)
+                {
+                    bool result = table.CategoryDelete(category_manage_idx.Text);
+                    category_manage_name.Text = string.Empty;
+                    category_manage_code.Text = string.Empty;
+                    category_manage_idx.Text = string.Empty;
+
+                    // Category Manage
+                    category_manage_list.Items.Clear();
+
+                    List<string> list = table.GetCategory();
+                    for (int a = 0; a < list.Count; a++)
+                    {
+                        category_manage_list.Items.Add(list[a]);
+                    }
+                }
+                else if (message == DialogResult.Cancel)
+                {
+                    MessageBox.Show("삭제 요청을 취소합니다.","CATEGORY MANAGER",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }
