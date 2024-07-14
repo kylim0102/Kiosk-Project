@@ -137,6 +137,10 @@ namespace Kiosk.ItemManage.ItemPanel
                 }
             }
         }
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void ItemPanel_Load(object sender, EventArgs e)
         {
@@ -151,8 +155,8 @@ namespace Kiosk.ItemManage.ItemPanel
 
 
             #region datagridview 리스트 뽑아오기
-
-            DataTable data = ItemUpdate.SelectData(mysql);
+            ItemUpdate itemUpdate = new ItemUpdate();
+            DataTable data = itemUpdate.SelectData(mysql);
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = data;
 
@@ -192,9 +196,79 @@ namespace Kiosk.ItemManage.ItemPanel
             }
             #endregion
         }
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
+        #region 상품 수정 / 삭제
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            #region 담은 데이터 삭제
+            ItemUpdate itemUpdate = new ItemUpdate();
+            int result = 0;
+            int idx = Convert.ToInt32(textBox1.Text);
+
+            if (MessageBox.Show("삭제하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                 result = itemUpdate.ItemDelete(idx);
+
+                if (result > 0)
+                {
+                    MessageBox.Show("데이터가 성공적으로 삭제되었습니다.");
+                    datagridviewReload(); // 초기화 시키고 다시 뽑아오기
+                }
+                else
+                {
+                    MessageBox.Show("데이터 삭제에 실패했습니다.");
+                }
+            }
+            #endregion
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            #region 담은 데이터 수정
+            ItemUpdate itemUpdate = new ItemUpdate();
+            int result = 0;
+
+            int idx = Convert.ToInt32(textBox1.Text);
+            String itemName = textBox2.Text;
+            int price = Convert.ToInt32(textBox3.Text);
+            String content = textBox4.Text;
+            String category = textBox5.Text;
+
+            if (MessageBox.Show("수정하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                result = itemUpdate.ItemChange(itemName,price,content,category,idx);
+
+                if (result > 0)
+                {
+                    MessageBox.Show("데이터가 성공적으로 수정되었습니다.");
+                    datagridviewReload(); // 초기화 시키고 다시 뽑아오기
+                }
+                else
+                {
+                    MessageBox.Show("데이터 수정에 실패했습니다.");
+                }
+            }
+            #endregion
+        }
+        #region datagridview 초기화 적용
+        private void datagridviewReload()
+        {
+            ItemUpdate itemUpdate = new ItemUpdate();
+            // DataGridView 초기화
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
+
+            DataTable data = itemUpdate.SelectData(mysql);
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.DataSource = data;
+
+            // CellClick 이벤트 핸들러 등록
+            dataGridView1.CellClick += DataGridView1_CellClick;
+        }
+
+        #endregion
+        #endregion
+
+
     }
 }
