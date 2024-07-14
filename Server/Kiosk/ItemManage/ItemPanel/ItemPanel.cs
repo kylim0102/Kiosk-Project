@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using Kiosk.pPanel.common;
 using MySql.Data.MySqlClient;
 using Azure;
+using MySqlX.XDevAPI.Relational;
 
 namespace Kiosk.ItemManage.ItemPanel
 {
@@ -150,8 +151,9 @@ namespace Kiosk.ItemManage.ItemPanel
 
             #region datagridview 리스트 뽑아오기
 
-
-
+            DataTable data = ItemUpdate.SelectData(mysql);
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.DataSource = data;
 
             #endregion
 

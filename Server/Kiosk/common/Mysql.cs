@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -335,9 +336,75 @@ namespace Kiosk.pPanel.common
     #region 제품 수정 / 삭제
     internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근 가능
     {
-        //private MySqlConnection mysql = oGlobal.GetConnection(); 
-       
-        //datagiridview 데이터 불러오기 class
+        #region datagridview 데이터 불러오기 class
+        // datagridview 데이터 불러오기 class
+        public static DataTable SelectData(MySqlConnection connection)
+        {
+            DataTable schemaTable = GetTableSchema(connection);
+
+            // DataTable 생성
+            DataTable dataTable = CreateDataTable(schemaTable);
+            DataTable dataFromDB = GetData(connection);
+            foreach (DataRow row in dataFromDB.Rows)
+            {
+                dataTable.ImportRow(row);
+            }
+
+            return dataTable;
+
+        }
+        // 테이블 구조 들고오기  datagirdview 에서 칼럼명을 db에서 가져오기(데이터 타입도 들고올수 있음)
+        private static DataTable GetTableSchema(MySqlConnection connection)
+        {
+            string query = "SELECT * FROM itemtable LIMIT 0"; // MySQL에서는 LIMIT 사용
+            using (MySqlCommand command = new MySqlCommand(query, connection))
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+                using (MySqlDataReader reader = command.ExecuteReader(CommandBehavior.SchemaOnly))
+                {
+                    return reader.GetSchemaTable();
+                }
+            }
+        }
+        // 테이블 구조 들고와서 빈 datatable 에 집어넣기
+        private static DataTable CreateDataTable(DataTable schemaTable)
+        {
+            DataTable dataTable = new DataTable();
+
+            foreach (DataRow row in schemaTable.Rows)
+            {
+                string columnName = row["ColumnName"].ToString();
+                Type dataType = (Type)row["DataType"];
+                DataColumn column = new DataColumn(columnName, dataType);
+                dataTable.Columns.Add(column);
+            }
+
+            return dataTable;
+        }
+        private static DataTable GetData(MySqlConnection connection)
+        {
+            string query = "SELECT * FROM itemtable"; // 실제 데이터를 가져오는 쿼리
+            DataTable dataTable = new DataTable();
+
+            using (MySqlCommand command = new MySqlCommand(query, connection))
+            {
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+                // adapter.Fill 쓰면 테이블의 모든 데이터를 가져와서 넣어준다.
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    adapter.Fill(dataTable);
+                }
+            }
+
+            return dataTable;
+        }
+        #endregion
 
         // 수정 class  
 
