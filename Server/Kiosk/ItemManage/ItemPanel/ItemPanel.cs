@@ -15,6 +15,7 @@ using MySql.Data.MySqlClient;
 using Azure;
 using MySqlX.XDevAPI.Relational;
 using static System.Net.WebRequestMethods;
+using Kiosk.pPanel;
 
 namespace Kiosk.ItemManage.ItemPanel
 {
@@ -170,6 +171,7 @@ namespace Kiosk.ItemManage.ItemPanel
             #region 내가 선택한 데이터 담기
             if (e.RowIndex >= 0) // 유효한 행이 클릭되었을 때
             {
+                comboBox1.Items.Clear(); // 이거 안하면 콤보박스 값 계속 늘어남
                 DataGridViewRow clickedRow = dataGridView1.Rows[e.RowIndex];
                 List<object> cellValue = new List<object>();
                 //일단 뽑아와서 담아봐
@@ -183,7 +185,12 @@ namespace Kiosk.ItemManage.ItemPanel
                     textBox2.Text = cellValue[1].ToString();
                     textBox3.Text = cellValue[2].ToString();
                     textBox4.Text = cellValue[3].ToString();
-                    textBox5.Text = cellValue[5].ToString();
+                    comboBox1.Text = cellValue[5].ToString();
+                    List<string> list = category_table.GetCategory();
+                        for (int i = 0; i < list.Count; i++)
+                        {
+                            comboBox1.Items.Add(list[i]);
+                    }
                 }
                 else
                 {
@@ -231,7 +238,7 @@ namespace Kiosk.ItemManage.ItemPanel
             String itemName = textBox2.Text;
             int price = Convert.ToInt32(textBox3.Text);
             String content = textBox4.Text;
-            String category = textBox5.Text;
+            String category = comboBox1.Text.ToString();
 
             if (MessageBox.Show("수정하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
