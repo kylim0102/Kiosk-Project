@@ -14,6 +14,7 @@ using Kiosk.pPanel.common;
 using MySql.Data.MySqlClient;
 using Azure;
 using MySqlX.XDevAPI.Relational;
+using static System.Net.WebRequestMethods;
 
 namespace Kiosk.ItemManage.ItemPanel
 {
@@ -155,10 +156,42 @@ namespace Kiosk.ItemManage.ItemPanel
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = data;
 
+            // CellClick 이벤트 핸들러 등록
+            dataGridView1.CellClick += DataGridView1_CellClick;
             #endregion
 
         }
-
+        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            #region 내가 선택한 데이터 담기
+            if (e.RowIndex >= 0) // 유효한 행이 클릭되었을 때
+            {
+                DataGridViewRow clickedRow = dataGridView1.Rows[e.RowIndex];
+                List<object> cellValue = new List<object>();
+                //일단 뽑아와서 담아봐
+                for(int i=0; i<clickedRow.Cells.Count; i++) 
+                {
+                     cellValue.Add(clickedRow.Cells[i].Value);
+                }
+                if (cellValue != null)
+                {
+                    textBox1.Text = cellValue[0].ToString();
+                    textBox2.Text = cellValue[1].ToString();
+                    textBox3.Text = cellValue[2].ToString();
+                    textBox4.Text = cellValue[3].ToString();
+                    textBox5.Text = cellValue[5].ToString();
+                }
+                else
+                {
+                    textBox1.Text = ""; // 값이 null인 경우 처리
+                }
+            }
+            else
+            {
+                textBox1.Text = ""; // 선택된 행이 없는 경우 처리
+            }
+            #endregion
+        }
         private void tabPage2_Click(object sender, EventArgs e)
         {
 

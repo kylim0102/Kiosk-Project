@@ -406,7 +406,8 @@ namespace Kiosk.pPanel.common
         }
         #endregion
 
-        // 수정 class  
+        // 수정 class
+        
 
         // 삭제 class
     }
