@@ -340,6 +340,7 @@
             this.option_delete.TabIndex = 7;
             this.option_delete.Text = "삭제";
             this.option_delete.UseVisualStyleBackColor = true;
+            this.option_delete.Click += new System.EventHandler(this.option_delete_Click);
             // 
             // option_modify
             // 
@@ -350,6 +351,7 @@
             this.option_modify.TabIndex = 6;
             this.option_modify.Text = "수정";
             this.option_modify.UseVisualStyleBackColor = true;
+            this.option_modify.Click += new System.EventHandler(this.option_modify_Click);
             // 
             // option_price
             // 

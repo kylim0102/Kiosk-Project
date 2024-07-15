@@ -83,18 +83,29 @@ namespace Kiosk.ItemManage.ItemPanel
             option_price.Text = list[2].ToString();
         }
 
+        private void option_reset_Click(object sender, EventArgs e)
+        {
+            optionlist.Items.Clear();
+
+            List<string> list = table.GetOption();
+            for (int a = 0; a < list.Count; a++)
+            {
+                optionlist.Items.Add(list[a]);
+            }
+        }
+
         private void option_modify_Click(object sender, EventArgs e)
         {
             if (idx.Text.Equals("") || option.Text.Equals("") || option_price.Text.Equals(""))
             {
-                MessageBox.Show("수정하려는 카테고리를 선택해주세요!", "CATEGORY MANAGE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("수정하려는 옵션을 선택해주세요!", "OPTION MANAGE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else
             {
-                bool result = table.OptionModify(idx.Text, option_price.Text);
-                option_price.Text = string.Empty;
+                bool result = table.OptionModify(idx.Text, option.Text, option_price.Text);
                 option.Text = string.Empty;
+                option_price.Text = string.Empty;
                 idx.Text = string.Empty;
 
                 // Category Manage
@@ -108,9 +119,38 @@ namespace Kiosk.ItemManage.ItemPanel
             }
         }
 
-        private void option_reset_Click(object sender, EventArgs e)
+        private void option_delete_Click(object sender, EventArgs e)
         {
+            if (idx.Text.Equals("") || option_price.Text.Equals("") || option.Text.Equals(""))
+            {
+                MessageBox.Show("삭제하려는 옵션을 선택해주세요!", "OPTION MANAGE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                DialogResult message = MessageBox.Show("선택하신 옵션을 삭제하시겠습니까? \n삭제후에는 복구할 수 없습니다.", "OPTION MANAGER", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
+                if (message == DialogResult.OK)
+                {
+                    bool result = table.OptionDelete(idx.Text);
+                    option.Text = string.Empty;
+                    option_price.Text = string.Empty;
+                    idx.Text = string.Empty;
+
+                    // Category Manage
+                    optionlist.Items.Clear();
+
+                    List<string> list = table.GetOption();
+                    for (int a = 0; a < list.Count; a++)
+                    {
+                        optionlist.Items.Add(list[a]);
+                    }
+                }
+                else if (message == DialogResult.Cancel)
+                {
+                    MessageBox.Show("삭제 요청을 취소합니다.", "OPTION MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }

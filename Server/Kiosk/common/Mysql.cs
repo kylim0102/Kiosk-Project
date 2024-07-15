@@ -492,8 +492,8 @@ internal class OptionTable
             reader.Read();
 
             list.Add(reader.GetInt32("idx") + "");
-            //list.Add(reader.GetInt32("option_value"));
             list.Add(reader.GetString("optionname"));
+            list.Add(reader.GetInt32("option_value").ToString());
         }
         catch (MySqlException ex)
         {
@@ -506,14 +506,15 @@ internal class OptionTable
         return list;
     }
 
-    public bool OptionModify(string idx, string optionname)
+    public bool OptionModify(string idx, string optionname, string option_value)
     {
         try
         {
-            String sql = "update optiontable set optionname = @optionname where idx = @idx";
+            String sql = "update optiontable set optionname = @optionname, option_value = @option_value where idx = @idx";
 
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
             cmd.Parameters.AddWithValue("@optionname", optionname);
+            cmd.Parameters.AddWithValue("@option_value", option_value);
             cmd.Parameters.AddWithValue("@idx", idx);
 
             option_result = cmd.ExecuteNonQuery();
@@ -544,10 +545,41 @@ internal class OptionTable
             return true;
         }
     }
+    public bool OptionDelete(string idx)
+    {
+        try
+        {
+            sql = "delete from optiontable where idx = @idx";
 
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@idx", idx);
 
+            option_result = cmd.ExecuteNonQuery();
+            if (option_result < 0)
+            {
+                MessageBox.Show("옵션 삭제에 실패했습니다! \n관리자에게 문의하세요.", "CODE : MS-ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("성공적으로 옵션을 삭제했습니다!", "OPTION MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
+        if (option_result < 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 }
+
 #endregion
 
 
