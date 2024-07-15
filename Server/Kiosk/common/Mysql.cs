@@ -289,6 +289,33 @@ namespace Kiosk.pPanel.common
                 return true;
             }
         }
+
+        public string GetCategoryCode(string cg_name)
+        {
+            string name = null;
+            try
+            {
+                sql = "select cg_code from categorytable where cg_name = @cg_name";
+                MySqlCommand cmd = new MySqlCommand(sql, mysql);
+                cmd.Parameters.AddWithValue("@cg_name",cg_name);
+
+                reader = cmd.ExecuteReader();
+                reader.Read();
+
+
+                name = reader.GetString("cg_code");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                reader.Close();
+            }
+
+            return name;
+        }
     }
     #endregion
 
@@ -333,6 +360,8 @@ namespace Kiosk.pPanel.common
 internal class ItemTable
 {
     private MySqlConnection mysql = oGlobal.GetConnection();
+    private MySqlDataReader reader;
+    private CategoryTable categoryTable = new CategoryTable();
     private string sql = null;
     int result = 0;
 
@@ -341,24 +370,78 @@ internal class ItemTable
         try
         {
             string now = DateTime.Now.ToString("yyyy-MM-dd");
-            string sql = "insert into itemtable(itemName, price, content, regdate, category) values(@itemName, @price, @content, @regdate, @category)";
-
+            string cg_code = categoryTable.GetCategoryCode(category);
+            sql = "insert into itemtable(itemName, price, content, regdate, category) values(@itemName, @price, @content, @regdate, @cg_code)";
+            Console.WriteLine("1");
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
-
+            Console.WriteLine("2");
             cmd.Parameters.AddWithValue("@itemName", name);
             cmd.Parameters.AddWithValue("@price", price);
             cmd.Parameters.AddWithValue("@content", content);
             cmd.Parameters.AddWithValue("@regdate", now);
-            cmd.Parameters.AddWithValue("@category", category);
-
+            cmd.Parameters.AddWithValue("@cg_code", cg_code);
+            Console.WriteLine("3");
             result = cmd.ExecuteNonQuery();
+            Console.WriteLine("4");
         }
         catch (MySqlException ex)
         {
             MessageBox.Show(ex.Message, "MySql ERROR !", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        
 
         return result;
+    }
+
+    public List<Button> MakeButtonForItems(string cg_name)
+    {
+        if(mysql.State == ConnectionState.Closed)
+        {
+            mysql.Open();
+        }
+
+
+        List<Button> items = new List<Button>();
+        string sql = "select a.cg_code, a.cg_name, b.itemName, b.price, b.content, b.`on/off`, b.regdate from categorytable a join itemtable b on a.cg_code = b.category where b.`on/off` = 'y' and a.cg_name = @cg_name";
+
+        MySqlCommand cmd = new MySqlCommand(sql, mysql);
+        cmd.Parameters.AddWithValue("@cg_name", cg_name);
+
+        int buttonTop = 10;
+        int buttonSpacing = 30;
+
+        using (reader = cmd.ExecuteReader())
+        {
+            int price = 0;
+            string item_name = null, content = null, category = null, power = null;
+            DateTime regdate;
+
+            while (reader.Read())
+            {
+                item_name = reader.GetString("itemName");
+                price = reader.GetInt32("price");
+                content = reader.GetString("content");
+                regdate = reader.GetDateTime("regdate");
+                category = reader.GetString("cg_name");
+                power = reader.GetString("on/off");
+
+                Button button = new Button();
+                button.Name = item_name+"_btn";
+                button.Text = item_name;
+                button.Tag = new {item_name, price, content, regdate, category, power};
+
+                button.Top = buttonTop;
+                button.Left = buttonSpacing;
+
+
+                items.Add(button);
+
+                buttonTop += buttonSpacing; // 다음 버튼의 y 좌표 설정
+            }
+
+        }
+
+        return items;
     }
 }
 #endregion

@@ -15,8 +15,9 @@ namespace Kiosk.Order
     public partial class Order_Manage : Form
     {
         private Timer timer;
+        private MySqlConnection con = oGlobal.GetConnection();
         private CategoryTable table = new CategoryTable();
-
+        private ItemTable itemTable = new ItemTable();
         public Order_Manage()
         {
             InitializeComponent();
@@ -50,66 +51,7 @@ namespace Kiosk.Order
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-            MySqlConnection con = oGlobal.GetConnection();
-            if(con.State == ConnectionState.Closed)
-            {
-                con.Open();
-            }
-            
 
-            string sql = "select * from itemtable";
-            MySqlCommand cmd = new MySqlCommand(sql, con);
-
-            using (MySqlDataReader reader = cmd.ExecuteReader())
-            {
-                int idx = 0, price = 0;
-
-                string item_name = null, content = null, category = null, power = null;
-
-                DateTime regdate;
-
-                TabControl tabControl = menulist;
-
-                TabPage mysql_tab = tabControl.TabPages[0];
-
-                int buttonTop = 10;
-                int buttonSpacing = 30;
-
-                while (reader.Read())
-                {
-
-                    idx = reader.GetInt32("idx");
-                    item_name = reader.GetString("itemName");
-                    price = reader.GetInt32("price");
-                    content = reader.GetString("content");
-                    regdate = reader.GetDateTime("regdate");
-                    category = reader.GetString("category");
-                    power = reader.GetString("on/off");
-                    
-
-
-                    Button button = new Button();
-                    button.Name = "mysql_"+idx;
-                    button.Text = item_name;
-                    button.Tag = new {idx, item_name, price, content, regdate, category, power };
-
-
-                    // 버튼 위치 설정
-                    button.Top = buttonTop;
-                    button.Left = 10; // x 좌표는 고정
-
-                    // 생성한 버튼에 이벤트 추가
-                    button.Click += Button_Click;
-
-
-                    mysql_tab.Controls.Add(button);
-
-                    Console.WriteLine($"Button added: Name={button.Name}, Text={button.Text}, Top={button.Top}, Left={button.Left}");
-
-                    buttonTop += buttonSpacing; // 다음 버튼의 y 좌표 설정
-                }
-            }
-            con.Close();
         }
 
         private void Button_Click(object sender, EventArgs e)
@@ -169,8 +111,15 @@ namespace Kiosk.Order
             for(int a=0; a<categorys.Count; a++)
             {
                 tab = new TabPage(categorys[a]);
-                tab.Name = categorys[a].ToString();
+                tab.Text = categorys[a];
+                tab.Name = categorys[a]+"_TAB";
+                
 
+                /*
+                  menulist => UI에서 TabControl Name
+                  for문이 돌면서 category를 꺼내고 꺼낸 카테고리를 TabPage를 통해 TabControl에 Tab 추가
+                  
+                */
                 menulist.TabPages.Add(tab);
             }
         }
@@ -269,10 +218,44 @@ namespace Kiosk.Order
             payment.Text = payments.Sum()+"";
         }
 
-
-        private void mysql_menu1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
+            List<Button> test = itemTable.MakeButtonForItems("10");
             TabControl tab = menulist;
+
+            TabPage tabPage = menulist.TabPages[1];
+            TabPage tabPage1 = menulist.SelectedTab;
+            MessageBox.Show(tabPage1.Name);
+        }
+
+
+        /*
+            TabControl에서 Tab의 인덱스가 바꼈을 때
+            즉, 현재 탭에서 다른 탭을 선택했을 때 이벤트
+        */
+        private void Selected_Index_Changed(object sender, EventArgs e)
+        {
+            // 현재 선택된 Tab을 TabPage에 저장
+            TabPage now = menulist.SelectedTab;
+
+            List<Button> items = itemTable.MakeButtonForItems(now.Text);
+
+
+            if (items.Count > 0)
+            {
+                for(int a=0; a<items.Count; a++)
+                {
+                    Button btn = items[a];
+
+                    btn.Click += Button_Click;
+
+                    now.Controls.Add(btn);
+                }
+            }
+        }
+        private void Mysql_tab_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.date = new System.Windows.Forms.Label();
             this.selected_menu = new System.Windows.Forms.DataGridView();
@@ -87,14 +87,14 @@
             this.Count,
             this.Price,
             this.Etc});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.selected_menu.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.selected_menu.DefaultCellStyle = dataGridViewCellStyle15;
             this.selected_menu.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.selected_menu.Location = new System.Drawing.Point(43, 29);
             this.selected_menu.Name = "selected_menu";
@@ -109,8 +109,8 @@
             // 
             // Menu
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Menu.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Menu.DefaultCellStyle = dataGridViewCellStyle11;
             this.Menu.HeaderText = "메뉴";
             this.Menu.MinimumWidth = 6;
             this.Menu.Name = "Menu";
@@ -119,8 +119,8 @@
             // 
             // Count
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Count.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Count.DefaultCellStyle = dataGridViewCellStyle12;
             this.Count.HeaderText = "수량";
             this.Count.MinimumWidth = 6;
             this.Count.Name = "Count";
@@ -129,8 +129,8 @@
             // 
             // Price
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle13;
             this.Price.HeaderText = "금액";
             this.Price.MinimumWidth = 6;
             this.Price.Name = "Price";
@@ -139,8 +139,8 @@
             // 
             // Etc
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Etc.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Etc.DefaultCellStyle = dataGridViewCellStyle14;
             this.Etc.HeaderText = "비고";
             this.Etc.MinimumWidth = 6;
             this.Etc.Name = "Etc";
@@ -158,16 +158,18 @@
             this.menulist.Size = new System.Drawing.Size(457, 403);
             this.menulist.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.menulist.TabIndex = 1;
+            this.menulist.SelectedIndexChanged += new System.EventHandler(this.Selected_Index_Changed);
             // 
             // Mysql_tab
             // 
             this.Mysql_tab.Location = new System.Drawing.Point(4, 29);
             this.Mysql_tab.Name = "Mysql_tab";
-            this.Mysql_tab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Mysql_tab.Padding = new System.Windows.Forms.Padding(3);
             this.Mysql_tab.Size = new System.Drawing.Size(449, 370);
             this.Mysql_tab.TabIndex = 4;
             this.Mysql_tab.Text = "Mysql";
             this.Mysql_tab.UseVisualStyleBackColor = true;
+            this.Mysql_tab.Click += new System.EventHandler(this.Mysql_tab_Click);
             // 
             // tabControl1
             // 
@@ -187,7 +189,7 @@
             this.option1.Controls.Add(this.op1);
             this.option1.Location = new System.Drawing.Point(4, 22);
             this.option1.Name = "option1";
-            this.option1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.option1.Padding = new System.Windows.Forms.Padding(3);
             this.option1.Size = new System.Drawing.Size(445, 101);
             this.option1.TabIndex = 0;
             this.option1.Text = "옵션";
@@ -265,6 +267,7 @@
             this.button1.TabIndex = 12;
             this.button1.Text = "현금";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
