@@ -168,8 +168,9 @@ namespace Kiosk.ItemManage.ItemPanel
         }
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             #region 내가 선택한 데이터 담기
-            if (e.RowIndex >= 0) // 유효한 행이 클릭되었을 때
+            if (e.RowIndex >= 0) // 유효한 행이 클릭되었을 때 예외처리
             {
                 comboBox1.Items.Clear(); // 이거 안하면 콤보박스 값 계속 늘어남
                 DataGridViewRow clickedRow = dataGridView1.Rows[e.RowIndex];
@@ -221,7 +222,14 @@ namespace Kiosk.ItemManage.ItemPanel
 
             if (MessageBox.Show("삭제하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                 result = itemUpdate.ItemDelete(idx);
+                try
+                {
+                    result = itemUpdate.ItemDelete(idx);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
                 if (result > 0)
                 {
@@ -250,8 +258,14 @@ namespace Kiosk.ItemManage.ItemPanel
 
             if (MessageBox.Show("수정하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                result = itemUpdate.ItemChange(itemName,price,content,category,idx);
-
+                try
+                {
+                    result = itemUpdate.ItemChange(itemName, price, content, category, idx);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);    
+                }
                 if (result > 0)
                 {
                     MessageBox.Show("데이터가 성공적으로 수정되었습니다.");

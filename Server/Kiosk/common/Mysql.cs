@@ -344,9 +344,10 @@ namespace Kiosk.pPanel.common
         // datagridview 데이터 불러오기 class
         public  DataTable SelectData(MySqlConnection mysql)
         {
+            // 테이블 구조 들고와서 DataTable 생성
             DataTable schemaTable = GetTableSchema(mysql);
 
-            // DataTable 생성
+            // DataGirdView 에 들어갈 총 datatable 생성
             DataTable dataTable = CreateDataTable(schemaTable);
             DataTable dataFromDB = GetData(mysql);
             foreach (DataRow row in dataFromDB.Rows)
@@ -360,18 +361,27 @@ namespace Kiosk.pPanel.common
         // 테이블 구조 들고오기  datagirdview 에서 칼럼명을 db에서 가져오기(데이터 타입도 들고올수 있음)
         private static DataTable GetTableSchema(MySqlConnection mysql)
         {
-            string query = "SELECT * FROM itemtable LIMIT 0"; // MySQL에서는 LIMIT 사용
-            using (MySqlCommand command = new MySqlCommand(query, mysql))
+            DataTable schemaTable = new DataTable();
+            try
             {
-                if (mysql.State == ConnectionState.Closed)
+                string query = "SELECT * FROM itemtable LIMIT 0"; // MySQL에서는 LIMIT 사용
+                using (MySqlCommand command = new MySqlCommand(query, mysql))
                 {
-                    mysql.Open();
-                }
-                using (MySqlDataReader reader = command.ExecuteReader(CommandBehavior.SchemaOnly))
-                {
-                    return reader.GetSchemaTable();
+                    if (mysql.State == ConnectionState.Closed)
+                    {
+                        mysql.Open();
+                    }
+                    using (MySqlDataReader reader = command.ExecuteReader(CommandBehavior.SchemaOnly))
+                    {
+                        schemaTable = reader.GetSchemaTable();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return schemaTable;
         }
         // 테이블 구조 들고와서 빈 datatable 에 집어넣기
         private static DataTable CreateDataTable(DataTable schemaTable)
@@ -390,22 +400,27 @@ namespace Kiosk.pPanel.common
         }
         private static DataTable GetData(MySqlConnection mysql)
         {
-            string query = "SELECT * FROM itemtable"; // 실제 데이터를 가져오는 쿼리
             DataTable dataTable = new DataTable();
-
-            using (MySqlCommand command = new MySqlCommand(query, mysql))
+            try
             {
-                if (mysql.State == ConnectionState.Closed)
+                string query = "SELECT * FROM itemtable"; // 실제 데이터를 가져오는 쿼리
+                using (MySqlCommand command = new MySqlCommand(query, mysql))
                 {
-                    mysql.Open();
-                }
-                // adapter.Fill 쓰면 테이블의 모든 데이터를 가져와서 넣어준다.
-                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
-                {
-                    adapter.Fill(dataTable);
+                    if (mysql.State == ConnectionState.Closed)
+                    {
+                        mysql.Open();
+                    }
+                    // adapter.Fill 쓰면 테이블의 모든 데이터를 가져와서 넣어준다.
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                    {
+                        adapter.Fill(dataTable);
+                    }
                 }
             }
-
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             return dataTable;
         }
         #endregion

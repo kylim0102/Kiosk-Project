@@ -190,40 +190,9 @@ namespace Kiosk.ItemManage.ItemPanel
         {
             //경로 + 파일명 *****저장되는곳 경로 설정*********
             string url = @"C:\Users\YJ\"+textBox1.Text;
+           
             //다운로드 버튼
-            await Download(textBox1.Text, url);
-        }
-
-        public async Task Download(string blobName, string downloadFilepath)
-        {
-            #region 스토리지에 존재하는 파일 다운로드
-
-            // Storage 연결
-            var containerClient = storageConnection.BlobContainerClient();
-            BlobClient blobClient = containerClient.GetBlobClient(blobName);
-            bool exists = await blobClient.ExistsAsync();
-
-            if (!exists) // 다운로드 하려는 파일이 Storage에 없는 경우
-            {
-                MessageBox.Show("Storage에 해당 파일이 존재하지 않습니다.", "Download ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else
-            {
-                MessageBox.Show("다운로드를 시작합니다.", "Download", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // Blob의 내용을 다운로드하여 BlobDownloadInfo 객체에 저장
-                BlobDownloadInfo download = await blobClient.DownloadAsync();
-
-                // 로컬 Storage에 저장
-                using (FileStream fs = File.OpenWrite(downloadFilepath))
-                {
-                    await download.Content.CopyToAsync(fs);
-                    MessageBox.Show("다운로드 성공", "Download Success !", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    fs.Close();
-                }
-            }
-            #endregion
-
+            await storageConnection.Download(textBox1.Text, url);
         }
     }
 }

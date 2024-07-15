@@ -114,10 +114,7 @@ namespace Kiosk.pPanel.common
 
         public async Task Download(string blobName, string downloadFilepath)
         {
-            /*
-                blobName : Storage에서 다운로드하고자 하는 파일 명 
-            */
-
+            //blobName : Storage에서 다운로드하고자 하는 파일 명 
             // Storage 연결
             var containerClient = BlobContainerClient();
             BlobClient blobClient = containerClient.GetBlobClient(blobName);

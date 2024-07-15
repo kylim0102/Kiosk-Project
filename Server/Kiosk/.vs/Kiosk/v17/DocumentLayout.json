@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\yj\\source\\repos\\kiosk-project\\server\\kiosk\\common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -11,20 +11,16 @@
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\yj\\source\\repos\\kiosk-project\\server\\kiosk\\itemmanage\\itempanel\\itempanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\itempanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\yj\\source\\repos\\kiosk-project\\server\\kiosk\\common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\itemmanage\\itempanel\\itempanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\itempanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\itemmanage\\itempanel\\itempanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\itempanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 281,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 16,
           "Children": [
             {
               "$type": "Bookmark",
@@ -98,13 +94,24 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ItemPanel.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\ItemPanel.cs",
+              "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\ItemPanel.cs",
+              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\ItemPanel.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "ItemManage\\ItemPanel\\ItemPanel.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-15T03:18:54.285Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "oGlobal.cs",
               "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\oGlobal.cs",
               "RelativeDocumentMoniker": "common\\oGlobal.cs",
               "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\oGlobal.cs",
               "RelativeToolTip": "common\\oGlobal.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAGEAAAAAAAAAAAD4v3YAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-15T03:07:50.526Z",
               "EditorCaption": ""
@@ -117,7 +124,7 @@
               "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\Itemmanage.cs",
               "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs",
               "RelativeToolTip": "ItemManage\\ItemPanel\\Itemmanage.cs",
-              "ViewState": "AQIAAFsAAAAAAAAAAADwv1sAAAAAAAAA",
+              "ViewState": "AQIAACMAAAAAAAAAAAAqwMAAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-14T14:02:51.276Z",
               "EditorCaption": ""
@@ -125,52 +132,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Itemmanage.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs",
-              "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\Itemmanage.cs",
-              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "ItemManage\\ItemPanel\\Itemmanage.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-14T14:37:46.416Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ItemPanel.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\ItemPanel.cs",
-              "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\ItemPanel.cs",
-              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\ItemPanel.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "ItemManage\\ItemPanel\\ItemPanel.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-14T12:52:43.834Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Mysql.cs",
               "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
               "RelativeDocumentMoniker": "common\\Mysql.cs",
               "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
               "RelativeToolTip": "common\\Mysql.cs",
-              "ViewState": "AQIAAFkBAAAAAAAAAAAAwFcBAAAhAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFkBAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-13T16:35:36.59Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "ItemPanel.cs",
               "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\ItemPanel.cs",
               "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\ItemPanel.cs",
               "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\ItemPanel.cs",
               "RelativeToolTip": "ItemManage\\ItemPanel\\ItemPanel.cs",
-              "ViewState": "AQIAAIEAAAAAAAAAAAAAwKIAAAAAAAAA",
+              "ViewState": "AQIAAJ8AAAAAAAAAAAAowBMBAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-14T11:36:19.244Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-14T11:36:19.244Z"
             }
           ]
         },
