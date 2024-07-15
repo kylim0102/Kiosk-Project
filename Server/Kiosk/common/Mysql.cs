@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Kiosk.pPanel.common;
 using MySql.Data.MySqlClient;
 using Mysqlx.Session;
 using MySqlX.XDevAPI;
@@ -326,17 +327,206 @@ namespace Kiosk.pPanel.common
     #endregion
 
 
-    #region To OptionPanel.cs
-    internal class OptionTable
+    /*public bool OptionModify(string idx, string optionname)
     {
+        try
+        {
+            String sql = "update optiontable set optionname = @optionname where idx = @idx";
 
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@optionname", optionname);
+            cmd.Parameters.AddWithValue("@idx", idx);
+
+            result = cmd.ExecuteNonQuery();
+            if (result < 0)
+            {
+                MessageBox.Show("옵션 수정에 실패했습니다! \n관리자에게 문의하세요.", "CODE : MS-ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("성공적으로 옵션을 수정했습니다!", "OPTION MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            reader.Close();
+        }
+
+        if (result < 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }*/
+}
+
+
+#region To ItemPanel.cs
+internal class ItemTable
+{
+    private MySqlConnection mysql = oGlobal.GetConnection();
+    private string sql = null;
+    int result = 0;
+
+    public int ItemRegister(string name, int price, string content, string category)
+    {
+        try
+        {
+            string now = DateTime.Now.ToString("yyyy-MM-dd");
+            string sql = "insert into itemtable(itemName, price, content, regdate, category) values(@itemName, @price, @content, @regdate, @category)";
+
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+            cmd.Parameters.AddWithValue("@itemName", name);
+            cmd.Parameters.AddWithValue("@price", price);
+            cmd.Parameters.AddWithValue("@content", content);
+            cmd.Parameters.AddWithValue("@regdate", now);
+            cmd.Parameters.AddWithValue("@category", category);
+
+            result = cmd.ExecuteNonQuery();
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MySql ERROR !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        return result;
     }
-    #endregion
+}
+#endregion
+
+
+#region To OptionPanel.cs
+internal class OptionTable
+{
+    private MySqlConnection mysql = oGlobal.GetConnection();
+    private MySqlDataReader reader = null;
+    private string sql = null;
+    int option_result = 0;
+
+    public int OptionRegister(string optionname, int option_value)
+    {
+        try
+        {
+            string optionday = DateTime.Now.ToString("yyyy-MM-dd");
+            sql = "insert into optiontable(optionname, option_value, regdate) values(@optionname, @option_value, @regdate)";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+            cmd.Parameters.AddWithValue("@optionname", optionname);
+            cmd.Parameters.AddWithValue("@option_value", option_value);
+            cmd.Parameters.AddWithValue("@regdate", optionday);
+
+            option_result = cmd.ExecuteNonQuery();
+            if (option_result < 0)
+            {
+                MessageBox.Show("옵션 등록에 실패했습니다! \n관리자에게 문의하세요.", "CODE : MS-ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("옵션 등록에 성공했습니다!", "OPTION REGISTER", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        return option_result;
+    }
+
+    public List<string> GetOption()
+    {
+        List<string> options = new List<string>();
+        try
+        {
+            sql = "select optionname from optiontable";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                options.Add(reader.GetString("optionname"));
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            reader.Close();
+        }
+
+        return options;
+    }
+
+    public DataTable AddGridView()
+    {
+        MySqlDataReader reader = null;
+        DataTable dataTable = new DataTable();
+
+
+        DataColumn data_idx = new DataColumn("NO", typeof(int));
+        DataColumn data_name = new DataColumn("NAME", typeof(string));
+        DataColumn data_price = new DataColumn("PRICE", typeof(int));
+        DataColumn data_regdate = new DataColumn("DATE", typeof(string));
+
+        dataTable.Columns.Add(data_idx);
+        dataTable.Columns.Add(data_name);
+        dataTable.Columns.Add(data_price);
+        dataTable.Columns.Add(data_regdate);
+
+        try
+        {
+            sql = "select * from optiontable";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+            reader = cmd.ExecuteReader();
+
+            int idx = 0;
+            string optionname = null;
+            int option_value = 0;
+            string regdate;
+
+            while (reader.Read())
+            {
+                idx = reader.GetInt32("idx");
+                optionname = reader.GetString("optionname");
+                option_value = reader.GetInt32("option_value");
+                regdate = reader.GetDateTime("regdate").ToString("yyyy-MM-dd");
+
+                dataTable.Rows.Add(idx, optionname, option_value, regdate);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            reader.Close();
+        }
+
+        return dataTable;
+    }
 
 
 
-    #region 제품 수정 / 삭제
-    internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근 가능
+}
+#endregion
+
+
+
+
+#region 제품 수정 / 삭제
+internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근 가능
     {
         private MySqlConnection mysql = oGlobal.GetConnection();
         int result = 0;
@@ -474,4 +664,4 @@ namespace Kiosk.pPanel.common
     #endregion
 
 
-}
+
