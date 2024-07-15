@@ -30,63 +30,13 @@ namespace Kiosk.ItemManage.ItemPanel
             DataTable data = table.AddGridView();
             option_list.AutoGenerateColumns = true;
             option_list.DataSource = data;
-        }
 
-        private void category_manage_reset_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void category_manage_list_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void category_manage_delete_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void category_manage_modify_Click(object sender, EventArgs e)
-        {
-
-        }
-
-       /* private void option_reset_Click(object sender, EventArgs e)
-        {
             // Option Manage
-            optionlist.Items.Clear();
-
             List<string> list = table.GetOption();
             for (int a = 0; a < list.Count; a++)
             {
                 optionlist.Items.Add(list[a]);
             }
-        }*/
-
-        private void option_modify_Click(object sender, EventArgs e)
-        {
-            /*    if (idx.Text.Equals("") || Option_name.Text.Equals("") || option_price.Text.Equals(""))
-                {
-                    MessageBox.Show("수정하려는 카테고리를 선택해주세요!", "CATEGORY MANAGE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else
-                {
-                    bool result = table.CategoryModify(category_manage_idx.Text, option_price.Text);
-                    option_price.Text = string.Empty;
-                    option.Text = string.Empty;
-                    category_manage_idx.Text = string.Empty;
-
-                    // Category Manage
-                    category_manage_list.Items.Clear();
-
-                    List<string> list = table.GetCategory();
-                    for (int a = 0; a < list.Count; a++)
-                    {
-                        category_manage_list.Items.Add(list[a]);
-                    }
-                }*/
         }
 
         private void Register_Click(object sender, EventArgs e)
@@ -122,6 +72,45 @@ namespace Kiosk.ItemManage.ItemPanel
             option_list.Columns["NAME"].Width = 150;
             option_list.Columns["PRICE"].Width = 150;
             option_list.Columns["DATE"].Width = 150;
+        }
+
+        private void optionlist_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = optionlist.SelectedItem.ToString();
+            List<string> list = table.GetOptionForName(optionlist.SelectedItem.ToString());
+            idx.Text = list[0].ToString();
+            option.Text = list[1].ToString();
+            option_price.Text = list[2].ToString();
+        }
+
+        private void option_modify_Click(object sender, EventArgs e)
+        {
+            if (idx.Text.Equals("") || option.Text.Equals("") || option_price.Text.Equals(""))
+            {
+                MessageBox.Show("수정하려는 카테고리를 선택해주세요!", "CATEGORY MANAGE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                bool result = table.OptionModify(idx.Text, option_price.Text);
+                option_price.Text = string.Empty;
+                option.Text = string.Empty;
+                idx.Text = string.Empty;
+
+                // Category Manage
+                optionlist.Items.Clear();
+
+                List<string> list = table.GetOption();
+                for (int a = 0; a < list.Count; a++)
+                {
+                    optionlist.Items.Add(list[a]);
+                }
+            }
+        }
+
+        private void option_reset_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
