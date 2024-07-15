@@ -70,7 +70,7 @@ namespace Kiosk.Order
 
                 TabControl tabControl = menulist;
 
-                TabPage mysql_tab = tabControl.TabPages[3];
+                TabPage mysql_tab = tabControl.TabPages[0];
 
                 int buttonTop = 10;
                 int buttonSpacing = 30;
