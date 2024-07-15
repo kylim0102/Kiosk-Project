@@ -40,6 +40,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.listBox3 = new System.Windows.Forms.ListBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.Download_Path = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -117,6 +120,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button4);
+            this.tabPage2.Controls.Add(this.Download_Path);
+            this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.textBox1);
@@ -132,11 +138,11 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(594, 319);
+            this.button3.Location = new System.Drawing.Point(574, 345);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 4;
-            this.button3.Text = "download";
+            this.button3.Text = "다운로드";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -144,7 +150,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("굴림", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(229, 29);
+            this.label2.Location = new System.Drawing.Point(234, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(200, 27);
             this.label2.TabIndex = 3;
@@ -152,7 +158,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(221, 322);
+            this.textBox1.Location = new System.Drawing.Point(217, 343);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(337, 21);
             this.textBox1.TabIndex = 2;
@@ -161,21 +167,48 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(50, 324);
+            this.label1.Location = new System.Drawing.Point(46, 345);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 19);
+            this.label1.Size = new System.Drawing.Size(89, 19);
             this.label1.TabIndex = 1;
-            this.label1.Text = "file download :";
+            this.label1.Text = "파일선택";
             // 
             // listBox3
             // 
             this.listBox3.FormattingEnabled = true;
             this.listBox3.ItemHeight = 12;
-            this.listBox3.Location = new System.Drawing.Point(37, 69);
+            this.listBox3.Location = new System.Drawing.Point(37, 43);
             this.listBox3.Name = "listBox3";
             this.listBox3.Size = new System.Drawing.Size(632, 244);
             this.listBox3.TabIndex = 0;
             this.listBox3.SelectedIndexChanged += new System.EventHandler(this.listBox3_SelectedIndexChanged);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(574, 306);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "찾아보기";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // Download_Path
+            // 
+            this.Download_Path.Location = new System.Drawing.Point(217, 304);
+            this.Download_Path.Name = "Download_Path";
+            this.Download_Path.Size = new System.Drawing.Size(337, 21);
+            this.Download_Path.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.Location = new System.Drawing.Point(46, 306);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 19);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "경로 탐색";
             // 
             // Itemmanage
             // 
@@ -208,5 +241,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox Download_Path;
+        private System.Windows.Forms.Label label3;
     }
 }

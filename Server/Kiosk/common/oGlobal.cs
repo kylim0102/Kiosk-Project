@@ -172,6 +172,25 @@ namespace Kiosk.pPanel.common
 
             return filePath;
         }
+
+        public string SavingFilePath()
+        {
+            string FolderPath = string.Empty;
+            using (FolderBrowserDialog dialog = new FolderBrowserDialog())
+            {
+                dialog.Description = "Select a folder";
+                dialog.RootFolder = Environment.SpecialFolder.MyComputer;
+
+                DialogResult result = dialog.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.SelectedPath))
+                {
+                    FolderPath = dialog.SelectedPath;
+                }
+
+            }
+            return FolderPath;
+        }
     }
 
     // UserControl에서 Main으로 DataTable 값을 전달 하기 위한 Delegate 정의    

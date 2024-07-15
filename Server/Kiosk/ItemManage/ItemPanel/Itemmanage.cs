@@ -194,5 +194,10 @@ namespace Kiosk.ItemManage.ItemPanel
             //다운로드 버튼
             await storageConnection.Download(textBox1.Text, url);
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+           Download_Path.Text = storageConnection.SavingFilePath();
+        }
     }
 }
