@@ -115,7 +115,6 @@ namespace Kiosk.ItemManage.ItemPanel
             {
                 try
                 {
-
                     string query = "UPDATE kiosk.itemtable SET `on/off` = 'y' WHERE idx = @idx"; // 테이블 쿼리
                     MySqlCommand cmd = new MySqlCommand(query, conn);
 
@@ -190,6 +189,7 @@ namespace Kiosk.ItemManage.ItemPanel
         {
             //경로 + 파일명 *****저장되는곳 경로 설정*********
             string url = @"C:\Users\YJ\"+textBox1.Text;
+
            
             //다운로드 버튼
             await storageConnection.Download(textBox1.Text, url);

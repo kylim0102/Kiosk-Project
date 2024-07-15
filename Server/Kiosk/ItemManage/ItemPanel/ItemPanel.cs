@@ -76,6 +76,7 @@ namespace Kiosk.ItemManage.ItemPanel
 
         private void Register_Click(object sender, EventArgs e)
         {
+            
             if (Item_category.SelectedIndex == -1 || Item_category.Text.Equals("")) // 카테고리
             {
                 MessageBox.Show("입력하신 제품의 카테고리를 선택해주세요 !", "ITEM REGISTER ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -133,6 +134,8 @@ namespace Kiosk.ItemManage.ItemPanel
                     Item_price.Text = string.Empty;
                     Item_content.Text = string.Empty;
                     file_path.Text = string.Empty;
+                    datagridviewReload();
+
 
                     Item_name.Focus();
                 }
