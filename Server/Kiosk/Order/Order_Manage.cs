@@ -122,6 +122,23 @@ namespace Kiosk.Order
                 */
                 menulist.TabPages.Add(tab);
             }
+
+            /*
+                테스트 용으로 MySql 탭에 모든 Item을 넣어둠.
+                후에 코드 정리할 때 삭제하면 되는 부분
+            */
+
+            TabPage now = menulist.TabPages[0];
+            List<Button> buttons = itemTable.GetAllItems();
+
+            for(int a=0; a<buttons.Count; a++)
+            {
+                Button btn = buttons[a];
+
+                btn.Click += Button_Click;
+
+                now.Controls.Add(btn);
+            }
         }
         
         private int menu_price(string menu_name)

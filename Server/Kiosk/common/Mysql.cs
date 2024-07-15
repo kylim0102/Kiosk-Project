@@ -443,6 +443,58 @@ internal class ItemTable
 
         return items;
     }
+
+    /*
+        Order Page에서 MySql Tab에 모든 Item 목륵을 버튼으로 추가하기 위해 만든 SQL문
+        후에 코드 정리할 때 삭제하면 되는 부분
+    */
+    public List<Button> GetAllItems()
+    {
+        if (mysql.State == ConnectionState.Closed)
+        {
+            mysql.Open();
+        }
+
+        List<Button> items = new List<Button>();
+        sql = "select * from itemtable";
+        MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+        int buttonTop = 10;
+        int buttonSpacing = 30;
+
+        using (reader = cmd.ExecuteReader())
+        {
+            int price = 0;
+            string item_name = null, content = null, category = null, power = null;
+            DateTime regdate;
+
+            while (reader.Read())
+            {
+                item_name = reader.GetString("itemName");
+                price = reader.GetInt32("price");
+                content = reader.GetString("content");
+                regdate = reader.GetDateTime("regdate");
+                category = reader.GetString("category");
+                power = reader.GetString("on/off");
+
+                Button button = new Button();
+                button.Name = item_name + "_btn";
+                button.Text = item_name;
+                button.Tag = new { item_name, price, content, regdate, category, power };
+
+                button.Top = buttonTop;
+                button.Left = buttonSpacing;
+
+
+                items.Add(button);
+
+                buttonTop += buttonSpacing; // 다음 버튼의 y 좌표 설정
+            }
+
+        }
+
+        return items;
+    }
 }
 #endregion
 
