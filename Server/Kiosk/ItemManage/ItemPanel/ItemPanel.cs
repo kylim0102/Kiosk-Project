@@ -175,7 +175,7 @@ namespace Kiosk.ItemManage.ItemPanel
                 DataGridViewRow clickedRow = dataGridView1.Rows[e.RowIndex];
                 List<object> cellValue = new List<object>();
                 //일단 뽑아와서 담아봐
-                for(int i=0; i<clickedRow.Cells.Count; i++) 
+                for (int i=0; i<clickedRow.Cells.Count; i++) 
                 {
                      cellValue.Add(clickedRow.Cells[i].Value);
                 }
@@ -185,11 +185,18 @@ namespace Kiosk.ItemManage.ItemPanel
                     textBox2.Text = cellValue[1].ToString();
                     textBox3.Text = cellValue[2].ToString();
                     textBox4.Text = cellValue[3].ToString();
-                    comboBox1.Text = cellValue[5].ToString();
+
+                    string categoryname = cellValue[5].ToString();
+                    
+
                     List<string> list = category_table.GetCategory();
                         for (int i = 0; i < list.Count; i++)
                         {
                             comboBox1.Items.Add(list[i]);
+                       if (categoryname.Equals(list[i]))
+                        {
+                            comboBox1.SelectedIndex = i;
+                        }   
                     }
                 }
                 else
@@ -239,6 +246,7 @@ namespace Kiosk.ItemManage.ItemPanel
             int price = Convert.ToInt32(textBox3.Text);
             String content = textBox4.Text;
             String category = comboBox1.Text.ToString();
+            
 
             if (MessageBox.Show("수정하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
