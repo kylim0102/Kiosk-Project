@@ -271,15 +271,8 @@ namespace Kiosk.ItemManage.ItemPanel
 
         }
         #endregion
-        // TAB2 AREA
 
-
-
-
-
-
-        
-        #region datagridview 초기화 적용
+        #region Item Manage DataGridView Reset(datagridview 초기화 적용)
         private void datagridviewReload()
         {
             ItemUpdate itemUpdate = new ItemUpdate();
@@ -295,8 +288,9 @@ namespace Kiosk.ItemManage.ItemPanel
             // CellClick 이벤트 핸들러 등록
             dataGridView1.CellClick += DataGridView1_CellClick;
         }
-
         #endregion
+        // TAB2 AREA
+
 
         #region Dummy Event
         private void label1_Click(object sender, EventArgs e)
@@ -313,11 +307,13 @@ namespace Kiosk.ItemManage.ItemPanel
         {
 
         }
-        #endregion
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+        #endregion
+
+
     }
 }
