@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -546,6 +547,7 @@ internal class OptionTable
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
 
             reader = cmd.ExecuteReader();
+
             while (reader.Read())
             {
                 options.Add(reader.GetString("optionname"));
@@ -562,6 +564,7 @@ internal class OptionTable
 
         return options;
     }
+
 
     public DataTable AddGridView()
     {
@@ -713,8 +716,139 @@ internal class OptionTable
             return true;
         }
     }
-}
 
+    #region on/off 가 n 인 것
+    public List<string> GetOptionsWithN()
+    {
+        // 'on/off' 값이 'N'인 옵션들을 저장할 리스트
+        List<string> options = new List<string>();
+
+        try
+        {
+            // 'on/off' 값이 'N'인 행을 선택하는 SQL 쿼리
+            string sql = "select * from optiontable where `on/off` = 'N'";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+            // SQL 쿼리 실행
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    string itemn = $"{reader.GetInt32("idx")}, {reader.GetString("optionname")}, {reader.GetInt32("option_value")}";
+                    options.Add(itemn);
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            // MySQL 예외 발생 시 메시지 박스에 오류 메시지 표시
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        // 'on/off' 값이 'N'인 옵션들을 반환
+        return options;
+    }
+    #endregion
+
+    #region on/off 가 y 인 것
+    public List<string> GetOptionsWithY()
+    {
+        // 'on/off' 값이 'Y'인 옵션들을 저장할 리스트
+        List<string> options = new List<string>();
+
+        try
+        {
+            // 'on/off' 값이 'Y'인 행을 선택하는 SQL 쿼리
+            sql = "select * from optiontable where `on/off` = 'Y'";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+            // SQL 쿼리 실행
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                // 결과에서 optionname과 option_value를 리스트에 추가
+                string itemy = $"{reader.GetInt32("idx")}, {reader.GetString("optionname")}, {reader.GetInt32("option_value")}";
+                options.Add(itemy);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            // MySQL 예외 발생 시 메시지 박스에 오류 메시지 표시
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            // 리더가 null이 아닌 경우 닫기
+            if (reader != null)
+            {
+                reader.Close();
+            }
+        }
+
+        // 'on/off' 값이 'Y'인 옵션들을 반환
+        return options;
+    }
+    #endregion
+
+    #region 옵션 사용 Y로 바꾸기
+    public void UpdateOption(int idx)
+    {
+        try
+        {
+            // 'on/off' 값을 'Y'로 변경하는 SQL UPDATE 쿼리
+            sql = "UPDATE optiontable SET `on/off` = 'Y' WHERE idx = @idx";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@idx", idx);
+
+            // SQL 쿼리 실행
+            int rowsAffected = cmd.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                MessageBox.Show("옵션 삽입을 성공했습니다.", "옵션 삽입", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("옵션 삽입에 실패하였습니다!", "옵션 삽입", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            // MySQL 예외 발생 시 메시지 박스에 오류 메시지 표시
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+    }
+    #endregion
+
+    #region 옵션 사용 N으로 바꾸기
+    public void RemoveOption(int idx)
+    {
+        try
+        {
+            // 'on/off' 값을 'Y'로 변경하는 SQL UPDATE 쿼리
+            sql = "UPDATE optiontable SET `on/off` = 'N' WHERE idx = @idx";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@idx", idx);
+
+            // SQL 쿼리 실행
+            int rowsAffected = cmd.ExecuteNonQuery();
+            if (rowsAffected > 0)
+            {
+                MessageBox.Show("옵션 빼기를 성공했습니다.", "옵션 빼기", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("옵션 빼기를 실패하였습니다!", "옵션 빼기", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            // MySQL 예외 발생 시 메시지 박스에 오류 메시지 표시
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+    #endregion
+}
 #endregion
 
 

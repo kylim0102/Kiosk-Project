@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Kiosk.pPanel.common;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 
 namespace Kiosk.Order
 {
@@ -18,6 +19,7 @@ namespace Kiosk.Order
         private MySqlConnection con = oGlobal.GetConnection();
         private CategoryTable table = new CategoryTable();
         private ItemTable itemTable = new ItemTable();
+        private OptionTable optionTable = new OptionTable();
         public Order_Manage()
         {
             InitializeComponent();
@@ -139,8 +141,58 @@ namespace Kiosk.Order
 
                 now.Controls.Add(btn);
             }
+
+            //옵션 내용
+            LoadOptionsFromDatabase();
+
         }
-        
+        private void LoadOptionsFromDatabase()
+        {
+            try
+            {
+                // SQL 쿼리 실행하여 옵션 데이터 가져오기
+                string sql = "SELECT optionname FROM optiontable WHERE on/off = 'Y'";
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                // TabPage 이름
+                string tabPageName = "option1";
+                TabPage tabPage = tabControl1.TabPages[tabPageName]; // tabPageName에 맞는 TabPage 찾기
+
+                int buttonIndex = 1;
+
+                while (reader.Read())
+                {
+                    // TabPage 내에 있는 버튼 찾기
+                    Control[] buttons = tabPage.Controls.Find($"op{buttonIndex}", true);
+
+                    if (buttons.Length > 0 && buttons[0] is Button)
+                    {
+                        Button btn = (Button)buttons[0];
+                        btn.Text = reader.GetString("optionname");
+                        buttonIndex++;
+                    }
+                }
+
+                reader.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+
         private int menu_price(string menu_name)
         {
             int price = 0;
@@ -176,41 +228,41 @@ namespace Kiosk.Order
         private void select_menu(string menu_name)
         { 
 
-                DataGridViewRow row = null;
+            DataGridViewRow row = null;
 
-                // DataGridView 목록의 수를 가져옴
-                int count = selected_menu.Rows.Count;
+            // DataGridView 목록의 수를 가져옴
+            int count = selected_menu.Rows.Count;
 
-                // 메뉴 명에 따라 가격을 초기화
-                int price = menu_price(menu_name);
+            // 메뉴 명에 따라 가격을 초기화
+            int price = menu_price(menu_name);
 
 
-                // DataGridView의 목록 수만큼 for문을 돌려 중복을 확인
-                for (int a = 0; a < count; a++)
+            // DataGridView의 목록 수만큼 for문을 돌려 중복을 확인
+            for (int a = 0; a < count; a++)
+            {
+                row = selected_menu.Rows[a];
+
+                if (a < row.Cells.Count && row.Cells[a].Value != null && row.Cells["Menu"].Value.ToString().Equals(menu_name))// Datagridview에 선택한 메뉴가 이미 있다면
                 {
-                    row = selected_menu.Rows[a];
+                    int menu_count = Convert.ToInt32(row.Cells["Count"].Value);
 
-                    if (a < row.Cells.Count && row.Cells[a].Value != null && row.Cells["Menu"].Value.ToString().Equals(menu_name))// Datagridview에 선택한 메뉴가 이미 있다면
-                    {
-                        int menu_count = Convert.ToInt32(row.Cells["Count"].Value);
-
-                        row.Cells["Count"].Value = menu_count + 1;
-                        row.Cells["Price"].Value = price * (menu_count + 1);
-                        break;
-                    }
-                    else if (a < row.Cells.Count && row.Cells[a].Value == null) // DataGridView에 선택한 메뉴가 없다면
-                    {
-                        selected_menu.Rows.Add(menu_name, 1, price, "");
-                    }
+                    row.Cells["Count"].Value = menu_count + 1;
+                    row.Cells["Price"].Value = price * (menu_count + 1);
+                    break;
                 }
+                else if (a < row.Cells.Count && row.Cells[a].Value == null) // DataGridView에 선택한 메뉴가 없다면
+                {
+                    selected_menu.Rows.Add(menu_name, 1, price, "");
+                }
+            }   
 
-                // 총 결제 금액 계산
-                total_payment();
+            // 총 결제 금액 계산
+            total_payment();
 
-                // 거스름돈 계산
-                //int taked = Convert.ToInt32(take_money.Text); // 받은 금액
-                int payed = Convert.ToInt32(payment.Text); // 결제 금액
-                //change_money.Text = (taked - payed) + "";
+            // 거스름돈 계산
+            //int taked = Convert.ToInt32(take_money.Text); // 받은 금액
+            int payed = Convert.ToInt32(payment.Text); // 결제 금액
+            //change_money.Text = (taked - payed) + "";
            
         }
 
