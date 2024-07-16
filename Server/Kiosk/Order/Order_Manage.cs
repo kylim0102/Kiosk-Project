@@ -151,7 +151,7 @@ namespace Kiosk.Order
             try
             {
                 // SQL 쿼리 실행하여 옵션 데이터 가져오기
-                string sql = "SELECT optionname FROM optiontable WHERE on/off = 'Y'";
+                string sql = "SELECT * FROM optiontable WHERE `on/off` = 'Y'";
                 MySqlCommand cmd = new MySqlCommand(sql, con);
 
                 if (con.State == ConnectionState.Closed)
@@ -176,6 +176,19 @@ namespace Kiosk.Order
                     {
                         Button btn = (Button)buttons[0];
                         btn.Text = reader.GetString("optionname");
+
+                        string optionValue = reader.GetString("option_value");
+                        btn.Tag = optionValue;
+
+                        // 버튼 클릭 이벤트 핸들러 추가
+                        btn.Click += (sender, e) =>
+                        {
+                            string optionName = btn.Text;
+                            string optionPrice = btn.Tag.ToString();
+
+                            select_menu(optionName, optionPrice);
+                        };
+
                         buttonIndex++;
                     }
                 }
@@ -225,46 +238,40 @@ namespace Kiosk.Order
             return price;
         }
 
-        private void select_menu(string menu_name)
-        { 
+        private void select_menu(string optionName, string optionPrice)
+        {
+            // DataGridView에 추가할 행 생성
+            DataGridViewRow row = new DataGridViewRow();
+            row.CreateCells(selected_menu);
+            row.Cells[0].Value = optionName;  // 옵션의 이름
+            row.Cells[1].Value = 1;           // 초기 수량은 1로 설정
+            row.Cells[2].Value = optionPrice; // 옵션의 가격
+            row.Cells[3].Value = "";          // 추가 정보, 여기서는 빈 문자열로 설정
 
-            DataGridViewRow row = null;
-
-            // DataGridView 목록의 수를 가져옴
-            int count = selected_menu.Rows.Count;
-
-            // 메뉴 명에 따라 가격을 초기화
-            int price = menu_price(menu_name);
-
-
-            // DataGridView의 목록 수만큼 for문을 돌려 중복을 확인
-            for (int a = 0; a < count; a++)
+            // 이미 있는지 확인 후 추가 또는 수량 증가
+            bool found = false;
+            foreach (DataGridViewRow existingRow in selected_menu.Rows)
             {
-                row = selected_menu.Rows[a];
-
-                if (a < row.Cells.Count && row.Cells[a].Value != null && row.Cells["Menu"].Value.ToString().Equals(menu_name))// Datagridview에 선택한 메뉴가 이미 있다면
+                if (existingRow.Cells["Menu"].Value != null && existingRow.Cells["Menu"].Value.ToString() == optionName)
                 {
-                    int menu_count = Convert.ToInt32(row.Cells["Count"].Value);
-
-                    row.Cells["Count"].Value = menu_count + 1;
-                    row.Cells["Price"].Value = price * (menu_count + 1);
+                    int count = Convert.ToInt32(existingRow.Cells["Count"].Value);
+                    existingRow.Cells["Count"].Value = count + 1;
+                    existingRow.Cells["Price"].Value = (count + 1) * Convert.ToInt32(optionPrice);
+                    found = true;
                     break;
                 }
-                else if (a < row.Cells.Count && row.Cells[a].Value == null) // DataGridView에 선택한 메뉴가 없다면
-                {
-                    selected_menu.Rows.Add(menu_name, 1, price, "");
-                }
-            }   
+            }
+
+            if (!found)
+            {
+                selected_menu.Rows.Add(row);  // 데이터그리드뷰에 새로운 행 추가
+            }
 
             // 총 결제 금액 계산
             total_payment();
-
-            // 거스름돈 계산
-            //int taked = Convert.ToInt32(take_money.Text); // 받은 금액
-            int payed = Convert.ToInt32(payment.Text); // 결제 금액
-            //change_money.Text = (taked - payed) + "";
-           
         }
+
+
 
         private void total_payment()
         {
