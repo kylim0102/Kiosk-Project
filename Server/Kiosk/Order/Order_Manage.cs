@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace Kiosk.Order
             timer.Tick += Timer_Tick;
         }
 
-       
+
 
         #region Order Manage On Load(Order Page 로딩 시 현재시각, 카테고리 별 TabControl Tab 세팅, 제품 옵션 세팅)
         private void Order_Manage_Load(object sender, EventArgs e)
@@ -111,7 +112,7 @@ namespace Kiosk.Order
 
             DataGridViewRow row = null;
             // 메뉴 명에 따라 가격을 초기화
-            
+
 
             // DataGridView의 목록 수만큼 for문을 돌려 중복을 확인
             for (int a = 0; a < count; a++)
@@ -129,7 +130,7 @@ namespace Kiosk.Order
                 else if (a < row.Cells.Count && row.Cells[a].Value == null) // DataGridView에 선택한 메뉴가 없다면
                 {
                     int number = a + 1;
-                    selected_menu.Rows.Add(number ,menu_name, 1, price, "");
+                    selected_menu.Rows.Add(number, menu_name, 1, price, "");
                 }
             }
 
@@ -231,7 +232,7 @@ namespace Kiosk.Order
                     if (cell != null && cell.Value != null)
                     {
                         return cell.Value.ToString();
-                        
+
                     }
                 }
             }
@@ -240,14 +241,14 @@ namespace Kiosk.Order
         #endregion
         #endregion
 
-
+        // 추가 -- 옵션 버튼 선택 시  번호에 #-1 로 설정 
         #region Order Manage Selected Options
-        private void select_menu(string num, string optionName, string optionPrice, ref int number , int rowIndex) // ref, rowIndex  추가 
+        private void select_menu(string num, string optionName, string optionPrice, ref int number, int rowIndex) // ref, rowIndex  추가 
         {
             // DataGridView에 추가할 행 생성
             DataGridViewRow row = new DataGridViewRow();
             row.CreateCells(selected_menu);
-            
+
             // 이미 있는지 확인 후 추가 또는 수량 증가
             bool found = false;
             foreach (DataGridViewRow existingRow in selected_menu.Rows)
@@ -264,15 +265,15 @@ namespace Kiosk.Order
             }
             if (!found)
             {
-                row.Cells[0].Value = num; // 번호 추가
+                row.Cells[0].Value = num + "-" + number; // 번호 추가   // 교체
                 row.Cells[1].Value = optionName;  // 옵션의 이름
                 row.Cells[2].Value = 1;           // 초기 수량은 1로 설정
                 row.Cells[3].Value = optionPrice; // 옵션의 가격
 
                 //선택 row 에 집어 넣기  일단 보류
-                
-                selected_menu.Rows.Insert(rowIndex+1, row); // 선택한 다음 행에 집어넣기
-                
+
+                selected_menu.Rows.Insert(rowIndex + 1, row); // 선택한 다음 행에 집어넣기
+
 
                 //selected_menu.Rows.Add(row);// 데이터그리드뷰에 새로운 행 추가
 
@@ -292,8 +293,8 @@ namespace Kiosk.Order
             int count = selected_menu.Rows.Count;
             List<int> payments = new List<int>();
 
-   
-            for(int a=0; a<count; a++)
+
+            for (int a = 0; a < count; a++)
             {
                 row = selected_menu.Rows[a];
 
@@ -303,53 +304,159 @@ namespace Kiosk.Order
                     payments.Add(menu_pay);
                 }
             }
-            payment.Text = payments.Sum()+"";
+            payment.Text = payments.Sum() + "";
         }
         #endregion
 
-
-        #region Changed Control Tab(선택된 카테고리가 변경되었을 때 이벤트)
-        private void Selected_Index_Changed(object sender, EventArgs e)
+        // 추가 
+        #region  카드 버튼 클릭시 Order items - db.ordertable 에 저장
+        private void button2_Click(object sender, EventArgs e)
         {
-            // 현재 선택된 Tab을 TabPage에 저장
-            TabPage now = menulist.SelectedTab;
-
-            List<Button> items = itemTable.MakeButtonForItems(now.Text);
-
-
-            if (items.Count > 0)
+            // 주문목록에 상품을 선택하지 않았을 시 예외처리
+            if (selected_menu.Rows.Count == 0)
             {
-                for(int a=0; a<items.Count; a++)
+                MessageBox.Show("주문할 항목이 없습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return; // 데이터가 없으면 함수 종료
+            }
+            else
+            {
+                // datagridview를 datatable 로 변환
+                DataTable dt = new DataTable();
+                foreach (DataGridViewColumn column in selected_menu.Columns)
                 {
-                    Button btn = items[a];
+                    dt.Columns.Add(column.HeaderText, typeof(object));
 
-                    btn.Click += Button_Click;
-
-                    now.Controls.Add(btn);
                 }
+                foreach (DataGridViewRow row in selected_menu.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        DataRow dataRow = dt.NewRow();
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            dataRow[cell.ColumnIndex] = cell.Value;
+                        }
+                        dt.Rows.Add(dataRow);
+                    }
+                }
+                //////////////////////////////////////
+                MySqlConnection conn = oGlobal.GetConnection();
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open(); //db 연결
+
+                }
+
+                try
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+
+                        using (MySqlCommand cmd = new MySqlCommand())
+                        {
+                            cmd.Connection = conn;
+
+                            cmd.CommandText = "INSERT INTO ordertable (itemNumber, itemName, itemCount, payment, regdate) VALUES (@itemNumber, @itemName, @itemCount, @payment, now())";
+
+                            // DBNull 은 만약에 null 값으로 들어왔을시 db에도 null 값을 넣어준다
+                            cmd.Parameters.AddWithValue("@itemNumber", row["번호"] ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@itemName", row["메뉴"] ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@itemCount", row["수량"] ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue("@payment", row["금액"] ?? DBNull.Value);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    // 주문번호 설정 해야됨
+                    Counter.IncrementAndGet();
+                    int orderNumber = Counter.GetCount();
+                    MessageBox.Show("주문이 완료되었습니다. 주문 번호: " + orderNumber, "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //  초기화
+                    selected_menu.Rows.Clear(); // row 클리어 시켜주기
+                    selected_menu.Refresh(); // 새로고침
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close(); // 연결 닫기
+
+
+                }
+            }
+        }
+        #endregion
+
+        //추가
+        #region 주문 번호 설정
+        public class Counter
+        {
+            private static int count = 0;
+
+            // 메소드가 호출될 때마다 count 값을 1씩 증가시키고 반환하는 메소드
+            public static int IncrementAndGet()
+            {
+                count++;
+                return count;
+            }
+
+            // 현재 count 값을 가져오는 메소드
+            public static int GetCount()
+            {
+                return count;
             }
         }
         #endregion
 
 
 
+        #region Changed Control Tab(선택된 카테고리가 변경되었을 때 이벤트)
+        private void Selected_Index_Changed(object sender, EventArgs e)
+    {
+        // 현재 선택된 Tab을 TabPage에 저장
+        TabPage now = menulist.SelectedTab;
 
-        #region Dummy Event
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        List<Button> items = itemTable.MakeButtonForItems(now.Text);
+
+
+        if (items.Count > 0)
         {
+            for (int a = 0; a < items.Count; a++)
+            {
+                Button btn = items[a];
+
+                btn.Click += Button_Click;
+
+                now.Controls.Add(btn);
+            }
         }
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-        }
-        private void Mysql_tab_Click(object sender, EventArgs e)
-        {
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
-        private void op1_Click(object sender, EventArgs e)
-        {
-        }
-        #endregion
+    }
+    #endregion
+
+
+
+
+    #region Dummy Event
+    private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+    {
+    }
+    private void groupBox1_Enter(object sender, EventArgs e)
+    {
+    }
+    private void Mysql_tab_Click(object sender, EventArgs e)
+    {
+    }
+    private void button1_Click(object sender, EventArgs e)
+    {
+    }
+    private void op1_Click(object sender, EventArgs e)
+    {
+    }
+    #endregion
+
+
     }
 }
