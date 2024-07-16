@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Google.Protobuf.WellKnownTypes;
 using Kiosk.pPanel.common;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
@@ -38,7 +39,7 @@ namespace Kiosk.Order
 
         private void UpdateDateTime()
         {
-            date.Text = DateTime.Now.ToString("yyyy-mm-dd HH:mm:ss");
+            date.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -86,7 +87,8 @@ namespace Kiosk.Order
                 }
                 else if (a < row.Cells.Count && row.Cells[a].Value == null) // DataGridView에 선택한 메뉴가 없다면
                 {
-                    selected_menu.Rows.Add(menu_name, 1, price, "");
+                    int number = a + 1;
+                    selected_menu.Rows.Add(number ,menu_name, 1, price, "");
                 }
             }
 
@@ -98,7 +100,6 @@ namespace Kiosk.Order
             int payed = Convert.ToInt32(payment.Text); // 결제 금액
                                                        //change_money.Text = (taked - payed) + "";
         }
-
         private void Order_Manage_Load(object sender, EventArgs e)
         {
             // form 로드 시 현재 날짜와 시간 설정
@@ -165,8 +166,9 @@ namespace Kiosk.Order
                 // TabPage 이름
                 string tabPageName = "option1";
                 TabPage tabPage = tabControl1.TabPages[tabPageName]; // tabPageName에 맞는 TabPage 찾기
-
+                int number = 1; // 추가
                 int buttonIndex = 1;
+
 
                 while (reader.Read())
                 {
@@ -184,12 +186,22 @@ namespace Kiosk.Order
                         // 버튼 클릭 이벤트 핸들러 추가
                         btn.Click += (sender, e) =>
                         {
-                            string optionName = btn.Text;
-                            string optionPrice = btn.Tag.ToString();
+                            string selectedCellValue = GetSelectedCellValue();
+                            // 이것도 추가  -- 셀이 선택되지 않았으면 옵션 추가 불가능
+                            if (selectedCellValue != null)
+                            {
+                                string num = selectedCellValue;
+                                string optionName = btn.Text;
+                                string optionPrice = btn.Tag.ToString();
+                                int rowIndex = selected_menu.CurrentCell.RowIndex;
 
-                            select_menu(optionName, optionPrice);
+                                select_menu(num, optionName, optionPrice, ref number, rowIndex);
+                            }
+                            else
+                            {
+                                MessageBox.Show("셀을 선택해주세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         };
-
                         buttonIndex++;
                     }
                 }
@@ -205,56 +217,47 @@ namespace Kiosk.Order
                 con.Close();
             }
         }
+
+        #region 번호 행의 특정 셀 값 가져오기 
+        private string GetSelectedCellValue()
+        {
+            if (selected_menu.CurrentCell != null)
+            {
+                int rowIndex = selected_menu.CurrentCell.RowIndex;
+                int columnIndex = 0;
+
+                if (rowIndex >= 0 && columnIndex >= 0)
+                {
+                    DataGridViewRow row = selected_menu.Rows[rowIndex];
+                    DataGridViewCell cell = row.Cells[columnIndex];
+
+                    if (cell != null && cell.Value != null)
+                    {
+                        return cell.Value.ToString();
+                        
+                    }
+                }
+            }
+            return null;
+        }
+        #endregion
         #endregion
 
 
-        private int menu_price(string menu_name)
-        {
-            int price = 0;
-
-            if (menu_name.Equals("아메리카노(ICE)"))
-            {
-                price = 1500;
-            }
-            else if (menu_name.Equals("카페라떼(ICE)") || menu_name.Equals("카푸치노(ICE)") || menu_name.Equals("카페모카(ICE)"))
-            {
-                price = 2000;
-            }
-            else if(menu_name.Equals("마끼아또(ICE)"))
-            {
-                price = 3000;
-            }
-            else if(menu_name.Equals("아메리카노(HOT)"))
-            {
-                price = 1700;
-            }
-            else if (menu_name.Equals("카페라떼(HOT)") || menu_name.Equals("카푸치노(HOT)") || menu_name.Equals("카페모카(HOT)"))
-            {
-                price = 2300;
-            }
-            else if (menu_name.Equals("마끼아또(HOT)"))
-            {
-                price = 3500;
-            }
-
-            return price;
-        }
-
-        private void select_menu(string optionName, string optionPrice)
+        private void select_menu(string num, string optionName, string optionPrice, ref int number , int rowIndex) // ref, rowIndex  추가 
         {
             // DataGridView에 추가할 행 생성
             DataGridViewRow row = new DataGridViewRow();
             row.CreateCells(selected_menu);
-            row.Cells[0].Value = optionName;  // 옵션의 이름
-            row.Cells[1].Value = 1;           // 초기 수량은 1로 설정
-            row.Cells[2].Value = optionPrice; // 옵션의 가격
-            row.Cells[3].Value = "";          // 추가 정보, 여기서는 빈 문자열로 설정
+            
 
+            
             // 이미 있는지 확인 후 추가 또는 수량 증가
             bool found = false;
             foreach (DataGridViewRow existingRow in selected_menu.Rows)
             {
-                if (existingRow.Cells["Menu"].Value != null && existingRow.Cells["Menu"].Value.ToString() == optionName)
+                //existingRow.Cells["Menu"].Value != null && existingRow.Cells["Menu"].Value.ToString() == optionName  형이 쓰던 조건문
+                if (existingRow.Cells["cartNumber"].Value != null && existingRow.Cells["Menu"].Value.ToString() == optionName && existingRow.Cells["cartNumber"].Value.ToString() == num)
                 {
                     int count = Convert.ToInt32(existingRow.Cells["Count"].Value);
                     existingRow.Cells["Count"].Value = count + 1;
@@ -263,10 +266,20 @@ namespace Kiosk.Order
                     break;
                 }
             }
-
             if (!found)
             {
-                selected_menu.Rows.Add(row);  // 데이터그리드뷰에 새로운 행 추가
+                row.Cells[0].Value = num; // 번호 추가
+                row.Cells[1].Value = optionName;  // 옵션의 이름
+                row.Cells[2].Value = 1;           // 초기 수량은 1로 설정
+                row.Cells[3].Value = optionPrice; // 옵션의 가격
+
+                //선택 row 에 집어 넣기  일단 보류
+                
+                selected_menu.Rows.Insert(rowIndex+1, row); // 선택한 다음 행에 집어넣기
+                
+
+                //selected_menu.Rows.Add(row);// 데이터그리드뷰에 새로운 행 추가
+
             }
 
             // 총 결제 금액 계산

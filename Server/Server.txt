@@ -1,1 +1,34 @@
-진심 push 오류
+ #region 특정 행의 특정 셀 값 가져오기 
+ private String Selected_Menu(object sender, DataGridViewCellEventArgs e)
+ {
+     // 선택한 열
+     DataGridViewRow clickedRow = selected_menu.Rows[e.RowIndex];
+
+     int rowIndex = clickedRow.Index;
+     object value = clickedRow.Cells[0].Value;
+     String columnName = value.ToString();
+
+     // DataGridView의 rowIndex 행의 columnName 열의 값을 가져옴
+     String cellValue = null;
+     if (rowIndex >= 0 && rowIndex < selected_menu.Rows.Count)
+     {
+         DataGridViewRow row = selected_menu.Rows[rowIndex];
+         DataGridViewCell cell = row.Cells[columnName];
+
+         if (cell != null && cell.Value != null)
+         {
+              cellValue = cell.Value.ToString();
+             Console.WriteLine($"Value at row {rowIndex}, column '{columnName}': {cellValue}");
+         }
+         else
+         {
+             Console.WriteLine($"Cell '{columnName}' is null or empty.");
+         }
+     }
+     else
+     {
+         Console.WriteLine($"Invalid row index: {rowIndex}");
+     }
+     return cellValue;
+ }
+ #endregion
