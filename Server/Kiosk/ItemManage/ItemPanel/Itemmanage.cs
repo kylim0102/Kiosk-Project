@@ -178,25 +178,91 @@ namespace Kiosk.ItemManage.ItemPanel
             #endregion
         }
 
-        private async void button3_Click_1(object sender, EventArgs e) // 파일 선택 후 다운로드 버튼 클릭 시 Event
-        {
-            //경로 + 파일명 *****저장되는곳 경로 설정*********
-            string url = Download_Path.Text+"\\";
+        
 
-            //다운로드 버튼
-            await storageConnection.Download(Selected_File.Text, url);
+
+        private void listBox3_SelectedIndexChanged_1(object sender, EventArgs e) // Storage List Box에서 원하는 Name 선택 시 TextBox를 채움
+        {
+            String name = listBox3.SelectedItem.ToString();
+            if (!string.IsNullOrEmpty(name))
+            {
+                Selected_File.Text = name;
+            }
         }
 
-        private void button4_Click_1(object sender, EventArgs e) // 다운로드할 파일을 저장 할 경로를 찾는 버튼
+        private void button4_Click(object sender, EventArgs e) // 다운로드할 파일을 저장 할 경로를 찾는 버튼
         {
             Download_Path.Text = storageConnection.SavingFilePath();
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //경로 + 파일명 *****저장되는곳 경로 설정*********
+            string url = Download_Path.Text + "\\";
 
-        private void listBox3_SelectedIndexChanged_1(object sender, EventArgs e) // Storage List Box에서 원하는 Name 선택 시 TextBox를 채움
-        {                  
-            String name = listBox3.SelectedItem.ToString();
-            Selected_File.Text = name;
+            //다운로드 버튼
+            storageConnection.Download(Selected_File.Text, url);
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            // 파일 찾기
+            string scanner = storageConnection.LocalStorageScan();
+
+            Modify_File.Text = scanner;
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            string select_file = Selected_File.Text;
+            string modify_file = Modify_File.Text;
+
+            if (!string.IsNullOrEmpty(select_file) && !string.IsNullOrEmpty(modify_file))
+            {
+                storageConnection.ModifyBlob(Selected_File.Text, Modify_File.Text);
+                listBox3.Items.Clear();
+
+                List<BlobItem> items = new List<BlobItem>();
+                items = storageConnection.GetBlobs();
+                for (int i = 0; i < items.Count; i++)
+                {
+                    listBox3.Items.Add(items[i].Name);
+                }
+            }
+            else
+            {
+                MessageBox.Show("수정하려는 파일을 다시 한번 확인해주세요\n선택: " + select_file + "\n수정: " + modify_file, "AZURE STORAGE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            string file = Selected_File.Text;
+            if (string.IsNullOrEmpty(file))
+            {
+                MessageBox.Show("삭제하려는 파일을 선택해주세요!", "AZURE STORAGE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                DialogResult dialog = MessageBox.Show("삭제 후에는 복구가 불가능합니다.\n정말 삭제하시겠습니까?", "AZURE SOTRAGE MANAGER", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (dialog == DialogResult.OK)
+                {
+                    storageConnection.DeleteBlob(Selected_File.Text);
+                    listBox3.Items.Clear();
+
+                    List<BlobItem> items = new List<BlobItem>();
+                    items = storageConnection.GetBlobs();
+                    for (int i = 0; i < items.Count; i++)
+                    {
+                        listBox3.Items.Add(items[i].Name);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("삭제를 취소합니다.", "AZURE STORAGE MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }

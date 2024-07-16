@@ -16,7 +16,7 @@ namespace Kiosk.pPanel.common
 {
     internal class oGlobal
     {
-       #region 전역 데이터베이스 연결
+        #region 전역 데이터베이스 연결
         public static MySqlConnection DBconnection;
 
         public static void DB_Connection()
@@ -112,14 +112,14 @@ namespace Kiosk.pPanel.common
             }
         }
 
-        public async Task Download(string blobName, string downloadFilepath)
+        public void Download(string blobName, string downloadFilepath)
         {
             //blobName : Storage에서 다운로드하고자 하는 파일 명 
             // Storage 연결
             var containerClient = BlobContainerClient();
             BlobClient blobClient = containerClient.GetBlobClient(blobName);
 
-            bool exists = await blobClient.ExistsAsync();
+            bool exists = blobClient.Exists();
 
             if (!exists) // 다운로드 하려는 파일이 Storage에 없는 경우
             {
@@ -130,19 +130,19 @@ namespace Kiosk.pPanel.common
             {
                 MessageBox.Show("다운로드를 시작합니다.", "Download", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 // Blob의 내용을 다운로드하여 BlobDownloadInfo 객체에 저장
-                BlobDownloadInfo download = await blobClient.DownloadAsync();
+                BlobDownloadInfo download = blobClient.Download();
 
                 // 로컬 Storage에 저장
-                using (FileStream fs = File.OpenWrite(downloadFilepath+blobName))
+                using (FileStream fs = File.OpenWrite(downloadFilepath + blobName))
                 {
-                    await download.Content.CopyToAsync(fs);
+                    download.Content.CopyTo(fs);
                     MessageBox.Show("다운로드 성공", "Download Success !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     fs.Close();
                 }
             }
         }
 
-        public string LocalStorageScan()
+        public string LocalStorageScan() // 파일 경로 탐색기
         {
             var fileContent = string.Empty;
             var filePath = string.Empty;
@@ -158,7 +158,7 @@ namespace Kiosk.pPanel.common
                 {
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
-                    
+
 
                     //Read the contents of the file into a stream
                     var fileStream = openFileDialog.OpenFile();
@@ -173,7 +173,7 @@ namespace Kiosk.pPanel.common
             return filePath;
         }
 
-        public string SavingFilePath()
+        public string SavingFilePath() // 폴더 경로 탐색기
         {
             string FolderPath = string.Empty;
             using (FolderBrowserDialog dialog = new FolderBrowserDialog())
@@ -191,12 +191,78 @@ namespace Kiosk.pPanel.common
             }
             return FolderPath;
         }
+
+        public void DeleteBlob(string blobName)
+        {
+            bool result = false;
+
+            var ContainerClient = BlobContainerClient();
+
+            BlobClient client = ContainerClient.GetBlobClient(blobName);
+
+            result = client.DeleteIfExists();
+
+            if (result)
+            {
+                MessageBox.Show("삭제되었습니다.", "AZURE STORAGE MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("삭제 중 문제가 발생했습니다..", "AZURE STORAGE MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void ModifyBlob(string delete_blob, string upload_blob)
+        {
+            bool delete_result = false;
+            bool upload_result = false;
+
+            try
+            {
+                // 선택한 파일을 삭제
+                var delete_client = BlobContainerClient();
+                BlobClient client = delete_client.GetBlobClient(delete_blob);
+                delete_result = client.DeleteIfExists();
+            }
+            catch (Exception delete)
+            {
+                MessageBox.Show("파일 삭제에 실패했습니다.\n" + delete.Message, "AZURE STORAGE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            string blobName = null;
+            try
+            {
+                // 검색한 파일 업로드
+                blobName = Path.GetFileName(upload_blob);
+
+                // 컨테이너 클라이언트 생성
+                var upload_client = BlobContainerClient();
+                BlobClient blobClient = upload_client.GetBlobClient(blobName);
+                // 파일 스트림을 열어 Blob에 업로드
+                FileStream fileStream = File.OpenRead(upload_blob);
+                blobClient.Upload(fileStream, true);
+                fileStream.Close();
+
+                upload_result = true;
+
+            }
+            catch (Exception upload)
+            {
+                MessageBox.Show("파일 업로드에 실패했습니다.\n" + upload.Message, "AZURE STORAGE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                upload_result = false;
+            }
+
+            if (delete_result && upload_result)
+            {
+                MessageBox.Show("입력한 파일을 수정했습니다.\n수정 전: " + delete_blob + "\n수정 후: " + blobName);
+            }
+        }
     }
 
     // UserControl에서 Main으로 DataTable 값을 전달 하기 위한 Delegate 정의    
-    public delegate void delDataTableSender(object oSender, DataTable dt);     
+    public delegate void delDataTableSender(object oSender, DataTable dt);
     // UserControl에서 Main으로 ChartType 값을 전달 하기 위한 Delegate 정의  
-    public delegate void delChartTypeSender(object oSender, SeriesChartType ct);
+    public delegate void delChartTypeSender(object oSender, SeriesChartType ct);
     public delegate void delTextSender(object oSender, string text);
 
     public class ChartData
