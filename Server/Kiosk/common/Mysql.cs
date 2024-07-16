@@ -35,11 +35,16 @@ namespace Kiosk.pPanel.common
                 sql = "select count(*) as count from categorytable";
                 MySqlCommand cmd = new MySqlCommand(sql, mysql);
 
-                using (reader = cmd.ExecuteReader())
+                if (mysql.State == ConnectionState.Closed)
                 {
-                    reader.Read();
-                    result = reader.GetInt32("count");
+                    mysql.Open();
                 }
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        reader.Read();
+                        result = reader.GetInt32("count");
+                    }
+                  
             }
             catch(MySqlException ex)
             {
@@ -116,8 +121,12 @@ namespace Kiosk.pPanel.common
             {
                 sql = "select cg_name from categorytable";
                 MySqlCommand cmd = new MySqlCommand(sql, mysql);
-
-                reader = cmd.ExecuteReader();
+                if (mysql.State == ConnectionState.Closed)
+                {
+                    mysql.Open();
+                }
+                    reader = cmd.ExecuteReader();
+                    
                 while (reader.Read())
                 {
                     category_names.Add(reader.GetString("cg_name"));
@@ -508,6 +517,7 @@ internal class OptionTable
     private string sql = null;
     int option_result = 0;
 
+    #region 옵션 등록
     public int OptionRegister(string optionname, int option_value)
     {
         try
@@ -537,7 +547,9 @@ internal class OptionTable
 
         return option_result;
     }
+    #endregion
 
+    #region 옵션 이름 가져오기
     public List<string> GetOption()
     {
         List<string> options = new List<string>();
@@ -564,8 +576,9 @@ internal class OptionTable
 
         return options;
     }
+    #endregion
 
-
+    #region GridView에 옵션 담기
     public DataTable AddGridView()
     {
         MySqlDataReader reader = null;
@@ -586,7 +599,11 @@ internal class OptionTable
         {
             sql = "select * from optiontable";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
-            reader = cmd.ExecuteReader();
+            if (mysql.State == ConnectionState.Closed)
+            {
+                mysql.Open();
+            }
+                reader = cmd.ExecuteReader();
 
             int idx = 0;
             string optionname = null;
@@ -614,7 +631,9 @@ internal class OptionTable
 
         return dataTable;
     }
+    #endregion
 
+    #region 옵션 이름을 이용하여 데이터 가져오기
     public List<string> GetOptionForName(string optionname)
     {
         List<string> list = new List<string>();
@@ -642,7 +661,9 @@ internal class OptionTable
         }
         return list;
     }
+    #endregion
 
+    #region 옵션 수정
     public bool OptionModify(string idx, string optionname, string option_value)
     {
         try
@@ -682,6 +703,9 @@ internal class OptionTable
             return true;
         }
     }
+    #endregion
+
+    #region 옵션 삭제
     public bool OptionDelete(string idx)
     {
         try
@@ -715,6 +739,7 @@ internal class OptionTable
             return true;
         }
     }
+    #endregion
 
     #region on/off 가 n 인 것
     public List<string> GetOptionsWithN()

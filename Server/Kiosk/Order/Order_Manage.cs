@@ -146,6 +146,7 @@ namespace Kiosk.Order
             LoadOptionsFromDatabase();
 
         }
+        #region 옵션을 데이터베이스에서 로드 시키기 및 장바구니에 담기
         private void LoadOptionsFromDatabase()
         {
             try
@@ -204,6 +205,7 @@ namespace Kiosk.Order
                 con.Close();
             }
         }
+        #endregion
 
 
         private int menu_price(string menu_name)
