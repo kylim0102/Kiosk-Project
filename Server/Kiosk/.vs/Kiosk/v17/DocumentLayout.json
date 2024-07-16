@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\itemmanage\\itempanel\\optionpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\optionpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\ghckd\\desktop\\kiosk-project\\server\\kiosk\\itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\ghckd\\desktop\\kiosk-project\\server\\kiosk\\itemmanage\\itempanel\\optionpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\optionpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 310,
-          "SelectedChildIndex": 19,
+          "SelectedChildIndex": 16,
           "Children": [
             {
               "$type": "Bookmark",
@@ -114,13 +114,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "Mysql.cs",
               "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
               "RelativeDocumentMoniker": "common\\Mysql.cs",
               "ToolTip": "C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
               "RelativeToolTip": "common\\Mysql.cs",
-              "ViewState": "AQIAANYCAAAAAAAAAAAmwHgAAAAlAAAA",
+              "ViewState": "AQIAAEcCAAAAAAAAAAAuwEsCAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T01:40:14.771Z",
               "EditorCaption": ""
@@ -133,14 +133,14 @@
               "RelativeDocumentMoniker": "Order\\Order_Manage.cs",
               "ToolTip": "C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Order\\Order_Manage.cs",
               "RelativeToolTip": "Order\\Order_Manage.cs",
-              "ViewState": "AQIAADkAAAAAAAAAAAAYwM4AAAAAAAAA",
+              "ViewState": "AQIAAJUAAAAAAAAAAAAcwL4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T03:08:34.072Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Order_Manage.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Order\\Order_Manage.cs",
               "RelativeDocumentMoniker": "Order\\Order_Manage.cs",
@@ -152,13 +152,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "OptionPanel.cs",
               "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\OptionPanel.cs",
               "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\OptionPanel.cs",
               "ToolTip": "C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\OptionPanel.cs",
               "RelativeToolTip": "ItemManage\\ItemPanel\\OptionPanel.cs",
-              "ViewState": "AQIAAIUAAAAAAAAAAAAIwIYAAAAcAAAA",
+              "ViewState": "AQIAAGgAAAAAAAAAAAAuwMwAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T01:44:07.991Z",
               "EditorCaption": ""
@@ -172,8 +172,7 @@
               "ToolTip": "C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\OptionPanel.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "ItemManage\\ItemPanel\\OptionPanel.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T01:39:49.604Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2024-07-16T01:39:49.604Z"
             },
             {
               "$type": "Document",
@@ -200,7 +199,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Itemmanage.cs",
               "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs",
               "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\Itemmanage.cs",
@@ -208,20 +207,18 @@
               "RelativeToolTip": "ItemManage\\ItemPanel\\Itemmanage.cs",
               "ViewState": "AQIAANYAAAAAAAAAAAAYwL4AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T01:20:06.598Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T01:20:06.598Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Itemmanage.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs",
               "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\Itemmanage.cs",
               "ToolTip": "C:\\Users\\ghckd\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "ItemManage\\ItemPanel\\Itemmanage.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T01:07:08.418Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2024-07-16T01:07:08.418Z"
             }
           ]
         },

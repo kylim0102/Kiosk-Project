@@ -586,7 +586,6 @@ internal class OptionTable
         {
             sql = "select * from optiontable";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
-
             reader = cmd.ExecuteReader();
 
             int idx = 0;

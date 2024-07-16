@@ -197,6 +197,12 @@ namespace Kiosk.ItemManage.ItemPanel
                 MessageBox.Show("선택된 옵션이 없습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+
+            if (listBox2.Items.Count >= 4)
+            {
+                MessageBox.Show("더 이상 추가할 수 없습니다. 이미 4개의 옵션이 선택되었습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             // 추가할껀지 재확인
             if (MessageBox.Show("추가하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes) { 
                 // 선택된 항목을 리스트박스2로 추가하고 리스트박스1에서 제거
