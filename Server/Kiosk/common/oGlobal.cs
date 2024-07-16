@@ -133,7 +133,7 @@ namespace Kiosk.pPanel.common
                 BlobDownloadInfo download = await blobClient.DownloadAsync();
 
                 // 로컬 Storage에 저장
-                using (FileStream fs = File.OpenWrite(downloadFilepath))
+                using (FileStream fs = File.OpenWrite(downloadFilepath+blobName))
                 {
                     await download.Content.CopyToAsync(fs);
                     MessageBox.Show("다운로드 성공", "Download Success !", MessageBoxButtons.OK, MessageBoxIcon.Information);

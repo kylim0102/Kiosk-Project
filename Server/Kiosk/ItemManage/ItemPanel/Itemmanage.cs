@@ -178,26 +178,25 @@ namespace Kiosk.ItemManage.ItemPanel
             #endregion
         }
 
-        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 다운하고자 하는  파일 이름 들고오기                     
-            String name = listBox3.SelectedItem.ToString();
-            textBox1.Text = name;
-        }
-
-        private async void button3_Click(object sender, EventArgs e)
+        private async void button3_Click_1(object sender, EventArgs e) // 파일 선택 후 다운로드 버튼 클릭 시 Event
         {
             //경로 + 파일명 *****저장되는곳 경로 설정*********
-            string url = @"C:\Users\YJ\"+textBox1.Text;
+            string url = Download_Path.Text+"\\";
 
-           
             //다운로드 버튼
-            await storageConnection.Download(textBox1.Text, url);
+            await storageConnection.Download(Selected_File.Text, url);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click_1(object sender, EventArgs e) // 다운로드할 파일을 저장 할 경로를 찾는 버튼
         {
-           Download_Path.Text = storageConnection.SavingFilePath();
+            Download_Path.Text = storageConnection.SavingFilePath();
+        }
+
+
+        private void listBox3_SelectedIndexChanged_1(object sender, EventArgs e) // Storage List Box에서 원하는 Name 선택 시 TextBox를 채움
+        {                  
+            String name = listBox3.SelectedItem.ToString();
+            Selected_File.Text = name;
         }
     }
 }
