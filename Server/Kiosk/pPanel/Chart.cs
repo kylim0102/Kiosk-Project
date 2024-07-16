@@ -43,15 +43,7 @@ namespace Kiosk.pPanel
         }
         #endregion
 
-
-        private void Chart_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
+        #region Chart List Button Click Event(차트 리스트 버튼 클릭 시 더미데이터 삽입 및 통계 분석)
         private void button1_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
@@ -64,5 +56,14 @@ namespace Kiosk.pPanel
             panel1.Controls.Add(chart);
             chart.SetData(cData);
         }
+        #endregion
+
+
+        #region Dummy Event
+        private void Chart_Load(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

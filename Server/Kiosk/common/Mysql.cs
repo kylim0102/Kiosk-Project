@@ -518,7 +518,7 @@ internal class OptionTable
     int option_result = 0;
 
     #region 옵션 등록
-    public int OptionRegister(string optionname, int option_value)
+    public void OptionRegister(string option_name, int option_value)
     {
         try
         {
@@ -526,7 +526,7 @@ internal class OptionTable
             sql = "insert into optiontable(optionname, option_value, regdate) values(@optionname, @option_value, @regdate)";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
 
-            cmd.Parameters.AddWithValue("@optionname", optionname);
+            cmd.Parameters.AddWithValue("@optionname", option_name);
             cmd.Parameters.AddWithValue("@option_value", option_value);
             cmd.Parameters.AddWithValue("@regdate", optionday);
 
@@ -544,8 +544,6 @@ internal class OptionTable
         {
             MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
-        return option_result;
     }
     #endregion
 

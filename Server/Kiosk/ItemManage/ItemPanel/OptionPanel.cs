@@ -23,6 +23,8 @@ namespace Kiosk.ItemManage.ItemPanel
             InitializeComponent();
         }
 
+
+        #region Option Manage On Load(Tab Control 세팅)
         public void OptionPanel_Load(object sender, EventArgs e)
         {
             // Option List View
@@ -64,29 +66,41 @@ namespace Kiosk.ItemManage.ItemPanel
             #endregion
 
         }
+        #endregion
 
 
+        // TAB1 AREA
+        #region Option Register Button Click(옵션에 대한 정보를 DB에 저장)
         private void Register_Click(object sender, EventArgs e)
         {
             // Option_value에서 텍스트를 가져와서 int로 변환
             if (int.TryParse(Option_value.Text, out int option_value))
             {
                 // 변환된 값으로 table.OptionRegister 메서드 호출
-                int option_result = table.OptionRegister(Option_name.Text, option_value);
+                //int option_result = table.OptionRegister(Option_name.Text, option_value);
+                table.OptionRegister(Option_name.Text, option_value);
 
                 // 처리 후에는 TextBox 내용 지우기
                 Option_name.Text = string.Empty;
                 Option_value.Text = string.Empty;
             }
         }
+        #endregion
 
+        #region Option Register Reset Click(입력한 옵션의 정보를 다시쓰기)
         private void Reset_Click(object sender, EventArgs e)
         {
             Option_name.Text = string.Empty;
             Option_value.Text = string.Empty;
             Option_name.Focus();
         }
+        #endregion
 
+        // TAB! AREA
+
+
+        // TAB2 AREA
+        #region Option List Refresh Button Click Event(옵션 목록을 DataGridView에 추가하고 새로고침 버튼 클릭 이벤트)
         private void button1_Click(object sender, EventArgs e)
         {
             option_list.DataSource = null;
@@ -100,16 +114,12 @@ namespace Kiosk.ItemManage.ItemPanel
             option_list.Columns["PRICE"].Width = 150;
             option_list.Columns["DATE"].Width = 150;
         }
+        #endregion
+        // TAB2 AREA
 
-        private void optionlist_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selected = optionlist.SelectedItem.ToString();
-            List<string> list = table.GetOptionForName(optionlist.SelectedItem.ToString());
-            idx.Text = list[0].ToString();
-            option.Text = list[1].ToString();
-            option_price.Text = list[2].ToString();
-        }
 
+        // TAB3 AREA
+        #region Option Manage List Reset Button Event(옵션 수정 페이지에서 수정 완료 후 동적 새로고침)
         private void option_reset_Click(object sender, EventArgs e)
         {
             optionlist.Items.Clear();
@@ -120,7 +130,9 @@ namespace Kiosk.ItemManage.ItemPanel
                 optionlist.Items.Add(list[a]);
             }
         }
+        #endregion
 
+        #region Option Manage Modify Button Click Event(옵션 수정 버튼 클릭 이벤트)
         private void option_modify_Click(object sender, EventArgs e)
         {
             if (idx.Text.Equals("") || option.Text.Equals("") || option_price.Text.Equals(""))
@@ -145,7 +157,9 @@ namespace Kiosk.ItemManage.ItemPanel
                 }
             }
         }
+        #endregion
 
+        #region Option Manage Delete Button Click Event(등록된 옵션 삭제 버튼 클릭 이벤트)
         private void option_delete_Click(object sender, EventArgs e)
         {
             if (idx.Text.Equals("") || option_price.Text.Equals("") || option.Text.Equals(""))
@@ -179,9 +193,23 @@ namespace Kiosk.ItemManage.ItemPanel
                 }
             }
         }
+        #endregion
+
+        #region Option Manage Seleted Information(옵션 명을 클릭 시 해당 정보가 TextBox에 세팅)
+        private void optionlist_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = optionlist.SelectedItem.ToString();
+            List<string> list = table.GetOptionForName(optionlist.SelectedItem.ToString());
+            idx.Text = list[0].ToString();
+            option.Text = list[1].ToString();
+            option_price.Text = list[2].ToString();
+        }
+        #endregion
+        // TAB3 AREA
 
 
-        #region 추가버튼 누르면 옵션 listbox2로 이동
+        // TAB4 AREA
+        #region Option Using Button Click Event(사용할 옵션을 추가 한 버튼 이벤트)
         private void button3_Click(object sender, EventArgs e)
         {
             // 리스트박스1에서 선택된 항목 가져오기
@@ -204,7 +232,8 @@ namespace Kiosk.ItemManage.ItemPanel
                 return;
             }
             // 추가할껀지 재확인
-            if (MessageBox.Show("추가하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes) { 
+            if (MessageBox.Show("추가하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
                 // 선택된 항목을 리스트박스2로 추가하고 리스트박스1에서 제거
                 for (int i = 0; i < selectedItems.Count; i++)
                 {
@@ -225,7 +254,7 @@ namespace Kiosk.ItemManage.ItemPanel
         }
         #endregion
 
-        #region 제거버튼 누르면 옵션 listbox1로 이동
+        #region Option Not Using Button Click Event(사용하지 않을 옵션을 관리하는 버튼 이벤트)
         private void button2_Click(object sender, EventArgs e)
         {
             // 리스트박스2에서 선택된 항목 가져오기
@@ -262,5 +291,35 @@ namespace Kiosk.ItemManage.ItemPanel
             }
         }
         #endregion
+        // TAB4 AREA
+
+        #region Dummy Event
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
+    #region Dummy Event
+
+    #endregion
 }

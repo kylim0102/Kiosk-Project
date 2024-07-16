@@ -32,87 +32,59 @@ namespace Kiosk.ItemManage
             InitializeComponent();
         }
 
+        #region Main Page On Load(메인 페이지 로드 시 이벤트)
+        private void MainPage_Load(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+
+        // MAIN PANEL AREA
+        #region Item Register And Modify And Delete(제품 총괄 패널)
         private void button1_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
             panel1.Controls.Add(item);
         }
+        #endregion
 
+        #region Category Register And Modify And Delete(카테고리 총괄 패널)
         private void button2_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
             panel1.Controls.Add(category);
 
         }
+        #endregion
 
+        #region Option Register And Modify And Delete(제품에 대한 옵션 총괄 패널)
         private void button3_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
             panel1.Controls.Add(option);
 
         }
+        #endregion
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-
-            /*MySqlConnection conn = oGlobal.GetConnection();
-            conn.Open();
-            int idx = 98;
-            string option = SharedData.Option;
-            
-            try
-            {
-
-                string query = "INSERT INTO test (idx, name) VALUES (@idx, @option)"; // 테이블 쿼리
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-
-                // 파라미터 추가
-                cmd.Parameters.AddWithValue("@idx", idx);
-                cmd.Parameters.AddWithValue("@option", option);
-
-                int rowsAffected = cmd.ExecuteNonQuery();
-
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("데이터가 성공적으로 삽입되었습니다.");
-                }
-                else
-                {
-                    MessageBox.Show("데이터 삽입에 실패했습니다.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"오류 발생: {ex.Message}");
-            }
-            finally
-            {
-                conn.Close();
-            }*/
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MainPage_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        #region Storage Upload And Download And Modify And Delete(스토리지 총괄 패널)
         private void button6_Click(object sender, EventArgs e)
         {
             // panel 하나 만들어서 생성
             panel1.Controls.Clear();
             panel1.Controls.Add(itemmanage);
         }
+        #endregion
+        // MAIN PANEL AREA
 
+
+
+
+        #region Dummy Event
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
+        #endregion
     }
 }

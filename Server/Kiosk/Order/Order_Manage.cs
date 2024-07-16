@@ -30,33 +30,74 @@ namespace Kiosk.Order
             timer.Interval = 1000;
             timer.Tick += Timer_Tick;
         }
-        
+
+       
+
+        #region Order Manage On Load(Order Page 로딩 시 현재시각, 카테고리 별 TabControl Tab 세팅, 제품 옵션 세팅)
+        private void Order_Manage_Load(object sender, EventArgs e)
+        {
+            // form 로드 시 현재 날짜와 시간 설정
+            UpdateDateTime();
+
+            // Timer 시작
+            timer.Start();
+
+            List<string> categorys = table.GetCategory();
+            TabPage tab = null;
+
+            for (int a = 0; a < categorys.Count; a++)
+            {
+                tab = new TabPage(categorys[a]);
+                tab.Text = categorys[a];
+                tab.Name = categorys[a] + "_TAB";
+
+
+                /*
+                  menulist => UI에서 TabControl Name
+                  for문이 돌면서 category를 꺼내고 꺼낸 카테고리를 TabPage를 통해 TabControl에 Tab 추가
+                  
+                */
+                menulist.TabPages.Add(tab);
+            }
+
+            /*
+                테스트 용으로 MySql 탭에 모든 Item을 넣어둠.
+                후에 코드 정리할 때 삭제하면 되는 부분
+            */
+
+            TabPage now = menulist.TabPages[0];
+            List<Button> buttons = itemTable.GetAllItems();
+
+            for (int a = 0; a < buttons.Count; a++)
+            {
+                Button btn = buttons[a];
+
+                btn.Click += Button_Click;
+
+                now.Controls.Add(btn);
+            }
+
+            //옵션 내용
+            LoadOptionsFromDatabase();
+
+        }
+        #endregion
+
+
+        #region Now Time(현재 시각 이벤트)
         private void Timer_Tick(object sender, EventArgs e)
         {
             // Timer의 Tick 이벤트 발생 시 현재 날짜와 시간 업데이트
             UpdateDateTime();
         }
-
         private void UpdateDateTime()
         {
             date.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
+        #endregion
 
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
+        #region Order Manage Add DataGridView From Selected item(제품 버튼 클릭 시 해당 제품의 정보가 Datagridview로 추가)
         private void Button_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
@@ -100,53 +141,9 @@ namespace Kiosk.Order
             int payed = Convert.ToInt32(payment.Text); // 결제 금액
                                                        //change_money.Text = (taked - payed) + "";
         }
-        private void Order_Manage_Load(object sender, EventArgs e)
-        {
-            // form 로드 시 현재 날짜와 시간 설정
-            UpdateDateTime();
+        #endregion
 
-            // Timer 시작
-            timer.Start();
 
-            List<string> categorys = table.GetCategory();
-            TabPage tab = null;
-
-            for(int a=0; a<categorys.Count; a++)
-            {
-                tab = new TabPage(categorys[a]);
-                tab.Text = categorys[a];
-                tab.Name = categorys[a]+"_TAB";
-                
-
-                /*
-                  menulist => UI에서 TabControl Name
-                  for문이 돌면서 category를 꺼내고 꺼낸 카테고리를 TabPage를 통해 TabControl에 Tab 추가
-                  
-                */
-                menulist.TabPages.Add(tab);
-            }
-
-            /*
-                테스트 용으로 MySql 탭에 모든 Item을 넣어둠.
-                후에 코드 정리할 때 삭제하면 되는 부분
-            */
-
-            TabPage now = menulist.TabPages[0];
-            List<Button> buttons = itemTable.GetAllItems();
-
-            for(int a=0; a<buttons.Count; a++)
-            {
-                Button btn = buttons[a];
-
-                btn.Click += Button_Click;
-
-                now.Controls.Add(btn);
-            }
-
-            //옵션 내용
-            LoadOptionsFromDatabase();
-
-        }
         #region 옵션을 데이터베이스에서 로드 시키기 및 장바구니에 담기
         private void LoadOptionsFromDatabase()
         {
@@ -244,13 +241,12 @@ namespace Kiosk.Order
         #endregion
 
 
+        #region Order Manage Selected Options
         private void select_menu(string num, string optionName, string optionPrice, ref int number , int rowIndex) // ref, rowIndex  추가 
         {
             // DataGridView에 추가할 행 생성
             DataGridViewRow row = new DataGridViewRow();
             row.CreateCells(selected_menu);
-            
-
             
             // 이미 있는지 확인 후 추가 또는 수량 증가
             bool found = false;
@@ -285,9 +281,10 @@ namespace Kiosk.Order
             // 총 결제 금액 계산
             total_payment();
         }
+        #endregion
 
 
-
+        #region Order manage Total payment(DataGridView를 통한 총 결제 금액 계산)
         private void total_payment()
         {
             DataGridViewRow row = null;
@@ -308,22 +305,10 @@ namespace Kiosk.Order
             }
             payment.Text = payments.Sum()+"";
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            List<Button> test = itemTable.MakeButtonForItems("10");
-            TabControl tab = menulist;
-
-            TabPage tabPage = menulist.TabPages[1];
-            TabPage tabPage1 = menulist.SelectedTab;
-            MessageBox.Show(tabPage1.Name);
-        }
+        #endregion
 
 
-        /*
-            TabControl에서 Tab의 인덱스가 바꼈을 때
-            즉, 현재 탭에서 다른 탭을 선택했을 때 이벤트
-        */
+        #region Changed Control Tab(선택된 카테고리가 변경되었을 때 이벤트)
         private void Selected_Index_Changed(object sender, EventArgs e)
         {
             // 현재 선택된 Tab을 TabPage에 저장
@@ -344,9 +329,27 @@ namespace Kiosk.Order
                 }
             }
         }
+        #endregion
+
+
+
+
+        #region Dummy Event
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+        }
         private void Mysql_tab_Click(object sender, EventArgs e)
         {
-
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+        }
+        private void op1_Click(object sender, EventArgs e)
+        {
+        }
+        #endregion
     }
 }
