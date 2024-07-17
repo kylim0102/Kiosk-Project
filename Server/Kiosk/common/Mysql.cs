@@ -873,17 +873,141 @@ internal class OptionTable
 }
 #endregion
 
+#region TO OrderPanel.cs
+internal class OrderTable
+{
+    private MySqlConnection mysql = oGlobal.GetConnection();
+    private MySqlDataReader reader = null;
+    private string sql = null;
+    int result = 0;
+
+    public void InsertOrder(string itemNumber, string itemName, int itemCount, int payment, int orderNumber)
+    {
+
+        sql = "insert into ordertable(itemNumber, itemName, itemCount, payment, orderNumber, regdate) values(@itemNumber, @itemName, @itemCount, @payment, @orderNumber, now())";
+        MySqlCommand cmd = new MySqlCommand(sql, mysql);
+        cmd.Parameters.AddWithValue("@itemNumber", itemNumber);
+        cmd.Parameters.AddWithValue("@itemName", itemName);
+        cmd.Parameters.AddWithValue("@itemCount", itemCount);
+        cmd.Parameters.AddWithValue("@payment", payment);
+        cmd.Parameters.AddWithValue("@orderNumber", orderNumber);
+
+        result = cmd.ExecuteNonQuery();
+    }
+
+    public int GetMaxItemNumber()
+    {
+        sql = "select count(itemNumber) as cnt from ordertable";
+        MySqlCommand cmd1 = new MySqlCommand(sql, mysql);
+        reader = cmd1.ExecuteReader();
+
+        reader.Read();
+        int cnt = reader.GetInt32("cnt");
+        reader.Close();
+
+        if (cnt == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            sql = "select max(itemNumber) as max from ordertable";
+            MySqlCommand cmd2 = new MySqlCommand(sql, mysql);
+            reader = cmd2.ExecuteReader();
+            reader.Read();
+            int max = reader.GetInt32("max") + 1;
+
+            reader.Close();
+            return max;
+        }
+
+    }
+
+    public List<string> GetOrderNames()
+    {
+        if (mysql.State == ConnectionState.Closed)
+        {
+            mysql.Open();
+        }
+        List<string> items = new List<string>();
+        sql = "select itemName from ordertable";
+        MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+        reader = cmd.ExecuteReader();
+
+        while (reader.Read())
+        {
+            items.Add(reader.GetString("itemName"));
+        }
+
+        reader.Close();
+        return items;
+    }
+
+    public void UpdateItemCount(string itemname, int price)
+    {
+        sql = "Update ordertable set itemCount = itemCount+1, payment = itemCount * @price where itemName = @itemname";
+        MySqlCommand cmd = new MySqlCommand(sql, mysql);
+        cmd.Parameters.AddWithValue("@itemname", itemname);
+        cmd.Parameters.AddWithValue("@price", price);
+        int result = cmd.ExecuteNonQuery();
+    }
+
+    public DataTable GetOrder()
+    {
+        sql = "select * from ordertable LIMIT 0";
+        MySqlCommand cmd = new MySqlCommand(sql, mysql);
+        DataTable dataTable = new DataTable();
+
+        using (reader = cmd.ExecuteReader())
+        {
+            dataTable = reader.GetSchemaTable();
+        }
+
+        return dataTable;
+    }
+
+    // DataPropertyName Setting
+    public DataTable CreateDataTable()
+    {
+        DataTable dataTable = new DataTable();
+
+        foreach (DataRow row in GetOrder().Rows)
+        {
+            string columnName = row["ColumnName"].ToString();
+            Type dataType = (Type)row["DataType"];
+            DataColumn column = new DataColumn(columnName, dataType);
+            dataTable.Columns.Add(column);
+        }
+
+        return dataTable;
+    }
+
+    public DataTable GetAllOrderTable()
+    {
+        DataTable dataTable = CreateDataTable();
+        sql = "select * from ordertable where orderNumber = '0' order by itemNumber";
+        MySqlCommand cmd = new MySqlCommand(sql, mysql);
+        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+        {
+            adapter.Fill(dataTable);
+        }
+
+        return dataTable;
+    }
+}
+
+    #endregion
 
 
-
-#region 제품 수정 / 삭제
-internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근 가능
+    #region 제품 수정 / 삭제
+    internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근 가능
     {
         private MySqlConnection mysql = oGlobal.GetConnection();
         int result = 0;
         #region datagridview 데이터 불러오기 class
         // datagridview 데이터 불러오기 class
-        public  DataTable SelectData(MySqlConnection mysql)
+        public DataTable SelectData(MySqlConnection mysql)
         {
             // 테이블 구조 들고와서 DataTable 생성
             DataTable schemaTable = GetTableSchema(mysql);
@@ -964,19 +1088,20 @@ internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근
             }
             return dataTable;
         }
+    
         #endregion
 
         #region 데이터 수정
-        public int ItemChange(String itemName, int price,String content,String category,int idx)
+        public int ItemChange(String itemName, int price, String content, String category, int idx)
         {
             int result = 0;
             string now = DateTime.Now.ToString("yyyy-MM-dd");
             try
             {
-               string query = "update itemtable set itemName = @itemName, price = @price, content = @content, regdate = @regdate, category = @category where idx = @idx";
+                string query = "update itemtable set itemName = @itemName, price = @price, content = @content, regdate = @regdate, category = @category where idx = @idx";
 
                 MySqlCommand cmd = new MySqlCommand(query, mysql);
-                
+
                 cmd.Parameters.AddWithValue("@itemName", itemName);
                 cmd.Parameters.AddWithValue("@price", price);
                 cmd.Parameters.AddWithValue("@content", content);
@@ -1003,8 +1128,9 @@ internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근
                 MySqlCommand cmd = new MySqlCommand(query, mysql);
                 cmd.Parameters.AddWithValue("@idx", idx);
 
-                 result = cmd.ExecuteNonQuery();
-            }catch (MySqlException ex)
+                result = cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "MySql ERROR !", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

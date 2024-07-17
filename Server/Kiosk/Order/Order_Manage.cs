@@ -22,6 +22,9 @@ namespace Kiosk.Order
         private CategoryTable table = new CategoryTable();
         private ItemTable itemTable = new ItemTable();
         private OptionTable optionTable = new OptionTable();
+        private OrderTable orderTable = new OrderTable();
+
+
         public Order_Manage()
         {
             InitializeComponent();
@@ -101,67 +104,28 @@ namespace Kiosk.Order
         #region Order Manage Add DataGridView From Selected item(제품 버튼 클릭 시 해당 제품의 정보가 Datagridview로 추가)
         private void Button_Click(object sender, EventArgs e)
         {
+            selected_menu.DataSource = null;
+
             Button button = sender as Button;
             dynamic tagData = button.Tag;
 
             string menu_name = tagData.item_name;
             int price = tagData.price;
 
-            int count = selected_menu.Rows.Count;
+
+            List<string> items = orderTable.GetOrderNames();
+           
+            if(items.Contains(menu_name) == true)
+            {
+                orderTable.UpdateItemCount(menu_name, price);
+            }
+            else
+            {
+                orderTable.InsertOrder(orderTable.GetMaxItemNumber().ToString(), menu_name, 1, price, 0);
+            }
             
-            int number = 1;
-            bool found = false; // 기존 메뉴 찾았는지 여부를 나타내는 변수
-
-            // DataGridView의 목록 수만큼 for문을 돌려 중복을 확인
-            foreach (DataGridViewRow row in selected_menu.Rows)
-            {
-                if (row.Cells["Menu"].Value != null && row.Cells["Menu"].Value.ToString().Equals(menu_name))
-                {
-                    int menu_count = Convert.ToInt32(row.Cells["Count"].Value);
-                    row.Cells["Count"].Value = menu_count + 1;
-                    row.Cells["Price"].Value = price * (menu_count + 1);
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found)
-            {
-                // 새로운 행을 수동으로 추가
-                 number = selected_menu.Rows.Count + 1; // 다음 번호를 계산
-
-                selected_menu.Rows.Add(number, menu_name, 1, price, "");
-            }
-            // 중복 아닌 것들 새로 추가
-            /*if (!found)
-            {
-                selected_menu.Rows.Add(number, menu_name, 1, price, "");
-                number++;
-            }*/
-
-
-            /*
-            // DataGridView의 목록 수만큼 for문을 돌려 중복을 확인
-            for (int a = 0; a < count; a++)
-            {
-                row = selected_menu.Rows[a];
-                MessageBox.Show(row.Cells["Menu"].Value+"");
-
-                if (a < row.Cells.Count && row.Cells[a].Value != null && row.Cells["Menu"].Value.ToString().Equals(menu_name))// Datagridview에 선택한 메뉴가 이미 있다면
-                {
-                    int menu_count = Convert.ToInt32(row.Cells["Count"].Value);
-
-                    row.Cells["Count"].Value = menu_count + 1;
-                    row.Cells["Price"].Value = price * (menu_count + 1);
-                    break;
-                }
-                else if (a < row.Cells.Count && row.Cells[a].Value == null) // DataGridView에 선택한 메뉴가 없다면
-                {
-                    int number = a + 1;
-                    selected_menu.Rows.Add(number, menu_name, 1, price, "");
-                }
-            }
-            */
+            DataTable data = orderTable.GetAllOrderTable();
+            selected_menu.DataSource = data;
 
             // 총 결제 금액 계산
             total_payment();
