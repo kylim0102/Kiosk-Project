@@ -508,7 +508,6 @@ internal class ItemTable
 }
 #endregion
 
-
 #region To OptionPanel.cs
 internal class OptionTable
 {
@@ -874,7 +873,6 @@ internal class OptionTable
 #endregion
 
 #region TO OrderPanel.cs
-    #region menu btn
 internal class OrderTable
 {
     private MySqlConnection mysql = oGlobal.GetConnection();
@@ -882,29 +880,55 @@ internal class OrderTable
     private string sql = null;
     int result = 0;
 
+    #region Order Manage Select Menu(메뉴 버튼 선택 시 해당 메뉴의 정보를 DB에 저장)
     public void InsertOrder(string itemNumber, string itemName, int itemCount, int payment, int orderNumber)
     {
+        try
+        {
+            sql = "insert into ordertable(itemNumber, itemName, itemCount, payment, orderNumber, regdate) values(@itemNumber, @itemName, @itemCount, @payment, @orderNumber, now())";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@itemNumber", itemNumber);
+            cmd.Parameters.AddWithValue("@itemName", itemName);
+            cmd.Parameters.AddWithValue("@itemCount", itemCount);
+            cmd.Parameters.AddWithValue("@payment", payment);
+            cmd.Parameters.AddWithValue("@orderNumber", orderNumber);
 
-        sql = "insert into ordertable(itemNumber, itemName, itemCount, payment, orderNumber, regdate) values(@itemNumber, @itemName, @itemCount, @payment, @orderNumber, now())";
-        MySqlCommand cmd = new MySqlCommand(sql, mysql);
-        cmd.Parameters.AddWithValue("@itemNumber", itemNumber);
-        cmd.Parameters.AddWithValue("@itemName", itemName);
-        cmd.Parameters.AddWithValue("@itemCount", itemCount);
-        cmd.Parameters.AddWithValue("@payment", payment);
-        cmd.Parameters.AddWithValue("@orderNumber", orderNumber);
+            result = cmd.ExecuteNonQuery();
 
-        result = cmd.ExecuteNonQuery();
+            if(result < 1)
+            {
+                MessageBox.Show("제품선택에서 문제가 발생했습니다.\n관리자에게 문의하세요.", "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
+    #endregion
 
+    #region Order Manage Get Index Number(Count가 0이면, DB가 비어있으면 1로 시작 / 1이상이면 Max를 통해 최댓값 출력 후 +1)
     public int GetMaxItemNumber()
     {
-        sql = "select count(itemNumber) as cnt from ordertable";
-        MySqlCommand cmd1 = new MySqlCommand(sql, mysql);
-        reader = cmd1.ExecuteReader();
+        int cnt = 0;
+        int max = 0;
+        try
+        {
+            sql = "select count(itemNumber) as cnt from ordertable";
+            MySqlCommand cmd1 = new MySqlCommand(sql, mysql);
+            reader = cmd1.ExecuteReader();
 
-        reader.Read();
-        int cnt = reader.GetInt32("cnt");
-        reader.Close();
+            reader.Read();
+            cnt = reader.GetInt32("cnt");
+        }
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            reader.Close();
+        }
 
         if (cnt == 0)
         {
@@ -912,63 +936,111 @@ internal class OrderTable
         }
         else
         {
-            sql = "select max(itemNumber) as max from ordertable";
-            MySqlCommand cmd2 = new MySqlCommand(sql, mysql);
-            reader = cmd2.ExecuteReader();
-            reader.Read();
-            int max = reader.GetInt32("max") + 1;
-
-            reader.Close();
+            try
+            {
+                sql = "select max(itemNumber) as max from ordertable";
+                MySqlCommand cmd2 = new MySqlCommand(sql, mysql);
+                reader = cmd2.ExecuteReader();
+                reader.Read();
+                max = reader.GetInt32("max") + 1;
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                reader.Close();
+            }
             return max;
         }
 
     }
+    #endregion
 
+    // 제품 명을 출력할 때 Order Number가 0인 제품만 출력해야 하지 않는가?(24.07.18 해야할 일)
+    #region Order Manage Get Item Names(선택한 제품명을 출력하여 중복 확인)
     public List<string> GetOrderNames()
     {
+        List<string> items = new List<string>();
+
         if (mysql.State == ConnectionState.Closed)
         {
             mysql.Open();
         }
-        List<string> items = new List<string>();
-        sql = "select itemName from ordertable";
-        MySqlCommand cmd = new MySqlCommand(sql, mysql);
-
-        reader = cmd.ExecuteReader();
-
-        while (reader.Read())
+        try
         {
-            items.Add(reader.GetString("itemName"));
-        }
+            sql = "select itemName from ordertable";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
 
-        reader.Close();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                items.Add(reader.GetString("itemName"));
+            }
+        }
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            reader.Close();
+        }
         return items;
     }
+    #endregion
 
+    #region Order Manage Update Item Count(제품 중복 확인 후 중복 = True일 시 중복된 제품의 수량과 총 금액 변경)
     public void UpdateItemCount(string itemname, int price)
     {
-        sql = "Update ordertable set itemCount = itemCount+1, payment = itemCount * @price where itemName = @itemname";
-        MySqlCommand cmd = new MySqlCommand(sql, mysql);
-        cmd.Parameters.AddWithValue("@itemname", itemname);
-        cmd.Parameters.AddWithValue("@price", price);
-        int result = cmd.ExecuteNonQuery();
+        try
+        {
+            sql = "Update ordertable set itemCount = itemCount+1, payment = itemCount * @price where itemName = @itemname";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@itemname", itemname);
+            cmd.Parameters.AddWithValue("@price", price);
+            int result = cmd.ExecuteNonQuery();
+
+            if(result < 1)
+            {
+                MessageBox.Show("제품 추가 후 수정에 실패했습니다.\n관리자에게 문의하세요.", "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
+    #endregion
+    
+    // MAKE DATA TABLE AREA
+    #region Order Manage Get Schema Table(DB의 스키마를 Data Table에 복사)
     public DataTable GetOrder()
     {
-        sql = "select * from ordertable LIMIT 0";
-        MySqlCommand cmd = new MySqlCommand(sql, mysql);
         DataTable dataTable = new DataTable();
-
-        using (reader = cmd.ExecuteReader(CommandBehavior.SchemaOnly))
+        try
         {
-            dataTable = reader.GetSchemaTable();
-        }
-        
+            sql = "select * from ordertable LIMIT 0";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
 
+            using (reader = cmd.ExecuteReader(CommandBehavior.SchemaOnly))
+            {
+                dataTable = reader.GetSchemaTable();
+            }
+        }
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            reader.Close();
+        }
         return dataTable;
     }
-
-    // DataPropertyName Setting
+    #endregion
+    #region Order Manage Set DataPropertyName(스키마 복사 후 사용 할 DataPropertyName을 세팅)
     public DataTable CreateDataTable()
     {
         string[] iWantColumn = { "itemNumber", "itemName", "itemCount", "payment" }; //원하는 칼럼만
@@ -993,19 +1065,28 @@ internal class OrderTable
 
         return dataTable;
     }
-
+    #endregion
+    #region Order Manage Set Order Table Values(생성, 세팅이 끝난 Data Table에 DB의 값을 저장) / feat.MySqlDataAdapter(adapter.Fill(datatable))
     public DataTable GetAllOrderTable()
     {
         DataTable dataTable = CreateDataTable();
-        sql = "select itemNumber, itemName, itemCount, payment from ordertable where orderNumber = '0' order by itemNumber";
-        MySqlCommand cmd = new MySqlCommand(sql, mysql);
-        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+        try
         {
-            adapter.Fill(dataTable);
+            sql = "select itemNumber, itemName, itemCount, payment from ordertable where orderNumber = '0' order by itemNumber";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+            {
+                adapter.Fill(dataTable);
+            }
         }
-
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
         return dataTable;
     }
+    #endregion
+    // MAKE DATA TABLE AREA
 }
 #endregion
 
@@ -1036,10 +1117,8 @@ internal class OrderTable_Option
 }
     #endregion
 
-    #endregion
 
-
-    #region 제품 수정 / 삭제
+#region 제품 수정 / 삭제
     internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근 가능
     {
         private MySqlConnection mysql = oGlobal.GetConnection();
