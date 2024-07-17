@@ -874,6 +874,7 @@ internal class OptionTable
 #endregion
 
 #region TO OrderPanel.cs
+    #region menu btn
 internal class OrderTable
 {
     private MySqlConnection mysql = oGlobal.GetConnection();
@@ -952,17 +953,17 @@ internal class OrderTable
         cmd.Parameters.AddWithValue("@price", price);
         int result = cmd.ExecuteNonQuery();
     }
-
     public DataTable GetOrder()
     {
         sql = "select * from ordertable LIMIT 0";
         MySqlCommand cmd = new MySqlCommand(sql, mysql);
         DataTable dataTable = new DataTable();
 
-        using (reader = cmd.ExecuteReader())
+        using (reader = cmd.ExecuteReader(CommandBehavior.SchemaOnly))
         {
             dataTable = reader.GetSchemaTable();
         }
+        
 
         return dataTable;
     }
@@ -970,12 +971,22 @@ internal class OrderTable
     // DataPropertyName Setting
     public DataTable CreateDataTable()
     {
+        string[] iWantColumn = { "itemNumber", "itemName", "itemCount", "payment" }; //원하는 칼럼만
         DataTable dataTable = new DataTable();
 
-        foreach (DataRow row in GetOrder().Rows)
+        DataTable schemaTable = GetOrder(); // GetOrder() 메서드에서 스키마 정보 가져오기
+
+        foreach (DataRow row in schemaTable.Rows)
         {
             string columnName = row["ColumnName"].ToString();
-            Type dataType = (Type)row["DataType"];
+            Type dataType = Type.GetType(row["DataType"].ToString());
+
+            // iWantColumn 배열에 columnName이 포함되어 있지 않으면 스킵
+            if (!iWantColumn.Contains(columnName))
+            {
+                continue;
+            }
+
             DataColumn column = new DataColumn(columnName, dataType);
             dataTable.Columns.Add(column);
         }
@@ -986,7 +997,7 @@ internal class OrderTable
     public DataTable GetAllOrderTable()
     {
         DataTable dataTable = CreateDataTable();
-        sql = "select * from ordertable where orderNumber = '0' order by itemNumber";
+        sql = "select itemNumber, itemName, itemCount, payment from ordertable where orderNumber = '0' order by itemNumber";
         MySqlCommand cmd = new MySqlCommand(sql, mysql);
         using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
         {
@@ -996,6 +1007,34 @@ internal class OrderTable
         return dataTable;
     }
 }
+#endregion
+
+#region option btn
+internal class OrderTable_Option
+{
+    private MySqlConnection mysql = oGlobal.GetConnection();
+    private MySqlDataReader reader = null;
+    private string sql = null;
+    int result = 0;
+
+    public void InsertOption(string itemNumber, string itemName, int itemCount, int payment, int orderNumber)
+    {
+        if (mysql.State == ConnectionState.Closed)
+        {
+            mysql.Open();
+        }
+        sql = "insert into ordertable(itemNumber, itemName, itemCount, payment, orderNumber, regdate) values(@itemNumber, @itemName, @itemCount, @payment, @orderNumber, now())";
+        MySqlCommand cmd = new MySqlCommand(sql, mysql);
+        cmd.Parameters.AddWithValue("@itemNumber", itemNumber);
+        cmd.Parameters.AddWithValue("@itemName", itemName);
+        cmd.Parameters.AddWithValue("@itemCount", itemCount);
+        cmd.Parameters.AddWithValue("@payment", payment);
+        cmd.Parameters.AddWithValue("@orderNumber", orderNumber);
+
+        result = cmd.ExecuteNonQuery();
+    }
+}
+    #endregion
 
     #endregion
 

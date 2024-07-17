@@ -28,11 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.date = new System.Windows.Forms.Label();
             this.selected_menu = new System.Windows.Forms.DataGridView();
@@ -49,10 +45,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cartNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Menu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.selected_menu)).BeginInit();
             this.menulist.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -83,28 +75,23 @@
             this.selected_menu.AllowUserToAddRows = false;
             this.selected_menu.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.selected_menu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.selected_menu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cartNumber,
-            this.Menu,
-            this.Count,
-            this.Price});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.selected_menu.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.selected_menu.DefaultCellStyle = dataGridViewCellStyle1;
             this.selected_menu.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.selected_menu.Location = new System.Drawing.Point(43, 29);
+            this.selected_menu.Location = new System.Drawing.Point(0, 29);
             this.selected_menu.Name = "selected_menu";
             this.selected_menu.ReadOnly = true;
             this.selected_menu.RowHeadersVisible = false;
             this.selected_menu.RowHeadersWidth = 51;
             this.selected_menu.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.selected_menu.RowTemplate.Height = 23;
-            this.selected_menu.Size = new System.Drawing.Size(344, 297);
+            this.selected_menu.Size = new System.Drawing.Size(427, 297);
             this.selected_menu.TabIndex = 0;
             this.selected_menu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -125,7 +112,7 @@
             // 
             this.Mysql_tab.Location = new System.Drawing.Point(4, 29);
             this.Mysql_tab.Name = "Mysql_tab";
-            this.Mysql_tab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Mysql_tab.Padding = new System.Windows.Forms.Padding(3);
             this.Mysql_tab.Size = new System.Drawing.Size(449, 370);
             this.Mysql_tab.TabIndex = 4;
             this.Mysql_tab.Text = "Mysql";
@@ -150,7 +137,7 @@
             this.option1.Controls.Add(this.op1);
             this.option1.Location = new System.Drawing.Point(4, 22);
             this.option1.Name = "option1";
-            this.option1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.option1.Padding = new System.Windows.Forms.Padding(3);
             this.option1.Size = new System.Drawing.Size(445, 101);
             this.option1.TabIndex = 0;
             this.option1.Text = "옵션";
@@ -221,7 +208,7 @@
             this.button1.BackColor = System.Drawing.Color.LightGray;
             this.button1.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(43, 378);
+            this.button1.Location = new System.Drawing.Point(30, 398);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(148, 54);
             this.button1.TabIndex = 12;
@@ -234,7 +221,7 @@
             this.button2.BackColor = System.Drawing.Color.LightGray;
             this.button2.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(235, 378);
+            this.button2.Location = new System.Drawing.Point(236, 398);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(151, 54);
             this.button2.TabIndex = 13;
@@ -259,50 +246,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "주문 관리";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // cartNumber
-            // 
-            this.cartNumber.DataPropertyName = "cartNumber";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cartNumber.DefaultCellStyle = dataGridViewCellStyle1;
-            this.cartNumber.HeaderText = "번호";
-            this.cartNumber.MinimumWidth = 6;
-            this.cartNumber.Name = "cartNumber";
-            this.cartNumber.ReadOnly = true;
-            this.cartNumber.Width = 70;
-            // 
-            // Menu
-            // 
-            this.Menu.DataPropertyName = "Menu";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Menu.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Menu.HeaderText = "메뉴";
-            this.Menu.MinimumWidth = 6;
-            this.Menu.Name = "Menu";
-            this.Menu.ReadOnly = true;
-            this.Menu.Width = 140;
-            // 
-            // Count
-            // 
-            this.Count.DataPropertyName = "Count";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Count.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Count.HeaderText = "수량";
-            this.Count.MinimumWidth = 6;
-            this.Count.Name = "Count";
-            this.Count.ReadOnly = true;
-            this.Count.Width = 70;
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Price.HeaderText = "금액";
-            this.Price.MinimumWidth = 6;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            this.Price.Width = 80;
             // 
             // Order_Manage
             // 
@@ -344,9 +287,5 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TabPage Mysql_tab;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cartNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Menu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Count;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
     }
 }

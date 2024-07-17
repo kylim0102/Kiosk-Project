@@ -23,6 +23,7 @@ namespace Kiosk.Order
         private ItemTable itemTable = new ItemTable();
         private OptionTable optionTable = new OptionTable();
         private OrderTable orderTable = new OrderTable();
+        private OrderTable_Option OrderTable_Option = new OrderTable_Option();
 
 
         public Order_Manage()
@@ -81,6 +82,14 @@ namespace Kiosk.Order
                 now.Controls.Add(btn);
             }
 
+
+
+            // db에 저장되어있는거 들고와서 selected_menu 넣기 
+            DataTable data = orderTable.GetAllOrderTable();
+            selected_menu.DataSource = data;
+           
+            
+            
             //옵션 내용
             LoadOptionsFromDatabase();
 
@@ -123,13 +132,13 @@ namespace Kiosk.Order
             {
                 orderTable.InsertOrder(orderTable.GetMaxItemNumber().ToString(), menu_name, 1, price, 0);
             }
-            
             DataTable data = orderTable.GetAllOrderTable();
             selected_menu.DataSource = data;
 
+
             // 총 결제 금액 계산
             total_payment();
-            
+
         }
         #endregion
 
@@ -177,12 +186,15 @@ namespace Kiosk.Order
                             // 이것도 추가  -- 셀이 선택되지 않았으면 옵션 추가 불가능
                             if (selectedCellValue != null)
                             {
+                                //번호 들고오기
                                 string num = selectedCellValue;
                                 string optionName = btn.Text;
-                                string optionPrice = btn.Tag.ToString();
-                                int rowIndex = selected_menu.CurrentCell.RowIndex;
+                                int optionPrice = Convert.ToInt32(btn.Tag);
+                                
 
-                                select_menu(num, optionName, optionPrice, ref number, rowIndex);
+                                select_menu(num, optionName, optionPrice, ref number);
+                                DataTable data = orderTable.GetAllOrderTable();
+                                selected_menu.DataSource = data;
                             }
                             else
                             {
@@ -232,18 +244,28 @@ namespace Kiosk.Order
 
         // 추가 -- 옵션 버튼 선택 시  번호에 #-1 로 설정 
         #region Order Manage Selected Options
-        private void select_menu(string num, string optionName, string optionPrice, ref int number, int rowIndex) // ref, rowIndex  추가 
+        private void select_menu(string num, string optionName, int optionPrice, ref int number) 
         {
             // DataGridView에 추가할 행 생성
-            DataGridViewRow row = new DataGridViewRow();
+            /*DataGridViewRow row = new DataGridViewRow();
             row.CreateCells(selected_menu);
+            */
+            int a = 1;
+            
+            OrderTable_Option.InsertOption(num +"-" + a, optionName, 1, optionPrice, 0);
+            a++;
 
+
+
+
+
+            /*
             // 이미 있는지 확인 후 추가 또는 수량 증가
             bool found = false;
             foreach (DataGridViewRow existingRow in selected_menu.Rows)
             {
                 //existingRow.Cells["Menu"].Value != null && existingRow.Cells["Menu"].Value.ToString() == optionName  형이 쓰던 조건문
-                if (existingRow.Cells["cartNumber"].Value != null && existingRow.Cells["Menu"].Value.ToString() == optionName && existingRow.Cells["cartNumber"].Value.ToString() == num)
+                if (existingRow.Cells["itemNumber"].Value != null && existingRow.Cells["itemName"].Value.ToString() == optionName && existingRow.Cells["itemNumber"].Value.ToString() == num)
                 {
                     int count = Convert.ToInt32(existingRow.Cells["Count"].Value);
                     existingRow.Cells["Count"].Value = count + 1;
@@ -254,20 +276,13 @@ namespace Kiosk.Order
             }
             if (!found)
             {
-                row.Cells[0].Value = num + "-" + number; // 번호 추가   // 교체
+                row.Cells[0].Value = num + "-" + (number++); // 번호 추가   // 교체
                 row.Cells[1].Value = optionName;  // 옵션의 이름
                 row.Cells[2].Value = 1;           // 초기 수량은 1로 설정
                 row.Cells[3].Value = optionPrice; // 옵션의 가격
 
-                //선택 row 에 집어 넣기  일단 보류
-
-                selected_menu.Rows.Insert(rowIndex + 1, row); // 선택한 다음 행에 집어넣기
-
-
-                //selected_menu.Rows.Add(row);// 데이터그리드뷰에 새로운 행 추가
-
             }
-
+*/
             // 총 결제 금액 계산
             total_payment();
         }
@@ -289,7 +304,7 @@ namespace Kiosk.Order
 
                 if (a < row.Cells.Count && row.Cells[a].Value != null)
                 {
-                    int menu_pay = Convert.ToInt32(row.Cells["Price"].Value);
+                    int menu_pay = Convert.ToInt32(row.Cells["payment"].Value);
                     payments.Add(menu_pay);
                 }
             }
