@@ -108,16 +108,44 @@ namespace Kiosk.Order
             int price = tagData.price;
 
             int count = selected_menu.Rows.Count;
+            
+            int number = 1;
+            bool found = false; // 기존 메뉴 찾았는지 여부를 나타내는 변수
+
+            // DataGridView의 목록 수만큼 for문을 돌려 중복을 확인
+            foreach (DataGridViewRow row in selected_menu.Rows)
+            {
+                if (row.Cells["Menu"].Value != null && row.Cells["Menu"].Value.ToString().Equals(menu_name))
+                {
+                    int menu_count = Convert.ToInt32(row.Cells["Count"].Value);
+                    row.Cells["Count"].Value = menu_count + 1;
+                    row.Cells["Price"].Value = price * (menu_count + 1);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                // 새로운 행을 수동으로 추가
+                 number = selected_menu.Rows.Count + 1; // 다음 번호를 계산
+
+                selected_menu.Rows.Add(number, menu_name, 1, price, "");
+            }
+            // 중복 아닌 것들 새로 추가
+            /*if (!found)
+            {
+                selected_menu.Rows.Add(number, menu_name, 1, price, "");
+                number++;
+            }*/
 
 
-            DataGridViewRow row = null;
-            // 메뉴 명에 따라 가격을 초기화
-
-
+            /*
             // DataGridView의 목록 수만큼 for문을 돌려 중복을 확인
             for (int a = 0; a < count; a++)
             {
                 row = selected_menu.Rows[a];
+                MessageBox.Show(row.Cells["Menu"].Value+"");
 
                 if (a < row.Cells.Count && row.Cells[a].Value != null && row.Cells["Menu"].Value.ToString().Equals(menu_name))// Datagridview에 선택한 메뉴가 이미 있다면
                 {
@@ -133,14 +161,11 @@ namespace Kiosk.Order
                     selected_menu.Rows.Add(number, menu_name, 1, price, "");
                 }
             }
+            */
 
             // 총 결제 금액 계산
             total_payment();
-
-            // 거스름돈 계산
-            //int taked = Convert.ToInt32(take_money.Text); // 받은 금액
-            int payed = Convert.ToInt32(payment.Text); // 결제 금액
-                                                       //change_money.Text = (taked - payed) + "";
+            
         }
         #endregion
 
