@@ -1449,4 +1449,98 @@ internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근
 #endregion
 
 
+// 추가 
+#region chart_list 부분
+internal class ChartList
+{
+    private MySqlConnection mysql = oGlobal.GetConnection();
+    private MySqlDataReader reader = null;
+    private string sql = null;
+    int result = 0;
 
+
+    // datagridview 데이터 불러오기 class
+    public DataTable SelectData(MySqlConnection mysql)
+    {
+
+        // DataGirdView 에 들어갈 총 datatable 생성
+        DataTable dataTable = GetAllOrderTable();
+
+        return dataTable;
+    }
+
+    // 테이블 구조 들고오기  datagirdview 에서 칼럼명을 db에서 가져오기(데이터 타입도 들고올수 있음)
+    #region 테이블 구조 들고오기
+    private DataTable GetTableSchema(MySqlConnection mysql)
+    {
+        DataTable schemaTable = new DataTable();
+        try
+        {
+
+            sql = "select * from ordertable LIMIT 0";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+
+            using (reader = cmd.ExecuteReader(CommandBehavior.SchemaOnly))
+            {
+                schemaTable = reader.GetSchemaTable();
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        return schemaTable;
+    }
+    #endregion
+
+    // 테이블 구조 들고와서 빈 datatable 에 집어넣기
+    #region 테이블 구조 들고와서 빈 datatable 에 집어넣기
+    public DataTable CreateDataTable()
+    {
+        string[] iWantColumn = { "itemName", "itemCount", "payment", "regdate" }; //원하는 칼럼만
+        DataTable dataTable = new DataTable();
+
+        DataTable schemaTable = GetTableSchema(mysql); // GetOrder() 메서드에서 스키마 정보 가져오기
+
+        foreach (DataRow row in schemaTable.Rows)
+        {
+            string columnName = row["ColumnName"].ToString();
+            Type dataType = Type.GetType(row["DataType"].ToString());
+
+            // iWantColumn 배열에 columnName이 포함되어 있지 않으면 스킵
+            if (!iWantColumn.Contains(columnName))
+            {
+                continue;
+            }
+
+            DataColumn column = new DataColumn(columnName, dataType);
+            dataTable.Columns.Add(column);
+        }
+
+        return dataTable;
+    }
+    #endregion
+
+    #region 데이터 들고와서 datatable 에 저장
+    public DataTable GetAllOrderTable()
+    {
+        DataTable dataTable = CreateDataTable();
+        try
+        {
+            //itemNumber, itemName, itemCount, payment
+            sql = "select  itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND LENGTH(itemNumber) < 2 GROUP BY itemName, regdate order by itemName, regdate";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+            {
+                adapter.Fill(dataTable);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        return dataTable;
+    }
+    #endregion
+}
+#endregion

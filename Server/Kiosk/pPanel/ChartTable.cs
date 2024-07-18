@@ -19,21 +19,21 @@ namespace Kiosk.pPanel
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            SeriesChartType cType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), chartType.SelectedItem.ToString());
+            /*SeriesChartType cType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), chartType.SelectedItem.ToString());
 
             _cData.ChartType = cType;
-            ChartDataLoad(_cData);
+            ChartDataLoad(_cData);*/
         }
 
         public void SetData(ChartData cData)
         {
-            _cData = cData;
-            ChartDataLoad(_cData);
+            /*_cData = cData;
+            ChartDataLoad(_cData);*/
         }
 
         private void ChartDataLoad(ChartData cData)
         {
-            chart1.Series.Clear();
+            /*chart1.Series.Clear();
             DataTable dt = cData.ChartMain;
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -50,16 +50,16 @@ namespace Kiosk.pPanel
                     series.Points.AddXY(enWeek.Sat.ToString(), oRow[enWeek_Han.토.ToString()]);
                     series.Points.AddXY(enWeek.Sun.ToString(), oRow[enWeek_Han.일.ToString()]);
                 }
-            }
+            }*/
         }
 
         private void ChartTable_Load(object sender, EventArgs e)
         {
-            foreach (SeriesChartType oType in Enum.GetValues(typeof(SeriesChartType)))
+            /*foreach (SeriesChartType oType in Enum.GetValues(typeof(SeriesChartType)))
             {
                 chartType.Items.Add(oType.ToString());
             }
-            chartType.SelectedIndex = 0;
+            chartType.SelectedIndex = 0;*/
         }
     }
 }
