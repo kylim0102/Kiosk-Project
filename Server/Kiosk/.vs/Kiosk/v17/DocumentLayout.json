@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\yj\\source\\repos\\kiosk-project\\server\\kiosk\\order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\order_manage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\yj\\source\\repos\\kiosk-project\\server\\kiosk\\common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -86,13 +86,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Mysql.cs",
               "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
               "RelativeDocumentMoniker": "common\\Mysql.cs",
               "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
               "RelativeToolTip": "common\\Mysql.cs",
-              "ViewState": "AQIAAG0DAAAAAAAAAAAEwKwDAABAAAAA",
+              "ViewState": "AQIAAKIEAAAAAAAAAAAAwO4EAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-17T02:05:45.432Z",
               "EditorCaption": ""
@@ -105,14 +105,14 @@
               "RelativeDocumentMoniker": "Order\\Order_Manage.cs",
               "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\Order\\Order_Manage.cs",
               "RelativeToolTip": "Order\\Order_Manage.cs",
-              "ViewState": "AQIAAEUBAAAAAAAAAAAvwH4BAAAgAAAA",
+              "ViewState": "AQIAAP4AAAAAAAAAAAAgwLcBAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T13:45:52.247Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Order_Manage.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\Order\\Order_Manage.cs",
               "RelativeDocumentMoniker": "Order\\Order_Manage.cs",

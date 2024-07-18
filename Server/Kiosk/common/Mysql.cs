@@ -1174,11 +1174,19 @@ internal class OrderTable_Option
 
 
 
-    //select max값
+   
+}
+internal class Pay
+{
+    private MySqlConnection mysql = oGlobal.GetConnection();
+    private MySqlDataReader reader = null;
+    private string sql = null;
+    int result = 0;
 
+    //select max값 구하기
     public int OrderNumber()
     {
-         try
+        try
         {
             if (mysql.State == ConnectionState.Closed)
             {
@@ -1203,6 +1211,7 @@ internal class OrderTable_Option
         return result + 1;
     }
 
+    // 결제된 상품 orderNumber 값 올리기
     public void UpdateOrderNumber()
     {
         try
@@ -1221,13 +1230,93 @@ internal class OrderTable_Option
         {
             MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-    
+
     }
+
+    //order 제품 삭제
+    public void deleteOrder()
+    {
+        try
+        {
+            if(mysql.State == ConnectionState.Closed)
+            {
+                mysql.Open();
+            }
+            sql = "delete from ordertable where orderNumber = 0";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            int result = cmd.ExecuteNonQuery();
+
+            if (result < 1)
+            {
+                MessageBox.Show("제품 삭제에 실패했습니다.\n관리자에게 문의하세요.", "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+    }
+
+
+    //order 선택한 제품 삭제
+    public void delete_SelectedOption(string itemNumber)
+    {
+        try
+        {
+            if (mysql.State == ConnectionState.Closed)
+            {
+                mysql.Open();
+            }
+            sql = "delete from ordertable where itemNumber like @itemNumber and orderNumber = 0";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@itemNumber", itemNumber+"%");
+            
+            result = cmd.ExecuteNonQuery();
+
+            if (result < 1)
+            {
+                MessageBox.Show("제품 삭제에 실패했습니다.\n관리자에게 문의하세요.", "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+    }
+
+    public void delete_SelectedItem(string itemNumber)
+    {
+        try
+        {
+            if (mysql.State == ConnectionState.Closed)
+            {
+                mysql.Open();
+            }
+            sql = "delete from ordertable where itemNumber = @itemNumber and orderNumber = 0";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@itemNumber", itemNumber);
+
+            result = cmd.ExecuteNonQuery();
+
+            if (result < 1)
+            {
+                MessageBox.Show("제품 삭제에 실패했습니다.\n관리자에게 문의하세요.", "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
 }
+
     #endregion
 
 
-#region 제품 수정 / 삭제
+#region itemPanel 제품 수정 / 삭제
     internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근 가능
     {
         private MySqlConnection mysql = oGlobal.GetConnection();

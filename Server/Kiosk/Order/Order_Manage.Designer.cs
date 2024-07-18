@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.date = new System.Windows.Forms.Label();
             this.selected_menu = new System.Windows.Forms.DataGridView();
@@ -45,6 +45,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.selected_menu)).BeginInit();
             this.menulist.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -75,14 +76,14 @@
             this.selected_menu.AllowUserToAddRows = false;
             this.selected_menu.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.selected_menu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.selected_menu.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.selected_menu.DefaultCellStyle = dataGridViewCellStyle3;
             this.selected_menu.GridColor = System.Drawing.SystemColors.ActiveBorder;
             this.selected_menu.Location = new System.Drawing.Point(0, 29);
             this.selected_menu.Name = "selected_menu";
@@ -91,7 +92,7 @@
             this.selected_menu.RowHeadersWidth = 51;
             this.selected_menu.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.selected_menu.RowTemplate.Height = 23;
-            this.selected_menu.Size = new System.Drawing.Size(427, 297);
+            this.selected_menu.Size = new System.Drawing.Size(427, 343);
             this.selected_menu.TabIndex = 0;
             this.selected_menu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -187,7 +188,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(41, 344);
+            this.label2.Location = new System.Drawing.Point(35, 390);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(137, 19);
             this.label2.TabIndex = 3;
@@ -197,7 +198,7 @@
             // 
             this.payment.AutoSize = true;
             this.payment.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
-            this.payment.Location = new System.Drawing.Point(232, 344);
+            this.payment.Location = new System.Drawing.Point(193, 390);
             this.payment.Name = "payment";
             this.payment.Size = new System.Drawing.Size(20, 19);
             this.payment.TabIndex = 9;
@@ -206,13 +207,13 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.LightGray;
-            this.button1.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold);
+            this.button1.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(30, 398);
+            this.button1.Location = new System.Drawing.Point(345, 378);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 54);
+            this.button1.Size = new System.Drawing.Size(78, 44);
             this.button1.TabIndex = 12;
-            this.button1.Text = "현금";
+            this.button1.Text = "전체 삭제";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -221,16 +222,17 @@
             this.button2.BackColor = System.Drawing.Color.LightGray;
             this.button2.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(236, 398);
+            this.button2.Location = new System.Drawing.Point(125, 475);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(151, 54);
             this.button2.TabIndex = 13;
-            this.button2.Text = "카드";
+            this.button2.Text = "결 제";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.payment);
@@ -246,6 +248,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "주문 관리";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.LightGray;
+            this.button3.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button3.Location = new System.Drawing.Point(261, 377);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(78, 44);
+            this.button3.TabIndex = 14;
+            this.button3.Text = "삭제";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Order_Manage
             // 
@@ -287,5 +302,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TabPage Mysql_tab;
+        private System.Windows.Forms.Button button3;
     }
 }
