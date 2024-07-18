@@ -130,8 +130,9 @@ namespace Kiosk.Order
             }
             else
             {
-                orderTable.InsertOrder(orderTable.GetMaxItemNumber().ToString(), menu_name, 1, price, 0);
+                orderTable.InsertOrder(orderTable.GetMaxItemNumber(menu_name).ToString(), menu_name, 1, price, 0);
             }
+           
             DataTable data = orderTable.GetAllOrderTable();
             selected_menu.DataSource = data;
 
@@ -188,11 +189,20 @@ namespace Kiosk.Order
                             {
                                 //번호 들고오기
                                 string num = selectedCellValue;
+                               if(num.Contains("-"))
+                                {
+                                    MessageBox.Show("메뉴를 선택해주세요");
+                                    return;
+                                }
+
+
                                 string optionName = btn.Text;
                                 int optionPrice = Convert.ToInt32(btn.Tag);
                                 
-
+                                
+                                //이게 db에 추가하는 부분
                                 select_menu(num, optionName, optionPrice, ref number);
+
                                 DataTable data = orderTable.GetAllOrderTable();
                                 selected_menu.DataSource = data;
                             }
@@ -246,45 +256,34 @@ namespace Kiosk.Order
         #region Order Manage Selected Options
         private void select_menu(string num, string optionName, int optionPrice, ref int number) 
         {
-            // DataGridView에 추가할 행 생성
-            /*DataGridViewRow row = new DataGridViewRow();
-            row.CreateCells(selected_menu);
-            */
-            int a = 1;
             
-            OrderTable_Option.InsertOption(num +"-" + a, optionName, 1, optionPrice, 0);
-            a++;
-
-
-
-
-
-            /*
-            // 이미 있는지 확인 후 추가 또는 수량 증가
-            bool found = false;
-            foreach (DataGridViewRow existingRow in selected_menu.Rows)
+            
+            int cnt = OrderTable_Option.CountOption(num);
+            Console.WriteLine(cnt);
+            if(cnt < 2)
             {
-                //existingRow.Cells["Menu"].Value != null && existingRow.Cells["Menu"].Value.ToString() == optionName  형이 쓰던 조건문
-                if (existingRow.Cells["itemNumber"].Value != null && existingRow.Cells["itemName"].Value.ToString() == optionName && existingRow.Cells["itemNumber"].Value.ToString() == num)
+                //바로꼽아넣는거
+                OrderTable_Option.InsertOption(num + "-" + cnt, optionName, 1, optionPrice, 0);
+            }
+            else
+            {
+                
+                int checkOPtion = OrderTable_Option.CheckOption(num, optionName);
+
+                if (checkOPtion < 1)
                 {
-                    int count = Convert.ToInt32(existingRow.Cells["Count"].Value);
-                    existingRow.Cells["Count"].Value = count + 1;
-                    existingRow.Cells["Price"].Value = (count + 1) * Convert.ToInt32(optionPrice);
-                    found = true;
-                    break;
+                    // n-n+1 로 집어넣기
+                    OrderTable_Option.InsertOption(num + "-" + cnt, optionName, 1, optionPrice, 0);
+                }
+                else
+                {
+                    // itemcount 올리기
+                    //update 문써서
+                    orderTable.UpdateItemCount(optionName,optionPrice);
                 }
             }
-            if (!found)
-            {
-                row.Cells[0].Value = num + "-" + (number++); // 번호 추가   // 교체
-                row.Cells[1].Value = optionName;  // 옵션의 이름
-                row.Cells[2].Value = 1;           // 초기 수량은 1로 설정
-                row.Cells[3].Value = optionPrice; // 옵션의 가격
 
-            }
-*/
-            // 총 결제 금액 계산
-            total_payment();
+       
         }
         #endregion
 
@@ -324,72 +323,11 @@ namespace Kiosk.Order
             }
             else
             {
-                // datagridview를 datatable 로 변환
-                DataTable dt = new DataTable();
-                foreach (DataGridViewColumn column in selected_menu.Columns)
-                {
-                    dt.Columns.Add(column.HeaderText, typeof(object));
+                // update 문 
+                OrderTable_Option.UpdateOrderNumber();
 
-                }
-                foreach (DataGridViewRow row in selected_menu.Rows)
-                {
-                    if (!row.IsNewRow)
-                    {
-                        DataRow dataRow = dt.NewRow();
-                        foreach (DataGridViewCell cell in row.Cells)
-                        {
-                            dataRow[cell.ColumnIndex] = cell.Value;
-                        }
-                        dt.Rows.Add(dataRow);
-                    }
-                }
-                //////////////////////////////////////
-                MySqlConnection conn = oGlobal.GetConnection();
-                if (conn.State == ConnectionState.Closed)
-                {
-                    conn.Open(); //db 연결
-
-                }
-
-                try
-                {
-                    foreach (DataRow row in dt.Rows)
-                    {
-
-                        using (MySqlCommand cmd = new MySqlCommand())
-                        {
-                            cmd.Connection = conn;
-
-                            cmd.CommandText = "INSERT INTO ordertable (itemNumber, itemName, itemCount, payment, regdate) VALUES (@itemNumber, @itemName, @itemCount, @payment, now())";
-
-                            // DBNull 은 만약에 null 값으로 들어왔을시 db에도 null 값을 넣어준다
-                            cmd.Parameters.AddWithValue("@itemNumber", row["번호"] ?? DBNull.Value);
-                            cmd.Parameters.AddWithValue("@itemName", row["메뉴"] ?? DBNull.Value);
-                            cmd.Parameters.AddWithValue("@itemCount", row["수량"] ?? DBNull.Value);
-                            cmd.Parameters.AddWithValue("@payment", row["금액"] ?? DBNull.Value);
-
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                    // 주문번호 설정 해야됨
-                    Counter.IncrementAndGet();
-                    int orderNumber = Counter.GetCount();
-                    MessageBox.Show("주문이 완료되었습니다. 주문 번호: " + orderNumber, "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    //  초기화
-                    selected_menu.Rows.Clear(); // row 클리어 시켜주기
-                    selected_menu.Refresh(); // 새로고침
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error: " + ex.Message);
-                }
-                finally
-                {
-                    conn.Close(); // 연결 닫기
-
-
-                }
+                MessageBox.Show("야미");
+                this.Close();
             }
         }
         #endregion
@@ -438,22 +376,24 @@ namespace Kiosk.Order
             }
         }
     }
-    #endregion
+        #endregion
 
 
 
+        // datagridview 에서 상품 삭제
+        private void button1_Click(object sender, EventArgs e)
+        {
+        }
 
-    #region Dummy Event
-    private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        #region Dummy Event
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
     }
     private void groupBox1_Enter(object sender, EventArgs e)
     {
     }
     private void Mysql_tab_Click(object sender, EventArgs e)
-    {
-    }
-    private void button1_Click(object sender, EventArgs e)
     {
     }
     private void op1_Click(object sender, EventArgs e)

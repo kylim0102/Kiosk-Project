@@ -908,13 +908,13 @@ internal class OrderTable
     #endregion
 
     #region Order Manage Get Index Number(Count가 0이면, DB가 비어있으면 1로 시작 / 1이상이면 Max를 통해 최댓값 출력 후 +1)
-    public int GetMaxItemNumber()
+    public int GetMaxItemNumber(string menu_name)
     {
         int cnt = 0;
         int max = 0;
         try
         {
-            sql = "select count(itemNumber) as cnt from ordertable";
+            sql = "select count(itemNumber) as cnt from ordertable where orderNumber = 0";
             MySqlCommand cmd1 = new MySqlCommand(sql, mysql);
             reader = cmd1.ExecuteReader();
 
@@ -938,7 +938,7 @@ internal class OrderTable
         {
             try
             {
-                sql = "select max(itemNumber) as max from ordertable";
+                sql = "select max(SUBSTRING_INDEX(itemNumber, '-', 1) ) as max from ordertable where orderNumber = 0";
                 MySqlCommand cmd2 = new MySqlCommand(sql, mysql);
                 reader = cmd2.ExecuteReader();
                 reader.Read();
@@ -958,7 +958,7 @@ internal class OrderTable
     }
     #endregion
 
-    // 제품 명을 출력할 때 Order Number가 0인 제품만 출력해야 하지 않는가?(24.07.18 해야할 일)
+    // 제품 명을 출력할 때 Order Number가 0인 제품만 출력해야 하지 않는가?(24.07.18 해야할 일) where orderNumber = '0'  추가
     #region Order Manage Get Item Names(선택한 제품명을 출력하여 중복 확인)
     public List<string> GetOrderNames()
     {
@@ -970,7 +970,7 @@ internal class OrderTable
         }
         try
         {
-            sql = "select itemName from ordertable";
+            sql = "select itemName from ordertable where orderNumber = '0'";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
 
             reader = cmd.ExecuteReader();
@@ -1098,6 +1098,7 @@ internal class OrderTable_Option
     private string sql = null;
     int result = 0;
 
+    //option 집어넣는거
     public void InsertOption(string itemNumber, string itemName, int itemCount, int payment, int orderNumber)
     {
         if (mysql.State == ConnectionState.Closed)
@@ -1113,6 +1114,114 @@ internal class OrderTable_Option
         cmd.Parameters.AddWithValue("@orderNumber", orderNumber);
 
         result = cmd.ExecuteNonQuery();
+    }
+
+    // 몇개있는지
+    public int CountOption(string itemNumber)
+    {
+        Console.WriteLine(itemNumber);
+        try
+        {
+            if (mysql.State == ConnectionState.Closed)
+            {
+                mysql.Open();
+            }
+            sql = "select count(*) as cnt from ordertable where itemNumber like @itemNumber and orderNumber = 0";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@itemNumber", itemNumber + "%");
+            reader = cmd.ExecuteReader();
+
+            reader.Read();
+
+            result = reader.GetInt32("cnt");
+            Console.WriteLine(result);
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            reader.Close();
+        }
+        return result;
+    }
+
+    //중복확인
+    public int CheckOption(string itemNumber, string optionName)
+    {
+        try
+        {
+            sql = "select count(*) as cnt from ordertable where itemNumber like @itemNumber and itemName = @optionName and orderNumber = 0";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@itemNumber", itemNumber + "%");
+            cmd.Parameters.AddWithValue("@optionName", optionName);
+            reader = cmd.ExecuteReader();
+            reader.Read();
+
+            result = reader.GetInt32("cnt");
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            reader.Close();
+        }
+        return result;
+    }
+
+
+
+    //select max값
+
+    public int OrderNumber()
+    {
+         try
+        {
+            if (mysql.State == ConnectionState.Closed)
+            {
+                mysql.Open();
+            }
+            sql = "select max(orderNumber) as max from ordertable ";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            reader = cmd.ExecuteReader();
+
+            reader.Read();
+
+            result = reader.GetInt32("max");
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            reader.Close();
+        }
+        return result + 1;
+    }
+
+    public void UpdateOrderNumber()
+    {
+        try
+        {
+            sql = "Update ordertable set orderNumber = @orderNumber where orderNumber = 0";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@orderNumber", OrderNumber());
+            int result = cmd.ExecuteNonQuery();
+
+            if (result < 1)
+            {
+                MessageBox.Show("제품 추가 후 수정에 실패했습니다.\n관리자에게 문의하세요.", "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    
     }
 }
     #endregion
