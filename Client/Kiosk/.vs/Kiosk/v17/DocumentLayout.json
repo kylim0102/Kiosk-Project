@@ -1,15 +1,24 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|c:\\users\\yj\\source\\repos\\kiosk-project\\client\\kiosk\\ppanel\\kioskpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:ppanel\\kioskpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|c:\\users\\yj\\source\\repos\\kiosk-project\\client\\kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "DockedWidth": 310,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,11 +79,37 @@
             {
               "$type": "Bookmark",
               "Name": "ST:137:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "KioskPanel.cs",
+              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\pPanel\\KioskPanel.cs",
+              "RelativeDocumentMoniker": "pPanel\\KioskPanel.cs",
+              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\pPanel\\KioskPanel.cs",
+              "RelativeToolTip": "pPanel\\KioskPanel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-18T06:44:27.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAwB4AAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-18T05:45:12.275Z",
+              "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 200,
+          "DockedWidth": 252,
           "SelectedChildIndex": -1,
           "Children": [
             {

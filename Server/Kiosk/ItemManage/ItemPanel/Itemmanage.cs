@@ -26,7 +26,7 @@ namespace Kiosk.ItemManage.ItemPanel
             InitializeComponent();
         }
 
-        // ↓ 요거 수정 필요
+        
         #region Item Manage On Load(Tab Control 세팅)
         private void Itemmanage_Load(object sender, EventArgs e)
         {
@@ -45,7 +45,7 @@ namespace Kiosk.ItemManage.ItemPanel
                         string data = reader.GetString("itemName"); // name 컬럼의 값 가져오기, 
                         int price = reader.GetInt32("price");
                         //MessageBox.Show($"ID: {id}, name: {data}"); 확인용
-                        listBox1.Items.Add("상품번호 : " + id + " 이름 : " + data + " 가격 : " + price);
+                        listBox1.Items.Add("상품번호 : " + id + ",이름 : " + data + ",가격 : " + price);
                     }
                 }
             }
@@ -70,7 +70,7 @@ namespace Kiosk.ItemManage.ItemPanel
                         string data = reader.GetString("itemName"); // name 컬럼의 값 가져오기, 
                         int price = reader.GetInt32("price");
                         //MessageBox.Show($"ID: {id}, name: {data}"); 확인용
-                        listBox2.Items.Add("상품번호 : " + id + " 이름 : " + data + " 가격 : " + price);
+                        listBox2.Items.Add("상품번호 : " + id + ",이름 : " + data + ",가격 : " + price);
                     }
                 }
             }
@@ -101,7 +101,13 @@ namespace Kiosk.ItemManage.ItemPanel
         #region Item Manage Using Item(제품 사용 버튼 'on/off' = y)
         private void button1_Click(object sender, EventArgs e)
         {
-            int idx = Convert.ToInt32(listBox1.SelectedItem.ToString().Substring(7, 1));
+            //
+            string a = listBox1.SelectedItem.ToString().Split(',')[0].Trim();
+            int idx = Convert.ToInt32(a.Split(':')[1].Trim());
+            //int idx = Convert.ToInt32(listBox1.SelectedItem.ToString().Substring(7, 1));
+
+
+
             if (MessageBox.Show("추가하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
@@ -136,7 +142,12 @@ namespace Kiosk.ItemManage.ItemPanel
         #region Item Manage Not Using Item(제품 사용 안함 버튼 'on/off' = n)
         private void button2_Click(object sender, EventArgs e)
         {
-            int idx = Convert.ToInt32(listBox2.SelectedItem.ToString().Substring(7, 1));
+            //
+            string a = listBox2.SelectedItem.ToString().Split(',')[0].Trim();
+            int idx = Convert.ToInt32(a.Split(':')[1].Trim());
+            //int idx = Convert.ToInt32(listBox2.SelectedItem.ToString().Substring(7, 1));
+
+
             if (MessageBox.Show("제거하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try

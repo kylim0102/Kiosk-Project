@@ -336,28 +336,6 @@ namespace Kiosk.Order
         }
         #endregion
 
-        //추가
-        #region 주문 번호 설정
-        public class Counter
-        {
-            private static int count = 0;
-
-            // 메소드가 호출될 때마다 count 값을 1씩 증가시키고 반환하는 메소드
-            public static int IncrementAndGet()
-            {
-                count++;
-                return count;
-            }
-
-            // 현재 count 값을 가져오는 메소드
-            public static int GetCount()
-            {
-                return count;
-            }
-        }
-        #endregion
-
-
 
         #region Changed Control Tab(선택된 카테고리가 변경되었을 때 이벤트)
         private void Selected_Index_Changed(object sender, EventArgs e)
@@ -439,6 +417,7 @@ namespace Kiosk.Order
 
         }
         #endregion
+
         #region Dummy Event
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

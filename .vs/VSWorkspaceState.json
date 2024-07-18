@@ -3,8 +3,8 @@
     "",
     "\\Server",
     "\\Server\\Kiosk",
-    "\\Server\\Kiosk\\pPanel"
+    "\\Server\\Kiosk\\Order"
   ],
-  "SelectedNode": "\\Server\\Kiosk\\pPanel\\list.cs",
+  "SelectedNode": "\\Server\\Kiosk\\Order\\Order_Manage.cs",
   "PreviewInSolutionExplorer": false
 }

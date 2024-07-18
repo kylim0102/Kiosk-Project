@@ -1091,6 +1091,8 @@ internal class OrderTable
 #endregion
 
 #region option btn
+
+   #region 옵션 집어넣는거
 internal class OrderTable_Option
 {
     private MySqlConnection mysql = oGlobal.GetConnection();
@@ -1176,6 +1178,8 @@ internal class OrderTable_Option
 
    
 }
+#endregion
+
 internal class Pay
 {
     private MySqlConnection mysql = oGlobal.GetConnection();
