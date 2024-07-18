@@ -1,21 +1,9 @@
-﻿using Azure.Storage.Blobs.Models;
-using Azure.Storage.Blobs;
+﻿using Kiosk.pPanel.common;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Kiosk.pPanel.common;
-using MySql.Data.MySqlClient;
-using Azure;
-using MySqlX.XDevAPI.Relational;
-using static System.Net.WebRequestMethods;
-using Kiosk.pPanel;
 
 namespace Kiosk.ItemManage.ItemPanel
 {

@@ -2,12 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kiosk.ItemManage.ItemPanel
@@ -33,7 +28,7 @@ namespace Kiosk.ItemManage.ItemPanel
                 // 데이터베이스가 비어 있다면 카테고리 코드를 10으로 등록
                 Category_code.Text = "10";
             }
-            else 
+            else
             {
                 // 비어있지 않다면 현재 카테고리 코드의 최댓값에서 +10을 하여 등록
                 Category_code.Text = table.CategoryMaxCode().ToString();
@@ -46,7 +41,7 @@ namespace Kiosk.ItemManage.ItemPanel
 
             // TAB3 Category Manage
             List<string> list = table.GetCategory();
-            for(int a = 0; a< list.Count; a++)
+            for (int a = 0; a < list.Count; a++)
             {
                 category_manage_list.Items.Add(list[a]);
             }
@@ -108,7 +103,7 @@ namespace Kiosk.ItemManage.ItemPanel
         {
             if (category_manage_idx.Text.Equals("") || category_manage_code.Text.Equals("") || category_manage_name.Text.Equals(""))
             {
-                MessageBox.Show("수정하려는 카테고리를 선택해주세요!","CATEGORY MANAGE ERROR",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("수정하려는 카테고리를 선택해주세요!", "CATEGORY MANAGE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else
@@ -154,7 +149,7 @@ namespace Kiosk.ItemManage.ItemPanel
             }
             else
             {
-                DialogResult message = MessageBox.Show("선택하신 카테고리를 삭제하시겠습니까? \n삭제후에는 복구할 수 없습니다.","CATEGORY MANAGER",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+                DialogResult message = MessageBox.Show("선택하신 카테고리를 삭제하시겠습니까? \n삭제후에는 복구할 수 없습니다.", "CATEGORY MANAGER", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 
                 if (message == DialogResult.OK)
                 {
@@ -174,7 +169,7 @@ namespace Kiosk.ItemManage.ItemPanel
                 }
                 else if (message == DialogResult.Cancel)
                 {
-                    MessageBox.Show("삭제 요청을 취소합니다.","CATEGORY MANAGER",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show("삭제 요청을 취소합니다.", "CATEGORY MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

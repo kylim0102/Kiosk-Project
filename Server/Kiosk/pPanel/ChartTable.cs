@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Kiosk.pPanel.common;
+using System;
 using System.Data;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using Kiosk.pPanel.common;
 
 namespace Kiosk.pPanel
 {
@@ -18,9 +18,9 @@ namespace Kiosk.pPanel
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             SeriesChartType cType = (SeriesChartType)Enum.Parse(typeof(SeriesChartType), chartType.SelectedItem.ToString());
-           
+
             _cData.ChartType = cType;
             ChartDataLoad(_cData);
         }

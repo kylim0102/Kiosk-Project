@@ -1,22 +1,10 @@
-﻿using System;
+﻿using Kiosk.pPanel.common;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
-using Kiosk.pPanel.common;
-using MySql.Data.MySqlClient;
-using Mysqlx.Session;
-using MySqlX.XDevAPI;
-using MySqlX.XDevAPI.Common;
 
 namespace Kiosk.pPanel.common
 {
@@ -39,14 +27,14 @@ namespace Kiosk.pPanel.common
                 {
                     mysql.Open();
                 }
-                    using (reader = cmd.ExecuteReader())
-                    {
-                        reader.Read();
-                        result = reader.GetInt32("count");
-                    }
-                  
+                using (reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    result = reader.GetInt32("count");
+                }
+
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -57,7 +45,7 @@ namespace Kiosk.pPanel.common
 
             return result;
         }
-        
+
         public int CategoryRegister(string category_code, string category_name)
         {
             try
@@ -102,7 +90,7 @@ namespace Kiosk.pPanel.common
                     result = reader.GetInt32("max") + 10;
                 }
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -125,8 +113,8 @@ namespace Kiosk.pPanel.common
                 {
                     mysql.Open();
                 }
-                    reader = cmd.ExecuteReader();
-                    
+                reader = cmd.ExecuteReader();
+
                 while (reader.Read())
                 {
                     category_names.Add(reader.GetString("cg_name"));
@@ -154,17 +142,17 @@ namespace Kiosk.pPanel.common
             dataTable.Columns.Add("NAME");
             dataTable.Columns.Add("DATE");
             */
-            
+
             DataColumn data_idx = new DataColumn("NO", typeof(int));
             DataColumn data_code = new DataColumn("CODE", typeof(string));
             DataColumn data_name = new DataColumn("NAME", typeof(string));
             DataColumn data_regdate = new DataColumn("DATE", typeof(string));
-            
+
             dataTable.Columns.Add(data_idx);
             dataTable.Columns.Add(data_code);
             dataTable.Columns.Add(data_name);
             dataTable.Columns.Add(data_regdate);
-            
+
             try
             {
                 sql = "select * from categorytable";
@@ -187,7 +175,7 @@ namespace Kiosk.pPanel.common
                     dataTable.Rows.Add(idx, cg_code, cg_name, regdate);
                 }
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -195,7 +183,7 @@ namespace Kiosk.pPanel.common
             {
                 reader.Close();
             }
-            
+
             return dataTable;
         }
 
@@ -212,7 +200,7 @@ namespace Kiosk.pPanel.common
 
                 reader.Read();
 
-                list.Add(reader.GetInt32("idx")+"");
+                list.Add(reader.GetInt32("idx") + "");
                 list.Add(reader.GetString("cg_code"));
                 list.Add(reader.GetString("cg_name"));
             }
@@ -232,10 +220,10 @@ namespace Kiosk.pPanel.common
             try
             {
                 sql = "update categorytable set cg_name = @cg_name where idx = @idx";
-   
+
                 MySqlCommand cmd = new MySqlCommand(sql, mysql);
                 cmd.Parameters.AddWithValue("@cg_name", category_name);
-                cmd.Parameters.AddWithValue("@idx",category_idx);
+                cmd.Parameters.AddWithValue("@idx", category_idx);
 
                 result = cmd.ExecuteNonQuery();
                 if (result < 0)
@@ -273,7 +261,7 @@ namespace Kiosk.pPanel.common
                 sql = "delete from categorytable where idx = @idx";
 
                 MySqlCommand cmd = new MySqlCommand(sql, mysql);
-                cmd.Parameters.AddWithValue("@idx",idx);
+                cmd.Parameters.AddWithValue("@idx", idx);
 
                 result = cmd.ExecuteNonQuery();
                 if (result < 0)
@@ -307,7 +295,7 @@ namespace Kiosk.pPanel.common
             {
                 sql = "select cg_code from categorytable where cg_name = @cg_name";
                 MySqlCommand cmd = new MySqlCommand(sql, mysql);
-                cmd.Parameters.AddWithValue("@cg_name",cg_name);
+                cmd.Parameters.AddWithValue("@cg_name", cg_name);
 
                 reader = cmd.ExecuteReader();
                 reader.Read();
@@ -353,7 +341,7 @@ namespace Kiosk.pPanel.common
 
                 result = cmd.ExecuteNonQuery();
             }
-            catch (MySqlException ex) 
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "MySql ERROR !", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -398,14 +386,14 @@ internal class ItemTable
         {
             MessageBox.Show(ex.Message, "MySql ERROR !", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        
+
 
         return result;
     }
 
     public List<Button> MakeButtonForItems(string cg_name)
     {
-        if(mysql.State == ConnectionState.Closed)
+        if (mysql.State == ConnectionState.Closed)
         {
             mysql.Open();
         }
@@ -436,9 +424,9 @@ internal class ItemTable
                 power = reader.GetString("on/off");
 
                 Button button = new Button();
-                button.Name = item_name+"_btn";
+                button.Name = item_name + "_btn";
                 button.Text = item_name;
-                button.Tag = new {item_name, price, content, regdate, category, power};
+                button.Tag = new { item_name, price, content, regdate, category, power };
 
                 button.Top = buttonTop;
                 button.Left = buttonSpacing;
@@ -600,7 +588,7 @@ internal class OptionTable
             {
                 mysql.Open();
             }
-                reader = cmd.ExecuteReader();
+            reader = cmd.ExecuteReader();
 
             int idx = 0;
             string optionname = null;
@@ -895,12 +883,12 @@ internal class OrderTable
 
             result = cmd.ExecuteNonQuery();
 
-            if(result < 1)
+            if (result < 1)
             {
                 MessageBox.Show("제품선택에서 문제가 발생했습니다.\n관리자에게 문의하세요.", "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        catch(MySqlException ex)
+        catch (MySqlException ex)
         {
             MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -921,7 +909,7 @@ internal class OrderTable
             reader.Read();
             cnt = reader.GetInt32("cnt");
         }
-        catch(MySqlException ex)
+        catch (MySqlException ex)
         {
             MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -944,7 +932,7 @@ internal class OrderTable
                 reader.Read();
                 max = reader.GetInt32("max") + 1;
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -979,7 +967,7 @@ internal class OrderTable
                 items.Add(reader.GetString("itemName"));
             }
         }
-        catch(MySqlException ex)
+        catch (MySqlException ex)
         {
             MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -1002,18 +990,18 @@ internal class OrderTable
             cmd.Parameters.AddWithValue("@price", price);
             int result = cmd.ExecuteNonQuery();
 
-            if(result < 1)
+            if (result < 1)
             {
                 MessageBox.Show("제품 추가 후 수정에 실패했습니다.\n관리자에게 문의하세요.", "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        catch(MySqlException ex)
+        catch (MySqlException ex)
         {
             MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
     #endregion
-    
+
     // MAKE DATA TABLE AREA
     #region Order Manage Get Schema Table(DB의 스키마를 Data Table에 복사)
     public DataTable GetOrder()
@@ -1029,7 +1017,7 @@ internal class OrderTable
                 dataTable = reader.GetSchemaTable();
             }
         }
-        catch(MySqlException ex)
+        catch (MySqlException ex)
         {
             MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -1079,7 +1067,7 @@ internal class OrderTable
                 adapter.Fill(dataTable);
             }
         }
-        catch(MySqlException ex)
+        catch (MySqlException ex)
         {
             MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -1092,7 +1080,7 @@ internal class OrderTable
 
 #region option btn
 
-   #region 옵션 집어넣는거
+#region 옵션 집어넣는거
 internal class OrderTable_Option
 {
     private MySqlConnection mysql = oGlobal.GetConnection();
@@ -1176,7 +1164,7 @@ internal class OrderTable_Option
 
 
 
-   
+
 }
 #endregion
 
@@ -1242,7 +1230,7 @@ internal class Pay
     {
         try
         {
-            if(mysql.State == ConnectionState.Closed)
+            if (mysql.State == ConnectionState.Closed)
             {
                 mysql.Open();
             }
@@ -1274,8 +1262,8 @@ internal class Pay
             }
             sql = "delete from ordertable where itemNumber like @itemNumber and orderNumber = 0";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
-            cmd.Parameters.AddWithValue("@itemNumber", itemNumber+"%");
-            
+            cmd.Parameters.AddWithValue("@itemNumber", itemNumber + "%");
+
             result = cmd.ExecuteNonQuery();
 
             if (result < 1)
@@ -1317,148 +1305,148 @@ internal class Pay
 
 }
 
-    #endregion
+#endregion
 
 
 #region itemPanel 제품 수정 / 삭제
-    internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근 가능
+internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근 가능
+{
+    private MySqlConnection mysql = oGlobal.GetConnection();
+    int result = 0;
+    #region datagridview 데이터 불러오기 class
+    // datagridview 데이터 불러오기 class
+    public DataTable SelectData(MySqlConnection mysql)
     {
-        private MySqlConnection mysql = oGlobal.GetConnection();
+        // 테이블 구조 들고와서 DataTable 생성
+        DataTable schemaTable = GetTableSchema(mysql);
+
+        // DataGirdView 에 들어갈 총 datatable 생성
+        DataTable dataTable = CreateDataTable(schemaTable);
+        DataTable dataFromDB = GetData(mysql);
+        foreach (DataRow row in dataFromDB.Rows)
+        {
+            dataTable.ImportRow(row);
+        }
+
+        return dataTable;
+
+    }
+    // 테이블 구조 들고오기  datagirdview 에서 칼럼명을 db에서 가져오기(데이터 타입도 들고올수 있음)
+    private static DataTable GetTableSchema(MySqlConnection mysql)
+    {
+        DataTable schemaTable = new DataTable();
+        try
+        {
+            string query = "SELECT * FROM itemtable LIMIT 0"; // MySQL에서는 LIMIT 사용
+            using (MySqlCommand command = new MySqlCommand(query, mysql))
+            {
+                if (mysql.State == ConnectionState.Closed)
+                {
+                    mysql.Open();
+                }
+                using (MySqlDataReader reader = command.ExecuteReader(CommandBehavior.SchemaOnly))
+                {
+                    schemaTable = reader.GetSchemaTable();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return schemaTable;
+    }
+    // 테이블 구조 들고와서 빈 datatable 에 집어넣기
+    private static DataTable CreateDataTable(DataTable schemaTable)
+    {
+        DataTable dataTable = new DataTable();
+
+        foreach (DataRow row in schemaTable.Rows)
+        {
+            string columnName = row["ColumnName"].ToString();
+            Type dataType = (Type)row["DataType"];
+            DataColumn column = new DataColumn(columnName, dataType);
+            dataTable.Columns.Add(column);
+        }
+
+        return dataTable;
+    }
+    private static DataTable GetData(MySqlConnection mysql)
+    {
+        DataTable dataTable = new DataTable();
+        try
+        {
+            string query = "SELECT * FROM itemtable"; // 실제 데이터를 가져오는 쿼리
+            using (MySqlCommand command = new MySqlCommand(query, mysql))
+            {
+                if (mysql.State == ConnectionState.Closed)
+                {
+                    mysql.Open();
+                }
+                // adapter.Fill 쓰면 테이블의 모든 데이터를 가져와서 넣어준다.
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
+                {
+                    adapter.Fill(dataTable);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        return dataTable;
+    }
+
+    #endregion
+
+    #region 데이터 수정
+    public int ItemChange(String itemName, int price, String content, String category, int idx)
+    {
         int result = 0;
-        #region datagridview 데이터 불러오기 class
-        // datagridview 데이터 불러오기 class
-        public DataTable SelectData(MySqlConnection mysql)
+        string now = DateTime.Now.ToString("yyyy-MM-dd");
+        try
         {
-            // 테이블 구조 들고와서 DataTable 생성
-            DataTable schemaTable = GetTableSchema(mysql);
+            string query = "update itemtable set itemName = @itemName, price = @price, content = @content, regdate = @regdate, category = @category where idx = @idx";
 
-            // DataGirdView 에 들어갈 총 datatable 생성
-            DataTable dataTable = CreateDataTable(schemaTable);
-            DataTable dataFromDB = GetData(mysql);
-            foreach (DataRow row in dataFromDB.Rows)
-            {
-                dataTable.ImportRow(row);
-            }
+            MySqlCommand cmd = new MySqlCommand(query, mysql);
 
-            return dataTable;
+            cmd.Parameters.AddWithValue("@itemName", itemName);
+            cmd.Parameters.AddWithValue("@price", price);
+            cmd.Parameters.AddWithValue("@content", content);
+            cmd.Parameters.AddWithValue("@regdate", now);
+            cmd.Parameters.AddWithValue("@category", category);
+            cmd.Parameters.AddWithValue("@idx", idx);
 
+            result = cmd.ExecuteNonQuery();
         }
-        // 테이블 구조 들고오기  datagirdview 에서 칼럼명을 db에서 가져오기(데이터 타입도 들고올수 있음)
-        private static DataTable GetTableSchema(MySqlConnection mysql)
+        catch (MySqlException ex)
         {
-            DataTable schemaTable = new DataTable();
-            try
-            {
-                string query = "SELECT * FROM itemtable LIMIT 0"; // MySQL에서는 LIMIT 사용
-                using (MySqlCommand command = new MySqlCommand(query, mysql))
-                {
-                    if (mysql.State == ConnectionState.Closed)
-                    {
-                        mysql.Open();
-                    }
-                    using (MySqlDataReader reader = command.ExecuteReader(CommandBehavior.SchemaOnly))
-                    {
-                        schemaTable = reader.GetSchemaTable();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return schemaTable;
+            MessageBox.Show(ex.Message, "MySQL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        // 테이블 구조 들고와서 빈 datatable 에 집어넣기
-        private static DataTable CreateDataTable(DataTable schemaTable)
-        {
-            DataTable dataTable = new DataTable();
-
-            foreach (DataRow row in schemaTable.Rows)
-            {
-                string columnName = row["ColumnName"].ToString();
-                Type dataType = (Type)row["DataType"];
-                DataColumn column = new DataColumn(columnName, dataType);
-                dataTable.Columns.Add(column);
-            }
-
-            return dataTable;
-        }
-        private static DataTable GetData(MySqlConnection mysql)
-        {
-            DataTable dataTable = new DataTable();
-            try
-            {
-                string query = "SELECT * FROM itemtable"; // 실제 데이터를 가져오는 쿼리
-                using (MySqlCommand command = new MySqlCommand(query, mysql))
-                {
-                    if (mysql.State == ConnectionState.Closed)
-                    {
-                        mysql.Open();
-                    }
-                    // adapter.Fill 쓰면 테이블의 모든 데이터를 가져와서 넣어준다.
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(command))
-                    {
-                        adapter.Fill(dataTable);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return dataTable;
-        }
-    
-        #endregion
-
-        #region 데이터 수정
-        public int ItemChange(String itemName, int price, String content, String category, int idx)
-        {
-            int result = 0;
-            string now = DateTime.Now.ToString("yyyy-MM-dd");
-            try
-            {
-                string query = "update itemtable set itemName = @itemName, price = @price, content = @content, regdate = @regdate, category = @category where idx = @idx";
-
-                MySqlCommand cmd = new MySqlCommand(query, mysql);
-
-                cmd.Parameters.AddWithValue("@itemName", itemName);
-                cmd.Parameters.AddWithValue("@price", price);
-                cmd.Parameters.AddWithValue("@content", content);
-                cmd.Parameters.AddWithValue("@regdate", now);
-                cmd.Parameters.AddWithValue("@category", category);
-                cmd.Parameters.AddWithValue("@idx", idx);
-
-                result = cmd.ExecuteNonQuery();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message, "MySQL Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return result;
-        }
-        #endregion
-        #region 데이터 삭제 
-        public int ItemDelete(int idx)
-        {
-            try
-            {
-                //idx 값만 가져와서 삭제하기
-                String query = "delete from itemtable where idx = @idx";
-                MySqlCommand cmd = new MySqlCommand(query, mysql);
-                cmd.Parameters.AddWithValue("@idx", idx);
-
-                result = cmd.ExecuteNonQuery();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message, "MySql ERROR !", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return result;
-        }
-        #endregion
+        return result;
     }
     #endregion
+    #region 데이터 삭제 
+    public int ItemDelete(int idx)
+    {
+        try
+        {
+            //idx 값만 가져와서 삭제하기
+            String query = "delete from itemtable where idx = @idx";
+            MySqlCommand cmd = new MySqlCommand(query, mysql);
+            cmd.Parameters.AddWithValue("@idx", idx);
+
+            result = cmd.ExecuteNonQuery();
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MySql ERROR !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        return result;
+    }
+    #endregion
+}
+#endregion
 
 
 

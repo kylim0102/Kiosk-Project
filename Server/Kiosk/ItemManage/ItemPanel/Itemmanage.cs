@@ -1,17 +1,8 @@
-﻿using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
-using Google.Protobuf.WellKnownTypes;
+﻿using Azure.Storage.Blobs.Models;
 using Kiosk.pPanel.common;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kiosk.ItemManage.ItemPanel
@@ -26,7 +17,7 @@ namespace Kiosk.ItemManage.ItemPanel
             InitializeComponent();
         }
 
-        
+
         #region Item Manage On Load(Tab Control 세팅)
         private void Itemmanage_Load(object sender, EventArgs e)
         {
