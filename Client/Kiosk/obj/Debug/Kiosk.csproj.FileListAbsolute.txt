@@ -10,3 +10,15 @@ C:\Users\YJ\source\repos\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.exe
 C:\Users\YJ\source\repos\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pdb
 C:\Users\YJ\source\repos\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pPanel.CartPanel.resources
 C:\Users\YJ\source\repos\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pPanel.KioskPanel.resources
+C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\bin\Debug\Kiosk.exe.config
+C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\bin\Debug\Kiosk.exe
+C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\bin\Debug\Kiosk.pdb
+C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.csproj.AssemblyReference.cache
+C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.Form1.resources
+C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pPanel.CartPanel.resources
+C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pPanel.KioskPanel.resources
+C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.Properties.Resources.resources
+C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.csproj.GenerateResource.cache
+C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.csproj.CoreCompileInputs.cache
+C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.exe
+C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pdb
