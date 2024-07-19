@@ -1,26 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\",
+  "WorkspaceRootPath": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\yj\\desktop\\kiosk-project\\server\\kiosk\\ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ppanel\\chart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\chart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\\uC774\uB3D9\uD6C8\\desktop\\kiosk-project\\server\\kiosk\\ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ppanel\\chart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\chart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,15 +30,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 310,
-          "SelectedChildIndex": 17,
+          "SelectedChildIndex": 16,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
               "$type": "Bookmark",
@@ -62,7 +62,7 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -94,48 +94,50 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Mysql.cs",
-              "DocumentMoniker": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
+              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
               "RelativeDocumentMoniker": "common\\Mysql.cs",
-              "ToolTip": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
+              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
               "RelativeToolTip": "common\\Mysql.cs",
-              "ViewState": "AQIAAM4FAAAAAAAAAAAAAN4FAABPAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T02:24:02.03Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "oGlobal.cs",
-              "DocumentMoniker": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\oGlobal.cs",
-              "RelativeDocumentMoniker": "common\\oGlobal.cs",
-              "ToolTip": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\oGlobal.cs",
-              "RelativeToolTip": "common\\oGlobal.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAsAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T15:47:52.99Z"
+              "WhenOpened": "2024-07-19T02:24:02.03Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "oGlobal.cs",
+              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\oGlobal.cs",
+              "RelativeDocumentMoniker": "common\\oGlobal.cs",
+              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\oGlobal.cs",
+              "RelativeToolTip": "common\\oGlobal.cs",
+              "ViewState": "AQIAAEwAAAAAAAAAAAAQwIMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-18T15:47:52.99Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "list.cs",
-              "DocumentMoniker": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\list.cs",
+              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\list.cs",
               "RelativeDocumentMoniker": "pPanel\\list.cs",
-              "ToolTip": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\list.cs",
+              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\list.cs",
               "RelativeToolTip": "pPanel\\list.cs",
-              "ViewState": "AQIAAHwAAAAAAAAAAAAvwKQAAAA0AAAA",
+              "ViewState": "AQIAAG0AAAAAAAAAAAAlwJwAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T02:23:40.133Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "list.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\list.cs",
+              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\list.cs",
               "RelativeDocumentMoniker": "pPanel\\list.cs",
-              "ToolTip": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\list.cs [\uB514\uC790\uC778]",
+              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\list.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "pPanel\\list.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T02:23:37.302Z",
@@ -143,12 +145,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Chart.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\Chart.cs",
+              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\Chart.cs",
               "RelativeDocumentMoniker": "pPanel\\Chart.cs",
               "ToolTip": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\Chart.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "pPanel\\Chart.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\YJ\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\Chart.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T02:23:32.232Z"
             }

@@ -46,6 +46,7 @@
             this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.Refresh_list = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -227,10 +228,21 @@
             this.label6.TabIndex = 19;
             this.label6.Text = "키워드";
             // 
+            // Refresh_list
+            // 
+            this.Refresh_list.Location = new System.Drawing.Point(425, 7);
+            this.Refresh_list.Name = "Refresh_list";
+            this.Refresh_list.Size = new System.Drawing.Size(62, 23);
+            this.Refresh_list.TabIndex = 20;
+            this.Refresh_list.Text = "새로고침";
+            this.Refresh_list.UseVisualStyleBackColor = true;
+            this.Refresh_list.Click += new System.EventHandler(this.Refresh_list_Click);
+            // 
             // list
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Refresh_list);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.monthCalendar2);
@@ -278,5 +290,6 @@
         private System.Windows.Forms.MonthCalendar monthCalendar2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button Refresh_list;
     }
 }

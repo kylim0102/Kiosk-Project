@@ -50,39 +50,6 @@ namespace Kiosk.pPanel
         }
         #endregion
 
-        /*//날짜 별 총합 구하기
-        private void AddColumnSums()
-        {
-            DataRow sumRow = dtMain.NewRow();
-            sumRow["제품"] = "총합";
-
-            foreach (DataColumn col in dtMain.Columns)
-            {
-                if (col.ColumnName != "제품")
-                {
-                    int sum = 0;
-                    foreach (DataRow row in dtMain.Rows)
-                    {
-                        sum += Convert.ToInt32(row[col]);
-                    }
-                    sumRow[col.ColumnName] = sum;
-                }
-            }
-
-            dtMain.Rows.Add(sumRow);
-        }*/
-        //#endregion
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         #region Search Keyword Button Click Event(키워드 입력 후 검색 버튼 클릭 이벤트)
         private void button1_Click(object sender, EventArgs e)
         { 
@@ -92,7 +59,8 @@ namespace Kiosk.pPanel
 
             if (List_keyword.Text.Equals("") && start_calendar.Text.Equals("") && end_calendar.Text.Equals(""))
             {
-                MessageBox.Show("검색 조건 입력 안함");
+                MessageBox.Show("입력된 검색 조건이 없습니다.\n다시 확인해주세요.","ITEM MANAGER",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             else
             {
@@ -111,26 +79,12 @@ namespace Kiosk.pPanel
                 end_calendar.Text = string.Empty;
             }
         }
-
-        private void Start_Calendar_Click(object sender, EventArgs e)
-        {
-            monthCalendar1.Visible = true;
-            monthCalendar2.Visible = false;
-        }
-
-        private void End_Calendar_Click(object sender, EventArgs e)
-        {
-            monthCalendar1.Visible = false;
-            monthCalendar2.Visible = true;
-        }
-
         #endregion
 
-        private void start_calendar_TextChanged(object sender, EventArgs e)
-        {
 
-        }
 
+        #region Start Calendar Event(검색 시작일 관련 이벤트)
+        #region Start Calendar TextBox Setting(선택한 검색 시작일을 TextBox에 세팅하는 이벤트)
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
             if(!end_calendar.Text.Equals("") && monthCalendar2.SelectionStart < monthCalendar1.SelectionStart)
@@ -143,7 +97,19 @@ namespace Kiosk.pPanel
             monthCalendar1.Visible = false;
 
         }
+        #endregion
 
+        #region Turn Off End Calendar(검색 시작일 클릭 시 검색 종료일의 캘린더가 꺼짐)
+        private void Start_Calendar_Click(object sender, EventArgs e)
+        {
+            monthCalendar1.Visible = true;
+            monthCalendar2.Visible = false;
+        }
+        #endregion
+        #endregion
+
+        #region End Calendar Event(검색 종료일 관련 이벤트)
+        #region End Calendar TextBox Setting(선택한 검색 종료일을 TextBox에 세팅하는 이벤트)
         private void monthCalendar2_DateChanged(object sender, DateRangeEventArgs e)
         {
             if(!start_calendar.Text.Equals("") && monthCalendar2.SelectionStart < monthCalendar1.SelectionStart)
@@ -154,13 +120,46 @@ namespace Kiosk.pPanel
             end_calendar.Text = monthCalendar2.SelectionEnd.ToString("yyyy-MM-dd");
             monthCalendar2.Visible = false;
         }
+        #endregion
+
+        #region Turn Off Start Calendar(검색 종료일 클릭 시 검색 시작일의 캘린더가 꺼짐)
+        private void End_Calendar_Click(object sender, EventArgs e)
+        {
+            monthCalendar1.Visible = false;
+            monthCalendar2.Visible = true;
+        }
+        #endregion
+        #endregion
+
+
+        #region Dummy Event
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void start_calendar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Refresh_list_Click(object sender, EventArgs e)
+        {
+            string keyword = List_keyword.Text;
+            string start_day = start_calendar.Text;
+            string end_day = end_calendar.Text;
+
+            DataTable dtMain = chartList.SelectData(mysql, keyword, start_day, end_day);
+
+            dataGridView1.DataSource = dtMain;
+        }
+        #endregion
 
         /*
          hoon 할 일
-         
-         결제일 검색 구현하기 [완료]
-
-         keyword에 아무것도 입력 안했을 때 예외처리 [ 저녁에 or 주말에 ]
 
         새로고침 (Data Grid View에 DB 전체 다시 세팅) [ 저녁에 or 주말에 ]
          

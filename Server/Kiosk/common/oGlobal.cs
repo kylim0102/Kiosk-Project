@@ -4,6 +4,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -13,9 +14,9 @@ namespace Kiosk.pPanel.common
 {
     internal class oGlobal
     {
-        #region 전역 데이터베이스 연결
         public static MySqlConnection DBconnection;
 
+        #region 전역 데이터베이스 연결
         public static void DB_Connection()
         {
             if (DBconnection == null)
@@ -30,6 +31,8 @@ namespace Kiosk.pPanel.common
                 };
 
                 DBconnection = new MySqlConnection(connStringBuilder.ConnectionString);
+                
+
                 DBconnection.Open();
             }
             #endregion
@@ -49,7 +52,7 @@ namespace Kiosk.pPanel.common
 
     internal class StorageConnection
     {
-        // Azure Storage Connection
+        #region Azure Storage Connection And Get Controller(Azure 스토리지에 접속 후 스토리지 컨트롤러를 반환)
         public BlobContainerClient BlobContainerClient()
         {
             // Azure Sotrage 연결 문자열
@@ -68,8 +71,11 @@ namespace Kiosk.pPanel.common
 
             return containerClient;
         }
+        #endregion
 
-        // Azure Storage List Show
+
+
+        #region Get Azure Storage All Blobs(Azure 스토리지에 있는 모든 목록을 반환)
         public List<BlobItem> GetBlobs()
         {
             // 컨테이너 클라이언트 생성
@@ -80,35 +86,30 @@ namespace Kiosk.pPanel.common
 
             return items;
         }
+        #endregion
 
-        // Azure Storage File Upload
-        // 업로드 성공 시 true 반환, 실패 시 false 반환
-        public bool Upload(string filepath)
+        #region Get Local Storage Folder Path Scanner(Local 스토리지에서 선택한 폴더의 경로를 반환)
+        public string SavingFilePath() // 폴더 경로 탐색기
         {
-            string blobName = Path.GetFileName(filepath);
-
-            // 컨테이너 클라이언트 생성
-            var containerClient = BlobContainerClient();
-            BlobClient blobClient = containerClient.GetBlobClient(blobName);
-
-
-            try
+            string FolderPath = string.Empty;
+            using (FolderBrowserDialog dialog = new FolderBrowserDialog())
             {
-                // 파일 스트림을 열어 Blob에 업로드
-                FileStream fileStream = File.OpenRead(filepath);
-                blobClient.Upload(fileStream, true);
-                fileStream.Close();
-                MessageBox.Show("선택한 파일이 Storage로 업로드되었습니다.", "Success Upload !", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return true;
+                dialog.Description = "Select a folder";
+                dialog.RootFolder = Environment.SpecialFolder.MyComputer;
+
+                DialogResult result = dialog.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.SelectedPath))
+                {
+                    FolderPath = dialog.SelectedPath;
+                }
+
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                MessageBox.Show("파일 업로드에 실패했습니다.", "Fail Upload", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            return FolderPath;
         }
+        #endregion
 
+        #region Azure Storage File Download Service(Azure 스토리지에서 선택한 파일 다운로드)
         public void Download(string blobName, string downloadFilepath)
         {
             //blobName : Storage에서 다운로드하고자 하는 파일 명 
@@ -129,6 +130,7 @@ namespace Kiosk.pPanel.common
                 // Blob의 내용을 다운로드하여 BlobDownloadInfo 객체에 저장
                 BlobDownloadInfo download = blobClient.Download();
 
+
                 // 로컬 Storage에 저장
                 using (FileStream fs = File.OpenWrite(downloadFilepath + blobName))
                 {
@@ -138,7 +140,11 @@ namespace Kiosk.pPanel.common
                 }
             }
         }
+        #endregion
 
+
+
+        #region Get Local Storage File Path Scanner(Local 스토리지에서 선택한 파일의 경로와 파일명을 반환)
         public string LocalStorageScan() // 파일 경로 탐색기
         {
             var fileContent = string.Empty;
@@ -169,26 +175,39 @@ namespace Kiosk.pPanel.common
 
             return filePath;
         }
+        #endregion
 
-        public string SavingFilePath() // 폴더 경로 탐색기
+        #region Azure Storage File Upload Service(Local 스토리지에서 선택한 파일을 Azure 스토리지로 업로드)
+        public bool Upload(string filepath)
         {
-            string FolderPath = string.Empty;
-            using (FolderBrowserDialog dialog = new FolderBrowserDialog())
+            string blobName = Path.GetFileName(filepath);
+
+            // 컨테이너 클라이언트 생성
+            var containerClient = BlobContainerClient();
+            BlobClient blobClient = containerClient.GetBlobClient(blobName);
+
+
+            try
             {
-                dialog.Description = "Select a folder";
-                dialog.RootFolder = Environment.SpecialFolder.MyComputer;
-
-                DialogResult result = dialog.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(dialog.SelectedPath))
-                {
-                    FolderPath = dialog.SelectedPath;
-                }
-
+                // 파일 스트림을 열어 Blob에 업로드
+                FileStream fileStream = File.OpenRead(filepath);
+                blobClient.Upload(fileStream, true);
+                fileStream.Close();
+                MessageBox.Show("선택한 파일이 Storage로 업로드되었습니다.", "Success Upload !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
             }
-            return FolderPath;
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("파일 업로드에 실패했습니다.", "Fail Upload", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
+        #endregion
 
+
+
+        #region Azure Storage Delete Blob(Azure 스토리지에서 선택한 파일 삭제)
         public void DeleteBlob(string blobName)
         {
             bool result = false;
@@ -208,7 +227,9 @@ namespace Kiosk.pPanel.common
                 MessageBox.Show("삭제 중 문제가 발생했습니다..", "AZURE STORAGE MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
 
+        #region Azure Storage Modify Blob(Azure 스토리지에서 선택한 파일을 다른 파일로 수정, 선택한 파일 삭제 후 새로 업로드)
         public void ModifyBlob(string delete_blob, string upload_blob)
         {
             bool delete_result = false;
@@ -254,6 +275,7 @@ namespace Kiosk.pPanel.common
                 MessageBox.Show("입력한 파일을 수정했습니다.\n수정 전: " + delete_blob + "\n수정 후: " + blobName);
             }
         }
+        #endregion
     }
 
     // UserControl에서 Main으로 DataTable 값을 전달 하기 위한 Delegate 정의    
@@ -269,6 +291,9 @@ namespace Kiosk.pPanel.common
         public DataTable ChartMain { get => _ChartMain; set => _ChartMain = value; }
         public SeriesChartType ChartType { get => _ChartType; set => _ChartType = value; }
     }
+
+
+
     public enum enWeek { Mon, Tue, Wen, Thu, Fri, Sat, Sun }
     public enum enWeek_Han { 월, 화, 수, 목, 금, 토, 일 }
 

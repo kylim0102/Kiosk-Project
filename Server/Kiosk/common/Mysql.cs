@@ -1459,62 +1459,6 @@ internal class ChartList
     private string sql = null;
     int result = 0;
 
-
-    // datagridview 데이터 불러오기 class
-    public DataTable SelectData(MySqlConnection mysql, string keyword, string start_day, string end_day)
-    {
-        DataTable dataTable = new DataTable();
-        string target_day = string.Empty;
-
-        if (keyword.Equals("") && start_day.Equals("") && end_day.Equals("")) // 아무 검색 조건도 없음
-        {
-            // DB에서 결제 후의 모든 데이터를 가져와 DataTable에 저장
-            dataTable = GetAllOrderTable();
-        }
-        else if(!keyword.Equals("") && start_day.Equals("") && end_day.Equals("")) // 키워드 O, 검색일 X
-        {
-            dataTable = GetKeywordOrderTable(keyword);
-        }
-        else if(keyword.Equals("") && !start_day.Equals("") && end_day.Equals("") || keyword.Equals("") && start_day.Equals("") && !end_day.Equals("")) // 키워드 X, 검색일(Start O, End X / Start X, End O)
-        {
-            /*           
-            if(!start_day.Equals("") && end_day.Equals(""))
-            {
-                target_day = start_day;   
-            }
-            else if(start_day.Equals("") && !end_day.Equals(""))
-            {
-                target_day = end_day;
-            }
-            */
-
-            dataTable = GetTargetDayOrderTable(!start_day.Equals("") ? target_day=start_day : target_day=end_day);
-        }
-        else if(keyword.Equals("") && !start_day.Equals("") && !end_day.Equals("")) // 키워드 X, 검색일(Start O, End O)
-        {
-            dataTable = GetBetweenDayOrderTable(start_day, end_day);
-        }
-        else if(!keyword.Equals("") && !start_day.Equals("") && end_day.Equals("") || !keyword.Equals("") && start_day.Equals("") && !end_day.Equals("")) // 키워드 O, 검색일(Start O, End X / Start X, End O)
-        {
-            dataTable = GetKeywordAndTargetDayOrderTable(keyword, !start_day.Equals("") ? target_day = start_day : target_day = end_day);
-        }
-        else if(!keyword.Equals("") && !start_day.Equals("") && !end_day.Equals("")) // 모든 검색 조건 입력
-        {
-            dataTable = GetAllConditionOrderTable(keyword, start_day, end_day);
-        }
-        else
-        {
-            MessageBox.Show("검색 조건을 다시 확인해주세요.","ITEM MANAGER",MessageBoxButtons.OK,MessageBoxIcon.Error);
-        }
-
-        return dataTable;
-    }
-
-
-
-
-
-
     // 테이블 구조 들고오기  datagirdview 에서 칼럼명을 db에서 가져오기(데이터 타입도 들고올수 있음)
     #region 테이블 구조 들고오기
     private DataTable GetTableSchema(MySqlConnection mysql)
@@ -1567,6 +1511,9 @@ internal class ChartList
     }
     #endregion
 
+
+
+    // DB 조건 검색 AREA
     #region Get After Payment All Data(DB에서 결제 후의 모든 데이터를 가져와 DataTable에 저장)
     public DataTable GetAllOrderTable()
     {
@@ -1620,15 +1567,19 @@ internal class ChartList
 
         return dataTable;
     }
+    #endregion
 
-    public DataTable GetTargetDayOrderTable(string target_day)
+    #region Get After Payment And Searching Keyword And Target Date(DB에서 결제 후의 모든 데이터 중에서 특정 기간과 검색어가 일치하는 결과를 DataTable에 저장)
+    public DataTable GetKeywordAndTargetDayOrderTable(string keyword, string target_day)
     {
         DataTable dataTable = CreateDataTable();
         try
         {
-            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND regdate = @target_day GROUP BY itemName, regdate order by itemName, regdate";
+            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND (itemName = @keyword OR itemName like @like_keyword) And regdate = @target_day GROUP BY itemName, regdate order by itemName, regdate";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
-            cmd.Parameters.AddWithValue("@target_day",target_day);
+            cmd.Parameters.AddWithValue("@keyword", keyword);
+            cmd.Parameters.AddWithValue("@like_keyword", "%" + keyword + "%");
+            cmd.Parameters.AddWithValue("@target_day", target_day);
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
             {
@@ -1648,7 +1599,39 @@ internal class ChartList
         }
         return dataTable;
     }
+    #endregion
 
+    #region Get After Payment And Searching Target Date(DB에서 결제 후의 모든 데이터 중에서 특정 기간으로 검색한 결과를 DataTable에 저장)
+    public DataTable GetTargetDayOrderTable(string target_day)
+    {
+        DataTable dataTable = CreateDataTable();
+        try
+        {
+            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND regdate = @target_day GROUP BY itemName, regdate order by itemName, regdate";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@target_day", target_day);
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+            {
+                adapter.Fill(dataTable);
+            }
+
+
+            if (dataTable.Rows.Count == 0)
+            {
+                MessageBox.Show("검색한 내용과 일치하거나 유사한 제품이 없습니다.\n다시 확인해주세요.", "ITEM MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dataTable = GetAllOrderTable();
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        return dataTable;
+    }
+    #endregion
+
+    #region Get After Payment And Start Between End Date(DB에서 결제 후의 모든 데이터 중에서 특정 기간사이의 검색한 결과를 DataTable에 저장)
     public DataTable GetBetweenDayOrderTable(string start_day, string end_day)
     {
         DataTable dataTable = CreateDataTable();
@@ -1677,37 +1660,9 @@ internal class ChartList
         }
         return dataTable;
     }
+    #endregion
 
-    public DataTable GetKeywordAndTargetDayOrderTable(string keyword, string target_day)
-    {
-        DataTable dataTable = CreateDataTable();
-        try
-        {
-            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND (itemName = @keyword OR itemName like @like_keyword) And regdate = @target_day GROUP BY itemName, regdate order by itemName, regdate";
-            MySqlCommand cmd = new MySqlCommand(sql, mysql);
-            cmd.Parameters.AddWithValue("@keyword", keyword);
-            cmd.Parameters.AddWithValue("@like_keyword", "%"+keyword+"%");
-            cmd.Parameters.AddWithValue("@target_day", target_day);
-
-            using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-            {
-                adapter.Fill(dataTable);
-            }
-
-
-            if (dataTable.Rows.Count == 0)
-            {
-                MessageBox.Show("검색한 내용과 일치하거나 유사한 제품이 없습니다.\n다시 확인해주세요.", "ITEM MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                dataTable = GetAllOrderTable();
-            }
-        }
-        catch (MySqlException ex)
-        {
-            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        return dataTable;
-    }
-
+    #region Get After payment And All Condition(DB에서 결제 후의 모든 데이터 중에서 모든 조건이 충족한 결과를 DataTable에 저장)
     public DataTable GetAllConditionOrderTable(string keyword, string start_day, string end_day)
     {
         DataTable dataTable = CreateDataTable();
@@ -1738,7 +1693,53 @@ internal class ChartList
         }
         return dataTable;
     }
-    
     #endregion
+    // DB 조건 검색 AREA
+
+    /*
+        ↓ ↓ ↓
+    */
+
+    // DB 조건 검색 AREA에 있는 메서드를 실제로 사용하고 매게변수를 할당하는 부분
+    #region Get Optional OrderTable(각 조건 별 DB 읽기, 만약 새로운 조건이 추가되면 이 메소드에서 else if 확장)
+    public DataTable SelectData(MySqlConnection mysql, string keyword, string start_day, string end_day)
+    {
+        DataTable dataTable = new DataTable();
+        string target_day = string.Empty;
+
+        if (keyword.Equals("") && start_day.Equals("") && end_day.Equals("")) // 아무 검색 조건도 없음
+        {
+            dataTable = GetAllOrderTable();
+        }
+        else if (!keyword.Equals("") && start_day.Equals("") && end_day.Equals("")) // 키워드 O, 검색일 X
+        {
+            dataTable = GetKeywordOrderTable(keyword);
+        }
+        else if (keyword.Equals("") && !start_day.Equals("") && end_day.Equals("") || keyword.Equals("") && start_day.Equals("") && !end_day.Equals("")) // 키워드 X, 검색일(Start O, End X / Start X, End O)
+        {
+            dataTable = GetTargetDayOrderTable(!start_day.Equals("") ? target_day = start_day : target_day = end_day);
+        }
+        else if (keyword.Equals("") && !start_day.Equals("") && !end_day.Equals("")) // 키워드 X, 검색일(Start O, End O)
+        {
+            dataTable = GetBetweenDayOrderTable(start_day, end_day);
+        }
+        else if (!keyword.Equals("") && !start_day.Equals("") && end_day.Equals("") || !keyword.Equals("") && start_day.Equals("") && !end_day.Equals("")) // 키워드 O, 검색일(Start O, End X / Start X, End O)
+        {
+            dataTable = GetKeywordAndTargetDayOrderTable(keyword, !start_day.Equals("") ? target_day = start_day : target_day = end_day);
+        }
+        else if (!keyword.Equals("") && !start_day.Equals("") && !end_day.Equals("")) // 모든 검색 조건 입력
+        {
+            dataTable = GetAllConditionOrderTable(keyword, start_day, end_day);
+        }
+        else
+        {
+            MessageBox.Show("검색 조건을 다시 확인해주세요.", "ITEM MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        return dataTable;
+    }
+    #endregion
+
+
 }
 #endregion
