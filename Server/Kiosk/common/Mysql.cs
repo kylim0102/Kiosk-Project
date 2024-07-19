@@ -1,5 +1,6 @@
 ﻿using Kiosk.pPanel.common;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Mozilla;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -1460,14 +1461,59 @@ internal class ChartList
 
 
     // datagridview 데이터 불러오기 class
-    public DataTable SelectData(MySqlConnection mysql)
+    public DataTable SelectData(MySqlConnection mysql, string keyword, string start_day, string end_day)
     {
+        DataTable dataTable = new DataTable();
+        string target_day = string.Empty;
 
-        // DataGirdView 에 들어갈 총 datatable 생성
-        DataTable dataTable = GetAllOrderTable();
+        if (keyword.Equals("") && start_day.Equals("") && end_day.Equals("")) // 아무 검색 조건도 없음
+        {
+            // DB에서 결제 후의 모든 데이터를 가져와 DataTable에 저장
+            dataTable = GetAllOrderTable();
+        }
+        else if(!keyword.Equals("") && start_day.Equals("") && end_day.Equals("")) // 키워드 O, 검색일 X
+        {
+            dataTable = GetKeywordOrderTable(keyword);
+        }
+        else if(keyword.Equals("") && !start_day.Equals("") && end_day.Equals("") || keyword.Equals("") && start_day.Equals("") && !end_day.Equals("")) // 키워드 X, 검색일(Start O, End X / Start X, End O)
+        {
+            /*           
+            if(!start_day.Equals("") && end_day.Equals(""))
+            {
+                target_day = start_day;   
+            }
+            else if(start_day.Equals("") && !end_day.Equals(""))
+            {
+                target_day = end_day;
+            }
+            */
+
+            dataTable = GetTargetDayOrderTable(!start_day.Equals("") ? target_day=start_day : target_day=end_day);
+        }
+        else if(keyword.Equals("") && !start_day.Equals("") && !end_day.Equals("")) // 키워드 X, 검색일(Start O, End O)
+        {
+            dataTable = GetBetweenDayOrderTable(start_day, end_day);
+        }
+        else if(!keyword.Equals("") && !start_day.Equals("") && end_day.Equals("") || !keyword.Equals("") && start_day.Equals("") && !end_day.Equals("")) // 키워드 O, 검색일(Start O, End X / Start X, End O)
+        {
+            dataTable = GetKeywordAndTargetDayOrderTable(keyword, !start_day.Equals("") ? target_day = start_day : target_day = end_day);
+        }
+        else if(!keyword.Equals("") && !start_day.Equals("") && !end_day.Equals("")) // 모든 검색 조건 입력
+        {
+            dataTable = GetAllConditionOrderTable(keyword, start_day, end_day);
+        }
+        else
+        {
+            MessageBox.Show("검색 조건을 다시 확인해주세요.","ITEM MANAGER",MessageBoxButtons.OK,MessageBoxIcon.Error);
+        }
 
         return dataTable;
     }
+
+
+
+
+
 
     // 테이블 구조 들고오기  datagirdview 에서 칼럼명을 db에서 가져오기(데이터 타입도 들고올수 있음)
     #region 테이블 구조 들고오기
@@ -1521,14 +1567,14 @@ internal class ChartList
     }
     #endregion
 
-    #region 데이터 들고와서 datatable 에 저장
+    #region Get After Payment All Data(DB에서 결제 후의 모든 데이터를 가져와 DataTable에 저장)
     public DataTable GetAllOrderTable()
     {
         DataTable dataTable = CreateDataTable();
         try
         {
             //itemNumber, itemName, itemCount, payment
-            sql = "select  itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND LENGTH(itemNumber) < 2 GROUP BY itemName, regdate order by itemName, regdate";
+            sql = "select  itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) GROUP BY itemName, regdate order by itemName, regdate";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
             {
@@ -1541,6 +1587,158 @@ internal class ChartList
         }
         return dataTable;
     }
+    #endregion
+
+    #region Get After Payment And Searching Keyword Data(DB에서 결제 후의 모든 데이터 중에서 키워드로 검색한 결과를 DataTable에 저장)
+    public DataTable GetKeywordOrderTable(string keyword)
+    {
+        DataTable dataTable = CreateDataTable();
+        try
+        {
+            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND (itemName = @keyword OR itemName LIKE @like_keyword) GROUP BY itemName, regdate order by itemName, regdate";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@keyword",keyword);
+            cmd.Parameters.AddWithValue("@like_keyword","%"+keyword+"%");
+
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+            {
+                adapter.Fill(dataTable);
+            }
+
+            
+            if(dataTable.Rows.Count == 0)
+            {
+                MessageBox.Show("검색한 내용과 일치하거나 유사한 제품이 없습니다.\n다시 확인해주세요.","ITEM MANAGER",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                dataTable = GetAllOrderTable();
+            }
+        }
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        return dataTable;
+    }
+
+    public DataTable GetTargetDayOrderTable(string target_day)
+    {
+        DataTable dataTable = CreateDataTable();
+        try
+        {
+            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND regdate = @target_day GROUP BY itemName, regdate order by itemName, regdate";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@target_day",target_day);
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+            {
+                adapter.Fill(dataTable);
+            }
+
+
+            if (dataTable.Rows.Count == 0)
+            {
+                MessageBox.Show("검색한 내용과 일치하거나 유사한 제품이 없습니다.\n다시 확인해주세요.", "ITEM MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dataTable = GetAllOrderTable();
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        return dataTable;
+    }
+
+    public DataTable GetBetweenDayOrderTable(string start_day, string end_day)
+    {
+        DataTable dataTable = CreateDataTable();
+        try
+        {
+            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND regdate between @start_day And @end_day GROUP BY itemName, regdate order by itemName, regdate";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@start_day", start_day);
+            cmd.Parameters.AddWithValue("@end_day", end_day);
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+            {
+                adapter.Fill(dataTable);
+            }
+
+
+            if (dataTable.Rows.Count == 0)
+            {
+                MessageBox.Show("검색한 내용과 일치하거나 유사한 제품이 없습니다.\n다시 확인해주세요.", "ITEM MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dataTable = GetAllOrderTable();
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        return dataTable;
+    }
+
+    public DataTable GetKeywordAndTargetDayOrderTable(string keyword, string target_day)
+    {
+        DataTable dataTable = CreateDataTable();
+        try
+        {
+            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND (itemName = @keyword OR itemName like @like_keyword) And regdate = @target_day GROUP BY itemName, regdate order by itemName, regdate";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@keyword", keyword);
+            cmd.Parameters.AddWithValue("@like_keyword", "%"+keyword+"%");
+            cmd.Parameters.AddWithValue("@target_day", target_day);
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+            {
+                adapter.Fill(dataTable);
+            }
+
+
+            if (dataTable.Rows.Count == 0)
+            {
+                MessageBox.Show("검색한 내용과 일치하거나 유사한 제품이 없습니다.\n다시 확인해주세요.", "ITEM MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dataTable = GetAllOrderTable();
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        return dataTable;
+    }
+
+    public DataTable GetAllConditionOrderTable(string keyword, string start_day, string end_day)
+    {
+        DataTable dataTable = CreateDataTable();
+        try
+        {
+            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND (itemName = @keyword OR itemName like @like_keyword) And regdate between @start_day AND @end_day GROUP BY itemName, regdate order by itemName, regdate";
+            MySqlCommand cmd = new MySqlCommand(sql, mysql);
+            cmd.Parameters.AddWithValue("@keyword", keyword);
+            cmd.Parameters.AddWithValue("@like_keyword", "%" + keyword + "%");
+            cmd.Parameters.AddWithValue("@start_day", start_day);
+            cmd.Parameters.AddWithValue("@end_day", end_day);
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+            {
+                adapter.Fill(dataTable);
+            }
+
+
+            if (dataTable.Rows.Count == 0)
+            {
+                MessageBox.Show("검색한 내용과 일치하거나 유사한 제품이 없습니다.\n다시 확인해주세요.", "ITEM MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dataTable = GetAllOrderTable();
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        return dataTable;
+    }
+    
     #endregion
 }
 #endregion
