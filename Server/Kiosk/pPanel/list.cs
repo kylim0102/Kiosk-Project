@@ -155,6 +155,16 @@ namespace Kiosk.pPanel
             monthCalendar2.Visible = false;
         }
 
-        
+        /*
+         hoon 할 일
+         
+         결제일 검색 구현하기 [완료]
+
+         keyword에 아무것도 입력 안했을 때 예외처리 [ 저녁에 or 주말에 ]
+
+        새로고침 (Data Grid View에 DB 전체 다시 세팅) [ 저녁에 or 주말에 ]
+         
+         
+         */
     }
 }
