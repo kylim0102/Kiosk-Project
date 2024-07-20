@@ -292,10 +292,4 @@ namespace Kiosk.pPanel.common
         public SeriesChartType ChartType { get => _ChartType; set => _ChartType = value; }
     }
 
-
-
-    public enum enWeek { Mon, Tue, Wen, Thu, Fri, Sat, Sun }
-    public enum enWeek_Han { 월, 화, 수, 목, 금, 토, 일 }
-
-
 }

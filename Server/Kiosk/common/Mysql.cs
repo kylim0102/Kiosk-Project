@@ -12,7 +12,7 @@ namespace Kiosk.pPanel.common
     #region To CategoryPanel.cs
     internal class CategoryTable
     {
-        private MySqlConnection mysql = oGlobal.GetConnection();
+        private static MySqlConnection mysql = oGlobal.GetConnection();
         private MySqlDataReader reader = null;
         private string sql = null;
         int result = 0;
@@ -321,7 +321,7 @@ namespace Kiosk.pPanel.common
     #region To ItemPanel.cs
     internal class ItemTable
     {
-        private MySqlConnection mysql = oGlobal.GetConnection();
+        private static MySqlConnection mysql = oGlobal.GetConnection();
         private string sql = null;
         int result = 0;
 
@@ -358,7 +358,7 @@ namespace Kiosk.pPanel.common
 #region To ItemPanel.cs
 internal class ItemTable
 {
-    private MySqlConnection mysql = oGlobal.GetConnection();
+    private static MySqlConnection mysql = oGlobal.GetConnection();
     private MySqlDataReader reader;
     private CategoryTable categoryTable = new CategoryTable();
     private string sql = null;
@@ -500,7 +500,7 @@ internal class ItemTable
 #region To OptionPanel.cs
 internal class OptionTable
 {
-    private MySqlConnection mysql = oGlobal.GetConnection();
+    private static MySqlConnection mysql = oGlobal.GetConnection();
     private MySqlDataReader reader = null;
     private string sql = null;
     int option_result = 0;
@@ -864,7 +864,7 @@ internal class OptionTable
 #region TO OrderPanel.cs
 internal class OrderTable
 {
-    private MySqlConnection mysql = oGlobal.GetConnection();
+    private static MySqlConnection mysql = oGlobal.GetConnection();
     private MySqlDataReader reader = null;
     private string sql = null;
     int result = 0;
@@ -1171,7 +1171,7 @@ internal class OrderTable_Option
 
 internal class Pay
 {
-    private MySqlConnection mysql = oGlobal.GetConnection();
+    private static MySqlConnection mysql = oGlobal.GetConnection();
     private MySqlDataReader reader = null;
     private string sql = null;
     int result = 0;
@@ -1312,7 +1312,7 @@ internal class Pay
 #region itemPanel 제품 수정 / 삭제
 internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근 가능
 {
-    private MySqlConnection mysql = oGlobal.GetConnection();
+    private static MySqlConnection mysql = oGlobal.GetConnection();
     int result = 0;
     #region datagridview 데이터 불러오기 class
     // datagridview 데이터 불러오기 class
@@ -1454,7 +1454,7 @@ internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근
 #region chart_list 부분
 internal class ChartList
 {
-    private MySqlConnection mysql = oGlobal.GetConnection();
+    private static MySqlConnection mysql = oGlobal.GetConnection();
     private MySqlDataReader reader = null;
     private string sql = null;
     int result = 0;
