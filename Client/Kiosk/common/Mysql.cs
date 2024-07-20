@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,7 @@ namespace Kiosk.common
         #endregion
     }
 
-    #region 아이템 정보가 담긴 버튼
+    #region KioskPanel.cs
     internal class ItemInsert
     {
         private MySqlConnection mysql = Mysql.GetConnection();
@@ -57,6 +58,7 @@ namespace Kiosk.common
         int price = 0;
         string content = null;
 
+        #region 아이템 찾기 및 버튼 생성
         public List<Button> CheckItem()
         {
             List<Button> itemlist = new List<Button>();
@@ -90,6 +92,27 @@ namespace Kiosk.common
             }
             return itemlist;
         }
+        #endregion
+
+        #region 아이템 DB 담기
+
+        public void InsertItem(string itemName, int price, string content)
+        {
+            try
+            {
+                sql = "insert into kiosktest(itemName, payment, content, regdate) values (@itemName, @price, @content, now())";
+                MySqlCommand cmd = new MySqlCommand(sql, mysql);
+                cmd.Parameters.AddWithValue("@itemName", itemName);
+                cmd.Parameters.AddWithValue("@price", price);
+                cmd.Parameters.AddWithValue("@content", content);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+        }
+        #endregion
     }
     #endregion
 }

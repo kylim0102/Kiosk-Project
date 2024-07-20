@@ -19,10 +19,11 @@ namespace Kiosk.pPanel
         public KioskPanel()
         {
             InitializeComponent();
-            InitializeTableLayoutPanel();
+            AddFromKioskLayoutPanel();
         }
 
-        public void InitializeTableLayoutPanel()
+        #region 키오스크 버튼 동적 생성 및 DB 담기
+        public void AddFromKioskLayoutPanel()
         {
             ItemInsert itemInsert = new ItemInsert();
             List<Button> btnList = itemInsert.CheckItem();
@@ -68,12 +69,25 @@ namespace Kiosk.pPanel
 
                 panel.Controls.Add(button);
                 tableLayoutPanel1.Controls.Add(panel, x, y);
+
+                // 버튼 클릭 이벤트 핸들러 추가
+                button.Click += (sender, e) =>
+                {
+                    var itemData = (dynamic)button.Tag;
+                    string optionName = itemData.itemName;
+                    int optionPrice = itemData.price;
+                    string optionContent = itemData.content;
+
+                    itemInsert.InsertItem(optionName, optionPrice, optionContent);
+
+                };
+                
             }
         }
+        #endregion
 
 
-
-    public void button4_Click(object sender, EventArgs e)
+        public void button4_Click(object sender, EventArgs e)
         {
             ButtonClicked?.Invoke(this, EventArgs.Empty);
         }
