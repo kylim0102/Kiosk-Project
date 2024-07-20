@@ -74,11 +74,30 @@ namespace Kiosk.pPanel
                 button.Click += (sender, e) =>
                 {
                     var itemData = (dynamic)button.Tag;
-                    string optionName = itemData.itemName;
-                    int optionPrice = itemData.price;
-                    string optionContent = itemData.content;
+                    string optionName = itemData.itemName; // 상품 이름
+                    int optionPrice = itemData.price; // 상품 가격
+                    string optionContent = itemData.content; // 상품 상세설명
 
                     itemInsert.InsertItem(optionName, optionPrice, optionContent);
+
+                    /* 폼 띄우기
+                        
+                    폼에 클릭한 상품 정보 띄우기 (상품 이미지 , 상품 이름 , 가격 , 상세설명 , 옵션 )
+                    상품 이미지 다운로드 할 수 있는 창 , 이미지를 저장 할 로컬 경로
+
+                    옵션 체크박스?, 버튼?
+                    
+                    옵션 나오게 하는거 어떻게 할건지 생각해보기 똑같이 버튼으로도 가능
+
+                    장바구니 테이블 생각하기 (옵션 값을 db에 저장 할때 어떻게 집어넣을지)
+
+                    테이블 간 관계설정 1 : N 을 이용해 kiosktable 에 저장
+                    예 ) FOREIGN KEY(optionidx) REFERENCES optiontable(idx) 로 관계설정
+
+                    장바구니 panel 에 띄우기  장바구니의 상품별 옵션값은 어떻게 담을지 생각해보기
+                    
+                    장바구니 panel 에서 결제 버튼을 누르면 orderttable 에 저장
+                    */
 
                 };
                 
