@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
 namespace Kiosk.common
 {
     internal class Mysql
     {
         public static MySqlConnection DBconnection;
-
+        // 데이터베이스 연결 하는 부분 수정 해야함 
         #region 전역 데이터베이스 연결
         public static void DB_Connection()
         {
@@ -57,6 +58,9 @@ namespace Kiosk.common
         string itemName = null;
         int price = 0;
         string content = null;
+        string optionName = null;
+        int optionPrice = 0;
+        
 
         #region 아이템 찾기 및 버튼 생성
         public List<Button> CheckItem()
@@ -89,7 +93,7 @@ namespace Kiosk.common
             finally
             {
                 reader.Close();
-            }
+            } 
             return itemlist;
         }
         #endregion
@@ -105,6 +109,7 @@ namespace Kiosk.common
                 cmd.Parameters.AddWithValue("@itemName", itemName);
                 cmd.Parameters.AddWithValue("@price", price);
                 cmd.Parameters.AddWithValue("@content", content);
+                
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -113,6 +118,45 @@ namespace Kiosk.common
             }
         }
         #endregion
+
+        #region 옵션 조회 에서 체크 박스 생성
+        public List<CheckBox> checkBox()
+        {
+            List<CheckBox> checkbox = new List<CheckBox>();
+            try
+            {
+                sql = "SELECT * FROM optiontable WHERE `on/off` = 'Y'";
+                MySqlCommand cmd = new MySqlCommand(sql, mysql);
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    optionName = reader.GetString("optionname");
+                    optionPrice = reader.GetInt32("option_value");
+                    
+
+                    CheckBox check = new CheckBox();
+                    check.Text = optionName;
+                    check.Name = optionName;
+                    check.Tag = new { optionName, optionPrice };
+
+                    checkbox.Add(check);
+                }
+            }
+            catch(Exception ex) 
+            {
+                ex.ToString();
+            }
+            finally
+            {
+                reader.Close();
+            }
+
+            return checkbox;
+        }
+        #endregion
+
+
     }
     #endregion
 }

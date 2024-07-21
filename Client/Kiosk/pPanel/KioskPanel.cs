@@ -74,11 +74,19 @@ namespace Kiosk.pPanel
                 button.Click += (sender, e) =>
                 {
                     var itemData = (dynamic)button.Tag;
-                    string optionName = itemData.itemName; // 상품 이름
-                    int optionPrice = itemData.price; // 상품 가격
-                    string optionContent = itemData.content; // 상품 상세설명
+                    
+                    string itemName = itemData.itemName; // 상품 이름
+                    int itemPrice = itemData.price; // 상품 가격
+                    string itemContent = itemData.content; // 상품 상세설명
+                    
 
-                    itemInsert.InsertItem(optionName, optionPrice, optionContent);
+                    //itemInsert.InsertItem(optionName, optionPrice, optionContent);
+                    
+                    //새로운 폼을 생성
+                    item itemForm = new item(itemName, itemPrice, itemContent);
+
+                    itemForm.Show();
+
 
                     /* 폼 띄우기
                         

@@ -25,7 +25,7 @@ namespace Kiosk
 
         }
 
-        // ↓ 그럼 KioskPanel_Button이 Kiosk → cart로 이동 시키는 버튼?
+        // ↓ 그럼 KioskPanel_Button이 Kiosk → cart로 이동 시키는 버튼? 예얍
         private void kioskPanel_ButtonClicked(object sender, EventArgs e)
         {
             // 버튼 클릭 시 실행될 코드 작성

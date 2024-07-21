@@ -139,6 +139,12 @@
     <Compile Include="pPanel\CartPanel.Designer.cs">
       <DependentUpon>CartPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="pPanel\item.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pPanel\item.Designer.cs">
+      <DependentUpon>item.cs</DependentUpon>
+    </Compile>
     <Compile Include="pPanel\KioskPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pPanel\CartPanel.resx">
       <DependentUpon>CartPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pPanel\item.resx">
+      <DependentUpon>item.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="pPanel\KioskPanel.resx">
       <DependentUpon>KioskPanel.cs</DependentUpon>
