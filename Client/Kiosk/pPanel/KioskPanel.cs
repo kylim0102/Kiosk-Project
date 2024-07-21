@@ -84,13 +84,12 @@ namespace Kiosk.pPanel
                     
                     //새로운 폼을 생성
                     item itemForm = new item(itemName, itemPrice, itemContent);
-
                     itemForm.Show();
 
 
-                    /* 폼 띄우기
+                    /* 폼 띄우기0
                         
-                    폼에 클릭한 상품 정보 띄우기 (상품 이미지 , 상품 이름 , 가격 , 상세설명 , 옵션 )
+                    폼에 클릭한 상품 정보 띄우기 (상품 이미지 , 상품 이름0 , 가격0 , 상세설명0 , 옵션 )
                     상품 이미지 다운로드 할 수 있는 창 , 이미지를 저장 할 로컬 경로
 
                     옵션 체크박스?, 버튼?
