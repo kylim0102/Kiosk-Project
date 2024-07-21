@@ -49,6 +49,22 @@ namespace Kiosk.pPanel
             {
                 tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             }
+            #region 두개씩 그룹으로 묶었음
+            List<CheckBox> group1 = new List<CheckBox>();
+            List<CheckBox> group2 = new List<CheckBox>();
+
+            for (int i = 0; i < itemCount; i++)
+            {
+                if (i < itemCount / 2)
+                    group1.Add(checkBoxes[i]);
+                else
+                    group2.Add(checkBoxes[i]);
+            }
+
+            // 그룹 체크 상태 관리
+            AddCheckChangedHandler(group1);
+            AddCheckChangedHandler(group2);
+            #endregion
 
             for (int i = 0; i < itemCount; i++)
             {
@@ -62,17 +78,32 @@ namespace Kiosk.pPanel
 
                 tableLayoutPanel1.Controls.Add(panel, x, y);
 
+
             }
+        }
+        #region 그룹 안에서는 둘 중에 하나만 체크가 되게
+        private void AddCheckChangedHandler(List<CheckBox> group)
+        {
+            foreach (CheckBox checkBox in group)
+            {
+                checkBox.CheckedChanged += (s, e) =>
+                {
+                    if (checkBox.Checked)
+                    {
+                        foreach (CheckBox otherCheckBox in group)
+                        {
+                            if (otherCheckBox != checkBox && otherCheckBox.Checked)
+                            {
+                                otherCheckBox.Checked = false;
+                            }
+                        }
+                    }
+                };
+            }
+        }
+        #endregion
 
-            /*if() // 체크가 예) ice / hot 두개가 다 체크되면 마지막으로 체크한 것을 unchecked
-             *
-             *
-             * 장바구니 담기 버튼을 클릭 하면 체크한 것의 tag 값을 가지고 가기
-             */
-
-
-        }   
-
+        // 취소 버튼 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
