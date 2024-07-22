@@ -3,6 +3,7 @@ using MySqlX.XDevAPI;
 using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,7 +52,7 @@ namespace Kiosk.common
     #region KioskPanel.cs
     internal class ItemInsert
     {
-        private MySqlConnection mysql = Mysql.GetConnection();
+        private static MySqlConnection mysql = Mysql.GetConnection();
         private MySqlDataReader reader = null;
         private string sql = null;
 
@@ -63,13 +64,14 @@ namespace Kiosk.common
         
 
         #region 아이템 찾기 및 버튼 생성
-        public List<Button> CheckItem()
+        public List<Button> CheckItem(string category)
         {
             List<Button> itemlist = new List<Button>();
             try
             {
-                sql = "select * from itemtable";
+                sql = "select b.itemName, b.price, b.content from categorytable a join itemtable b on a.cg_code = b.category where b.`on/off` = 'y' and a.cg_name = @cg_name";
                 MySqlCommand cmd = new MySqlCommand(sql, mysql);
+                cmd.Parameters.AddWithValue("@cg_name", category);
                 reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -156,7 +158,35 @@ namespace Kiosk.common
         }
         #endregion
 
+        public List<string> GetCategory()
+        {
+            List<string> category_names = new List<string>();
+            try
+            {
+                sql = "select cg_name from categorytable";
+                MySqlCommand cmd = new MySqlCommand(sql, mysql);
+                if (mysql.State == ConnectionState.Closed)
+                {
+                    mysql.Open();
+                }
+                reader = cmd.ExecuteReader();
 
+                while (reader.Read())
+                {
+                    category_names.Add(reader.GetString("cg_name"));
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                reader.Close();
+            }
+
+            return category_names;
+        }
     }
     #endregion
 }

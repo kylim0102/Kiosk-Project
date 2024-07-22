@@ -102,6 +102,8 @@ namespace Kiosk
             panel1.Visible = false;
             kioskPanel.Visible = true;
             cartPanel.Visible = false;
+
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

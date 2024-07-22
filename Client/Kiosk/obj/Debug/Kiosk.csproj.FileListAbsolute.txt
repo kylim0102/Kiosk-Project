@@ -213,3 +213,4 @@ C:\Users\YJ\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.csproj.CoreCompil
 C:\Users\YJ\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.csproj.Up2Date
 C:\Users\YJ\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.exe
 C:\Users\YJ\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pdb
+C:\Users\ghckd\Desktop\C#\Team-Project\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pPanel.item.resources
