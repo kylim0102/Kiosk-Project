@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -80,6 +81,22 @@ namespace Kiosk.pPanel
 
 
             }
+
+            try
+            {
+                // 바탕화면 경로 가져오기
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+                // image 폴더 경로
+                string imagePath = Path.Combine(desktopPath, "Kiosk_Image");
+
+                Select_Item_Picture.Image = Image.FromFile(imagePath+"\\"+label1.Text+".jpg");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("이미지를 찾을 수 없습니다.\n"+ex.Message);
+            }
+            
         }
         #region 그룹 안에서는 둘 중에 하나만 체크가 되게
         private void AddCheckChangedHandler(List<CheckBox> group)
@@ -109,7 +126,10 @@ namespace Kiosk.pPanel
             this.Close();
         }
 
-       
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 /* 

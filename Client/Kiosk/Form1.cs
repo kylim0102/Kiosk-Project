@@ -9,6 +9,8 @@ using System.Net.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using Kiosk.common;
 
 namespace Kiosk
 {
@@ -16,6 +18,7 @@ namespace Kiosk
     {
         pPanel.KioskPanel kioskPanel = new pPanel.KioskPanel();
         pPanel.CartPanel cartPanel = new pPanel.CartPanel();
+        private StorageConnection storage = new StorageConnection();
 
         public Form1()
         {
@@ -62,6 +65,26 @@ namespace Kiosk
 
             kioskPanel.Visible = false;
             cartPanel.Visible = false;
+
+            // 폼이 로드 될 때 바탕화면에 image 폴더 생성
+
+            // 바탕화면 경로 가져오기
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            
+            // image 폴더 경로
+            string imagePath = Path.Combine(desktopPath,"Kiosk_Image");
+
+            if(!Directory.Exists(imagePath))
+            {
+                Directory.CreateDirectory(imagePath);
+                Console.WriteLine("바탕화면에 이미지 폴더가 생성되었습니다.");
+            }
+            else
+            {
+                Console.WriteLine("폴더가 이미 존재합니다.");
+            }
+
+            storage.AllFileDownload(imagePath+"\\");
         }
             
         private void button1_Click(object sender, EventArgs e)
@@ -81,8 +104,9 @@ namespace Kiosk
             cartPanel.Visible = false;
         }
 
-       
-        
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
 }
