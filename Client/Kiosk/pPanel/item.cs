@@ -17,12 +17,14 @@ namespace Kiosk.pPanel
     public partial class item : Form
     {
         private ItemInsert itemInsert = new ItemInsert();
-        public item(string itemName, int itemPrice, string itemContent)
+        public item(string itemName, int itemPrice, string itemContent, int itemCnt, int optionQuantity)
         {
             InitializeComponent();
             this.label1.Text = itemName;
             this.label2.Text = itemPrice.ToString();
             this.label3.Text = itemContent;
+            this.textBox1.Text = itemCnt.ToString();
+            this.textBox2.Text = optionQuantity.ToString();
         }
 
         private void item_Load(object sender, EventArgs e)
@@ -65,6 +67,9 @@ namespace Kiosk.pPanel
             // 그룹 체크 상태 관리
             AddCheckChangedHandler(group1);
             AddCheckChangedHandler(group2);
+
+            //group1 체크를 이용하여 활성화 관리
+            AddGroup1CheckChangedHandler(group1);
             #endregion
 
             for (int i = 0; i < itemCount; i++)
@@ -96,7 +101,11 @@ namespace Kiosk.pPanel
             {
                 Console.WriteLine("이미지를 찾을 수 없습니다.\n"+ex.Message);
             }
-            
+
+            // 초기 상태에서 텍스트박스와 증감 버튼 숨기기
+            textBox2.Visible = false;
+            OptionIncrease.Visible = false;
+            OptionDecrease.Visible = false;
         }
         #region 그룹 안에서는 둘 중에 하나만 체크가 되게
         private void AddCheckChangedHandler(List<CheckBox> group)
@@ -120,6 +129,31 @@ namespace Kiosk.pPanel
         }
         #endregion
 
+        #region 그룹1을 이용하여 버튼 및 textbox 활성화/비활성화
+        private void AddGroup1CheckChangedHandler(List<CheckBox> group1)
+        {
+            foreach (CheckBox checkBox in group1)
+            {
+                checkBox.CheckedChanged += (s, e) =>
+                {
+                    if (checkBox.Checked)
+                    {
+                        textBox2.Visible = true;
+                        OptionIncrease.Visible = true;
+                        OptionDecrease.Visible = true;
+                    }
+                    else
+                    {
+                        textBox2.Visible = false;
+                        OptionIncrease.Visible = false;
+                        OptionDecrease.Visible = false;
+                    }
+                };
+            }
+        }
+        #endregion
+
+
         // 취소 버튼 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -130,65 +164,54 @@ namespace Kiosk.pPanel
         {
 
         }
+
+        #region 버튼을 이용한 상품 수량 증감
+        //상품 수량 증가
+        private void Increase_Click(object sender, EventArgs e)
+        {
+            int cnt = int.Parse(textBox1.Text);
+            cnt++;
+            textBox1.Text = cnt.ToString();
+        }
+
+        //상품 수량 감소 
+        private void Decrease_Click(object sender, EventArgs e)
+        {
+            int cnt = int.Parse(textBox1.Text);
+            if (cnt > 1)
+            {
+                cnt--;
+                textBox1.Text = cnt.ToString();
+            } else
+            {
+                MessageBox.Show("최소 수량은 1개입니다.");
+            }
+        }
+        #endregion
+
+        #region 버튼을 이용한 옵션 수량 증감
+        //옵션 수량 증가
+        private void OptionIncrease_Click(object sender, EventArgs e)
+        {
+            int optioncnt = int.Parse(textBox2.Text);
+            optioncnt++;
+            textBox2.Text = optioncnt.ToString();
+        }
+
+        //옵션 수량 감소 
+        private void OptionDecrease_Click(object sender, EventArgs e)
+        {
+            int optioncnt = int.Parse(textBox2.Text);
+            if (optioncnt > 1)
+            {
+                optioncnt--;
+                textBox2.Text = optioncnt.ToString();
+            }
+            else
+            {
+                MessageBox.Show("최소 수량은 1개입니다.");
+            }
+        }
+        #endregion
     }
 }
-/* 
-             * ㄹㅇ 루다가 빡세네 
-             * List<CheckBox> checkBoxes = itemInsert.checkBox();
-             string optionName = null;
-             int optionPrice = 0;
-             for (int i = 0; i < checkBoxes.Count; i++)
-             {
-                 CheckBox check = checkBoxes[i];
-
-                 // 체크박스 항목 추가
-                 // CheckBox 객체의 Text 속성을 사용하여 항목 추가
-                 checkedListBox1.Items.Add(checkBoxes[i].Text);
-
-
-                 checkedListBox1.ItemCheck += (s, ev) => {
-                     // ItemCheckEventArgs의 Index를 사용하여 체크박스의 정보를 가져옴
-                     //object aa = checkedListBox1.Items[ev.Index] as CheckBox;
-                     var optionData = (dynamic)check.Tag;
-
-                     optionName = optionData.optionName; // 상품 이름
-                     optionPrice = optionData.optionPrice; // 상품 가격
-
-                     if (ev.NewValue == CheckState.Checked)
-                     {
-                         // 체크 되었을 때
-                         MessageBox.Show($"체크박스가 선택되었습니다. 가격: {optionPrice}");
-                     }
-                     else
-                     {
-                         // 체크 해제 되었을 때
-                         MessageBox.Show($"체크박스가 선택 해제되었습니다. 옵션 이름: {optionName}");
-                     }
-                 };
-             }*/
-// 체크 박스의 상태가 변경될 때 호출되는 이벤트 핸들러 추가
-//checkedListBox1.ItemCheck += checkedListBox1_ItemCheck;
-
-
-
-// 체크를 할 시
-/*private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
-{
-    // ItemCheckEventArgs의 Index를 사용하여 체크박스의 정보를 가져옴
-    var checkBox = checkedListBox1.Items[e.Index] as CheckBox;
-    var optionData = (dynamic)checkBox.Tag;
-
-    string optionName = optionData.optionName;
-    int optionPrice = optionData.optionPrice;
-
-    if (e.NewValue == CheckState.Checked)
-    {
-        // 체크 되었을 때
-        MessageBox.Show($"체크박스가 선택되었습니다. 가격: {optionPrice}");
-    }
-    else
-    {
-        // 체크 해제 되었을 때
-        MessageBox.Show($"체크박스가 선택 해제되었습니다. 옵션 이름: {optionName}");
-    }
-}*/

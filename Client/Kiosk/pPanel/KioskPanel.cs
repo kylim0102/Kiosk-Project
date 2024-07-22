@@ -83,9 +83,10 @@ namespace Kiosk.pPanel
                     string itemName = itemData.itemName; // 상품 이름
                     int itemPrice = itemData.price; // 상품 가격
                     string itemContent = itemData.content; // 상품 상세설명
-                    
+                    int itemCnt = 1;
+                    int optionCnt = 1;
 
-                    item itemForm = new item(itemName, itemPrice, itemContent);
+                    item itemForm = new item(itemName, itemPrice, itemContent, itemCnt, optionCnt);
                     itemForm.Show();
 
                 };
