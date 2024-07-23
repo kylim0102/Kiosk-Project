@@ -86,7 +86,7 @@ namespace Kiosk.pPanel
 
                 tableLayoutPanel1.Controls.Add(panel, x, y);
 
-
+                
             }
 
             try

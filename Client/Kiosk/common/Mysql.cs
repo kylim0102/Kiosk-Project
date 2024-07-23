@@ -327,6 +327,33 @@ namespace Kiosk.common
             return result;
         }
 
+        public static DataTable GetTemporaryTable()
+        {
+            DataTable table = new DataTable();
+            MySqlConnection con = DB_Connection();
+
+            try
+            {
+                sql = "";
+                using(MySqlCommand cmd = new MySqlCommand(sql,con))
+                {
+                    using(reader = cmd.ExecuteReader(CommandBehavior.SchemaOnly))
+                    {
+                        table = reader.GetSchemaTable();
+                    }
+                }
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                reader.Close();
+            }
+
+            return table;
+        }
         public static void CloseCon()
         {
             MySqlConnection con = DB_Connection();
