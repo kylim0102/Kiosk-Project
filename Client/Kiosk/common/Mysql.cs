@@ -1,9 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx.Session;
 using MySqlX.XDevAPI;
 using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -189,4 +191,107 @@ namespace Kiosk.common
         }
     }
     #endregion
+
+    internal class TemporaryTable
+    {
+        // Temporary Table은 별도의 Con을 관리
+        private static MySqlConnection DBconnection;
+        private static MySqlDataReader reader = null;
+        private static string sql = null;
+
+        #region Temporary Table For DB Connection
+        public static MySqlConnection DB_Connection()
+        {
+            if (DBconnection == null)
+            {
+                MySqlConnectionStringBuilder connStringBuilder = new MySqlConnectionStringBuilder
+                {
+                    Server = "kiosk.mysql.database.azure.com",
+                    Port = 3306,
+                    Database = "kiosk",
+                    UserID = "youngjin",
+                    Password = "admin123456789;"
+                };
+
+                DBconnection = new MySqlConnection(connStringBuilder.ConnectionString);
+                DBconnection.Open();
+            }
+            return DBconnection;
+        }
+        #endregion
+
+
+        public static void CreateTemporary()
+        {
+            MySqlConnection con = DB_Connection();
+            try
+            {
+                sql = "create temporary table if not exists temp_cart(idx int auto_increment primary key,itemNumber varchar(10) not null,itemName varchar(100) not null,itemCount int not null,payment int not null,orderNumber int not null,regdate date);";
+
+                using (MySqlCommand cmd = new MySqlCommand(sql, con))
+                {
+                    Console.WriteLine("Temporary Table을 생성합니다.");
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public static int CheckTemporary()
+        {
+            MySqlConnection con = DB_Connection();
+            sql = "select count(*) as cnt from temp_cart";
+            int result = 0;
+
+            using (MySqlCommand cmd = new MySqlCommand(sql, con))
+            {
+                using (reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    result = reader.GetInt32("cnt");
+                }
+            }
+            return result;
+        }
+
+        public static void InsertTemporary(string itemNumber, string itemName, int itemCount, int payment, int orderNumber)
+        {
+            int result = 0;
+            MySqlConnection con = DB_Connection();
+            try
+            {
+                sql = "insert into temp_cart(itemNumber, itemName, itemCount, payment, orderNumber, regdate) values(@itemNumber, @itemName, @itemCount, @payment, @orderNumber, now())";
+
+                using (MySqlCommand cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@itemNumber", itemNumber);
+                    cmd.Parameters.AddWithValue("@itemName", itemName);
+                    cmd.Parameters.AddWithValue("@itemCount", itemCount);
+                    cmd.Parameters.AddWithValue("@payment", payment);
+                    cmd.Parameters.AddWithValue("@orderNumber", orderNumber);
+                    result = cmd.ExecuteNonQuery();
+                }
+
+                if (result < 1)
+                {
+                    MessageBox.Show("장바구니에 담는 과정에서 문제가 발생했습니다.\n관리자에게 문의하세요.", "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        public static void CloseCon()
+        {
+            MySqlConnection con = DB_Connection();
+
+            con.Close();
+        }
+    }
 }

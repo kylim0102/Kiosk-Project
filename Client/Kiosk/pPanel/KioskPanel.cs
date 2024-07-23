@@ -16,6 +16,7 @@ namespace Kiosk.pPanel
         pPanel.CartPanel cartPanel = new pPanel.CartPanel();
         private ItemInsert ItemInsert = new ItemInsert();
         public event EventHandler ButtonClicked;
+        private static TemporaryTable TemporaryTable = new TemporaryTable();
 
         public KioskPanel()
         {
@@ -129,12 +130,24 @@ namespace Kiosk.pPanel
             
             TabControl now = tabControl1;
             now.TabPages[0].Controls.Add(AddFromKioskLayoutPanel(now.SelectedTab.Text));
+
+            TemporaryTable.CreateTemporary();
         }
 
         private void Selected_Change(object sender, EventArgs e)
         {
             TabPage page = tabControl1.SelectedTab;
             page.Controls.Add(AddFromKioskLayoutPanel(page.Text));
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("테이블 생성 확인" + TemporaryTable.CheckTemporary() + "");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TemporaryTable.CloseCon();
         }
     }
 }

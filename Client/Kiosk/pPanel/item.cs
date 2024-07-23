@@ -17,6 +17,8 @@ namespace Kiosk.pPanel
     public partial class item : Form
     {
         private ItemInsert itemInsert = new ItemInsert();
+        private static TemporaryTable TemporaryTable = new TemporaryTable();
+
         public item(string itemName, int itemPrice, string itemContent, int itemCnt, int optionQuantity)
         {
             InitializeComponent();
@@ -213,5 +215,15 @@ namespace Kiosk.pPanel
             }
         }
         #endregion
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // 선택한 제품 Insert
+            string itemName = label1.Text;
+            int price = Convert.ToInt32(label2.Text);
+
+
+            TemporaryTable.InsertTemporary();
+        }
     }
 }
