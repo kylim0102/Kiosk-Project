@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +19,10 @@ namespace Kiosk.pPanel
     {
         private ItemInsert itemInsert = new ItemInsert();
         private static TemporaryTable TemporaryTable = new TemporaryTable();
+        private string option_name1 = null;
+        private int option_price1 = 0;
+        private string option_name2 = null;
+        private int option_price2 = 0;
 
         public item(string itemName, int itemPrice, string itemContent, int itemCnt, int optionQuantity)
         {
@@ -84,6 +89,7 @@ namespace Kiosk.pPanel
                 Panel panel = new Panel();
                 CheckBox checkBox = checkBoxes[i];
                 checkBox.Name = "checkBox" + i;
+                checkBox.CheckedChanged += CheckBox_CheckedChanged;
 
                 panel.Controls.Add(checkBox);
 
@@ -131,6 +137,38 @@ namespace Kiosk.pPanel
                     }
                 };
             }
+        }
+
+        private void CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkbox = sender as CheckBox;
+            dynamic tag = checkbox.Tag;
+            string optionName = tag.optionName;
+            int optionPrice = tag.optionPrice;
+
+            if(optionName.Equals("연하게") || optionName.Equals("샷 추가"))
+            {
+                option_name1 = optionName;
+                option_price1 = optionPrice;
+            }
+            else if(optionName.Equals(option_name1))
+            {
+                option_name1 = null;
+                option_price1 = 0;
+            }
+            else if(optionName.Equals("ICE") || optionName.Equals("HOT"))
+            {
+                option_name2 = optionName;
+                option_price2 = optionPrice;
+            }
+            else if(optionName.Equals(option_name2))
+            {
+                option_name2 = null;
+                option_price2 = 0;
+            }
+
+
+            MessageBox.Show("option_name1: "+option_name1+"\noption_name2: "+ option_name2 + "\noption_price1: "+option_price1+"\noption_price2: "+option_price2);
         }
         #endregion
 
@@ -228,15 +266,39 @@ namespace Kiosk.pPanel
             int price = Convert.ToInt32(label2.Text);
             int itemNumber = 0;
             int itemCount = Convert.ToInt32(textBox1.Text);
+            int optionNumber = 0;
+
             if(TemporaryTable.CheckTemporary() == 0)
             {
                 itemNumber = 1;
+                //제품등록
                 TemporaryTable.InsertTemporary(itemNumber.ToString(),itemName,itemCount,price,0);
+                //옵션등록
+                if(!option_name1.Equals(""))
+                {
+                    TemporaryTable.InsertTemporary(itemNumber+"-"+(TemporaryTable.GetItemOptionNumber(itemNumber)+1), option_name1, Convert.ToInt32(textBox2.Text), option_price1, 0);
+                }
+
+                if(!option_name2.Equals(""))
+                {
+                    TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber)+1), option_name2, 1, option_price2, 0);
+                }
+
             }
             else
             {
                 itemNumber = TemporaryTable.GetMaxItemNumber() + 1;
+                //제품등록
                 TemporaryTable.InsertTemporary(itemNumber.ToString(),itemName, itemCount, price, 0);
+                if (!option_name1.Equals(""))
+                {
+                    TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber) + 1), option_name1, Convert.ToInt32(textBox2.Text), option_price1, 0);
+                }
+
+                if (!option_name2.Equals(""))
+                {
+                    TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber) + 1), option_name2, 1, option_price2, 0);
+                }
             }
             
             this.Close();

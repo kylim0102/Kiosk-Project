@@ -2,6 +2,7 @@
 using Mysqlx.Session;
 using MySqlX.XDevAPI;
 using MySqlX.XDevAPI.Common;
+using Org.BouncyCastle.Asn1.Mozilla;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -306,7 +307,7 @@ namespace Kiosk.common
             int result = 0;
             try
             {
-                sql = "select Max(itemNumber) as max from temp_cart";
+                sql = "select Max(itemNumber) as max from temp_cart where itemNumber = substring_index(itemNumber,'-',1)";
                 using(MySqlCommand cmd = new MySqlCommand(sql,con))
                 {
                     reader = cmd.ExecuteReader();
@@ -399,6 +400,34 @@ namespace Kiosk.common
             return dataTable;
         }
 
+        public static int GetItemOptionNumber(int itemNumber)
+        {
+            MySqlConnection con = DB_Connection();
+            int result = 0;
+            try
+            {
+                sql = "select count(*) as cnt from temp_cart where itemNumber like @itemNumber";
+                using (MySqlCommand cmd = new MySqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@itemNumber",itemNumber+"-%");
+                    reader = cmd.ExecuteReader();
+                    reader.Read();
+
+                    result = reader.GetInt32("cnt");
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                reader.Close();
+            }
+
+            return result;
+        }
+        
         public static void CloseCon()
         {
             MySqlConnection con = DB_Connection();
