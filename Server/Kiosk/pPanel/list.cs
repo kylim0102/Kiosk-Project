@@ -46,7 +46,7 @@ namespace Kiosk.pPanel
             {
                 eDataTableSender(this, dt);
             }
-            //AddColumnSums(); // 구한 총합 뷰에 추가
+            AddColumnSums(); // 구한 총합 뷰에 추가
         }
         #endregion
 
@@ -78,6 +78,7 @@ namespace Kiosk.pPanel
                 start_calendar.Text = string.Empty;
                 end_calendar.Text = string.Empty;
             }
+            AddColumnSums();
         }
         #endregion
 
@@ -155,6 +156,7 @@ namespace Kiosk.pPanel
             DataTable dtMain = chartList.SelectData(mysql, keyword, start_day, end_day);
 
             dataGridView1.DataSource = dtMain;
+            AddColumnSums();
         }
         #endregion
 
@@ -165,5 +167,27 @@ namespace Kiosk.pPanel
          
          
          */
+
+        #region 총 매출 , 주문 한 상품의 수
+        // 총 매출
+        private void AddColumnSums()
+        {
+            int total = 0;
+            int count = 0;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells[2].Value != null && row.Cells[1].Value != null)
+                {
+                    total += Convert.ToInt32(row.Cells[2].Value);
+                    count += Convert.ToInt32(row.Cells[1].Value);
+                }
+            }
+            List_Total.Text = total.ToString() + " 원";
+            List_count.Text = count.ToString();
+        }
+
+        #endregion
+
+
     }
 }

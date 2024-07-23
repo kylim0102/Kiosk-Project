@@ -21,8 +21,7 @@ namespace Kiosk.pPanel
 
             //list 데이터 받아오기
             list.eDataTableSender += List_eDataTableSender;
-            //chart 데이터 받아옥;
-            chart.eChartTypeSender += Chart_eChartTypeSender;
+            
         }
 
         private void List_eDataTableSender(object oSender, DataTable dt)
@@ -30,20 +29,17 @@ namespace Kiosk.pPanel
             cData.ChartMain = dt;
             chart.SetData(cData);
         }
-        private void Chart_eChartTypeSender(object sender, SeriesChartType cType)
-        {
-            cData.ChartType = cType;
-            chart.SetData(cData);
-        }
+       
         #endregion
 
-        #region Chart List Button Click Event(차트 리스트 버튼 클릭 시 더미데이터 삽입 및 통계 분석)
+        #region Chart List Button Click Event(차트 리스트 버튼 클릭 시 데이터 조회 통계 분석)
+        // 리스트 부분
         private void button1_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
             panel1.Controls.Add(list);
         }
-
+        //차트 부분
         private void button2_Click(object sender, EventArgs e)
         {
             panel1.Controls.Clear();
