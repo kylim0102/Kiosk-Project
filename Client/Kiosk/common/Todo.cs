@@ -17,7 +17,7 @@ namespace Kiosk.common
         -------------------------------------------------------- Server End
 
         1. Client List Open 시 템프러리 테이블 생성(order table)
-        이동훈
+        이동훈 o
 
         2. Client View 옵션 분리 (Ice/Hot) 
 

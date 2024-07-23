@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace Kiosk.pPanel
 {
-    public partial class CartPanel : UserControl
+    public partial class Temporary : Form
     {
-        public CartPanel()
+        public Temporary()
         {
             InitializeComponent();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

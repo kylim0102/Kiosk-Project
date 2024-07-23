@@ -218,12 +218,19 @@ namespace Kiosk.pPanel
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // 선택한 제품 Insert
+            // 선택한 제품 Insert string itemNumber, string itemName, int itemCount, int payment, int orderNumber
             string itemName = label1.Text;
             int price = Convert.ToInt32(label2.Text);
+            if(TemporaryTable.CheckTemporary() == 0)
+            {
+                TemporaryTable.InsertTemporary("1",itemName,1,price,0);
+            }
+            else
+            {
+                TemporaryTable.InsertTemporary((TemporaryTable.GetMaxItemNumber()+1).ToString(),itemName, 1, price, 0);
+            }
 
-
-            TemporaryTable.InsertTemporary();
+            this.Close();
         }
     }
 }

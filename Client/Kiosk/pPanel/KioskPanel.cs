@@ -147,7 +147,7 @@ namespace Kiosk.pPanel
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TemporaryTable.CloseCon();
+            MessageBox.Show("max 확인" + TemporaryTable.GetMaxItemNumber() + "");
         }
     }
 }

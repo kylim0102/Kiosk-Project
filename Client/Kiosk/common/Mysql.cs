@@ -243,16 +243,29 @@ namespace Kiosk.common
         public static int CheckTemporary()
         {
             MySqlConnection con = DB_Connection();
-            sql = "select count(*) as cnt from temp_cart";
             int result = 0;
 
-            using (MySqlCommand cmd = new MySqlCommand(sql, con))
+            try
             {
-                using (reader = cmd.ExecuteReader())
+                sql = "select count(*) as cnt from temp_cart";
+
+                using (MySqlCommand cmd = new MySqlCommand(sql, con))
                 {
-                    reader.Read();
-                    result = reader.GetInt32("cnt");
+                    using (reader = cmd.ExecuteReader())
+                    {
+                        reader.Read();
+                        result = reader.GetInt32("cnt");
+                    }
+
                 }
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                reader.Close();
             }
             return result;
         }
@@ -285,6 +298,33 @@ namespace Kiosk.common
                 MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
+        }
+
+        public static int GetMaxItemNumber()
+        {
+            MySqlConnection con = DB_Connection();
+            int result = 0;
+            try
+            {
+                sql = "select Max(itemNumber) as max from temp_cart";
+                using(MySqlCommand cmd = new MySqlCommand(sql,con))
+                {
+                    reader = cmd.ExecuteReader();
+                    reader.Read();
+
+                    result = reader.GetInt32("max");
+                }
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                reader.Close();
+            }
+
+            return result;
         }
 
         public static void CloseCon()
