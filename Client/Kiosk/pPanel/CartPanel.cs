@@ -12,6 +12,7 @@ namespace Kiosk.pPanel
 {
     public partial class CartPanel : UserControl
     {
+        public TemporaryView TemporaryView = new TemporaryView();
         public CartPanel()
         {
             InitializeComponent();
@@ -24,7 +25,7 @@ namespace Kiosk.pPanel
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            TemporaryView.Show();
         }
     }
 }

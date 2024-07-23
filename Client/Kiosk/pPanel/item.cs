@@ -72,6 +72,8 @@ namespace Kiosk.pPanel
 
             //group1 체크를 이용하여 활성화 관리
             AddGroup1CheckChangedHandler(group1);
+
+            // 체크박스 값 출력
             #endregion
 
             for (int i = 0; i < itemCount; i++)
@@ -81,6 +83,7 @@ namespace Kiosk.pPanel
 
                 Panel panel = new Panel();
                 CheckBox checkBox = checkBoxes[i];
+                checkBox.Name = "checkBox" + i;
 
                 panel.Controls.Add(checkBox);
 
@@ -167,6 +170,7 @@ namespace Kiosk.pPanel
 
         }
 
+
         #region 버튼을 이용한 상품 수량 증감
         //상품 수량 증가
         private void Increase_Click(object sender, EventArgs e)
@@ -218,18 +222,23 @@ namespace Kiosk.pPanel
 
         private void button3_Click(object sender, EventArgs e)
         {
+            
             // 선택한 제품 Insert string itemNumber, string itemName, int itemCount, int payment, int orderNumber
             string itemName = label1.Text;
             int price = Convert.ToInt32(label2.Text);
+            int itemNumber = 0;
+            int itemCount = Convert.ToInt32(textBox1.Text);
             if(TemporaryTable.CheckTemporary() == 0)
             {
-                TemporaryTable.InsertTemporary("1",itemName,1,price,0);
+                itemNumber = 1;
+                TemporaryTable.InsertTemporary(itemNumber.ToString(),itemName,itemCount,price,0);
             }
             else
             {
-                TemporaryTable.InsertTemporary((TemporaryTable.GetMaxItemNumber()+1).ToString(),itemName, 1, price, 0);
+                itemNumber = TemporaryTable.GetMaxItemNumber() + 1;
+                TemporaryTable.InsertTemporary(itemNumber.ToString(),itemName, itemCount, price, 0);
             }
-
+            
             this.Close();
         }
     }

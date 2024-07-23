@@ -327,15 +327,15 @@ namespace Kiosk.common
             return result;
         }
 
-        public static DataTable GetTemporaryTable()
+        public static DataTable CreateTemporaryTableSchema()
         {
             DataTable table = new DataTable();
             MySqlConnection con = DB_Connection();
 
             try
             {
-                sql = "";
-                using(MySqlCommand cmd = new MySqlCommand(sql,con))
+                sql = "select * from temp_cart LIMIT 0";
+                using (MySqlCommand cmd = new MySqlCommand(sql,con))
                 {
                     using(reader = cmd.ExecuteReader(CommandBehavior.SchemaOnly))
                     {
@@ -354,6 +354,51 @@ namespace Kiosk.common
 
             return table;
         }
+
+        public static DataTable CreateDataTable()
+        {
+            string[] iWantColumn = { "itemNumber", "itemName", "itemCount", "payment" }; //원하는 칼럼만
+            DataTable dataTable = new DataTable();
+
+            DataTable schemaTable = CreateTemporaryTableSchema(); // GetOrder() 메서드에서 스키마 정보 가져오기
+
+            foreach (DataRow row in schemaTable.Rows)
+            {
+                string columnName = row["ColumnName"].ToString();
+                Type dataType = Type.GetType(row["DataType"].ToString());
+
+                // iWantColumn 배열에 columnName이 포함되어 있지 않으면 스킵
+                if (!iWantColumn.Contains(columnName))
+                {
+                    continue;
+                }
+
+                DataColumn column = new DataColumn(columnName, dataType);
+                dataTable.Columns.Add(column);
+            }
+
+            return dataTable;
+        }
+        public static DataTable GetTemporaryDataTable()
+        {
+            DataTable dataTable = CreateDataTable();
+            MySqlConnection con = DB_Connection();
+            try
+            {
+                sql = "select itemNumber, itemName, itemCount, payment from temp_cart where orderNumber = '0' order by itemNumber";
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dataTable);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return dataTable;
+        }
+
         public static void CloseCon()
         {
             MySqlConnection con = DB_Connection();

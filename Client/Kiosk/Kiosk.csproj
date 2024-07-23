@@ -152,6 +152,12 @@
     <Compile Include="pPanel\KioskPanel.Designer.cs">
       <DependentUpon>KioskPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="pPanel\TemporaryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pPanel\TemporaryView.Designer.cs">
+      <DependentUpon>TemporaryView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pPanel\KioskPanel.resx">
       <DependentUpon>KioskPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pPanel\TemporaryView.resx">
+      <DependentUpon>TemporaryView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
