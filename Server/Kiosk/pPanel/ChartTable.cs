@@ -34,8 +34,7 @@ namespace Kiosk.pPanel
                 {
                     series.Points.AddXY(dataRow["itemName"], dataRow["itemCount"]);
                 }
-
-                chart1.Series.Add(series);
+                    chart1.Series.Add(series);
             }
             else
             {
@@ -48,4 +47,3 @@ namespace Kiosk.pPanel
         }
     }
 }
-

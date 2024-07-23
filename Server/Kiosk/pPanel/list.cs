@@ -20,7 +20,7 @@ namespace Kiosk.pPanel
         {
             InitializeComponent();
         }
-        // 추가
+      
 
 
         #region Chart For List On Load(리스트 버튼 클릭 시 DataGridView에 데이터 추가)
@@ -74,15 +74,17 @@ namespace Kiosk.pPanel
 
                 dataGridView1.DataSource = dtMain;
 
+                eDataTableSender(sender, dtMain);
+
                 List_keyword.Text = string.Empty;
                 start_calendar.Text = string.Empty;
                 end_calendar.Text = string.Empty;
             }
             AddColumnSums();
+
         }
         #endregion
-
-
+        
 
         #region Start Calendar Event(검색 시작일 관련 이벤트)
         #region Start Calendar TextBox Setting(선택한 검색 시작일을 TextBox에 세팅하는 이벤트)
@@ -156,6 +158,7 @@ namespace Kiosk.pPanel
             DataTable dtMain = chartList.SelectData(mysql, keyword, start_day, end_day);
 
             dataGridView1.DataSource = dtMain;
+            eDataTableSender(sender, dtMain);
             AddColumnSums();
         }
         #endregion

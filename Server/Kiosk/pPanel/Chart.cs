@@ -42,6 +42,7 @@ namespace Kiosk.pPanel
         //차트 부분
         private void button2_Click(object sender, EventArgs e)
         {
+           
             panel1.Controls.Clear();
             panel1.Controls.Add(chart);
             chart.SetData(cData);
