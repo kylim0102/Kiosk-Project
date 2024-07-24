@@ -110,6 +110,7 @@ namespace Kiosk.pPanel
             //DataRow dataRow = null;
             string itemName = null;
             List<string> itemList = new List<string>();
+            
 
             foreach (DataRow row in dt.Rows)
             {
@@ -119,21 +120,65 @@ namespace Kiosk.pPanel
 
             ButtonClicked?.Invoke(this, EventArgs.Empty);
             
-            PictureBox pictureBox = new PictureBox();
-            pictureBox.Name = "image";
+            
+            
 
             // 바탕화면 경로 가져오기
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
             // image 폴더 경로
             string imagePath = Path.Combine(desktopPath, "Kiosk_Image");
-            Image item = Image.FromFile(imagePath + "\\" + itemList[0] + ".jpg");
 
-            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox.Dock = DockStyle.Fill;
-            pictureBox.Image = item;
+            List<Image> imageList = new List<Image>();
+            Image images = null;
+
+            for(int a=0; a<itemList.Count; a++)
+            {
+                if (itemList[a].Equals("샷 추가") || itemList[a].Equals("연하게") || itemList[a].Equals("ICE") || itemList[a].Equals("HOT"))
+                {
+                    images = null;
+                    imageList.Add(images);
+                }
+                else
+                {
+                    images = Image.FromFile(imagePath + "\\" + itemList[a] + ".jpg");
+                }
+            }
+            //Image item = Image.FromFile(imagePath + "\\" + itemList[0] + ".jpg");
+
+
+
+            //cartPanel.Controls.Add(pictureBox);
+
+            int x = 0, y = 0;
             
-            cartPanel.Controls.Add(pictureBox);
+            foreach(Control control in cartPanel.Controls)
+            {
+                if(control is TableLayoutPanel)
+                {
+                    TableLayoutPanel tableLayoutPanel = (TableLayoutPanel)control;
+                    if (tableLayoutPanel.Name.Equals("tableLayoutPanel1"))
+                    {
+                        PictureBox pictureBox = new PictureBox();
+                        foreach(Image image in imageList)
+                        {
+                            pictureBox.Name = "image";
+                            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                            pictureBox.Dock = DockStyle.Fill;
+                            pictureBox.Image = image;
+                        }
+                        
+                        Panel panel = new Panel();
+                        panel.Dock = DockStyle.Fill;
+                        panel.Controls.Add(pictureBox);
+
+                        
+                        tableLayoutPanel.Controls.Add(panel,x, y);
+                    }
+                }
+                x++;
+                y++;
+            }
            
 
         }
