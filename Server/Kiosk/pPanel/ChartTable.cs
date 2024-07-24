@@ -1,6 +1,7 @@
 ﻿using Kiosk.pPanel.common;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -48,7 +49,13 @@ namespace Kiosk.pPanel
 
                     DataPoint dp = new DataPoint();
                     dp.SetValueXY(itemName, itemCount);
-                    dp.Label = $"{itemName} ({percent:F2}%)"; 
+
+                    // 퍼센트를 원형 내부에 표시
+                    dp.Label = $"{percent:F2}%";
+
+                    // 범례에 아이템 이름 표시
+                    dp.LegendText = itemName;
+
                     series.Points.Add(dp);
                 }
 
