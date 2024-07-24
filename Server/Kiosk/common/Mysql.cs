@@ -1487,7 +1487,7 @@ internal class ChartList
     #region 테이블 구조 들고와서 빈 datatable 에 집어넣기
     public DataTable CreateDataTable()
     {
-        string[] iWantColumn = { "itemName", "itemCount", "payment", "regdate" }; //원하는 칼럼만
+        string[] iWantColumn = { "itemName", "itemCount", "payment" }; //원하는 칼럼만
         DataTable dataTable = new DataTable();
 
         DataTable schemaTable = GetTableSchema(mysql); // GetOrder() 메서드에서 스키마 정보 가져오기
@@ -1521,7 +1521,7 @@ internal class ChartList
         try
         {
             //itemNumber, itemName, itemCount, payment
-            sql = "select  itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) GROUP BY itemName, regdate order by itemName, regdate";
+            sql = "select  itemName, sum(itemCount) as itemCount, sum(payment) as payment from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) GROUP BY itemName order by sum(itemCount) desc";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
             {
@@ -1542,7 +1542,7 @@ internal class ChartList
         DataTable dataTable = CreateDataTable();
         try
         {
-            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND (itemName = @keyword OR itemName LIKE @like_keyword) GROUP BY itemName, regdate order by itemName, regdate";
+            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment from ordertable where orderNumber != '0'  AND (itemName = @keyword OR itemName LIKE @like_keyword) GROUP BY itemName order by sum(itemCount) desc";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
             cmd.Parameters.AddWithValue("@keyword",keyword);
             cmd.Parameters.AddWithValue("@like_keyword","%"+keyword+"%");
@@ -1575,7 +1575,7 @@ internal class ChartList
         DataTable dataTable = CreateDataTable();
         try
         {
-            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND (itemName = @keyword OR itemName like @like_keyword) And regdate = @target_day GROUP BY itemName, regdate order by itemName, regdate";
+            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND (itemName = @keyword OR itemName like @like_keyword) And regdate = @target_day GROUP BY itemName order by sum(itemCount) desc";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
             cmd.Parameters.AddWithValue("@keyword", keyword);
             cmd.Parameters.AddWithValue("@like_keyword", "%" + keyword + "%");
@@ -1607,7 +1607,7 @@ internal class ChartList
         DataTable dataTable = CreateDataTable();
         try
         {
-            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND regdate = @target_day GROUP BY itemName, regdate order by itemName, regdate";
+            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND regdate = @target_day GROUP BY itemName order by sum(itemCount) desc";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
             cmd.Parameters.AddWithValue("@target_day", target_day);
 
@@ -1637,7 +1637,7 @@ internal class ChartList
         DataTable dataTable = CreateDataTable();
         try
         {
-            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND regdate between @start_day And @end_day GROUP BY itemName, regdate order by itemName, regdate";
+            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND regdate between @start_day And @end_day GROUP BY itemName order by sum(itemCount) desc";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
             cmd.Parameters.AddWithValue("@start_day", start_day);
             cmd.Parameters.AddWithValue("@end_day", end_day);
@@ -1668,7 +1668,7 @@ internal class ChartList
         DataTable dataTable = CreateDataTable();
         try
         {
-            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment, regdate from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND (itemName = @keyword OR itemName like @like_keyword) And regdate between @start_day AND @end_day GROUP BY itemName, regdate order by itemName, regdate";
+            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND (itemName = @keyword OR itemName like @like_keyword) And regdate between @start_day AND @end_day GROUP BY itemName order by sum(itemCount) desc";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
             cmd.Parameters.AddWithValue("@keyword", keyword);
             cmd.Parameters.AddWithValue("@like_keyword", "%" + keyword + "%");

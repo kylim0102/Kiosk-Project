@@ -10,6 +10,7 @@ namespace Kiosk.pPanel
     public partial class list : UserControl
     {
         public event delDataTableSender eDataTableSender;
+        //public event delCalendarSender eCalendarSender;
         private MySqlConnection mysql = new MySqlConnection();
         private ChartList chartList = new ChartList(); 
 
@@ -98,8 +99,14 @@ namespace Kiosk.pPanel
 
             start_calendar.Text = monthCalendar1.SelectionStart.ToString("yyyy-MM-dd");
             monthCalendar1.Visible = false;
+            //eCalendarSender += Selection_day;
 
         }
+        /*private void Selection_day()
+        {
+            DateTime dateTime = monthCalendar1.SelectionStart;
+          
+        }*/
         #endregion
 
         #region Turn Off End Calendar(검색 시작일 클릭 시 검색 종료일의 캘린더가 꺼짐)

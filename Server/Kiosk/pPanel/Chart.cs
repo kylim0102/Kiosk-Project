@@ -11,6 +11,8 @@ namespace Kiosk.pPanel
         pPanel.list list = new pPanel.list();
         pPanel.ChartTable chart = new pPanel.ChartTable();
         ChartData cData = new ChartData();
+        
+        string time = null;
 
 
 
@@ -18,11 +20,12 @@ namespace Kiosk.pPanel
         public Chart()
         {
             InitializeComponent();
-
+            
             //list 데이터 받아오기
             list.eDataTableSender += List_eDataTableSender;
             
         }
+        
 
         private void List_eDataTableSender(object oSender, DataTable dt)
         {
@@ -46,6 +49,7 @@ namespace Kiosk.pPanel
             panel1.Controls.Clear();
             panel1.Controls.Add(chart);
             chart.SetData(cData);
+            //chart.SetDay(time);
         }
         #endregion
 

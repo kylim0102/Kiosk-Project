@@ -324,6 +324,7 @@ namespace Kiosk.Order
                 DataTable data = orderTable.GetAllOrderTable();
                 selected_menu.DataSource = data;
             }
+            payment.Text = "0";
         }
         #endregion
 

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -283,6 +284,7 @@ namespace Kiosk.pPanel.common
     // UserControl에서 Main으로 ChartType 값을 전달 하기 위한 Delegate 정의  
     public delegate void delChartTypeSender(object oSender, SeriesChartType ct);
     public delegate void delTextSender(object oSender, string text);
+    //public delegate void delCalendarSender(object sender, DateTime date);
 
     public class ChartData
     {
