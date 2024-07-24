@@ -33,6 +33,46 @@ namespace Kiosk
         {
             // 버튼 클릭 시 실행될 코드 작성
             MessageBox.Show("버튼이 클릭되었습니다!");
+
+            DataTable dt = TemporaryTable.GetTemporaryDataTable();
+            string itemName = null;
+            List<string> itemList = new List<string>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                itemName = row["itemName"].ToString();
+                itemList.Add(itemName);
+            }
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.Name = "image";
+
+            // 바탕화면 경로 가져오기
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            // image 폴더 경로
+            string imagePath = Path.Combine(desktopPath, "Kiosk_Image");
+            Image item = Image.FromFile(imagePath + "\\" + itemList[0] + ".jpg");
+
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox.Dock = DockStyle.Fill;
+            pictureBox.Image = item;
+
+
+
+            foreach (Control control in cartPanel.Controls)
+            {
+                if (control is TableLayoutPanel)
+                {
+                    TableLayoutPanel tableLayoutPanel = (TableLayoutPanel)control;
+                    if (tableLayoutPanel.Name == "tableLayoutPanel1")
+                    {
+                        tableLayoutPanel.Controls.Add(pictureBox);
+                        break;
+                    }
+                }
+            }
+            //cartPanel.Controls.Add(pictureBox);
+
             kioskPanel.Visible = false; // 현재 상품 목록 창은 Un Visible
             cartPanel.Visible = true; // 장바구니 이동
         }

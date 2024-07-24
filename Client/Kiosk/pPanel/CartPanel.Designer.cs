@@ -122,6 +122,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CartPanel";
             this.Size = new System.Drawing.Size(754, 848);
+            this.Load += new System.EventHandler(this.CartPanel_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

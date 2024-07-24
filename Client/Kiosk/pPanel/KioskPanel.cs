@@ -1,9 +1,11 @@
 ﻿using Kiosk.common;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +20,8 @@ namespace Kiosk.pPanel
         public event EventHandler ButtonClicked;
         private static TemporaryTable TemporaryTable = new TemporaryTable();
 
+        
+
         public KioskPanel()
         {
             InitializeComponent();
@@ -29,6 +33,7 @@ namespace Kiosk.pPanel
         {
             TableLayoutPanel table = new TableLayoutPanel();
             table.Dock = DockStyle.Fill;
+            
 
 
             ItemInsert itemInsert = new ItemInsert();
@@ -101,7 +106,36 @@ namespace Kiosk.pPanel
 
         public void button4_Click(object sender, EventArgs e)
         {
+            DataTable dt = TemporaryTable.GetTemporaryDataTable();
+            //DataRow dataRow = null;
+            string itemName = null;
+            List<string> itemList = new List<string>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                itemName = row["itemName"].ToString();
+                itemList.Add(itemName);
+            }
+
             ButtonClicked?.Invoke(this, EventArgs.Empty);
+            
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.Name = "image";
+
+            // 바탕화면 경로 가져오기
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            // image 폴더 경로
+            string imagePath = Path.Combine(desktopPath, "Kiosk_Image");
+            Image item = Image.FromFile(imagePath + "\\" + itemList[0] + ".jpg");
+
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox.Dock = DockStyle.Fill;
+            pictureBox.Image = item;
+            
+            cartPanel.Controls.Add(pictureBox);
+           
+
         }
 
         private void button3_Click(object sender, EventArgs e)

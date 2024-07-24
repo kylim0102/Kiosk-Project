@@ -279,3 +279,4 @@ C:\Users\ldh97\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.csproj.Up2Date
 C:\Users\ldh97\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.exe
 C:\Users\ldh97\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pdb
 C:\Users\ldh97\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pPanel.TemporaryView.resources
+C:\Users\ghckd\Desktop\C#\Team-Project\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pPanel.TemporaryView.resources
