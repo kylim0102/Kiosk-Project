@@ -23,7 +23,7 @@ namespace Kiosk.pPanel
             _cData = cData;
             ChartDataLoad(_cData);
         }
-
+        #region List To Chart(List에 있는 내용을 Chart로 전송하여 구현)
         private void ChartDataLoad(ChartData cData)
         {
             chart1.Series.Clear();
@@ -66,6 +66,8 @@ namespace Kiosk.pPanel
                 MessageBox.Show("list 를 먼저 확인해주세요.");
             }
         }
+        #endregion
+
         #region dummy
         private void ChartTable_Load(object sender, EventArgs e)
         {
