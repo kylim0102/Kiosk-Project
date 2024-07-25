@@ -79,15 +79,17 @@ namespace Kiosk.pPanel
 
                 Panel panel = new Panel();
                 
-                panel.Dock = DockStyle.Fill;
+                panel.Dock = DockStyle.None;
 
                 if (x == 0)
                 {
 
                     PictureBox pictureBox = new PictureBox();
                     pictureBox.Name = "image";
-                    pictureBox.Dock = DockStyle.Fill;
+                    pictureBox.Dock = DockStyle.None;
+                    pictureBox.Size = new Size(150, 90);
                     pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    
 
                     // 바탕화면 경로 가져오기
                     string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -109,7 +111,7 @@ namespace Kiosk.pPanel
                 {
                     Label label = new Label();
                     label.Text = itemName;
-                    label.Dock = DockStyle.Fill;
+                    label.Dock = DockStyle.None;
                     label.TextAlign = ContentAlignment.MiddleCenter;
 
                     panel.Controls.Add(label);
@@ -128,7 +130,7 @@ namespace Kiosk.pPanel
                             list.Items.Add(option);
                         }
                     }
-                    list.Dock = DockStyle.Fill;
+                    list.Dock = DockStyle.None ;
                     panel.Controls.Add(list);
 
                 }
@@ -137,7 +139,8 @@ namespace Kiosk.pPanel
 
                     Label label = new Label();
                     label.Text = count;
-                    label.Dock = DockStyle.Fill;
+                    label.Dock = DockStyle.None;
+                    label.TextAlign = ContentAlignment.MiddleCenter;
                     panel.Controls.Add(label);
                 }
                 else if (x == 4)
@@ -145,7 +148,7 @@ namespace Kiosk.pPanel
 
                     Button btn = new Button();
                     btn.Text = "삭제버튼";
-                    btn.Dock = DockStyle.Fill;
+                    btn.Dock = DockStyle.None;
                     panel.Controls.Add(btn);
                     btn.Click += (sender, e) =>
                     {

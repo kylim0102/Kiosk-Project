@@ -25,7 +25,6 @@ namespace Kiosk.pPanel
         public KioskPanel()
         {
             InitializeComponent();
-            
         }
 
         #region 키오스크 버튼 동적 생성 및 DB 담기
