@@ -333,3 +333,4 @@ C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\bin\Debug\System.ValueTupl
 C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pPanel.item.resources
 C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pPanel.TemporaryView.resources
 C:\Users\이동훈\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.csproj.Up2Date
+C:\Users\Lenovo\Source\Repos\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pPanel.TemporaryView.resources

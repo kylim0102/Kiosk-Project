@@ -103,7 +103,7 @@ namespace Kiosk.common
             int max = 0;
             int cnt = 0;
 
-            sql = "select count(orderNumber) as cnt from ordertable where regdate = now()";
+            sql = "select count(orderNumber) as cnt from ordertable where regdate = curdate()";
             using (MySqlCommand cmd1 = new MySqlCommand(sql, mysql))
             {
                 using (reader = cmd1.ExecuteReader())
@@ -119,7 +119,7 @@ namespace Kiosk.common
             }
             else
             {
-                sql = "select max(orderNumber) as max from ordertable where regdate = now()";
+                sql = "select max(orderNumber) as max from ordertable where regdate = curdate()";
                 using (MySqlCommand cmd2 = new MySqlCommand(sql, mysql))
                 {
                     using (reader = cmd2.ExecuteReader())

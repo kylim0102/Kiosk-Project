@@ -55,7 +55,8 @@ namespace Kiosk.pPanel
 
             for (int y = 0; y < rowCount; y++)
             {
-                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100f / rowCount));
+
+                tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / columnCount));
             }
 
             for (int i = 0; i < itemCount; i++)
@@ -77,6 +78,7 @@ namespace Kiosk.pPanel
                 }
 
                 Panel panel = new Panel();
+                
                 panel.Dock = DockStyle.Fill;
 
                 if (x == 0)

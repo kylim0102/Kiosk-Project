@@ -44,6 +44,8 @@ namespace Kiosk.pPanel
 
                 order.insertItem(itemNumber, itemName, itemCount, payment, orderNumber);
             }
+
+            MessageBox.Show("주문이 완료되었습니다");
         }
     }
 }
