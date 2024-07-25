@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +53,86 @@ namespace Kiosk.common
         #endregion
     }
 
+    internal class Order {
+
+        private static MySqlConnection mysql = Mysql.GetConnection();
+        private MySqlDataReader reader = null;
+        private string sql = null;
+
+        string itemName = null;
+        int price = 0;
+        string content = null;
+        string optionName = null;
+        int optionPrice = 0;
+
+        #region 결제 OrderTable에 담기
+        public void insertItem(string itemNumber, string itemName, int itemCount, int payment, int orderNumber)
+        {
+            sql = "insert into ordertable(itemNumber, itemName, itemCount, payment, orderNumber, regdate) values (@itemNumber, @itemName, @itemCount, @payment, @orderNumber, now())";
+            using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
+            {
+                cmd.Parameters.AddWithValue("@itemNumber", itemNumber);
+                cmd.Parameters.AddWithValue("@itemName", itemName);
+                cmd.Parameters.AddWithValue("@itemCount", itemCount);
+                cmd.Parameters.AddWithValue("@payment", payment);
+                cmd.Parameters.AddWithValue("@orderNumber", orderNumber);
+                cmd.ExecuteNonQuery();
+            }
+
+        }
+        #endregion
+
+        public int MaxOrderNumber()
+        {
+            int max = 0;
+
+            sql = "select max(orderNumber) as max from ordertable";
+            using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
+            {
+                using (reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    max = reader.GetInt32("max") + 1;
+                }
+            }
+            return max;
+        }
+
+        public int MaxOrderNumberFromDate()
+        {
+            int max = 0;
+            int cnt = 0;
+
+            sql = "select count(orderNumber) as cnt from ordertable where regdate = now()";
+            using (MySqlCommand cmd1 = new MySqlCommand(sql, mysql))
+            {
+                using (reader = cmd1.ExecuteReader())
+                {
+                    reader.Read();
+                    cnt = reader.GetInt32("cnt");
+                }
+            }
+            if (cnt == 0)
+            {
+                max = 1;
+                return max;
+            }
+            else
+            {
+                sql = "select max(orderNumber) as max from ordertable where regdate = now()";
+                using (MySqlCommand cmd2 = new MySqlCommand(sql, mysql))
+                {
+                    using (reader = cmd2.ExecuteReader())
+                    {
+                        reader.Read();
+                        max = reader.GetInt32("max") + 1;
+                    }
+                }
+                return max;
+            }
+        }
+    }
+
     #region KioskPanel.cs
     internal class ItemInsert
     {
@@ -64,7 +145,7 @@ namespace Kiosk.common
         string content = null;
         string optionName = null;
         int optionPrice = 0;
-        
+
 
         #region 아이템 찾기 및 버튼 생성
         public List<Button> CheckItem(string category)
@@ -98,29 +179,8 @@ namespace Kiosk.common
             finally
             {
                 reader.Close();
-            } 
+            }
             return itemlist;
-        }
-        #endregion
-
-        #region 아이템 DB 담기
-
-        public void InsertItem(string itemName, int price, string content)
-        {
-            try
-            {
-                sql = "insert into kiosktest(itemName, payment, content, regdate) values (@itemName, @price, @content, now())";
-                MySqlCommand cmd = new MySqlCommand(sql, mysql);
-                cmd.Parameters.AddWithValue("@itemName", itemName);
-                cmd.Parameters.AddWithValue("@price", price);
-                cmd.Parameters.AddWithValue("@content", content);
-                
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                ex.ToString();
-            }
         }
         #endregion
 
@@ -138,7 +198,7 @@ namespace Kiosk.common
                 {
                     optionName = reader.GetString("optionname");
                     optionPrice = reader.GetInt32("option_value");
-                    
+
 
                     CheckBox check = new CheckBox();
                     check.Text = optionName;
@@ -148,7 +208,7 @@ namespace Kiosk.common
                     checkbox.Add(check);
                 }
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 ex.ToString();
             }
@@ -193,6 +253,7 @@ namespace Kiosk.common
     }
     #endregion
 
+
     internal class TemporaryTable
     {
         // Temporary Table은 별도의 Con을 관리
@@ -235,7 +296,7 @@ namespace Kiosk.common
                     cmd.ExecuteNonQuery();
                 }
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -260,7 +321,7 @@ namespace Kiosk.common
 
                 }
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -294,11 +355,11 @@ namespace Kiosk.common
                     MessageBox.Show("장바구니에 담는 과정에서 문제가 발생했습니다.\n관리자에게 문의하세요.", "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         public static int GetMaxItemNumber()
@@ -308,7 +369,7 @@ namespace Kiosk.common
             try
             {
                 sql = "select Max(itemNumber) as max from temp_cart where itemNumber = substring_index(itemNumber,'-',1)";
-                using(MySqlCommand cmd = new MySqlCommand(sql,con))
+                using (MySqlCommand cmd = new MySqlCommand(sql, con))
                 {
                     reader = cmd.ExecuteReader();
                     reader.Read();
@@ -316,7 +377,7 @@ namespace Kiosk.common
                     result = reader.GetInt32("max");
                 }
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -336,15 +397,15 @@ namespace Kiosk.common
             try
             {
                 sql = "select * from temp_cart LIMIT 0";
-                using (MySqlCommand cmd = new MySqlCommand(sql,con))
+                using (MySqlCommand cmd = new MySqlCommand(sql, con))
                 {
-                    using(reader = cmd.ExecuteReader(CommandBehavior.SchemaOnly))
+                    using (reader = cmd.ExecuteReader(CommandBehavior.SchemaOnly))
                     {
                         table = reader.GetSchemaTable();
                     }
                 }
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -386,8 +447,58 @@ namespace Kiosk.common
             MySqlConnection con = DB_Connection();
             try
             {
-                sql = "select itemNumber, itemName, itemCount, payment from temp_cart where orderNumber = '0' order by itemNumber";
+                sql = "select itemNumber, itemName, itemCount, payment from temp_cart where itemNumber = substring_index(itemNumber,'-',1) and orderNumber = '0' order by itemNumber"; // 수정
                 MySqlCommand cmd = new MySqlCommand(sql, con);
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dataTable);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return dataTable;
+        }
+        public static DataTable all()
+        {
+            DataTable dataTable = CreateDataTable();
+            MySqlConnection con = DB_Connection();
+            try
+            {
+                sql = "select itemNumber, itemName, itemCount, payment from temp_cart where orderNumber = '0' order by itemNumber"; // 수정
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    adapter.Fill(dataTable);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return dataTable;
+        }
+
+        public static void Delete (string itemNumber)
+        {
+            MySqlConnection con = DB_Connection();
+            sql = "delete from temp_cart where itemNumber LIKE @itemNumber";
+             MySqlCommand cmd = new MySqlCommand(sql, con);
+
+            cmd.Parameters.AddWithValue("@itemNumber", itemNumber + "%");
+            cmd.ExecuteNonQuery();
+        }
+
+        public static DataTable GetAllTemporaryDataTable(string itemNumber)
+        {
+            DataTable dataTable = CreateDataTable();
+            MySqlConnection con = DB_Connection();
+            try
+            {
+                sql = "select itemNumber, itemName, itemCount, payment from temp_cart where  orderNumber = '0' AND itemNumber LIKE @itemNumber order by itemNumber";
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("itemNumber", itemNumber + "-%");
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
                     adapter.Fill(dataTable);
@@ -409,7 +520,7 @@ namespace Kiosk.common
                 sql = "select count(*) as cnt from temp_cart where itemNumber like @itemNumber";
                 using (MySqlCommand cmd = new MySqlCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("@itemNumber",itemNumber+"-%");
+                    cmd.Parameters.AddWithValue("@itemNumber", itemNumber + "-%");
                     reader = cmd.ExecuteReader();
                     reader.Read();
 
@@ -427,7 +538,7 @@ namespace Kiosk.common
 
             return result;
         }
-        
+
         public static void CloseCon()
         {
             MySqlConnection con = DB_Connection();
