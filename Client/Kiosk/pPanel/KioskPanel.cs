@@ -20,8 +20,6 @@ namespace Kiosk.pPanel
         public event EventHandler ButtonClicked;
         private static TemporaryTable TemporaryTable = new TemporaryTable();
 
-        
-
         public KioskPanel()
         {
             InitializeComponent();
@@ -102,28 +100,13 @@ namespace Kiosk.pPanel
         }
         #endregion
 
-
-        public void button4_Click(object sender, EventArgs e)
-        {
-            ButtonClicked?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        #region KioskPanel_OnLoad(Kiosk 패널이 Load될 때 이벤트)
         private void KioskPanel_Load(object sender, EventArgs e)
         {
             List<string> categorys = ItemInsert.GetCategory();
             TabPage page = null;
 
-            for(int a=0; a<categorys.Count; a++)
+            for (int a = 0; a < categorys.Count; a++)
             {
                 page = new TabPage();
                 page.Name = categorys[a];
@@ -131,27 +114,42 @@ namespace Kiosk.pPanel
 
                 tabControl1.TabPages.Add(page);
             }
-            
+
             TabControl now = tabControl1;
             now.TabPages[0].Controls.Add(AddFromKioskLayoutPanel(now.SelectedTab.Text));
 
             TemporaryTable.CreateTemporary();
         }
+        #endregion
 
+        #region ChangedTabPage(TabControl에서 선택된 Tab이 바뀔 때 이벤트)
         private void Selected_Change(object sender, EventArgs e)
         {
             TabPage page = tabControl1.SelectedTab;
             page.Controls.Add(AddFromKioskLayoutPanel(page.Text));
         }
+        #endregion
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("테이블 생성 확인" + TemporaryTable.CheckTemporary() + "");
-        }
 
+
+
+        #region Dummy Event
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("max 확인" + TemporaryTable.GetMaxItemNumber() + "");
+
         }
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void button4_Click(object sender, EventArgs e)
+        {
+            ButtonClicked?.Invoke(this, EventArgs.Empty);
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

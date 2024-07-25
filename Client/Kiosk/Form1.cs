@@ -29,7 +29,7 @@ namespace Kiosk
 
         }
 
-        // ↓ 그럼 KioskPanel_Button이 Kiosk → cart로 이동 시키는 버튼? 예얍
+        #region KioskPanel To CartPanel Button Event(제품 목록 → 장바구니)
         private void kioskPanel_ButtonClicked(object sender, EventArgs e)
         {
             // 버튼 클릭 시 실행될 코드 작성
@@ -41,8 +41,10 @@ namespace Kiosk
 
             kioskPanel.Visible = false; // 현재 상품 목록 창은 Un Visible
             cartPanel.Visible = true; // 장바구니 이동
-        }  
+        }
+        #endregion
 
+        #region Form_Load Event(폼이 로드될 때 키오스크, 장바구니 패널 Visivle - False, 제품 사진 다운로드)
         private void Form1_Load(object sender, EventArgs e)
         {
             // Form Load (폼이 로드 될 때 Kiosk 패널과 cart 패널이 추가되고, Visible = false;)
@@ -72,36 +74,43 @@ namespace Kiosk
 
             storage.AllFileDownload(imagePath+"\\");
         }
+        #endregion
 
+        #region CartPanel To KioskPanel Button Event(장바구니 → 제품 목록)
         private void Cart_To_Kiosk_Button(object sender, EventArgs e)
         {
             MessageBox.Show("제품창으로 넘어갑니다.");
             kioskPanel.Visible = true;
             cartPanel.Visible = false;
         }
-            
+        #endregion
+
+        #region Dine In Button Event(매장 버튼 클릭 이벤트)
         private void button1_Click(object sender, EventArgs e)
         {
-            // Kiosk 패널 Visible, cart 패널 Unvisible, panel1(첫 버튼 2개 화면?)
             // 상품 선택 창
             panel1.Visible = false;
             kioskPanel.Visible = true;
             cartPanel.Visible = false;
         }
+        #endregion
 
+        #region Take Out Button Event(포장 버튼 클릭 이벤트)
         private void button2_Click(object sender, EventArgs e)
         {
-            // button1_click 이벤트와 차이가 없어보임
             panel1.Visible = false;
             kioskPanel.Visible = true;
             cartPanel.Visible = false;
-
-
         }
+        #endregion
 
+
+
+        #region Dummy Event
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
+        #endregion
     }
 }

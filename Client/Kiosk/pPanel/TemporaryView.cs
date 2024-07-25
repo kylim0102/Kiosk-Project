@@ -13,15 +13,15 @@ namespace Kiosk.pPanel
 {
     public partial class TemporaryView : Form
     {
-        
         private static TemporaryTable TemporaryTable = new TemporaryTable();
-        Order order = new Order();
+        private Order order = new Order();
         
         public TemporaryView()
         {
             InitializeComponent();
         }
 
+        #region TemporaryView_Load(TemporaryView가 Load될 때 Temporary Table 데이터를 DataGridView로 보여주고, DB의 OrderTable에 저장)
         private void TemporaryViewcs_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = TemporaryTable.all();
@@ -47,5 +47,6 @@ namespace Kiosk.pPanel
 
             MessageBox.Show("주문이 완료되었습니다");
         }
+        #endregion
     }
 }

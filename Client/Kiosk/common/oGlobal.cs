@@ -11,10 +11,17 @@ using System.Windows.Forms;
 
 namespace Kiosk.common
 {
+    #region oGlobal
     internal class oGlobal
     {
-
+        public string Welcome_oGlobal()
+        {
+            return "Welcome To The oGlobal";
+        }
     }
+    #endregion
+
+    #region Azure Storage
     internal class StorageConnection
     {
         #region Azure Storage Connection And Get Controller(Azure 스토리지에 접속 후 스토리지 컨트롤러를 반환)
@@ -37,8 +44,6 @@ namespace Kiosk.common
             return containerClient;
         }
         #endregion
-
-
 
         #region Get Azure Storage All Blobs(Azure 스토리지에 있는 모든 목록을 반환)
         public List<BlobItem> GetBlobs()
@@ -136,7 +141,6 @@ namespace Kiosk.common
         }
         #endregion
 
-
         #region Get Local Storage File Path Scanner(Local 스토리지에서 선택한 파일의 경로와 파일명을 반환)
         public string LocalStorageScan() // 파일 경로 탐색기
         {
@@ -197,8 +201,6 @@ namespace Kiosk.common
             }
         }
         #endregion
-
-
 
         #region Azure Storage Delete Blob(Azure 스토리지에서 선택한 파일 삭제)
         public void DeleteBlob(string blobName)
@@ -270,4 +272,5 @@ namespace Kiosk.common
         }
         #endregion
     }
+    #endregion
 }
