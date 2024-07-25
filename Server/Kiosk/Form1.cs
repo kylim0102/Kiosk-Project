@@ -14,13 +14,15 @@ namespace Kiosk
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
-            con.TcpServerOn();
+            await con.TcpServerOn();
+
+            Console.WriteLine(con.GetWaitingConnection());
 
             if(con.GetWaitingConnection())
             {
-                waitingCon.Text = "접속 대기중";
+                waitingCon.Text = "접속 대기중...";
             }
             else
             {
@@ -48,6 +50,16 @@ namespace Kiosk
         }
         #endregion
 
+        #region Show OrderList(주문 목록 창 보기)
+        private void button4_Click(object sender, EventArgs e)
+        {
+            using(Order.OrderList order = new Order.OrderList())
+            {
+                order.ShowDialog();
+            }
+        }
+        #endregion
+
         #region Show ItemManage(제품관리 창 보기)
         private void button3_Click(object sender, EventArgs e)
         {
@@ -55,6 +67,9 @@ namespace Kiosk
             mainPage.Show();
         }
         #endregion
+
         #endregion
+
+
     }
 }

@@ -9,6 +9,8 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kiosk.pPanel.common
@@ -16,7 +18,11 @@ namespace Kiosk.pPanel.common
     internal class TcpConnection
     {
         private TcpListener listener;
-        private readonly BindingList<TcpClient> clients = new BindingList<TcpClient>(); 
+        private TcpClient client;
+        private readonly BindingList<TcpClient> clients = new BindingList<TcpClient>();
+
+        private NetworkStream clientStream;
+        private BinaryFormatter formatter;
 
         public string GetIPv4Address()
         {
@@ -45,16 +51,49 @@ namespace Kiosk.pPanel.common
             return ipAddress;
         }
 
-        public async void TcpServerOn()
+        public async Task TcpServerOn()
         {
             string IPv4Address = GetIPv4Address();
             listener = new TcpListener(IPAddress.Parse(IPv4Address), 8090);
+
+            Console.WriteLine("Tcp/Ip Server On");
+            Console.WriteLine("Server IPv4 Address: "+IPv4Address);
+
             listener.Start();
+
+            Console.WriteLine("Client의 접속을 기다리는 중...");
 
             while (true)
             {
                 TcpClient Client = await listener.AcceptTcpClientAsync();
                 clients.Add(Client);
+            }
+        }
+
+        public async Task<DataTable> GetDataTableFromClient()
+        {
+            if(clients.Count<=0)
+            {
+                throw new InvalidOperationException("현재 접속된 클라이언트가 없습니다.");
+            }
+            else
+            {
+                client = clients[0];
+                try
+                {
+                    using (clientStream = client.GetStream())
+                    {
+                        formatter = new BinaryFormatter();
+
+                        //클라이언트로부터 DataTable 비동기 수신
+                        return await Task.Run(() => (DataTable)formatter.Deserialize(clientStream));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("데이터 수신 중 오류가 발생했습니다: "+ex.Message);
+                    throw;
+                }
             }
         }
 

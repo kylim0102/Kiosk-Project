@@ -32,8 +32,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.waitingCon = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -88,6 +88,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "☕";
             // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold);
+            this.button4.Location = new System.Drawing.Point(63, 234);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(213, 66);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "주문 내역";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold);
@@ -99,16 +110,6 @@
             this.button1.Text = "주  문";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold);
-            this.button4.Location = new System.Drawing.Point(63, 234);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(213, 66);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "주문 내역";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
