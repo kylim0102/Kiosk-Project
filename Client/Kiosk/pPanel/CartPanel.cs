@@ -38,8 +38,6 @@ namespace Kiosk.pPanel
             tableLayoutPanel1.ColumnStyles.Clear();
             tableLayoutPanel1.RowStyles.Clear();
 
-
-
             int columnCount = 5;
             int itemCount = dt.Rows.Count * 5;
             int rowCount = (int)Math.Ceiling((double)itemCount / columnCount);
@@ -47,23 +45,24 @@ namespace Kiosk.pPanel
             tableLayoutPanel1.ColumnCount = columnCount;
             tableLayoutPanel1.RowCount = rowCount;
 
+            tableLayoutPanel1.AutoSize = true; // 테이블 레이아웃 자동 크기 조정
+            tableLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
             // 열 스타일 설정
             for (int x = 0; x < columnCount; x++)
             {
-                tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / columnCount));
+                tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20f)); // 각 열이 부모 컨트롤의 20%를 차지하도록 설정
             }
 
             for (int y = 0; y < rowCount; y++)
             {
-
-                tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / columnCount));
+                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.AutoSize)); // 각 행의 크기는 자동으로 조정
             }
 
             for (int i = 0; i < itemCount; i++)
             {
                 int x = i % columnCount;
                 int y = i / columnCount;
-
 
                 DataRow row = dt.Rows[i / 5];
                 string itemName = null;
@@ -78,42 +77,35 @@ namespace Kiosk.pPanel
                 }
 
                 Panel panel = new Panel();
-                
-                panel.Dock = DockStyle.None;
+                panel.Dock = DockStyle.Fill;
+                panel.AutoSize = true; // 패널 자동 크기 조정
 
                 if (x == 0)
                 {
-
                     PictureBox pictureBox = new PictureBox();
                     pictureBox.Name = "image";
-                    pictureBox.Dock = DockStyle.None;
-                    pictureBox.Size = new Size(150, 90);
+                    pictureBox.Dock = DockStyle.Fill;
                     pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                    
 
-                    // 바탕화면 경로 가져오기
                     string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
-                    // image 폴더 경로
-                    string imagePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Kiosk_Image");
+                    string imagePath = Path.Combine(desktopPath, "Kiosk_Image");
                     string fullImagePath = Path.Combine(imagePath, itemName + ".jpg");
 
+                    if (File.Exists(fullImagePath))
+                    {
+                        Image item = Image.FromFile(fullImagePath);
+                        pictureBox.Image = item;
+                    }
+
                     panel.Controls.Add(pictureBox);
-                    this.tableLayoutPanel1.Controls.Add(panel);
-
-                    Image item = Image.FromFile(fullImagePath);
-                    pictureBox.Image = item;
-
-                    panel.Controls.Add(pictureBox);
-
                 }
                 else if (x == 1)
                 {
                     Label label = new Label();
                     label.Text = itemName;
-                    label.Dock = DockStyle.None;
+                    label.Dock = DockStyle.Fill;
                     label.TextAlign = ContentAlignment.MiddleCenter;
-
+                    label.AutoSize = true; // 레이블 자동 크기 조정
                     panel.Controls.Add(label);
                 }
                 else if (x == 2)
@@ -130,25 +122,24 @@ namespace Kiosk.pPanel
                             list.Items.Add(option);
                         }
                     }
-                    list.Dock = DockStyle.None ;
+                    list.Dock = DockStyle.Fill;
+                    list.AutoSize = true; // 리스트박스 자동 크기 조정
                     panel.Controls.Add(list);
-
                 }
                 else if (x == 3)
                 {
-
                     Label label = new Label();
                     label.Text = count;
-                    label.Dock = DockStyle.None;
-                    label.TextAlign = ContentAlignment.MiddleCenter;
+                    label.Dock = DockStyle.Fill;
+                    label.AutoSize = true; // 레이블 자동 크기 조정
                     panel.Controls.Add(label);
                 }
                 else if (x == 4)
                 {
-
                     Button btn = new Button();
                     btn.Text = "삭제버튼";
-                    btn.Dock = DockStyle.None;
+                    btn.Dock = DockStyle.Fill;
+                    btn.AutoSize = true; // 버튼 자동 크기 조정
                     panel.Controls.Add(btn);
                     btn.Click += (sender, e) =>
                     {
@@ -161,7 +152,6 @@ namespace Kiosk.pPanel
                 }
                 tableLayoutPanel1.Controls.Add(panel, x, y);
             }
-
         }
 
 
