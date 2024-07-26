@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -31,12 +32,12 @@ namespace Kiosk.pPanel.common
             foreach (NetworkInterface Interface in NetworkInterface.GetAllNetworkInterfaces())
             {
                 // 필요한 네트워크 인터페이스 선택 (ex: Ethernet, Wi-Fi 등)
-                if(Interface.NetworkInterfaceType == NetworkInterfaceType.Ethernet || Interface.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
+                if (Interface.NetworkInterfaceType == NetworkInterfaceType.Ethernet || Interface.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
                 {
-                    foreach(UnicastIPAddressInformation ip in Interface.GetIPProperties().UnicastAddresses)
+                    foreach (UnicastIPAddressInformation ip in Interface.GetIPProperties().UnicastAddresses)
                     {
                         // IPv4 Address 만 사용
-                        if(ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                        if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
                         {
                             ipAddress = ip.Address.ToString();
                             break;
@@ -57,7 +58,7 @@ namespace Kiosk.pPanel.common
             listener = new TcpListener(IPAddress.Parse(IPv4Address), 8090);
 
             Console.WriteLine("Tcp/Ip Server On");
-            Console.WriteLine("Server IPv4 Address: "+IPv4Address);
+            Console.WriteLine("Server IPv4 Address: " + IPv4Address);
 
             listener.Start();
 
@@ -75,9 +76,20 @@ namespace Kiosk.pPanel.common
             return await Task.Run(() => clients.Count);
         }
 
+        public DataTable DeserializeDataTable(byte[] data)
+        {
+            using (var memoryStream = new MemoryStream(data))
+            {
+                DataTable dataTable = new DataTable();
+                dataTable.ReadXml(memoryStream);
+                return dataTable;
+            }
+        }
+
         public async Task<DataTable> GetDataTableFromClient()
         {
-            if(clients.Count<=0)
+            DataTable table = null;
+            if (clients.Count <= 0)
             {
                 throw new InvalidOperationException("현재 접속된 클라이언트가 없습니다.");
             }
@@ -86,25 +98,33 @@ namespace Kiosk.pPanel.common
                 client = clients[0];
                 try
                 {
-                    using (clientStream = client.GetStream())
+                    using (var networkStream = client.GetStream())
                     {
-                        formatter = new BinaryFormatter();
+                        byte[] buffer = new byte[4096];
+                        int bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length);
+                        if (bytesRead > 0)
+                        {
+                            byte[] data = buffer.Take(bytesRead).ToArray();
+                            table = DeserializeDataTable(data);
+                            // Process the DataTable
+                            Console.WriteLine($"Received DataTable with {table.Rows.Count} rows.");
 
-                        //클라이언트로부터 DataTable 비동기 수신
-                        return await Task.Run(() => (DataTable)formatter.Deserialize(clientStream));
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("데이터 수신 중 오류가 발생했습니다: "+ex.Message);
+                    Console.WriteLine("데이터 수신 중 오류가 발생했습니다: " + ex.Message);
                     throw;
                 }
             }
+            return table;
+            //return await Task.Run(() => table);
         }
 
         public bool GetWaitingConnection()
         {
-            if(listener != null)
+            if (listener != null)
             {
                 return true;
             }
