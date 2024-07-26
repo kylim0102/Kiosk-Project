@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Asn1.Crmf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -42,6 +43,21 @@ namespace Kiosk.Order
             MessageBox.Show("2번 호출벨을 울립니다.");
             groupBox2.Visible = false;
         }
+
+        private void CallButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("호출벨을 울립니다.");
+            foreach(Control control in this.Controls)
+            {
+                if(control is GroupBox groupBox)
+                {
+                    if(groupBox.Name == "Copy3")
+                    {
+                        groupBox.Visible = false;
+                    }
+                }
+            }
+        }
         
         private Control CloneControl(Control original)
         {
@@ -66,7 +82,7 @@ namespace Kiosk.Order
 
             if(newControl is Button button)
             {
-                button.Click += new EventHandler(button4_Click);
+                button.Click += new EventHandler(CallButton_Click);
             }
 
 
@@ -83,9 +99,11 @@ namespace Kiosk.Order
         {
             // 새로운 GroupBox 생성
             GroupBox newgroupBox = new GroupBox();
+            int GroupBoxNumber = this.Controls.OfType<GroupBox>().Count()+1;
 
             // 원본 GroupBox의 속성을 새로운 GroupBox에 복사
             newgroupBox.Text = "Clone GroupBox";
+            newgroupBox.Name = "Copy" + GroupBoxNumber;
             newgroupBox.Size = original.Size;
 
             newgroupBox.Location = new Point(original.Location.X + original.Width + 40, original.Location.Y);

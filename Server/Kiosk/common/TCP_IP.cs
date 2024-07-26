@@ -70,6 +70,11 @@ namespace Kiosk.pPanel.common
             }
         }
 
+        public async Task<int> GetClientsCount()
+        {
+            return await Task.Run(() => clients.Count);
+        }
+
         public async Task<DataTable> GetDataTableFromClient()
         {
             if(clients.Count<=0)
@@ -108,6 +113,8 @@ namespace Kiosk.pPanel.common
                 return false;
             }
         }
+
+
     }
 }
 

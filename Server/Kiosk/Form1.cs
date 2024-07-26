@@ -1,5 +1,6 @@
 ﻿using Kiosk.pPanel.common;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kiosk
@@ -18,7 +19,7 @@ namespace Kiosk
         {
             await con.TcpServerOn();
 
-            Console.WriteLine(con.GetWaitingConnection());
+            Console.WriteLine("접속 상태 체크"+con.GetWaitingConnection());
 
             if(con.GetWaitingConnection())
             {
@@ -28,6 +29,8 @@ namespace Kiosk
             {
                 waitingCon.Text = "연결 끊김";
             }
+
+            await ShowClientConnectedMessageAsync();
         }
 
         #region Main Controller
@@ -66,10 +69,27 @@ namespace Kiosk
             ItemManage.MainPage mainPage = new ItemManage.MainPage();
             mainPage.Show();
         }
-        #endregion
 
         #endregion
 
+        #endregion
 
+        private async void button5_Click(object sender, EventArgs e)
+        {
+            int clients = await con.GetClientsCount();
+            MessageBox.Show("접속한 클라이언트 수: "+clients,"TCP/IP SERVER MANAGER",MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
+
+        private async Task ShowClientConnectedMessageAsync()
+        {
+            if (InvokeRequired)
+            {
+                await Task.Run(() => Invoke(new Action(async () => await ShowClientConnectedMessageAsync())));
+            }
+            else
+            {
+                MessageBox.Show("클라이언트가 접속했습니다.", "TCP/IP SERVER MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }
