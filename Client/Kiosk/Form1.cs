@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Kiosk.common;
+using System.Net.Sockets;
+using System.Net;
 
 namespace Kiosk
 {
@@ -112,5 +114,6 @@ namespace Kiosk
 
         }
         #endregion
+
     }
 }

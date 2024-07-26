@@ -127,6 +127,7 @@
   <ItemGroup>
     <Compile Include="common\Mysql.cs" />
     <Compile Include="common\oGlobal.cs" />
+    <Compile Include="common\TCP_IP.cs" />
     <Compile Include="common\Todo.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
