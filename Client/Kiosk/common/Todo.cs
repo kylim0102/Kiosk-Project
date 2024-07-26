@@ -10,17 +10,7 @@ namespace Kiosk.common
     {
         /*
             1. Client
-                1-1. Client에서 Tcp/Ip 소켓 통신 접속 구현
-
-                1-2. Client에서 Temporary Table의 데이터를 DataTable에 저장하고 Tcp/Ip 소켓 통신으로 전송
-                    1-2-1. 일단, 무작정 Temporary에서 DataTable을 추출해서 바로 보낼 생각하지말고, 간단히 Text를 보내서 연결이 되는지부터 확인 후,
-                           Text를 DataTable로 수정할 것
-
-                1-3. Server에서는 현재 작업중인 네트워크의 IPv4 주소를 동적으로 가져오는 부분이 가능했는데, 
-                     그럼 Client에서는 그런 동적으로 가져온 Server의 IP를 정적으로 입력하지 않고 접속할 수 있는지 여부 확인
-                    1-3-1. 만약 불가능하다면 별도의 Tcp/Ip 통신 UI 구현해서 Server의 Ip를 직접 입력으로 접속해야함.
-
-                1-4. KioskPanel에서 페이징 event 구현(button1/◀, button2/▶)
+                1-1. KioskPanel에서 페이징 event 구현(button1/◀, button2/▶)
 
 
             2. Server

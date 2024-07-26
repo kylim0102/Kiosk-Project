@@ -1,46 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\",
+  "WorkspaceRootPath": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\ppanel\\temporaryview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:ppanel\\temporaryview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\ppanel\\cartpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:ppanel\\cartpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\common\\tcp_ip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:common\\tcp_ip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|c:\\users\\ghckd\\desktop\\c#\\team-project\\kiosk-project\\client\\kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\common\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|c:\\users\\yj\\source\\repos\\kiosk-project\\client\\kiosk\\ppanel\\temporaryview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:ppanel\\temporaryview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\common\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:common\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\ppanel\\temporaryview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:ppanel\\temporaryview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\common\\tcp_ip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:common\\tcp_ip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\ppanel\\cartpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:ppanel\\cartpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\ppanel\\cartpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:ppanel\\cartpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\ppanel\\cartpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:ppanel\\cartpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,15 +46,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 384,
-          "SelectedChildIndex": 20,
+          "SelectedChildIndex": 21,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
               "$type": "Bookmark",
@@ -66,15 +66,11 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:129:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -98,6 +94,14 @@
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:136:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
@@ -106,19 +110,11 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Bookmark",
@@ -134,71 +130,37 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TemporaryView.cs",
-              "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\pPanel\\TemporaryView.cs",
-              "RelativeDocumentMoniker": "pPanel\\TemporaryView.cs",
-              "ToolTip": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\pPanel\\TemporaryView.cs",
-              "RelativeToolTip": "pPanel\\TemporaryView.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAuwD0AAAAAAAAA",
+              "DocumentIndex": 3,
+              "Title": "Todo.cs",
+              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\common\\Todo.cs",
+              "RelativeDocumentMoniker": "common\\Todo.cs",
+              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\common\\Todo.cs",
+              "RelativeToolTip": "common\\Todo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T04:59:56.117Z",
+              "WhenOpened": "2024-07-26T04:39:42.826Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Todo.cs",
-              "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\common\\Todo.cs",
-              "RelativeDocumentMoniker": "common\\Todo.cs",
-              "ToolTip": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\common\\Todo.cs",
-              "RelativeToolTip": "common\\Todo.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T04:39:42.826Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
               "Title": "CartPanel.cs",
-              "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\pPanel\\CartPanel.cs",
+              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\pPanel\\CartPanel.cs",
               "RelativeDocumentMoniker": "pPanel\\CartPanel.cs",
-              "ToolTip": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\pPanel\\CartPanel.cs",
+              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\pPanel\\CartPanel.cs",
               "RelativeToolTip": "pPanel\\CartPanel.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAAAD4AAABkAAAA",
+              "ViewState": "AQIAALcAAAAAAAAAAAAAAMAAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T04:39:28.359Z"
+              "WhenOpened": "2024-07-26T04:39:28.359Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CartPanel.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\pPanel\\CartPanel.cs",
-              "RelativeDocumentMoniker": "pPanel\\CartPanel.cs",
-              "ToolTip": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\pPanel\\CartPanel.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "pPanel\\CartPanel.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T04:39:21.066Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Mysql.cs",
-              "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\common\\Mysql.cs",
-              "RelativeDocumentMoniker": "common\\Mysql.cs",
-              "ToolTip": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\common\\Mysql.cs",
-              "RelativeToolTip": "common\\Mysql.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAPwAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-25T13:41:14.126Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\Form1.cs [\uB514\uC790\uC778]",
+              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\Form1.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "Form1.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-25T14:02:45.134Z",
@@ -206,11 +168,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\Form1.cs",
+              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
               "ViewState": "AQIAABQAAAAAAAAAAAAqwHQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -219,36 +181,49 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "TCP_IP.cs",
-              "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\common\\TCP_IP.cs",
+              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\common\\TCP_IP.cs",
               "RelativeDocumentMoniker": "common\\TCP_IP.cs",
-              "ToolTip": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\common\\TCP_IP.cs",
+              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\common\\TCP_IP.cs",
               "RelativeToolTip": "common\\TCP_IP.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAQwBMAAAAyAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAmwBkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-26T04:53:13.983Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TemporaryView.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\pPanel\\TemporaryView.cs",
-              "RelativeDocumentMoniker": "pPanel\\TemporaryView.cs",
-              "ToolTip": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\pPanel\\TemporaryView.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "pPanel\\TemporaryView.cs [\uB514\uC790\uC778]",
+              "DocumentIndex": 7,
+              "Title": "CartPanel.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\pPanel\\CartPanel.cs",
+              "RelativeDocumentMoniker": "pPanel\\CartPanel.cs",
+              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\pPanel\\CartPanel.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "pPanel\\CartPanel.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T04:59:17.693Z",
+              "WhenOpened": "2024-07-26T04:39:21.066Z",
               "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Mysql.cs",
+              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\common\\Mysql.cs",
+              "RelativeDocumentMoniker": "common\\Mysql.cs",
+              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\common\\Mysql.cs",
+              "RelativeToolTip": "common\\Mysql.cs",
+              "ViewState": "AQIAAAIBAAAAAAAAAAAIwOgBAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T13:41:14.126Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "oGlobal.cs",
-              "DocumentMoniker": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\common\\oGlobal.cs",
+              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\common\\oGlobal.cs",
               "RelativeDocumentMoniker": "common\\oGlobal.cs",
-              "ToolTip": "C:\\Users\\ghckd\\Desktop\\C#\\Team-Project\\Kiosk-Project\\Client\\Kiosk\\common\\oGlobal.cs",
+              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\common\\oGlobal.cs",
               "RelativeToolTip": "common\\oGlobal.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -257,12 +232,25 @@
           ]
         },
         {
-          "DockedWidth": 236,
-          "SelectedChildIndex": -1,
+          "DockedWidth": 384,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TemporaryView.cs",
+              "DocumentMoniker": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\pPanel\\TemporaryView.cs",
+              "RelativeDocumentMoniker": "pPanel\\TemporaryView.cs",
+              "ToolTip": "C:\\Users\\YJ\\source\\repos\\Kiosk-Project\\Client\\Kiosk\\pPanel\\TemporaryView.cs",
+              "RelativeToolTip": "pPanel\\TemporaryView.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAA8wEAAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-26T04:59:56.117Z",
+              "EditorCaption": ""
             }
           ]
         }

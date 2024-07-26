@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Net;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Data;
 
 namespace Kiosk.common
 {
@@ -17,28 +19,43 @@ namespace Kiosk.common
         {
             private TcpClient client;
             private NetworkStream stream;
-            private async Task HandelClient(TcpClient client)
+            private async Task HandelClient(DataTable table)
             {
-                NetworkStream stream = client.GetStream();
-                byte[] buffer = new byte[1024];
+                byte[] data = SerializeDataTable(table);
+                await stream.WriteAsync(data, 0, data.Length);
 
-                int read;
-                while ((read = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+            }
+            public byte[] SerializeDataTable(DataTable table)
+            {
+                if (table == null)
                 {
-                    string message = Encoding.UTF8.GetString(buffer, 0, read);
+                    throw new ArgumentNullException(nameof(table), "DataTable cannot be null");
+                }
 
-                    MessageBox.Show(message, "Server", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                using (var memoryStream = new MemoryStream())
+                {
+                    try
+                    {
+                        table.WriteXml(memoryStream, XmlWriteMode.WriteSchema);
+                        return memoryStream.ToArray();
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        // 예외 처리 및 로깅
+                        Console.WriteLine($"예외 발생: {ex.Message}");
+                        throw; // 예외를 다시 던져 호출자에게 전달
+                    }
                 }
             }
 
-            public async Task Connection()
+            public async Task Connection(DataTable table)
             {
                 try
                 {
                     client = new TcpClient();
                     await client.ConnectAsync(IPAddress.Parse("192.168.78.235"), 8090);
                     stream = client.GetStream();
+                    _ = HandelClient(table);
                 }
                 catch (Exception ex)
                 {

@@ -30,12 +30,24 @@ namespace Kiosk.pPanel
         }
 
         #region TemporaryView_Load(TemporaryView가 Load될 때 Temporary Table 데이터를 DataGridView로 보여주고, DB의 OrderTable에 저장)
-        private  void TemporaryViewcs_Load(object sender, EventArgs e)
+        private async void TemporaryViewcs_Load(object sender, EventArgs e)
         {
-            
+            DataTable dt = TemporaryTable.all();
+            try
+            {
+               
+                dt.TableName = "check_cart";
 
-
-            dataGridView1.DataSource = TemporaryTable.all();
+                await tCP_Client.Connection(dt);
+                
+                MessageBox.Show("커넥션 실행");  // 연결이 성공적으로 이루어진 경우 메시지 박스
+            }
+            catch (Exception ex)
+            {
+                // 예외 처리
+                MessageBox.Show($"Connection error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            dataGridView1.DataSource = dt;
 
             string itemNumber = null;
             string itemName = null;
@@ -43,7 +55,6 @@ namespace Kiosk.pPanel
             int payment = 0;
             int orderNumber = order.MaxOrderNumberFromDate();
 
-            DataTable dt = TemporaryTable.all();
 
             for(int i = 0; i < dt.Rows.Count; i++)
             {
@@ -57,26 +68,8 @@ namespace Kiosk.pPanel
             }
 
             MessageBox.Show("주문이 완료되었습니다");
+
         }
         #endregion
-
-        private async void button2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("클릭됬다!");  // 버튼 클릭 시 진입 확인용 메시지 박스
-
-            try
-            {
-                client = new TcpClient();
-                await client.ConnectAsync(IPAddress.Parse("192.168.78.235"), 8090);
-                stream = client.GetStream();
-                
-                MessageBox.Show("커넥션 실행");  // 연결이 성공적으로 이루어진 경우 메시지 박스
-            }
-            catch (Exception ex)
-            {
-                // 예외 처리
-                MessageBox.Show($"Connection error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
     }
 }
