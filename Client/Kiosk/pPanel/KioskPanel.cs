@@ -1,4 +1,5 @@
 ﻿using Kiosk.common;
+using Mysqlx.Prepare;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,78 +26,97 @@ namespace Kiosk.pPanel
             InitializeComponent();
         }
 
-        #region 키오스크 버튼 동적 생성 및 DB 담기
-        public TableLayoutPanel AddFromKioskLayoutPanel(string category)
+        #region 페이지 만들기 위한 설정
+        private int currentPage = 0;
+        private int itemsInPage = 4; // 한 페이지에 보여줄 아이템 수
+        #endregion
+
+        #region 카테고리에 해당하는 아이템들을 동적으로 로드 + 페이지
+        private void LoadItemsForCurrentPage()
         {
+            TabPage page = tabControl1.SelectedTab;
+            page.Controls.Clear();
+            List<Button> btnList = GetButtonsForCategory(page.Text);
+
+            int totalItems = btnList.Count;
+            int totalPages = (int)Math.Ceiling((double)totalItems / itemsInPage);
+
             TableLayoutPanel table = new TableLayoutPanel();
             table.Dock = DockStyle.Fill;
-            
+            int columnCount = 4;
+            int startItemIndex = currentPage * itemsInPage;
+            int endItemIndex = Math.Min(startItemIndex + itemsInPage, totalItems);
 
-
-            ItemInsert itemInsert = new ItemInsert();
-            List<Button> btnList = itemInsert.CheckItem(category);
-
-            table.Controls.Clear();
-            table.ColumnStyles.Clear();
-            table.RowStyles.Clear();
-
-            int columnCount = 4; // 한 줄에 보여질 최대 열 수
-            int itemCount = btnList.Count;
-
-            // 필요한 행 수 계산
-            int rowCount = (int)Math.Ceiling((double)itemCount / columnCount);
-
+            int rowCount = (int)Math.Ceiling((double)(endItemIndex - startItemIndex) / columnCount);
             table.ColumnCount = columnCount;
             table.RowCount = rowCount;
 
-            // 열 스타일 설정
             for (int x = 0; x < columnCount; x++)
             {
                 table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f / columnCount));
             }
 
-            // 행 스타일 설정
             for (int y = 0; y < rowCount; y++)
             {
                 table.RowStyles.Add(new RowStyle(SizeType.AutoSize));
             }
 
-            // 버튼 추가 및 클릭 이벤트 핸들러 등록
-            for (int index = 0; index < itemCount; index++)
+            for (int i = startItemIndex; i < endItemIndex; i++)
             {
-                int x = index % columnCount;
-                int y = index / columnCount;
+                int x = (i - startItemIndex) % columnCount;
+                int y = (i - startItemIndex) / columnCount;
 
                 Panel panel = new Panel
                 {
                     BorderStyle = BorderStyle.FixedSingle
                 };
 
-                Button button = btnList[index];
+                Button button = btnList[i];
                 button.Dock = DockStyle.Fill;
 
                 panel.Controls.Add(button);
                 table.Controls.Add(panel, x, y);
 
-                // 버튼 클릭 이벤트 핸들러 추가
                 button.Click += (sender, e) =>
                 {
                     var itemData = (dynamic)button.Tag;
-                    
-                    string itemName = itemData.itemName; // 상품 이름
-                    int itemPrice = itemData.price; // 상품 가격
-                    string itemContent = itemData.content; // 상품 상세설명
+
+                    string itemName = itemData.itemName;
+                    int itemPrice = itemData.price;
+                    string itemContent = itemData.content;
                     int itemCnt = 1;
                     int optionCnt = 1;
 
                     item itemForm = new item(itemName, itemPrice, itemContent, itemCnt, optionCnt);
                     itemForm.Show();
-
                 };
-                
             }
 
-            return table;
+            page.Controls.Add(table);
+
+            if (currentPage == 0)
+            {
+                PrevPage.Visible = false;
+                NextPage.Visible = totalPages > 1;
+            }
+            else if (currentPage == totalPages - 1)
+            {
+                PrevPage.Visible = true;
+                NextPage.Visible = false;
+            }
+            else
+            {
+                PrevPage.Visible = true;
+                NextPage.Visible = true;
+            }
+        }
+        #endregion
+
+        #region 카테고리별 아이템 가져오기
+        public List<Button> GetButtonsForCategory(string category)
+        {
+            ItemInsert itemInsert = new ItemInsert();
+            return itemInsert.CheckItem(category);
         }
         #endregion
 
@@ -115,8 +135,13 @@ namespace Kiosk.pPanel
                 tabControl1.TabPages.Add(page);
             }
 
-            TabControl now = tabControl1;
-            now.TabPages[0].Controls.Add(AddFromKioskLayoutPanel(now.SelectedTab.Text));
+            if (tabControl1.TabPages.Count > 0)
+            {
+                tabControl1.SelectedTab = tabControl1.TabPages[0];
+            }
+
+            tabControl1.SelectedIndexChanged += new EventHandler(Selected_Change);
+            Selected_Change(tabControl1, EventArgs.Empty);
 
             TemporaryTable.CreateTemporary();
         }
@@ -125,13 +150,35 @@ namespace Kiosk.pPanel
         #region ChangedTabPage(TabControl에서 선택된 Tab이 바뀔 때 이벤트)
         private void Selected_Change(object sender, EventArgs e)
         {
-            TabPage page = tabControl1.SelectedTab;
-            page.Controls.Add(AddFromKioskLayoutPanel(page.Text));
+            currentPage = 0;
+            LoadItemsForCurrentPage();
         }
         #endregion
 
+        #region 페이지 이동 버튼 이벤트
+        private void PrevPage_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 0)
+            {
+                currentPage--;
+                LoadItemsForCurrentPage();
+            }
+        }
 
+        private void NextPage_Click(object sender, EventArgs e)
+        {
+            TabPage page = tabControl1.SelectedTab;
+            List<Button> btnList = GetButtonsForCategory(page.Text);
+            int totalItems = btnList.Count;
+            int totalPages = (int)Math.Ceiling((double)totalItems / itemsInPage);
 
+            if (currentPage < totalPages - 1)
+            {
+                currentPage++;
+                LoadItemsForCurrentPage();
+            }
+        }
+        #endregion
 
         #region Dummy Event
         private void button1_Click(object sender, EventArgs e)

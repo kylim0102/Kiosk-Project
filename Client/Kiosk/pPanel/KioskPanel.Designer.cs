@@ -31,9 +31,9 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.NextPage = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.button1 = new System.Windows.Forms.Button();
+            this.PrevPage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button4
@@ -66,16 +66,16 @@
             this.panel2.Size = new System.Drawing.Size(757, 665);
             this.panel2.TabIndex = 46;
             // 
-            // button2
+            // NextPage
             // 
-            this.button2.Location = new System.Drawing.Point(389, 596);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(104, 50);
-            this.button2.TabIndex = 41;
-            this.button2.Text = "▶";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.NextPage.Location = new System.Drawing.Point(389, 596);
+            this.NextPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.NextPage.Name = "NextPage";
+            this.NextPage.Size = new System.Drawing.Size(104, 50);
+            this.NextPage.TabIndex = 41;
+            this.NextPage.Text = "▶";
+            this.NextPage.UseVisualStyleBackColor = true;
+            this.NextPage.Click += new System.EventHandler(this.NextPage_Click);
             // 
             // tabControl1
             // 
@@ -87,16 +87,16 @@
             this.tabControl1.TabIndex = 39;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.Selected_Change);
             // 
-            // button1
+            // PrevPage
             // 
-            this.button1.Location = new System.Drawing.Point(247, 596);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 50);
-            this.button1.TabIndex = 40;
-            this.button1.Text = "◀";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.PrevPage.Location = new System.Drawing.Point(247, 596);
+            this.PrevPage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.PrevPage.Name = "PrevPage";
+            this.PrevPage.Size = new System.Drawing.Size(104, 50);
+            this.PrevPage.TabIndex = 40;
+            this.PrevPage.Text = "◀";
+            this.PrevPage.UseVisualStyleBackColor = true;
+            this.PrevPage.Click += new System.EventHandler(this.PrevPage_Click);
             // 
             // KioskPanel
             // 
@@ -104,9 +104,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.NextPage);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.PrevPage);
             this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "KioskPanel";
@@ -120,8 +120,8 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button NextPage;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button PrevPage;
     }
 }
