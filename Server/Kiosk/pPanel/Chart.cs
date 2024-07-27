@@ -10,6 +10,7 @@ namespace Kiosk.pPanel
     {
         pPanel.list list = new pPanel.list();
         pPanel.ChartTable chart = new pPanel.ChartTable();
+        pPanel.OrderList orders = new pPanel.OrderList();
         ChartData cData = new ChartData();
         
         string time = null;
@@ -60,5 +61,11 @@ namespace Kiosk.pPanel
 
         }
         #endregion
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            panel1.Controls.Clear();
+            panel1.Controls.Add(orders);
+        }
     }
 }

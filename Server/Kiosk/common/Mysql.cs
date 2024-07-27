@@ -1451,7 +1451,7 @@ internal class ItemUpdate // internal 동일한 어셈블리 내에서만 접근
 
 
 // 추가 
-#region chart_list 부분
+#region chartListPanel
 internal class ChartList
 {
     private static MySqlConnection mysql = oGlobal.GetConnection();
@@ -1739,7 +1739,48 @@ internal class ChartList
         return dataTable;
     }
     #endregion
+}
+#endregion
 
+#region OrderListPanel
+internal class OrderList
+{
+    private static MySqlConnection mysql = oGlobal.GetConnection();
+    private MySqlDataReader reader = null;
+    private string sql = null;
+    int result = 0;
 
+    public void GetAllOrderTable()
+    {
+        ListBox listbox = new ListBox();
+        string prev_division = "---------- ";
+        string next_division = " ----------";
+        try
+        {
+            sql = "select * from ordertable order by regdate, orderNumber, itemNumber";
+            using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
+            {
+                using (reader = cmd.ExecuteReader())
+                {
+                    while(reader.Read())
+                    {
+                        if(!listbox.Items.Contains(prev_division+reader.GetString("regdate")+next_division))
+                        {
+                            listbox.Items.Add(prev_division + reader.GetString("regdate") + next_division);
+                            listbox.Items.Add(reader.GetString("itemName") + );
+                        }
+                        else
+                        {
+                            listbox.Items.Add(reader.GetString("itemNumber"));
+                        }
+                    }
+                }
+
+        }
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
 }
 #endregion

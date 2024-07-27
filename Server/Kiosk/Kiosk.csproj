@@ -198,6 +198,12 @@
     <Compile Include="pPanel\list.Designer.cs">
       <DependentUpon>list.cs</DependentUpon>
     </Compile>
+    <Compile Include="pPanel\OrderList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="pPanel\OrderList.Designer.cs">
+      <DependentUpon>OrderList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -233,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="pPanel\list.resx">
       <DependentUpon>list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pPanel\OrderList.resx">
+      <DependentUpon>OrderList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
