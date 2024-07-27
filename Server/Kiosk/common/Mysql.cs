@@ -1743,18 +1743,27 @@ internal class ChartList
 #endregion
 
 #region OrderListPanel
-internal class OrderList
+internal class OrderListSQL
 {
     private static MySqlConnection mysql = oGlobal.GetConnection();
     private MySqlDataReader reader = null;
     private string sql = null;
     int result = 0;
 
-    public void GetAllOrderTable()
+    public ListBox GetAllOrderTable()
     {
         ListBox listbox = new ListBox();
         string prev_division = "---------- ";
         string next_division = " ----------";
+        string division = "----------";
+        string space = "     ";
+        string item_info = string.Empty;
+
+        string itemNumber = string.Empty;
+        string itemName = string.Empty;
+        string itemCount = string.Empty;
+        string payment = string.Empty;
+
         try
         {
             sql = "select * from ordertable order by regdate, orderNumber, itemNumber";
@@ -1762,25 +1771,48 @@ internal class OrderList
             {
                 using (reader = cmd.ExecuteReader())
                 {
-                    while(reader.Read())
+                    while (reader.Read())
                     {
-                        if(!listbox.Items.Contains(prev_division+reader.GetString("regdate")+next_division))
+                        if (!listbox.Items.Contains(division+prev_division + reader.GetDateTime("regdate").ToString("yyyy-MM-dd") + next_division+division))
                         {
-                            listbox.Items.Add(prev_division + reader.GetString("regdate") + next_division);
-                            listbox.Items.Add(reader.GetString("itemName") + );
+                            listbox.Items.Add(division+prev_division + reader.GetDateTime("regdate").ToString("yyyy-MM-dd") + next_division+division);
                         }
-                        else
+                        itemNumber = reader.GetString("itemNumber");
+                        itemName = reader.GetString("itemName");
+                        itemCount = reader.GetInt32("itemCOunt").ToString();
+                        payment = reader.GetInt32("payment").ToString("C");
+
+                        if(itemNumber.Contains("-")) // 출력하는 제품이 옵션이면
                         {
-                            listbox.Items.Add(reader.GetString("itemNumber"));
+                            if(itemName.Equals("샷 추가"))
+                            {
+                                item_info = string.Format("{0, -20} {1, 10} {2, 10:C}", itemName.PadRight(20), itemCount.PadLeft(10), payment.PadLeft(20));
+                            }
+                            else if(itemName.Equals("ICE"))
+                            {
+                                item_info = string.Format("{0, -20} {1, 10} {2, 10:C}", itemName.PadRight(20), itemCount.PadLeft(19), payment.PadLeft(20));
+                            }
+                            listbox.Items.Add(item_info);
                         }
+                        else // 아니면
+                        {
+                            item_info = string.Format("{0, -20} {1, 10} {2, 10:C}", itemName.PadRight(20), itemCount.PadLeft(10), payment.PadLeft(20));
+                            listbox.Items.Add(item_info);
+                        }
+
+
+                        
+                        listbox.Items.Add("");
+                        listbox.Items.Add(division+division);
                     }
                 }
-
+            }
         }
         catch(MySqlException ex)
         {
             MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+        return listbox;
     }
 }
 #endregion

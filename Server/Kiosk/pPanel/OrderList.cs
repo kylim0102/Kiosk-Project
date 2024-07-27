@@ -12,6 +12,7 @@ namespace Kiosk.pPanel
 {
     public partial class OrderList : UserControl
     {
+        private OrderListSQL sql = new OrderListSQL();
         public OrderList()
         {
             InitializeComponent();
@@ -19,7 +20,12 @@ namespace Kiosk.pPanel
 
         private void OrderList_Load(object sender, EventArgs e)
         {
+            ListBox list = sql.GetAllOrderTable();
 
+            foreach (var item in list.Items)
+            {
+                listBox1.Items.Add(item);
+            }
         }
     }
 }
