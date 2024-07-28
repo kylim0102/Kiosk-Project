@@ -194,8 +194,6 @@ C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\bin\Debug\System.Text.Json
 C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\bin\Debug\System.ValueTuple.xml
 C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.csproj.AssemblyReference.cache
-C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.csproj.SuggestedBindingRedirects.cache
-C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.exe.config
 C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.Form1.resources
 C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.ItemManage.ItemPanel.Category_Manage.resources
 C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.ItemManage.ItemPanel.Itemmanage.resources
@@ -507,3 +505,7 @@ C:\Users\Lenovo\Source\Repos\Kiosk-Project\Server\Kiosk\bin\Debug\Newtonsoft.Jso
 C:\Users\Lenovo\Source\Repos\Kiosk-Project\Server\Kiosk\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Lenovo\Source\Repos\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.Order.OrderList.resources
 C:\Users\Lenovo\Source\Repos\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.pPanel.OrderList.resources
+C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\bin\Debug\Newtonsoft.Json.dll
+C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\bin\Debug\Newtonsoft.Json.xml
+C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.Order.OrderList.resources
+C:\Users\이동훈\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.pPanel.OrderList.resources

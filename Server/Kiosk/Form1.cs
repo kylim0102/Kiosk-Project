@@ -18,9 +18,9 @@ namespace Kiosk
             InitializeComponent();
         }
 
-        private async void Form1_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            await con.TcpServerOn();
+            /*await con.TcpServerOn();
 
             Console.WriteLine("접속 상태 체크"+con.GetWaitingConnection());
 
@@ -34,7 +34,7 @@ namespace Kiosk
             }
            
 
-            await ShowClientConnectedMessageAsync();
+            await ShowClientConnectedMessageAsync();*/
         }
         private void ShowDataTableForm(DataTable dataTable)
         {

@@ -1759,10 +1759,15 @@ internal class OrderListSQL
         string space = "     ";
         string item_info = string.Empty;
 
-        string itemNumber = string.Empty;
-        string itemName = string.Empty;
-        string itemCount = string.Empty;
-        string payment = string.Empty;
+        string prev_itemNumber = string.Empty;
+        string prev_itemName = string.Empty;
+        string prev_itemCount = string.Empty;
+        string prev_payment = string.Empty;
+
+        string next_itemNumber = string.Empty;
+        string next_itemName = string.Empty;
+        string next_itemCount = string.Empty;
+        string next_payment = string.Empty;
 
         try
         {
@@ -1773,37 +1778,61 @@ internal class OrderListSQL
                 {
                     while (reader.Read())
                     {
-                        if (!listbox.Items.Contains(division+prev_division + reader.GetDateTime("regdate").ToString("yyyy-MM-dd") + next_division+division))
+                        if (!listbox.Items.Contains(division+prev_division + reader.GetDateTime("regdate").ToString("yyyy-MM-dd") + next_division+division+division))
                         {
-                            listbox.Items.Add(division+prev_division + reader.GetDateTime("regdate").ToString("yyyy-MM-dd") + next_division+division);
+                            listbox.Items.Add("");
+                            listbox.Items.Add(division+prev_division + reader.GetDateTime("regdate").ToString("yyyy-MM-dd") + next_division+division+division);
+                            listbox.Items.Add("");
                         }
-                        itemNumber = reader.GetString("itemNumber");
-                        itemName = reader.GetString("itemName");
-                        itemCount = reader.GetInt32("itemCOunt").ToString();
-                        payment = reader.GetInt32("payment").ToString("C");
+                        prev_itemNumber = reader.GetString("itemNumber");
+                        prev_itemName = reader.GetString("itemName");
+                        prev_itemCount = reader.GetInt32("itemCOunt").ToString();
+                        prev_payment = reader.GetInt32("payment").ToString("C");
 
-                        if(itemNumber.Contains("-")) // 출력하는 제품이 옵션이면
+                        if(prev_itemNumber.Contains("-")) // 출력하는 제품이 옵션이면
                         {
-                            if(itemName.Equals("샷 추가"))
+                            if(prev_itemName.Equals("샷 추가") || prev_itemName.Equals("연하게"))
                             {
-                                item_info = string.Format("{0, -20} {1, 10} {2, 10:C}", itemName.PadRight(20), itemCount.PadLeft(10), payment.PadLeft(20));
+                                item_info = string.Format("{0, -10} {1, 10} {2, 10:C}", "+" + prev_itemName.PadRight(10), prev_itemCount.PadLeft(15), prev_payment.PadLeft(20));
                             }
-                            else if(itemName.Equals("ICE"))
+                            else if(prev_itemName.Equals("ICE") || prev_itemName.Equals("HOT"))
                             {
-                                item_info = string.Format("{0, -20} {1, 10} {2, 10:C}", itemName.PadRight(20), itemCount.PadLeft(19), payment.PadLeft(20));
+                                item_info = string.Format("{0, -10} {1, 10} {2, 10:C}", "+" + prev_itemName.PadRight(10), prev_itemCount.PadLeft(19), prev_payment.PadLeft(20));
                             }
                             listbox.Items.Add(item_info);
+
+                            Console.WriteLine("prev_itemName: "+prev_itemName+" And next_itemName: "+next_itemName);
+
+                            bool option1 = prev_itemName.Equals("샷 추가") && next_itemName.Equals("ICE");
+                            bool option2 = prev_itemName.Equals("샷 추가") && next_itemName.Equals("HOT");
+                            bool option3 = prev_itemName.Equals("연하게") && next_itemName.Equals("ICE");
+                            bool option4 = prev_itemName.Equals("연하게") && next_itemName.Equals("HOT");
+
+                            bool option5 = prev_itemName.Equals("ICE") && next_itemName.Equals("샷 추가");
+                            bool option6 = prev_itemName.Equals("ICE") && next_itemName.Equals("연하게");
+                            bool option7 = prev_itemName.Equals("HOT") && next_itemName.Equals("샷 추가");
+                            bool option8 = prev_itemName.Equals("HOT") && next_itemName.Equals("연하게");
+
+
+                            if (option1 || option2 || option3 || option4 || option5 || option6 || option7 || option8)
+                            {
+                                listbox.Items.Add("");
+                                listbox.Items.Add(division + division + division + division);
+                                listbox.Items.Add("");
+                            }
                         }
                         else // 아니면
                         {
-                            item_info = string.Format("{0, -20} {1, 10} {2, 10:C}", itemName.PadRight(20), itemCount.PadLeft(10), payment.PadLeft(20));
+                            listbox.Items.Add("");
+                            item_info = string.Format("{0, -10} {1, 10} {2, 10:C}",prev_itemName.PadRight(10), prev_itemCount.PadLeft(10), prev_payment.PadLeft(20));
                             listbox.Items.Add(item_info);
                         }
 
+                        next_itemNumber = prev_itemNumber;
+                        next_itemName = prev_itemName;
+                        next_itemCount = prev_itemCount;
+                        next_payment = prev_payment;
 
-                        
-                        listbox.Items.Add("");
-                        listbox.Items.Add(division+division);
                     }
                 }
             }
