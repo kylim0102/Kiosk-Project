@@ -1,41 +1,41 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\",
+  "WorkspaceRootPath": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\ldh97\\desktop\\kiosk-project\\server\\kiosk\\common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\lenovo\\source\\repos\\kiosk-project\\server\\kiosk\\common\\tcp_ip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\tcp_ip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ppanel\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\lenovo\\source\\repos\\kiosk-project\\server\\kiosk\\order\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ppanel\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\lenovo\\source\\repos\\kiosk-project\\server\\kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\lenovo\\source\\repos\\kiosk-project\\server\\kiosk\\order\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\lenovo\\source\\repos\\kiosk-project\\server\\kiosk\\ppanel\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\ppanel\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
     {
-      "Orientation": 0,
+      "Orientation": 1,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 310,
-          "SelectedChildIndex": 19,
+          "DockedHeight": 383,
+          "SelectedChildIndex": 16,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -51,6 +51,10 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
               "$type": "Bookmark",
@@ -82,6 +86,96 @@
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderList.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\pPanel\\OrderList.cs",
+              "RelativeDocumentMoniker": "pPanel\\OrderList.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\pPanel\\OrderList.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "pPanel\\OrderList.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T05:31:42.586Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrderList.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\Order\\OrderList.cs",
+              "RelativeDocumentMoniker": "Order\\OrderList.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\Order\\OrderList.cs",
+              "RelativeToolTip": "Order\\OrderList.cs",
+              "ViewState": "AQIAAH8AAAAAAAAAAAAAAIkAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T01:44:57.073Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrderList.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\Order\\OrderList.cs",
+              "RelativeDocumentMoniker": "Order\\OrderList.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\Order\\OrderList.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "Order\\OrderList.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T01:44:55.736Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TCP_IP.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\TCP_IP.cs",
+              "RelativeDocumentMoniker": "common\\TCP_IP.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\common\\TCP_IP.cs",
+              "RelativeToolTip": "common\\TCP_IP.cs",
+              "ViewState": "AQIAAGoAAAAAAAAAAAAAwG4AAABjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T01:41:33.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAqwF0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T01:42:41.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OrderList.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\pPanel\\OrderList.cs",
+              "RelativeDocumentMoniker": "pPanel\\OrderList.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\source\\repos\\Kiosk-Project\\Server\\Kiosk\\pPanel\\OrderList.cs",
+              "RelativeToolTip": "pPanel\\OrderList.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAArwBYAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-27T03:35:23.741Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 17,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
@@ -90,58 +184,16 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{c9c0ae26-aa77-11d2-b3f0-0000f87570ee}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Mysql.cs",
-              "DocumentMoniker": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
-              "RelativeDocumentMoniker": "common\\Mysql.cs",
-              "ToolTip": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
-              "RelativeToolTip": "common\\Mysql.cs",
-              "ViewState": "AQIAAOcGAAAAAAAAAAAAAPoGAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T03:36:25.909Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "OrderList.cs",
-              "DocumentMoniker": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\OrderList.cs",
-              "RelativeDocumentMoniker": "pPanel\\OrderList.cs",
-              "ToolTip": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\OrderList.cs",
-              "RelativeToolTip": "pPanel\\OrderList.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAArwBoAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T03:35:23.741Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "OrderList.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\OrderList.cs",
-              "RelativeDocumentMoniker": "pPanel\\OrderList.cs",
-              "ToolTip": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\OrderList.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "pPanel\\OrderList.cs [\uB514\uC790\uC778]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T03:18:04.392Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             }
           ]
         },
         {
-          "DockedWidth": 252,
+          "DockedHeight": 200,
           "SelectedChildIndex": -1,
           "Children": [
             {

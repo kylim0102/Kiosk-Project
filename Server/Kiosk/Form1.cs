@@ -1,5 +1,8 @@
-﻿using Kiosk.pPanel.common;
+﻿using Kiosk.Order;
+using Kiosk.pPanel.common;
+using MySqlX.XDevAPI.Relational;
 using System;
+using System.Data;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,9 +18,9 @@ namespace Kiosk
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
-            /*await con.TcpServerOn();
+            await con.TcpServerOn();
 
             Console.WriteLine("접속 상태 체크"+con.GetWaitingConnection());
 
@@ -29,9 +32,16 @@ namespace Kiosk
             {
                 waitingCon.Text = "연결 끊김";
             }
+           
 
-            await ShowClientConnectedMessageAsync();*/
+            await ShowClientConnectedMessageAsync();
         }
+        private void ShowDataTableForm(DataTable dataTable)
+        {
+            OrderList orderList = new OrderList(dataTable);
+            orderList.Show();
+        }
+
 
         #region Main Controller
         #region Show Chart(차트 창 보기)
@@ -54,11 +64,19 @@ namespace Kiosk
         #endregion
 
         #region Show OrderList(주문 목록 창 보기)
-        private void button4_Click(object sender, EventArgs e)
+        private async void button4_Click(object sender, EventArgs e)
         {
-            using(Order.OrderList order = new Order.OrderList())
+            if (con != null) // connection 된 상태면
             {
-                order.ShowDialog();
+                DataTable dt = await con.GetDataTableFromClient();
+                if (dt != null)
+                {
+                    Console.WriteLine($"Received DataTable with {dt.Rows.Count} rows.");
+                    using (Order.OrderList order = new Order.OrderList(dt))
+                    {
+                        order.ShowDialog();
+                    }
+                }
             }
         }
         #endregion
@@ -78,6 +96,8 @@ namespace Kiosk
         {
             int clients = await con.GetClientsCount();
             MessageBox.Show("접속한 클라이언트 수: "+clients,"TCP/IP SERVER MANAGER",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            
+            
         }
 
         private async Task ShowClientConnectedMessageAsync()

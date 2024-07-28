@@ -54,7 +54,8 @@ namespace Kiosk.pPanel.common
 
         public async Task TcpServerOn()
         {
-            string IPv4Address = GetIPv4Address();
+            //string IPv4Address = GetIPv4Address();
+            string IPv4Address = "172.30.1.3";
             listener = new TcpListener(IPAddress.Parse(IPv4Address), 8090);
 
             Console.WriteLine("Tcp/Ip Server On");

@@ -1,10 +1,14 @@
-﻿using Org.BouncyCastle.Asn1.Crmf;
+﻿using Google.Protobuf.WellKnownTypes;
+using MySqlX.XDevAPI.Relational;
+using Org.BouncyCastle.Asn1.Crmf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,9 +17,13 @@ namespace Kiosk.Order
 {
     public partial class OrderList : Form
     {
-        public OrderList()
+        DataTable data = new DataTable();
+
+        public OrderList(DataTable table)
         {
             InitializeComponent();
+            data = table;
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -67,20 +75,32 @@ namespace Kiosk.Order
             newControl.Text = original.Text;
             newControl.Enabled = original.Enabled;
             newControl.Visible = original.Visible;
-
+            int index = 0;
             if(newControl is ListBox listbox)
             {
                 listbox.Name = "Clone";
+                listbox.Items.Add("------------------------------");
+                foreach (DataRow row in data.Rows)
+                {
+                    string itemNumber = row["itemNumber"].ToString().Trim();
+                    if (!itemNumber.Contains("-"))
+                    {
+                        listbox.Items.Add("제품:" + row["itemName"].ToString());
+                    }
+                    else
+                    {
+                        listbox.Items.Add("옵션:" + row["itemName"].ToString());
+                    }
+                    if ((index+1)% 3 == 0)
+                    { 
+                        listbox.Items.Add("");
+                        listbox.Items.Add("------------------------------");
+                    }
+                    index++;
+                }
 
-                listbox.Items.Add("------------------------------");
-                listbox.Items.Add("Clone Info First");
-                listbox.Items.Add("Clone Info Second");
-                listbox.Items.Add("Clone Info Third");
-                listbox.Items.Add("");
-                listbox.Items.Add("------------------------------");
             }
-
-            if(newControl is Button button)
+            if (newControl is Button button)
             {
                 button.Click += new EventHandler(CallButton_Click);
             }
@@ -122,7 +142,10 @@ namespace Kiosk.Order
 
         private void OrderList_Load(object sender, EventArgs e)
         {
-            this.Controls.Add(CloneGroupBox(groupBox2));
+
+            GroupBox clonedGroupBox = CloneGroupBox(groupBox2);
+            this.Controls.Add(clonedGroupBox);
+
         }
     }
 }
