@@ -15,7 +15,7 @@
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\\uC774\uB3D9\uD6C8\\desktop\\kiosk-project\\server\\kiosk\\common\\tcp_ip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\tcp_ip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\tcp_ip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -27,7 +27,7 @@
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\\uC774\uB3D9\uD6C8\\desktop\\kiosk-project\\server\\kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -108,7 +108,7 @@
               "RelativeDocumentMoniker": "common\\Mysql.cs",
               "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
               "RelativeToolTip": "common\\Mysql.cs",
-              "ViewState": "AQIAAAAHAAAAAAAAAAAYwCQHAAAZAAAA",
+              "ViewState": "AQIAANYGAAAAAAAAAAAUwOoGAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-28T13:33:35.614Z",
               "EditorCaption": ""
@@ -122,8 +122,7 @@
               "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Form1.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "Form1.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T13:21:50.76Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2024-07-28T13:21:50.76Z"
             },
             {
               "$type": "Document",
@@ -134,8 +133,7 @@
               "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\OrderList.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "pPanel\\OrderList.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T05:31:42.586Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
+              "WhenOpened": "2024-07-28T05:31:42.586Z"
             },
             {
               "$type": "Document",
@@ -147,8 +145,7 @@
               "RelativeToolTip": "Order\\OrderList.cs",
               "ViewState": "AQIAAF8AAAAAAAAAAAAswIkAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T01:44:57.073Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-28T01:44:57.073Z"
             },
             {
               "$type": "Document",
@@ -160,8 +157,7 @@
               "RelativeToolTip": "common\\TCP_IP.cs",
               "ViewState": "AQIAADsAAAAAAAAAAAAkwF4AAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T01:41:33.364Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-28T01:41:33.364Z"
             },
             {
               "$type": "Document",
@@ -173,8 +169,7 @@
               "RelativeToolTip": "Form1.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T01:42:41.525Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-28T01:42:41.525Z"
             },
             {
               "$type": "Document",
@@ -186,8 +181,7 @@
               "RelativeToolTip": "pPanel\\OrderList.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAArwBYAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T03:35:23.741Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-27T03:35:23.741Z"
             }
           ]
         },

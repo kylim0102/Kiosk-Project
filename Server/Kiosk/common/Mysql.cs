@@ -1753,95 +1753,80 @@ internal class OrderListSQL
     public ListBox GetAllOrderTable()
     {
         ListBox listbox = new ListBox();
-        string prev_division = "---------- ";
-        string next_division = " ----------";
+        string prevDivision = "---------- ";
+        string nextDivision = " ----------";
         string division = "----------";
-        string space = "     ";
-        string item_info = string.Empty;
 
-        string prev_itemNumber = string.Empty;
-        string prev_itemName = string.Empty;
-        string prev_itemCount = string.Empty;
-        string prev_payment = string.Empty;
+        string prevItemNumber = string.Empty;
+        string prevItemName = string.Empty;
+        string prevItemCount = string.Empty;
+        string prevPayment = string.Empty;
 
-        string next_itemNumber = string.Empty;
-        string next_itemName = string.Empty;
-        string next_itemCount = string.Empty;
-        string next_payment = string.Empty;
+        string itemInfo = string.Empty;
+        DateTime prevDate = DateTime.MinValue;
 
         try
         {
-            sql = "select * from ordertable order by regdate, orderNumber, itemNumber";
+            string sql = "SELECT * FROM ordertable ORDER BY regdate, orderNumber, itemNumber";
             using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
             {
-                using (reader = cmd.ExecuteReader())
+                using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        if (!listbox.Items.Contains(division+prev_division + reader.GetDateTime("regdate").ToString("yyyy-MM-dd") + next_division+division+division))
+                        DateTime currentDate = reader.GetDateTime("regdate");
+
+                        if (prevDate != currentDate)
                         {
                             listbox.Items.Add("");
-                            listbox.Items.Add(division+prev_division + reader.GetDateTime("regdate").ToString("yyyy-MM-dd") + next_division+division+division);
+                            listbox.Items.Add($"{division}{prevDivision}{currentDate:yyyy-MM-dd}{nextDivision}{division}{division}");
                             listbox.Items.Add("");
+                            prevDate = currentDate;
                         }
-                        prev_itemNumber = reader.GetString("itemNumber");
-                        prev_itemName = reader.GetString("itemName");
-                        prev_itemCount = reader.GetInt32("itemCOunt").ToString();
-                        prev_payment = reader.GetInt32("payment").ToString("C");
 
-                        if(prev_itemNumber.Contains("-")) // 출력하는 제품이 옵션이면
+                        string currentItemNumber = reader.GetString("itemNumber");
+                        string currentItemName = reader.GetString("itemName");
+                        string currentItemCount = reader.GetInt32("itemCount").ToString();
+                        string currentPayment = reader.GetInt32("payment").ToString("C");
+
+                        if (currentItemNumber.Contains("-")) // 출력하는 제품이 옵션이면
                         {
-                            if(prev_itemName.Equals("샷 추가") || prev_itemName.Equals("연하게"))
-                            {
-                                item_info = string.Format("{0, -10} {1, 10} {2, 10:C}", "+" + prev_itemName.PadRight(10), prev_itemCount.PadLeft(15), prev_payment.PadLeft(20));
-                            }
-                            else if(prev_itemName.Equals("ICE") || prev_itemName.Equals("HOT"))
-                            {
-                                item_info = string.Format("{0, -10} {1, 10} {2, 10:C}", "+" + prev_itemName.PadRight(10), prev_itemCount.PadLeft(19), prev_payment.PadLeft(20));
-                            }
-                            listbox.Items.Add(item_info);
-
-                            Console.WriteLine("prev_itemName: "+prev_itemName+" And next_itemName: "+next_itemName);
-
-                            bool option1 = prev_itemName.Equals("샷 추가") && next_itemName.Equals("ICE");
-                            bool option2 = prev_itemName.Equals("샷 추가") && next_itemName.Equals("HOT");
-                            bool option3 = prev_itemName.Equals("연하게") && next_itemName.Equals("ICE");
-                            bool option4 = prev_itemName.Equals("연하게") && next_itemName.Equals("HOT");
-
-                            bool option5 = prev_itemName.Equals("ICE") && next_itemName.Equals("샷 추가");
-                            bool option6 = prev_itemName.Equals("ICE") && next_itemName.Equals("연하게");
-                            bool option7 = prev_itemName.Equals("HOT") && next_itemName.Equals("샷 추가");
-                            bool option8 = prev_itemName.Equals("HOT") && next_itemName.Equals("연하게");
-
-
-                            if (option1 || option2 || option3 || option4 || option5 || option6 || option7 || option8)
-                            {
-                                listbox.Items.Add("");
-                                listbox.Items.Add(division + division + division + division);
-                                listbox.Items.Add("");
-                            }
+                            itemInfo = FormatOptionItem(currentItemName, currentItemCount, currentPayment);
+                            listbox.Items.Add(itemInfo);
                         }
-                        else // 아니면
+                        else // 일반 항목
                         {
                             listbox.Items.Add("");
-                            item_info = string.Format("{0, -10} {1, 10} {2, 10:C}",prev_itemName.PadRight(10), prev_itemCount.PadLeft(10), prev_payment.PadLeft(20));
-                            listbox.Items.Add(item_info);
+                            itemInfo = string.Format("{0, -10} {1, 10} {2, 10:C}", currentItemName.PadRight(10), currentItemCount.PadLeft(10), currentPayment.PadLeft(20));
+                            listbox.Items.Add(itemInfo);
                         }
 
-                        next_itemNumber = prev_itemNumber;
-                        next_itemName = prev_itemName;
-                        next_itemCount = prev_itemCount;
-                        next_payment = prev_payment;
-
+                        prevItemNumber = currentItemNumber;
+                        prevItemName = currentItemName;
+                        prevItemCount = currentItemCount;
+                        prevPayment = currentPayment;
                     }
                 }
             }
         }
-        catch(MySqlException ex)
+        catch (MySqlException ex)
         {
             MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         return listbox;
+    }
+
+    private string FormatOptionItem(string itemName, string itemCount, string payment)
+    {
+        if (itemName.Equals("샷 추가") || itemName.Equals("연하게"))
+        {
+            return string.Format("{0, -10} {1, 10} {2, 10:C}", "+" + itemName.PadRight(10), itemCount.PadLeft(15), payment.PadLeft(20));
+        }
+        else if (itemName.Equals("ICE") || itemName.Equals("HOT"))
+        {
+            return string.Format("{0, -10} {1, 10} {2, 10:C}", "+" + itemName.PadRight(10), itemCount.PadLeft(19), payment.PadLeft(20));
+        }
+        return string.Empty;
     }
 }
 #endregion
