@@ -86,41 +86,146 @@ namespace Kiosk.pPanel.common
             }
         }
 
+
+
+
         public async Task<DataTable> GetDataTableFromClient()
         {
-            DataTable table = null;
             if (clients.Count <= 0)
             {
-                throw new InvalidOperationException("현재 접속된 클라이언트가 없습니다.");
+                MessageBox.Show("현재 접속된 클라이언트가 없습니다.");
+                return null;
             }
-            else
-            {
-                client = clients[0];
-                try
-                {
-                    using (var networkStream = client.GetStream())
-                    {
-                        byte[] buffer = new byte[4096];
-                        int bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length);
-                        if (bytesRead > 0)
-                        {
-                            byte[] data = buffer.Take(bytesRead).ToArray();
-                            table = DeserializeDataTable(data);
-                            // Process the DataTable
-                            Console.WriteLine($"Received DataTable with {table.Rows.Count} rows.");
 
+            client = clients[0]; // 첫 번째 클라이언트를 가져옵니다
+
+            try
+            {
+                using (var networkStream = client.GetStream())
+                {
+                    if (networkStream == null || !client.Client.Connected)
+                    {
+                        Console.WriteLine("연결이 끊어진 상태입니다.");
+                        return null;
+                    }
+
+                    byte[] buffer = new byte[4096];
+                    int bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length);
+
+                    if (bytesRead > 0)
+                    {
+                        byte[] data = buffer.Take(bytesRead).ToArray();
+                        DataTable table = DeserializeDataTable(data);
+                        Console.WriteLine($"Received DataTable with {table.Rows.Count} rows.");
+                        return table;
+                    }
+                    else
+                    {
+                        Console.WriteLine("클라이언트가 데이터를 보내지 않았습니다.");
+                        return null;
+                    }
+                }
+            }
+            catch (IOException ioEx)
+            {
+                Console.WriteLine("네트워크 오류가 발생했습니다: " + ioEx.Message);
+                await CheckClientConnectionsAsync(client);
+                return null;
+            }
+            catch (ObjectDisposedException objEx)
+            {
+                Console.WriteLine("클라이언트 연결이 이미 종료되었습니다: " + objEx.Message);
+                await CheckClientConnectionsAsync(client);
+                return null;
+            }
+            catch (InvalidOperationException invOpEx)
+            {
+                Console.WriteLine("소켓 작업 중 오류 발생: " + invOpEx.Message);
+                await CheckClientConnectionsAsync(client);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("데이터 수신 중 오류가 발생했습니다: " + ex.Message);
+                throw;
+            }
+        }
+
+        private void RemoveClient(TcpClient clientToRemove)
+        {
+            lock (clients)
+            {
+                if (clients.Contains(clientToRemove))
+                {
+                    clients.Remove(clientToRemove);
+                    clientToRemove.Close();
+                    Console.WriteLine("클라이언트가 연결 리스트에서 제거되었습니다.");
+                }
+            }
+        }
+
+        public async Task CheckClientConnectionsAsync(TcpClient clientToRemove)
+        {
+            while (true)
+            {
+                await Task.Delay(1000); // 5초마다 체크
+
+                lock (clients)
+                {
+                    foreach (var client in clients.ToList())
+                    {
+                        try
+                        {
+                            if (client == null || !client.Connected)
+                            {
+                                RemoveClient(client);
+                            }
+                        }
+                        catch (SocketException)
+                        {
+                            // 클라이언트가 이미 연결이 끊어진 경우
+                            RemoveClient(client);
                         }
                     }
                 }
-                catch (Exception ex)
+            }
+        }
+
+        public void Disconnection()
+        {
+            try
+            {
+                if (client != null)
                 {
-                    Console.WriteLine("데이터 수신 중 오류가 발생했습니다: " + ex.Message);
-                    throw;
+                    // 소켓이 연결 상태인지 확인
+                    if (client.Client.Connected)
+                    {
+                        NetworkStream stream = client.GetStream();
+                        if (stream != null)
+                        {
+                            stream.Close();
+                            Console.WriteLine("stream 닫았다.");
+                        }
+
+                        client.Close();
+                        Console.WriteLine("클라이언트 닫았다.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("클라이언트 연결이 끊어진 상태입니다.");
+                    }
                 }
             }
-            return table;
-            //return await Task.Run(() => table);
+            catch (Exception ex)
+            {
+                Console.WriteLine($"오류 발생 : {ex.Message}");
+            }
         }
+
+
+
+
+
 
         public bool GetWaitingConnection()
         {

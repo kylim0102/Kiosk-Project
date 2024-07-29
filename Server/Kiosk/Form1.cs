@@ -2,7 +2,9 @@
 using Kiosk.pPanel.common;
 using MySqlX.XDevAPI.Relational;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,7 +18,9 @@ namespace Kiosk
         public Form1()
         {
             InitializeComponent();
+
         }
+
 
         private async void Form1_Load(object sender, EventArgs e)
         {
@@ -32,7 +36,6 @@ namespace Kiosk
             {
                 waitingCon.Text = "연결 끊김";
             }
-           
 
             await ShowClientConnectedMessageAsync();
         }
@@ -63,6 +66,7 @@ namespace Kiosk
         }
         #endregion
 
+
         #region Show OrderList(주문 목록 창 보기)
         private async void button4_Click(object sender, EventArgs e)
         {
@@ -73,6 +77,15 @@ namespace Kiosk
                 {
                     Console.WriteLine($"Received DataTable with {dt.Rows.Count} rows.");
                     using (Order.OrderList order = new Order.OrderList(dt))
+                    {
+                        order.ShowDialog();
+                    }
+                    con.Disconnection();
+                }
+                else
+                {
+                    DataTable dataTable = new DataTable();
+                    using (Order.OrderList order = new Order.OrderList(dataTable))
                     {
                         order.ShowDialog();
                     }

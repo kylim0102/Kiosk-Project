@@ -4,6 +4,7 @@ using Org.BouncyCastle.Asn1.Mozilla;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -1830,3 +1831,89 @@ internal class OrderListSQL
     }
 }
 #endregion
+
+internal class TCP_IP
+{
+    private static MySqlConnection conn = oGlobal.GetConnection();
+    private static MySqlDataReader reader= null;
+    private static string sql = string.Empty;
+
+
+    #region CreateTemporary(TCP 통신으로 보내는 datatable을 저장하는 temporarytable 생성)
+    public static void CreateTemporary()
+    {
+        if(conn.State == ConnectionState.Closed)
+        {
+            conn.Open();
+        }
+        try
+        {
+            sql = "create temporary table if not exists temp_TCPData(idx int auto_increment primary key,itemNumber varchar(10) not null,itemName varchar(100) not null,itemCount int not null,payment int not null,regdate date);";
+
+            using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+            {
+                Console.WriteLine("Temporary Table을 생성합니다.");
+                cmd.ExecuteNonQuery();
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+    #endregion
+
+    #region TCP통신으로 받은 datatable을 temp_TCPData 저장
+    public static void TemporaryTCPInsert(string itemNumber, string itemName, int itemCount, int payment)
+    {
+        if (conn.State == ConnectionState.Closed)
+        {
+            conn.Open();
+        }
+        try
+        {
+            sql = "insert into temp_TCPData (itemNumber, itemName, itemCount, payment,regdate) values (@itemNumber, @itemName, @itemCount, @payment,Now())";
+
+            using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@itemNumber", itemNumber);
+                cmd.Parameters.AddWithValue("@itemName", itemName);
+                cmd.Parameters.AddWithValue("@itemCount", itemCount);
+                cmd.Parameters.AddWithValue("@payment", payment);
+                cmd.ExecuteNonQuery();
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+    #endregion
+
+    #region temp_TCPData 에 담긴 datatable 값 들고오기
+    public static DataTable SelectTemporary()
+    {
+        DataTable dt = new DataTable();
+        if (conn.State == ConnectionState.Closed)
+        {
+            conn.Open();
+        }
+        try
+        {
+            sql = "select itemNumber, itemName, itemCount, payment from temp_TCPData";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+            {
+                
+                adapter.Fill(dt);
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        return dt;
+    }
+    #endregion
+
+}
