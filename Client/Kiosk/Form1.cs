@@ -27,7 +27,7 @@ namespace Kiosk
 
             InitializeComponent();
             kioskPanel.ButtonClicked += kioskPanel_ButtonClicked;
-            cartPanel.ButtonClicked += Cart_To_Kiosk_Button;
+            cartPanel.ButtonClicked += Cart_To_TemporaryView;
 
         }
 
@@ -79,11 +79,21 @@ namespace Kiosk
         #endregion
 
         #region CartPanel To KioskPanel Button Event(장바구니 → 제품 목록)
-        private void Cart_To_Kiosk_Button(object sender, EventArgs e)
+        private void Cart_To_TemporaryView(object sender, EventArgs e)
         {
-            MessageBox.Show("제품창으로 넘어갑니다.");
-            kioskPanel.Visible = true;
+            MessageBox.Show("템프러리 뷰 창으로 이동합니다.");
+            TemporaryView temporaryView = new TemporaryView(this);
+            temporaryView.Show();
             cartPanel.Visible = false;
+        }
+        #endregion
+
+        #region ShowMainPanel 메서드 (TemporaryView에서 호출할 메서드)
+        public void ShowMainPanel()
+        {
+            kioskPanel.Visible = false;
+            cartPanel.Visible = false;
+            panel1.Visible = true; // 메인 패널을 보여줍니다.
         }
         #endregion
 

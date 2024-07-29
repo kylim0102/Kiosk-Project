@@ -23,10 +23,12 @@ namespace Kiosk.pPanel
         private TCP_Client tCP_Client = new TCP_Client();
         private TcpClient client;
         private NetworkStream stream;
+        private Form1 mainPage;
 
-        public TemporaryView()
+        public TemporaryView(Form1 mainForm)
         {
             InitializeComponent();
+            mainPage = mainForm;
         }
 
         #region TemporaryView_Load(TemporaryView가 Load될 때 Temporary Table 데이터를 DataGridView로 보여주고, DB의 OrderTable에 저장)
@@ -71,5 +73,12 @@ namespace Kiosk.pPanel
 
         }
         #endregion
+
+        private void GoMainPage_Click(object sender, EventArgs e)
+        {
+            TemporaryTable.DeleteAll();
+            mainPage.ShowMainPanel();
+            this.Close();
+        }
     }
 }

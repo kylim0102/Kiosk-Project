@@ -28,39 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.GoMainPage = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // GoMainPage
             // 
-            this.button1.Location = new System.Drawing.Point(593, 10);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 36);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "새로고침";
-            this.button1.UseVisualStyleBackColor = true;
+            this.GoMainPage.Location = new System.Drawing.Point(678, 12);
+            this.GoMainPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GoMainPage.Name = "GoMainPage";
+            this.GoMainPage.Size = new System.Drawing.Size(110, 45);
+            this.GoMainPage.TabIndex = 0;
+            this.GoMainPage.Text = "홈으로";
+            this.GoMainPage.UseVisualStyleBackColor = true;
+            this.GoMainPage.Click += new System.EventHandler(this.GoMainPage_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 50);
+            this.dataGridView1.Location = new System.Drawing.Point(11, 62);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(679, 202);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 252);
             this.dataGridView1.TabIndex = 1;
             // 
             // TemporaryView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 360);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.GoMainPage);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "TemporaryView";
             this.Text = "TemporaryViewcs";
@@ -72,7 +73,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button GoMainPage;
         private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

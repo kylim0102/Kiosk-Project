@@ -565,6 +565,16 @@ namespace Kiosk.common
             return result;
         }
         #endregion
+
+        #region 장바구니 비우기
+        public static void DeleteAll()
+        {
+            MySqlConnection con = DB_Connection();
+            sql = "delete from temp_cart";
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
+        }
+        #endregion
     }
     #endregion
 }

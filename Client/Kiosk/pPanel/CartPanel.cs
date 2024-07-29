@@ -16,7 +16,7 @@ namespace Kiosk.pPanel
 {
     public partial class CartPanel : UserControl
     {
-        public TemporaryView TemporaryView = new TemporaryView();
+        //public TemporaryView TemporaryView = new TemporaryView();
         private TemporaryTable table = new TemporaryTable();
         DataTable _cData = new DataTable();
         public event EventHandler ButtonClicked;
@@ -190,7 +190,7 @@ namespace Kiosk.pPanel
         #region OrderButton Event(결제하기 버튼 이벤트)
         private void button2_Click(object sender, EventArgs e)
         {
-            TemporaryView.Show();
+            ButtonClicked?.Invoke(this, EventArgs.Empty);
         }
         #endregion
 
