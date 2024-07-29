@@ -164,9 +164,19 @@ namespace Kiosk.ItemManage.ItemPanel
                     textBox4.Text = cellValue[3].ToString();
 
                     string categoryname = cellValue[5].ToString();
-
-
+                    if(categoryname.Equals("10"))
+                    {
+                        categoryname = "COFFEE";
+                    }else if(categoryname.Equals("20"))
+                    {
+                        categoryname = "ADE";
+                    }else if (categoryname.Equals("30"))
+                    {
+                        categoryname = "TEA";
+                    }
+                   
                     List<string> list = category_table.GetCategory();
+                    
                     for (int i = 0; i < list.Count; i++)
                     {
                         comboBox1.Items.Add(list[i]);
