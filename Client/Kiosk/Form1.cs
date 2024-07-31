@@ -46,7 +46,7 @@ namespace Kiosk
         }
         #endregion
 
-        #region Form_Load Event(폼이 로드될 때 키오스크, 장바구니 패널 Visivle - False, 제품 사진 다운로드)
+        #region Form_Load Event(폼이 로드될 때 키오스크, 장바구니 패널 Visible - False, 제품 사진 다운로드)
         private void Form1_Load(object sender, EventArgs e)
         {
             // Form Load (폼이 로드 될 때 Kiosk 패널과 cart 패널이 추가되고, Visible = false;)

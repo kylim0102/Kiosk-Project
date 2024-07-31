@@ -10,12 +10,16 @@ namespace Kiosk.common
     {
         /*
             1. Client
-                1-1. KioskPanel에서 페이징 event 구현(button1/◀, button2/▶)
+                1-1. KioskPanel에서 페이징 event 구현(button1/◀, button2/▶) //완료
+                1-2. 장바구니 담으면 장바구니 버튼에 수량 출력
+                1-3. 추가 주문 눌렀을때 키오스크로 되돌아가게 수정
 
 
             2. Server
                 2-1. Client로부터 수신받은 DataTable을 주문목록창에 띄우기, 동적 UI 구현
-
+                    2-1-1. 주문 내역에서 버튼 별 구별
+                    2-1-2. 수량
+            
                 2-2. Clients To Server(N:1) 이지만 실제로 사용은 Client To Server(1:1)에 대한 Server 예외처리
                     2-2-1. 만약 Client To Server(1:1)에서 막혔을 경우 Clients To Server(N:1) 방안도 미리 생각해둘 것
 
@@ -27,6 +31,9 @@ namespace Kiosk.common
 
                 2-5. 결제 내역 UI 구현, 언제 어떤 메뉴를 얼마나 결제했는가 결제 내역 및 검색 기능 구현
 
+                2-6. 제품관리에서 상품번호 -> 카테고리
+
+                2-7. 오더매니지에서 UI 버튼 생성 위치, 페이징 구현
 
             3. Server & Client 공통 작업
                 3-1. Regdate의 입력 날짜가 바뀌면 즉, 하루가 넘어가면 OrderNumber 새롭게 초기화 구현
@@ -34,6 +41,7 @@ namespace Kiosk.common
                 3-3. Server와 Client에 구현한 모든 이벤트들 Name을 지정하여 구분을 쉽게 할 것, 도구들의 Name으로 이벤트를 만드니 뭐가 어떤 이벤트인지 구분이 어려움
                      물론 #region을 통해 설명을 넣지만 아무래도 한계가 존재
                      (ex: button1_Click(object sender, EventArgs e) → Order_Success_Message(object sender, EventArgs e)
+                3-4. 반응형 웹 구현
 
 
            일단은 여기까지

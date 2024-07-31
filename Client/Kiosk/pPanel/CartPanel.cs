@@ -20,6 +20,8 @@ namespace Kiosk.pPanel
         private TemporaryTable table = new TemporaryTable();
         DataTable _cData = new DataTable();
         public event EventHandler ButtonClicked;
+        KioskPanel kiosk = new KioskPanel();
+
 
         public CartPanel()
         {
@@ -184,7 +186,8 @@ namespace Kiosk.pPanel
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ButtonClicked?.Invoke(this, EventArgs.Empty);
+            this.Visible = false;
+            kiosk.Visible = true;
         }
 
         #region OrderButton Event(결제하기 버튼 이벤트)

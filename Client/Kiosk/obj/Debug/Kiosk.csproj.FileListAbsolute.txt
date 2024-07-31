@@ -582,3 +582,4 @@ C:\Users\YJ\Desktop\Kiosk-Project(1)\Client\Kiosk\obj\Debug\Kiosk.csproj.CoreCom
 C:\Users\YJ\Desktop\Kiosk-Project(1)\Client\Kiosk\obj\Debug\Kiosk.csproj.Up2Date
 C:\Users\YJ\Desktop\Kiosk-Project(1)\Client\Kiosk\obj\Debug\Kiosk.exe
 C:\Users\YJ\Desktop\Kiosk-Project(1)\Client\Kiosk\obj\Debug\Kiosk.pdb
+C:\Users\YJ\Desktop\Kiosk-Project\Client\Kiosk\obj\Debug\Kiosk.pPanel.TemporaryView.resources
