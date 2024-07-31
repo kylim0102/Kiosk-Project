@@ -1744,6 +1744,16 @@ internal class ChartList
 #endregion
 
 #region OrderListPanel
+public class Item
+{
+    public string Name { get; set; }
+    public string Tag { get; set; }
+
+    public override string ToString()
+    {
+        return Name;
+    }
+}
 internal class OrderListSQL
 {
     private static MySqlConnection mysql = oGlobal.GetConnection();
@@ -1764,6 +1774,9 @@ internal class OrderListSQL
         string prevPayment = string.Empty;
 
         string itemInfo = string.Empty;
+        Item Main_Item = null;
+        Item Option_Item = null;
+
         DateTime prevDate = DateTime.MinValue;
 
         try
@@ -1784,22 +1797,29 @@ internal class OrderListSQL
                             listbox.Items.Add("");
                             prevDate = currentDate;
                         }
-
+                        
                         string currentItemNumber = reader.GetString("itemNumber");
                         string currentItemName = reader.GetString("itemName");
                         string currentItemCount = reader.GetInt32("itemCount").ToString();
                         string currentPayment = reader.GetInt32("payment").ToString("C");
+                        int currentOrderNumber = reader.GetInt32("orderNumber");
 
                         if (currentItemNumber.Contains("-")) // 출력하는 제품이 옵션이면
                         {
-                            itemInfo = FormatOptionItem(currentItemName, currentItemCount, currentPayment);
-                            listbox.Items.Add(itemInfo);
+                            Option_Item = new Item();
+                            Option_Item.Name = FormatOptionItem(currentItemName, currentItemCount, currentPayment);
+                            Option_Item.Tag = currentOrderNumber.ToString();
+
+                            listbox.Items.Add(Option_Item);
                         }
                         else // 일반 항목
                         {
                             listbox.Items.Add("");
-                            itemInfo = string.Format("{0, -10} {1, 10} {2, 10:C}", currentItemName.PadRight(10), currentItemCount.PadLeft(10), currentPayment.PadLeft(20));
-                            listbox.Items.Add(itemInfo);
+                            Main_Item = new Item();
+                            Main_Item.Name = string.Format("{0, -10} {1, 10} {2, 10:C}", currentItemName.PadRight(10), currentItemCount.PadLeft(10), currentPayment.PadLeft(20));
+                            Main_Item.Tag = currentOrderNumber.ToString();
+
+                            listbox.Items.Add(Main_Item);
                         }
 
                         prevItemNumber = currentItemNumber;

@@ -511,3 +511,4 @@ C:\Users\YJ\Source\Repos\Kiosk-Project\Server\Kiosk\bin\Debug\Newtonsoft.Json.dl
 C:\Users\YJ\Source\Repos\Kiosk-Project\Server\Kiosk\bin\Debug\Newtonsoft.Json.xml
 C:\Users\YJ\Source\Repos\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.Order.OrderList.resources
 C:\Users\YJ\Source\Repos\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.pPanel.OrderList.resources
+C:\Users\YJ\Desktop\Kiosk-Project\Server\Kiosk\obj\Debug\Kiosk.pPanel.OrderList.resources

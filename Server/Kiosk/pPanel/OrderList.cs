@@ -27,5 +27,16 @@ namespace Kiosk.pPanel
                 listBox1.Items.Add(item);
             }
         }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Item SelectedItem = listBox1.SelectedItem as Item;
+            if (SelectedItem != null)
+            {
+                // 선택된 아이템의 Tag 속성에 접근합니다
+                object tag = SelectedItem.Tag;
+                MessageBox.Show("선택한 OrderNumber: "+tag.ToString());
+            }
+        }
     }
 }
