@@ -20,7 +20,7 @@ namespace Kiosk.pPanel
         private TemporaryTable table = new TemporaryTable();
         DataTable _cData = new DataTable();
         public event EventHandler ButtonClicked;
-        KioskPanel kiosk = new KioskPanel();
+        pPanel.KioskPanel kiosk = new KioskPanel();
 
 
         public CartPanel()

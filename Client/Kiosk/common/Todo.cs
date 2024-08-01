@@ -10,9 +10,9 @@ namespace Kiosk.common
     {
         /*
             1. Client
-                1-1. KioskPanel에서 페이징 event 구현(button1/◀, button2/▶) //완료
+                1-1. KioskPanel에서 페이징 event 구현(button1/◀, button2/▶) [Finish]
                 1-2. 장바구니 담으면 장바구니 버튼에 수량 출력
-                1-3. 추가 주문 눌렀을때 키오스크로 되돌아가게 수정
+                1-3. 추가 주문 눌렀을때 키오스크로 되돌아가게 수정 [Finish]
 
 
             2. Server
@@ -29,11 +29,12 @@ namespace Kiosk.common
 
                 2-4. Server에서 Order시에 Table에 바로 넣는 방안에서 Client와 동일하게 Temporary Table 방안으로 수정할 지 여부 토의할 것
 
-                2-5. 결제 내역 UI 구현, 언제 어떤 메뉴를 얼마나 결제했는가 결제 내역 및 검색 기능 구현
+                2-5. 결제 내역 UI 구현, 결제 내역에서 결제 취소기능 추가 [Finish - hoon]
 
-                2-6. 제품관리에서 상품번호 -> 카테고리
+                2-6. 제품관리에서 상품번호 -> 카테고리 [Finish - hoon]
 
                 2-7. 오더매니지에서 UI 버튼 생성 위치, 페이징 구현
+
 
             3. Server & Client 공통 작업
                 3-1. Regdate의 입력 날짜가 바뀌면 즉, 하루가 넘어가면 OrderNumber 새롭게 초기화 구현
