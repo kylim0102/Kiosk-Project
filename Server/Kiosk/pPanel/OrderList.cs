@@ -31,12 +31,57 @@ namespace Kiosk.pPanel
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Item SelectedItem = listBox1.SelectedItem as Item;
+
             if (SelectedItem != null)
             {
                 // 선택된 아이템의 Tag 속성에 접근합니다
                 object tag = SelectedItem.Tag;
-                MessageBox.Show("선택한 OrderNumber: "+tag.ToString());
+                ListBox list = sql.GetSelectItems(tag.ToString());
+                listBox2.Items.Clear();
+
+                foreach (var Item in list.Items)
+                {
+                    
+                    listBox2.Items.Add(Item);
+                }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("결제 취소후에는 복구할 수 없습니다.\n취소하시겠습니까?", "PAYMENT MANAGER", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if(result == DialogResult.OK)
+            {
+                sql.DeleteOrderItem(listBox2.Items[0].ToString());
+
+                listBox1.Items.Clear();
+                ListBox list = sql.GetAllOrderTable();
+
+                foreach (var item in list.Items)
+                {
+                    listBox1.Items.Add(item);
+                }
+
+                listBox2.Items.Clear();
+            }
+            else
+            {
+                MessageBox.Show("결제 확인으로 돌아갑니다.","PAYMENT MANAGER",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                return;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            ListBox list = sql.GetAllOrderTable();
+
+            foreach (var item in list.Items)
+            {
+                listBox1.Items.Add(item);
+            }
+
+            listBox2.Items.Clear();
         }
     }
 }

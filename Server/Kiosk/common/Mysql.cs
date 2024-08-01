@@ -1808,7 +1808,7 @@ internal class OrderListSQL
                         {
                             Option_Item = new Item();
                             Option_Item.Name = FormatOptionItem(currentItemName, currentItemCount, currentPayment);
-                            Option_Item.Tag = currentOrderNumber.ToString();
+                            Option_Item.Tag = currentOrderNumber.ToString()+"_"+currentDate;
 
                             listbox.Items.Add(Option_Item);
                         }
@@ -1817,7 +1817,7 @@ internal class OrderListSQL
                             listbox.Items.Add("");
                             Main_Item = new Item();
                             Main_Item.Name = string.Format("{0, -10} {1, 10} {2, 10:C}", currentItemName.PadRight(10), currentItemCount.PadLeft(10), currentPayment.PadLeft(20));
-                            Main_Item.Tag = currentOrderNumber.ToString();
+                            Main_Item.Tag = currentOrderNumber.ToString()+"_"+currentDate;
 
                             listbox.Items.Add(Main_Item);
                         }
@@ -1848,6 +1848,106 @@ internal class OrderListSQL
             return string.Format("{0, -10} {1, 10} {2, 10:C}", "+" + itemName.PadRight(10), itemCount.PadLeft(19), payment.PadLeft(20));
         }
         return string.Empty;
+    }
+
+    public ListBox GetSelectItems(string orderNumber)
+    {
+        ListBox listbox = new ListBox();
+        Item Main_Item = null;
+        Item Option_Item = null;
+
+        string orderNum = orderNumber.Split('_')[0];
+        string regdate = orderNumber.Split('_')[1];
+        string Division = "------------------------------";
+
+        int MaxPayment = 0;
+
+        try
+        {
+            
+            string sql = "SELECT * FROM ordertable where orderNumber = @orderNumber And regdate = @regdate ORDER BY regdate, orderNumber, itemNumber";
+            using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
+            {
+                cmd.Parameters.AddWithValue("orderNumber", Convert.ToInt32(orderNum));
+                cmd.Parameters.AddWithValue("regdate", Convert.ToDateTime(regdate));
+
+                using (reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        DateTime currentDate = reader.GetDateTime("regdate");
+                        string currentItemNumber = reader.GetString("itemNumber");
+                        string currentItemName = reader.GetString("itemName");
+                        string currentItemCount = reader.GetInt32("itemCount").ToString();
+                        string currentPayment = reader.GetInt32("payment").ToString("C");
+                        int currentOrderNumber = reader.GetInt32("orderNumber");
+
+                        if(listbox.Items.Count == 0)
+                        {
+                            listbox.Items.Add("No: " + currentOrderNumber+",     결제일: " +$"{currentDate:yyyy-MM-dd}");
+                            listbox.Items.Add(Division+Division+Division);
+                        }
+
+                        if (currentItemNumber.Contains("-")) // 출력하는 제품이 옵션이면
+                        {
+                            Option_Item = new Item();
+                            Option_Item.Name = FormatOptionItem(currentItemName, currentItemCount, currentPayment);
+                            Option_Item.Tag = currentOrderNumber.ToString();
+
+                            listbox.Items.Add(Option_Item);
+                        }
+                        else // 일반 항목
+                        {
+                            listbox.Items.Add("");
+                            Main_Item = new Item();
+                            Main_Item.Name = string.Format("{0, -10} {1, 10} {2, 10:C}", currentItemName.PadRight(10), currentItemCount.PadLeft(10), currentPayment.PadLeft(20));
+                            Main_Item.Tag = currentOrderNumber.ToString();
+
+                            listbox.Items.Add(Main_Item);
+                        }
+
+                        MaxPayment += reader.GetInt32("payment");
+                    }
+                    listbox.Items.Add("");
+                    listbox.Items.Add(Division+Division+Division);
+                    listbox.Items.Add("총 결제 금액: "+MaxPayment.ToString("C"));
+                }
+            }
+        }
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        return listbox;
+    }
+
+    public void DeleteOrderItem(string list_info)
+    {
+
+        string full_orderNumber = list_info.Split(',')[0].Trim();
+        string full_regdate = list_info.Split(',')[1].Trim();
+
+        string orderNumber = full_orderNumber.Split(':')[1].Trim();
+        string regdate = full_regdate.Split(':')[1].Trim();
+
+        sql = "delete from ordertable where orderNumber = @orderNumber And regdate = @regdate";
+        using(MySqlCommand cmd = new MySqlCommand(sql,mysql))
+        {
+            cmd.Parameters.AddWithValue("@orderNumber",Convert.ToInt32(orderNumber));
+            cmd.Parameters.AddWithValue("@regdate",Convert.ToDateTime(regdate));
+
+            
+            int result = cmd.ExecuteNonQuery();
+            if(result < 1)
+            {
+                MessageBox.Show("선택한 결제를 취소할 수 없습니다.\n관리자에게 문의하세요.","PAYMENT MANAGER",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            else
+            {
+                MessageBox.Show("성공적으로 결제가 취소되었습니다.", "PAYMENT MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
+        }
     }
 }
 #endregion
