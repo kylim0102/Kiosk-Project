@@ -18,10 +18,8 @@ namespace Kiosk.pPanel
     {
         //public TemporaryView TemporaryView = new TemporaryView();
         private TemporaryTable table = new TemporaryTable();
-        DataTable _cData = new DataTable();
+        //DataTable _cData = new DataTable();
         public event EventHandler ButtonClicked;
-        pPanel.KioskPanel kiosk = new KioskPanel();
-
 
         public CartPanel()
         {
@@ -186,6 +184,7 @@ namespace Kiosk.pPanel
 
         private void button3_Click(object sender, EventArgs e)
         {
+            pPanel.KioskPanel kiosk = new KioskPanel();
             this.Visible = false;
             kiosk.Visible = true;
         }

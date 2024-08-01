@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Client\\Kiosk\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|c:\\users\\ldh97\\desktop\\kiosk-project\\client\\kiosk\\common\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Client\\Kiosk\\common\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:common\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -100,7 +100,7 @@
               "RelativeDocumentMoniker": "common\\Todo.cs",
               "ToolTip": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Client\\Kiosk\\common\\Todo.cs",
               "RelativeToolTip": "common\\Todo.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAADwvx8AAABDAAAA",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAswB8AAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-01T04:03:46.359Z",
               "EditorCaption": ""

@@ -28,7 +28,7 @@ namespace Kiosk.pPanel
 
         #region 페이지 만들기 위한 설정
         private int currentPage = 0;
-        private int itemsInPage = 4; // 한 페이지에 보여줄 아이템 수
+        private int itemsInPage = 12; // 한 페이지에 보여줄 아이템 수
         #endregion
 
         #region 카테고리에 해당하는 아이템들을 동적으로 로드 + 페이지
