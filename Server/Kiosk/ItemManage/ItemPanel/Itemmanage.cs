@@ -24,7 +24,7 @@ namespace Kiosk.ItemManage.ItemPanel
             #region on/off 가 n 인 것
             try
             {
-                string query = "select * from kiosk.itemtable where `on/off` = 'n'"; // 테이블 쿼리
+                string query = "select a.*, b.cg_name from kiosk.itemtable a join kiosk.categorytable b on a.category = b.cg_code where `on/off` = 'n'"; // 테이블 쿼리
                 MySqlCommand cmd = new MySqlCommand(query, conn);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -33,10 +33,11 @@ namespace Kiosk.ItemManage.ItemPanel
                     {
 
                         int id = reader.GetInt32("idx");  //idx 컬럼의 값 가져오기
+                        string categoryName = reader.GetString("cg_name");
                         string data = reader.GetString("itemName"); // name 컬럼의 값 가져오기, 
                         int price = reader.GetInt32("price");
                         //MessageBox.Show($"ID: {id}, name: {data}"); 확인용
-                        listBox1.Items.Add("상품번호 : " + id + ",이름 : " + data + ",가격 : " + price);
+                        listBox1.Items.Add("상품분류 : " + categoryName + ",이름 : " + data + ",가격 : " + price);
                     }
                 }
             }
@@ -49,7 +50,7 @@ namespace Kiosk.ItemManage.ItemPanel
             #region on/off 가 y 인 것
             try
             {
-                string query = "select * from kiosk.itemtable where `on/off` = 'y'"; // 테이블 쿼리
+                string query = "select a.*, b.cg_name from kiosk.itemtable a join kiosk.categorytable b on a.category = b.cg_code where `on/off` = 'y'"; // 테이블 쿼리
                 MySqlCommand cmd = new MySqlCommand(query, conn);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -58,10 +59,11 @@ namespace Kiosk.ItemManage.ItemPanel
                     {
 
                         int id = reader.GetInt32("idx");  //idx 컬럼의 값 가져오기
+                        string categoryName = reader.GetString("cg_name");
                         string data = reader.GetString("itemName"); // name 컬럼의 값 가져오기, 
                         int price = reader.GetInt32("price");
                         //MessageBox.Show($"ID: {id}, name: {data}"); 확인용
-                        listBox2.Items.Add("상품번호 : " + id + ",이름 : " + data + ",가격 : " + price);
+                        listBox2.Items.Add("상품분류 : " + categoryName + ",이름 : " + data + ",가격 : " + price);
                     }
                 }
             }
