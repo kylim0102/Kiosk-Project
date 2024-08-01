@@ -407,14 +407,19 @@ internal class ItemTable
         MySqlCommand cmd = new MySqlCommand(sql, mysql);
         cmd.Parameters.AddWithValue("@cg_name", cg_name);
 
-        int buttonTop = 10;
-        int buttonSpacing = 30;
+        int maxButtonsPerRow = 4;  // 한 줄에 배치할 최대 버튼 수
+        int buttonWidth = 100;     // 버튼의 폭
+        int buttonHeight = 30;     // 버튼의 높이
+        int buttonLeftMargin = 10; // 왼쪽 여백
+        int buttonTopMargin = 10;  // 위쪽 여백
 
         using (reader = cmd.ExecuteReader())
         {
             int price = 0;
             string item_name = null, content = null, category = null, power = null;
             DateTime regdate;
+            int currentRow = 0;
+            int currentColumn = 0;
 
             while (reader.Read())
             {
@@ -430,13 +435,24 @@ internal class ItemTable
                 button.Text = item_name;
                 button.Tag = new { item_name, price, content, regdate, category, power };
 
-                button.Top = buttonTop;
-                button.Left = buttonSpacing;
+                // 버튼 위치 계산
+                button.Left = buttonLeftMargin + currentColumn * (buttonWidth + buttonLeftMargin);
+                button.Top = buttonTopMargin + currentRow * (buttonHeight + buttonTopMargin);
+                button.Width = 100;
+                button.Height = 30;
+
+                // 다음 버튼 위치 계산을 위해 열과 행 업데이트
+                currentColumn++;
+                if (currentColumn >= maxButtonsPerRow)
+                {
+                    currentRow++;
+                    currentColumn = 0;
+                }
 
 
                 items.Add(button);
 
-                buttonTop += buttonSpacing; // 다음 버튼의 y 좌표 설정
+                //buttonTop += buttonSpacing; // 다음 버튼의 y 좌표 설정
             }
 
         }
@@ -459,14 +475,19 @@ internal class ItemTable
         sql = "select * from itemtable";
         MySqlCommand cmd = new MySqlCommand(sql, mysql);
 
-        int buttonTop = 10;
-        int buttonSpacing = 30;
+        int maxButtonsPerRow = 4;  // 한 줄에 배치할 최대 버튼 수
+        int buttonWidth = 100;     // 버튼의 폭
+        int buttonHeight = 30;     // 버튼의 높이
+        int buttonLeftMargin = 10; // 왼쪽 여백
+        int buttonTopMargin = 10;  // 위쪽 여백
 
         using (reader = cmd.ExecuteReader())
         {
             int price = 0;
             string item_name = null, content = null, category = null, power = null;
             DateTime regdate;
+            int currentRow = 0;
+            int currentColumn = 0;
 
             while (reader.Read())
             {
@@ -482,13 +503,21 @@ internal class ItemTable
                 button.Text = item_name;
                 button.Tag = new { item_name, price, content, regdate, category, power };
 
-                button.Top = buttonTop;
-                button.Left = buttonSpacing;
+                // 버튼 위치 계산
+                button.Left = buttonLeftMargin + currentColumn * (buttonWidth + buttonLeftMargin);
+                button.Top = buttonTopMargin + currentRow * (buttonHeight + buttonTopMargin);
+                button.Width = 100;
+                button.Height = 30;
 
+                // 다음 버튼 위치 계산을 위해 열과 행 업데이트
+                currentColumn++;
+                if (currentColumn >= maxButtonsPerRow)
+                {
+                    currentRow++;
+                    currentColumn = 0;
+                }
 
                 items.Add(button);
-
-                buttonTop += buttonSpacing; // 다음 버튼의 y 좌표 설정
             }
 
         }
