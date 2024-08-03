@@ -23,8 +23,9 @@ namespace Kiosk.pPanel
         private int option_price1 = 0;
         private string option_name2 = null;
         private int option_price2 = 0;
+        private KioskPanel main_form;
 
-        public item(string itemName, int itemPrice, string itemContent, int itemCnt, int optionQuantity)
+        public item(string itemName, int itemPrice, string itemContent, int itemCnt, int optionQuantity, KioskPanel kiosk)
         {
             InitializeComponent();
             this.label1.Text = itemName;
@@ -32,6 +33,12 @@ namespace Kiosk.pPanel
             this.label3.Text = itemContent;
             this.textBox1.Text = itemCnt.ToString();
             this.textBox2.Text = optionQuantity.ToString();
+            main_form = kiosk;
+        }
+
+        private void OpenNewForm()
+        {
+
         }
 
         private void item_Load(object sender, EventArgs e)
@@ -261,7 +268,6 @@ namespace Kiosk.pPanel
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
             // 선택한 제품 Insert string itemNumber, string itemName, int itemCount, int payment, int orderNumber
             string itemName = label1.Text;
             int price = Convert.ToInt32(label2.Text);
@@ -284,7 +290,6 @@ namespace Kiosk.pPanel
                 {
                     TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber)+1), option_name2, 1, option_price2, 0);
                 }
-
             }
             else
             {
@@ -299,6 +304,21 @@ namespace Kiosk.pPanel
                 if (!option_name2.Equals(""))
                 {
                     TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber) + 1), option_name2, 1, option_price2, 0);
+                }
+            }
+
+            // Kiosk Panel을 itemForm으로 참조 전달, foreach를 통해 장바구니 버튼 탐색 후 Temporory table count 세팅
+            int cart_count = TemporaryTable.GetOnlyItemCount();
+
+            foreach (Control control in main_form.Controls)
+            {
+                if (control is Button)
+                {
+                    Button cart = (Button)control;
+                    if (cart.Name.Equals("Cart_btn"))
+                    {
+                        cart.Text = "장바구니 (" + cart_count + ")";
+                    }
                 }
             }
             

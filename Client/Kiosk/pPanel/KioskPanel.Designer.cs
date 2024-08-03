@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button4 = new System.Windows.Forms.Button();
+            this.Cart_btn = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.NextPage = new System.Windows.Forms.Button();
@@ -36,16 +36,16 @@
             this.PrevPage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button4
+            // Cart_btn
             // 
-            this.button4.Location = new System.Drawing.Point(389, 740);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(187, 68);
-            this.button4.TabIndex = 43;
-            this.button4.Text = "장바구니";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.Cart_btn.Location = new System.Drawing.Point(389, 740);
+            this.Cart_btn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Cart_btn.Name = "Cart_btn";
+            this.Cart_btn.Size = new System.Drawing.Size(187, 68);
+            this.Cart_btn.TabIndex = 43;
+            this.Cart_btn.Text = "장바구니 (0)";
+            this.Cart_btn.UseVisualStyleBackColor = true;
+            this.Cart_btn.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -102,7 +102,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.Cart_btn);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.NextPage);
             this.Controls.Add(this.tabControl1);
@@ -117,7 +117,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button Cart_btn;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button NextPage;

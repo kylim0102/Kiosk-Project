@@ -566,6 +566,32 @@ namespace Kiosk.common
         }
         #endregion
 
+        #region GetOnlyItemCount(옵션을 제외한 장바구니에 담긴 제품 수를 가져옴)
+        public static int GetOnlyItemCount()
+        {
+            int count = 0;
+            MySqlConnection con = DB_Connection();
+            try
+            {
+                sql = "select count(*) as cnt from temp_cart where itemNumber = substring_index(itemNumber,'-',1)";
+                using (MySqlCommand cmd = new MySqlCommand(sql, con))
+                {
+                    using(reader = cmd.ExecuteReader())
+                    {
+                        reader.Read();
+                        count = reader.GetInt32("cnt");
+                    }
+                }
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return count;
+        }
+        #endregion
+
         #region 장바구니 비우기
         public static void DeleteAll()
         {

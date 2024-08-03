@@ -87,7 +87,7 @@ namespace Kiosk.pPanel
                     int itemCnt = 1;
                     int optionCnt = 1;
 
-                    item itemForm = new item(itemName, itemPrice, itemContent, itemCnt, optionCnt);
+                    item itemForm = new item(itemName, itemPrice, itemContent, itemCnt, optionCnt, this);
                     itemForm.Show();
                 };
             }

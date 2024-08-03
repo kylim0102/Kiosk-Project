@@ -11,7 +11,7 @@ namespace Kiosk.common
         /*
             1. Client
                 1-1. KioskPanel에서 페이징 event 구현(button1/◀, button2/▶) [Finish]
-                1-2. 장바구니 담으면 장바구니 버튼에 수량 출력
+                1-2. 장바구니 담으면 장바구니 버튼에 수량 출력 [Finish - hoon]
                 1-3. 추가 주문 눌렀을때 키오스크로 되돌아가게 수정 [Finish]
 
 
