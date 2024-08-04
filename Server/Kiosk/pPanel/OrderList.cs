@@ -52,17 +52,25 @@ namespace Kiosk.pPanel
             DialogResult result = MessageBox.Show("결제 취소후에는 복구할 수 없습니다.\n취소하시겠습니까?", "PAYMENT MANAGER", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if(result == DialogResult.OK)
             {
-                sql.DeleteOrderItem(listBox2.Items[0].ToString());
-
-                listBox1.Items.Clear();
-                ListBox list = sql.GetAllOrderTable();
-
-                foreach (var item in list.Items)
+                if(listBox2.Items.Count<1)
                 {
-                    listBox1.Items.Add(item);
+                    MessageBox.Show("결제를 취소할 항목이 없습니다.\n다시 확인해주세요.","PAYMENT MANAGE",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    return;
                 }
+                else
+                {
+                    sql.DeleteOrderItem(listBox2.Items[0].ToString());
 
-                listBox2.Items.Clear();
+                    listBox1.Items.Clear();
+                    ListBox list = sql.GetAllOrderTable();
+
+                    foreach (var item in list.Items)
+                    {
+                        listBox1.Items.Add(item);
+                    }
+
+                    listBox2.Items.Clear();
+                }
             }
             else
             {

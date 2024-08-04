@@ -460,10 +460,7 @@ internal class ItemTable
         return items;
     }
 
-    /*
-        Order Page에서 MySql Tab에 모든 Item 목륵을 버튼으로 추가하기 위해 만든 SQL문
-        후에 코드 정리할 때 삭제하면 되는 부분
-    */
+ 
     public List<Button> GetAllItems()
     {
         if (mysql.State == ConnectionState.Closed)
@@ -1564,6 +1561,23 @@ internal class ChartList
         }
         return dataTable;
     }
+
+    // form이 로드 될 때 총 주문 건수 출력
+    public int GetAllOrderTableMaxOrderNumber()
+    {
+        int max = 0;
+
+        sql = "select max(orderNumber) as max from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1)";
+        using(MySqlCommand cmd = new MySqlCommand(sql,mysql))
+        {
+            using(reader = cmd.ExecuteReader())
+            {
+                reader.Read();
+                max = reader.GetInt32("max");
+            }
+        }
+        return max;
+    }
     #endregion
 
     #region Get After Payment And Searching Keyword Data(DB에서 결제 후의 모든 데이터 중에서 키워드로 검색한 결과를 DataTable에 저장)
@@ -1572,7 +1586,7 @@ internal class ChartList
         DataTable dataTable = CreateDataTable();
         try
         {
-            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment from ordertable where orderNumber != '0'  AND (itemName = @keyword OR itemName LIKE @like_keyword) GROUP BY itemName order by sum(itemCount) desc";
+            sql = "select itemName, sum(itemCount) as itemCount, sum(payment) as payment from ordertable where orderNumber != '0' AND (itemName = @keyword OR itemName LIKE @like_keyword) GROUP BY itemName order by sum(itemCount) desc";
             MySqlCommand cmd = new MySqlCommand(sql, mysql);
             cmd.Parameters.AddWithValue("@keyword",keyword);
             cmd.Parameters.AddWithValue("@like_keyword","%"+keyword+"%");
@@ -1596,6 +1610,23 @@ internal class ChartList
         }
 
         return dataTable;
+    }
+
+    public int GetKeywordMaxOrderNumber(string keyword)
+    {
+        int max = 0;
+        sql = "select max(orderNumber) as max from ordertable where orderNumber != '0' AND (itemName = @keyword OR itemName LIKE @like_keyword)";
+        using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
+        {
+            cmd.Parameters.AddWithValue("@keyword", keyword);
+            cmd.Parameters.AddWithValue("@like_keyword", "%" + keyword + "%");
+
+            using (reader = cmd.ExecuteReader())
+            {
+                max = reader.GetInt32("max");
+            }
+        }
+        return max;
     }
     #endregion
 
@@ -1790,6 +1821,7 @@ internal class OrderListSQL
     private string sql = null;
     int result = 0;
 
+    #region GetAllOrderTable(결제 내역 모두 출력 후 ListBox에 담기)
     public ListBox GetAllOrderTable()
     {
         ListBox listbox = new ListBox();
@@ -1865,7 +1897,9 @@ internal class OrderListSQL
         }
         return listbox;
     }
+    #endregion
 
+    #region FormatOptionItem(제품의 옵션은 ListBox에 추가 시 위치 고정)
     private string FormatOptionItem(string itemName, string itemCount, string payment)
     {
         if (itemName.Equals("샷 추가") || itemName.Equals("연하게"))
@@ -1878,7 +1912,9 @@ internal class OrderListSQL
         }
         return string.Empty;
     }
+    #endregion
 
+    #region GetSelectItems(선택한 제품의 결제정보를 새로운 LIstBox에서 출력)
     public ListBox GetSelectItems(string orderNumber)
     {
         ListBox listbox = new ListBox();
@@ -1949,10 +1985,11 @@ internal class OrderListSQL
         }
         return listbox;
     }
+    #endregion
 
+    #region DeleteOrderItem(선택한 제품의 결제정보에서 결제 취소 버튼 구현)
     public void DeleteOrderItem(string list_info)
     {
-
         string full_orderNumber = list_info.Split(',')[0].Trim();
         string full_regdate = list_info.Split(',')[1].Trim();
 
@@ -1960,24 +1997,24 @@ internal class OrderListSQL
         string regdate = full_regdate.Split(':')[1].Trim();
 
         sql = "delete from ordertable where orderNumber = @orderNumber And regdate = @regdate";
-        using(MySqlCommand cmd = new MySqlCommand(sql,mysql))
+        using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
         {
-            cmd.Parameters.AddWithValue("@orderNumber",Convert.ToInt32(orderNumber));
-            cmd.Parameters.AddWithValue("@regdate",Convert.ToDateTime(regdate));
+            cmd.Parameters.AddWithValue("@orderNumber", Convert.ToInt32(orderNumber));
+            cmd.Parameters.AddWithValue("@regdate", Convert.ToDateTime(regdate));
 
-            
             int result = cmd.ExecuteNonQuery();
-            if(result < 1)
+            if (result < 1)
             {
-                MessageBox.Show("선택한 결제를 취소할 수 없습니다.\n관리자에게 문의하세요.","PAYMENT MANAGER",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("선택한 결제를 취소할 수 없습니다.\n관리자에게 문의하세요.", "PAYMENT MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 MessageBox.Show("성공적으로 결제가 취소되었습니다.", "PAYMENT MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
+
         }
     }
+    #endregion
 }
 #endregion
 

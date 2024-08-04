@@ -27,7 +27,7 @@ namespace Kiosk.pPanel
         #region Chart For List On Load(리스트 버튼 클릭 시 DataGridView에 데이터 추가)
         private void list_Load(object sender, EventArgs e)
         {
-            // 
+            
             start_calendar.Click += Start_Calendar_Click;
             end_calendar.Click += End_Calendar_Click;
 
@@ -39,7 +39,7 @@ namespace Kiosk.pPanel
             DataTable dtMain = chartList.SelectData(mysql, keyword, start_day, end_day);
 
             dataGridView1.DataSource = dtMain;
-
+            List_max.Text = chartList.GetAllOrderTableMaxOrderNumber().ToString() + " 건";
 
             DataTable dt = dataGridView1.DataSource as DataTable;
 
@@ -170,14 +170,6 @@ namespace Kiosk.pPanel
         }
         #endregion
 
-        /*
-         hoon 할 일
-
-        새로고침 (Data Grid View에 DB 전체 다시 세팅) [ 저녁에 or 주말에 ]
-         
-         
-         */
-
         #region 총 매출 , 주문 한 상품의 수
         // 총 매출
         private void AddColumnSums()
@@ -192,8 +184,8 @@ namespace Kiosk.pPanel
                     count += Convert.ToInt32(row.Cells[1].Value);
                 }
             }
-            List_Total.Text = total.ToString() + " 원";
-            List_count.Text = count.ToString();
+            List_Total.Text = total.ToString("C") + " 원";
+            List_count.Text = count.ToString() + " 잔";
         }
 
         #endregion

@@ -45,6 +45,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.Refresh_list = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.List_max = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,43 +107,43 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("굴림", 12F);
+            this.label4.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(537, 90);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(104, 20);
             this.label4.TabIndex = 7;
-            this.label4.Text = "총 매출   :";
+            this.label4.Text = "총 매출  :";
             // 
             // List_Total
             // 
             this.List_Total.AutoSize = true;
             this.List_Total.Font = new System.Drawing.Font("굴림", 12F);
-            this.List_Total.Location = new System.Drawing.Point(766, 90);
+            this.List_Total.Location = new System.Drawing.Point(681, 90);
             this.List_Total.Name = "List_Total";
-            this.List_Total.Size = new System.Drawing.Size(97, 20);
+            this.List_Total.Size = new System.Drawing.Size(20, 20);
             this.List_Total.TabIndex = 8;
-            this.List_Total.Text = "99999999";
+            this.List_Total.Text = "0";
             // 
             // List_count
             // 
             this.List_count.AutoSize = true;
             this.List_count.Font = new System.Drawing.Font("굴림", 12F);
-            this.List_count.Location = new System.Drawing.Point(766, 148);
+            this.List_count.Location = new System.Drawing.Point(681, 148);
             this.List_count.Name = "List_count";
-            this.List_count.Size = new System.Drawing.Size(97, 20);
+            this.List_count.Size = new System.Drawing.Size(20, 20);
             this.List_count.TabIndex = 10;
-            this.List_count.Text = "99999999";
+            this.List_count.Text = "0";
             this.List_count.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("굴림", 12F);
+            this.label7.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
             this.label7.Location = new System.Drawing.Point(537, 148);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 20);
+            this.label7.Size = new System.Drawing.Size(125, 20);
             this.label7.TabIndex = 9;
-            this.label7.Text = "주문 수   :";
+            this.label7.Text = "총 판매량  :";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // start_calendar
@@ -223,10 +225,32 @@
             this.Refresh_list.UseVisualStyleBackColor = true;
             this.Refresh_list.Click += new System.EventHandler(this.Refresh_list_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold);
+            this.label8.Location = new System.Drawing.Point(537, 202);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(146, 20);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "총 주문 건수 :";
+            // 
+            // List_max
+            // 
+            this.List_max.AutoSize = true;
+            this.List_max.Font = new System.Drawing.Font("굴림", 12F);
+            this.List_max.Location = new System.Drawing.Point(706, 202);
+            this.List_max.Name = "List_max";
+            this.List_max.Size = new System.Drawing.Size(20, 20);
+            this.List_max.TabIndex = 22;
+            this.List_max.Text = "0";
+            // 
             // list
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.List_max);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.Refresh_list);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
@@ -272,5 +296,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button Refresh_list;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label List_max;
     }
 }
