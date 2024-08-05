@@ -16,7 +16,7 @@ namespace Kiosk.pPanel
 {
     public partial class KioskPanel : UserControl
     {
-        pPanel.CartPanel cartPanel = new pPanel.CartPanel();
+        pPanel.CartPanel cartPanel;
         private ItemInsert ItemInsert = new ItemInsert();
         public event EventHandler ButtonClicked;
         private static TemporaryTable TemporaryTable = new TemporaryTable();

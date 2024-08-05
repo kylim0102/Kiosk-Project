@@ -20,10 +20,12 @@ namespace Kiosk.pPanel
         private TemporaryTable table = new TemporaryTable();
         //DataTable _cData = new DataTable();
         public event EventHandler ButtonClicked;
+        private KioskPanel kioskPanel;
 
-        public CartPanel()
+        public CartPanel(KioskPanel kioskPanel)
         {
             InitializeComponent();
+            this.kioskPanel = kioskPanel;
         }
 
         #region CreateCartPenalFromTemporaryTable(TemporaryTable의 데이터를 CartPenal에서 동적으로 UI를 구현)
@@ -184,9 +186,8 @@ namespace Kiosk.pPanel
 
         private void button3_Click(object sender, EventArgs e)
         {
-            pPanel.KioskPanel kiosk = new KioskPanel();
             this.Visible = false;
-            kiosk.Visible = true;
+            kioskPanel.Visible = true;
         }
 
         #region OrderButton Event(결제하기 버튼 이벤트)

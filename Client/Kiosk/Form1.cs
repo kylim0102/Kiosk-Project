@@ -19,13 +19,14 @@ namespace Kiosk
     public partial class Form1 : Form
     {
         pPanel.KioskPanel kioskPanel = new pPanel.KioskPanel();
-        pPanel.CartPanel cartPanel = new pPanel.CartPanel();
+        pPanel.CartPanel cartPanel;
         private StorageConnection storage = new StorageConnection();
 
         public Form1()
         {
 
             InitializeComponent();
+            cartPanel = new pPanel.CartPanel(kioskPanel);
             kioskPanel.ButtonClicked += kioskPanel_ButtonClicked;
             cartPanel.ButtonClicked += Cart_To_TemporaryView;
 
@@ -115,8 +116,6 @@ namespace Kiosk
             cartPanel.Visible = false;
         }
         #endregion
-
-
 
         #region Dummy Event
         private void panel1_Paint(object sender, PaintEventArgs e)
