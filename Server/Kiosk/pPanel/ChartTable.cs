@@ -23,6 +23,7 @@ namespace Kiosk.pPanel
             _cData = cData;
             ChartDataLoad(_cData);
         }
+
         #region List To Chart(List에 있는 내용을 Chart로 전송하여 구현)
         private void ChartDataLoad(ChartData cData)
         {
@@ -45,6 +46,7 @@ namespace Kiosk.pPanel
                 {
                     string itemName = dataRow["itemName"].ToString();
                     int itemCount = Convert.ToInt32(dataRow["itemCount"]);
+                    int payment = Convert.ToInt32(dataRow["payment"]);
                     double percent = (double)itemCount / total * 100;
 
                     DataPoint dp = new DataPoint();
@@ -55,6 +57,8 @@ namespace Kiosk.pPanel
 
                     // 범례에 아이템 이름 표시
                     dp.LegendText = itemName;
+
+                    dp.Tag = new {itemName, itemCount, percent, payment};
 
                     series.Points.Add(dp);
                 }
@@ -79,5 +83,27 @@ namespace Kiosk.pPanel
 
         }
         #endregion
+
+        private void test(object sender, MouseEventArgs e)
+        {
+            HitTestResult result = chart1.HitTest(e.X, e.Y);
+            if (result.ChartElementType == ChartElementType.DataPoint)
+            {
+                // 클릭된 데이터 포인트 가져오기
+                DataPoint dataPoint = chart1.Series[0].Points[result.PointIndex];
+                dynamic info = dataPoint.Tag;
+                if (info != null)
+                {
+                    Chart_name.Text = info.itemName;
+                    Chart_count.Text = info.itemCount.ToString()+" 잔";
+                    Chart_payment.Text = info.payment.ToString("C")+" 원";
+                    Chart_percent.Text = info.percent.ToString("F2")+"%";
+                }
+                else
+                {
+                    MessageBox.Show("뭔가 잘못 됨");
+                }
+            }
+        }
     }
 }
