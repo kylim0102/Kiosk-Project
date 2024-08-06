@@ -1566,15 +1566,21 @@ internal class ChartList
     public int GetAllOrderTableMaxOrderNumber()
     {
         int max = 0;
-
-        sql = "select max(orderNumber) as max from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1)";
-        using(MySqlCommand cmd = new MySqlCommand(sql,mysql))
+        try
         {
-            using(reader = cmd.ExecuteReader())
+            sql = "select count(itemName) as max from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1)";
+            using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
             {
-                reader.Read();
-                max = reader.GetInt32("max");
+                using (reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    max = reader.GetInt32("max");
+                }
             }
+        }
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         return max;
     }
@@ -1615,16 +1621,24 @@ internal class ChartList
     public int GetKeywordMaxOrderNumber(string keyword)
     {
         int max = 0;
-        sql = "select max(orderNumber) as max from ordertable where orderNumber != '0' AND (itemName = @keyword OR itemName LIKE @like_keyword)";
-        using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
+        try
         {
-            cmd.Parameters.AddWithValue("@keyword", keyword);
-            cmd.Parameters.AddWithValue("@like_keyword", "%" + keyword + "%");
-
-            using (reader = cmd.ExecuteReader())
+            sql = "select count(itemName) as max from ordertable where orderNumber != '0' AND (itemName = @keyword OR itemName LIKE @like_keyword)";
+            using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
             {
-                max = reader.GetInt32("max");
+                cmd.Parameters.AddWithValue("@keyword", keyword);
+                cmd.Parameters.AddWithValue("@like_keyword", "%" + keyword + "%");
+
+                using (reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    max = reader.GetInt32("max");
+                }
             }
+        }
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         return max;
     }
@@ -1660,6 +1674,31 @@ internal class ChartList
         }
         return dataTable;
     }
+
+    public int GetKeywordAndTargetDayMaxOrderNumber(string keyword, string target_day)
+    {
+        int max = 0;
+        try
+        {
+            sql = "select count(itemName) as max from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND (itemName = @keyword OR itemName like @like_keyword) And regdate = @target_day";
+            using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
+            {
+                cmd.Parameters.AddWithValue("@keyword", keyword);
+                cmd.Parameters.AddWithValue("@like_keyword", "%" + keyword + "%");
+                cmd.Parameters.AddWithValue("@target_day", target_day);
+                using (reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    max = reader.GetInt32("max");
+                }
+            }
+        }
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        return max;
+    }
     #endregion
 
     #region Get After Payment And Searching Target Date(DB에서 결제 후의 모든 데이터 중에서 특정 기간으로 검색한 결과를 DataTable에 저장)
@@ -1689,6 +1728,30 @@ internal class ChartList
             MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         return dataTable;
+    }
+
+    public int GetTargetDayMaxOrderNumber(string target_day)
+    {
+        int max = 0;
+        try
+        {
+            sql = "select count(itemName) as max from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND regdate = @target_day";
+            using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
+            {
+                cmd.Parameters.AddWithValue("@target_day", target_day);
+                using (reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    max = reader.GetInt32("max");
+                }
+            }
+        }
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        
+        return max;
     }
     #endregion
 
@@ -1720,6 +1783,31 @@ internal class ChartList
             MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         return dataTable;
+    }
+
+    public int GetBetweenDayMaxOrderNumber(string start_day, string end_day)
+    {
+        int max = 0;
+        try
+        {
+            sql = "select count(itemName) as max from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND regdate between @start_day And @end_day";
+            using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
+            {
+                cmd.Parameters.AddWithValue("@start_day", start_day);
+                cmd.Parameters.AddWithValue("@end_day", end_day);
+                using (reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    max = reader.GetInt32("max");
+                }
+            }
+        }
+        catch(MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        return max;
     }
     #endregion
 
@@ -1753,6 +1841,32 @@ internal class ChartList
             MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         return dataTable;
+    }
+    public int GetAllConditionMaxOrderNumber(string keyword, string start_day, string end_day)
+    {
+        int max = 0;
+        try
+        {
+            sql = "select count(itemName) as max from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1) AND (itemName = @keyword OR itemName like @like_keyword) And regdate between @start_day AND @end_day";
+            using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
+            {
+                cmd.Parameters.AddWithValue("@keyword", keyword);
+                cmd.Parameters.AddWithValue("@like_keyword", "%" + keyword + "%");
+                cmd.Parameters.AddWithValue("@start_day", start_day);
+                cmd.Parameters.AddWithValue("@end_day", end_day);
+                using (reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    max = reader.GetInt32("max");
+                }
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        
+        return max;
     }
     #endregion
     // DB 조건 검색 AREA
@@ -1798,6 +1912,42 @@ internal class ChartList
         }
 
         return dataTable;
+    }
+
+    public int GetTargetMaxOrderNumber(MySqlConnection mysql, string keyword, string start_day, string end_day)
+    {
+        int max = 0;
+        string target_day = string.Empty;
+
+        if (keyword.Equals("") && start_day.Equals("") && end_day.Equals("")) // 아무 검색 조건도 없음
+        {
+            max = GetAllOrderTableMaxOrderNumber();
+        }
+        else if (!keyword.Equals("") && start_day.Equals("") && end_day.Equals("")) // 키워드 O, 검색일 X
+        {
+            max = GetKeywordMaxOrderNumber(keyword);
+        }
+        else if (keyword.Equals("") && !start_day.Equals("") && end_day.Equals("") || keyword.Equals("") && start_day.Equals("") && !end_day.Equals("")) // 키워드 X, 검색일(Start O, End X / Start X, End O)
+        {
+            max = GetTargetDayMaxOrderNumber(!start_day.Equals("") ? target_day = start_day : target_day = end_day);
+        }
+        else if (keyword.Equals("") && !start_day.Equals("") && !end_day.Equals("")) // 키워드 X, 검색일(Start O, End O)
+        {
+            max = GetBetweenDayMaxOrderNumber(start_day, end_day);
+        }
+        else if (!keyword.Equals("") && !start_day.Equals("") && end_day.Equals("") || !keyword.Equals("") && start_day.Equals("") && !end_day.Equals("")) // 키워드 O, 검색일(Start O, End X / Start X, End O)
+        {
+            max = GetKeywordAndTargetDayMaxOrderNumber(keyword, !start_day.Equals("") ? target_day = start_day : target_day = end_day);
+        }
+        else if (!keyword.Equals("") && !start_day.Equals("") && !end_day.Equals("")) // 모든 검색 조건 입력
+        {
+            max = GetAllConditionMaxOrderNumber(keyword, start_day, end_day);
+        }
+        else
+        {
+            MessageBox.Show("검색 조건을 다시 확인해주세요.", "ITEM MANAGER", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        return max;
     }
     #endregion
 }

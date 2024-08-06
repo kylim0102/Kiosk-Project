@@ -39,7 +39,7 @@ namespace Kiosk.pPanel
             DataTable dtMain = chartList.SelectData(mysql, keyword, start_day, end_day);
 
             dataGridView1.DataSource = dtMain;
-            List_max.Text = chartList.GetAllOrderTableMaxOrderNumber().ToString() + " 건";
+            List_max.Text = chartList.GetTargetMaxOrderNumber(mysql, keyword, start_day, end_day) + " 건";
 
             DataTable dt = dataGridView1.DataSource as DataTable;
 
@@ -47,7 +47,7 @@ namespace Kiosk.pPanel
             {
                 eDataTableSender(this, dt);
             }
-            AddColumnSums(); // 구한 총합 뷰에 추가
+            AddColumnSums(keyword, start_day, end_day); // 구한 총합 뷰에 추가
         }
         #endregion
 
@@ -81,7 +81,7 @@ namespace Kiosk.pPanel
                 start_calendar.Text = string.Empty;
                 end_calendar.Text = string.Empty;
             }
-            AddColumnSums();
+            AddColumnSums(keyword, start_day, end_day);
 
         }
         #endregion
@@ -166,13 +166,13 @@ namespace Kiosk.pPanel
 
             dataGridView1.DataSource = dtMain;
             eDataTableSender(sender, dtMain);
-            AddColumnSums();
+            AddColumnSums(keyword, start_day, end_day);
         }
         #endregion
 
         #region 총 매출 , 주문 한 상품의 수
         // 총 매출
-        private void AddColumnSums()
+        private void AddColumnSums(string keyword, string start_day, string end_day)
         {
             int total = 0;
             int count = 0;
@@ -186,6 +186,7 @@ namespace Kiosk.pPanel
             }
             List_Total.Text = total.ToString("C") + " 원";
             List_count.Text = count.ToString() + " 잔";
+            List_max.Text = chartList.GetTargetMaxOrderNumber(mysql, keyword, start_day, end_day) + " 건";
         }
 
         #endregion
