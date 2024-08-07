@@ -30,7 +30,7 @@ namespace Kiosk.Order
 
         private void OrderList_Load(object sender, EventArgs e)
         {
-            GroupBox clonedGroupBox = CloneGroupBox(groupBox2);
+            GroupBox clonedGroupBox = CloneGroupBox(groupBox);
             this.Controls.Add(clonedGroupBox);
         }
 
@@ -64,32 +64,26 @@ namespace Kiosk.Order
         {
             string list1 = string.Join(Environment.NewLine, listBox1.Items.Cast<string>());
             
-            MessageBox.Show(list1,groupBox1.Text);
+            MessageBox.Show(list1,groupBox.Text);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string list2 = string.Join(Environment.NewLine, listBox2.Items.Cast<string>());
+            string list2 = string.Join(Environment.NewLine, listBox1.Items.Cast<string>());
 
-            MessageBox.Show(list2, groupBox2.Text);
+            MessageBox.Show(list2, groupBox.Text);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("1번 호출벨을 울립니다.");
-            groupBox1.Visible = false;
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("2번 호출벨을 울립니다.");
-            groupBox2.Visible = false;
+            groupBox.Visible = false;
         }
 
         private void CallButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("호출벨을 울립니다.");
-            foreach(Control control in this.Controls)
+/*            foreach(Control control in this.Controls)
             {
                 if(control is GroupBox groupBox)
                 {
@@ -98,9 +92,18 @@ namespace Kiosk.Order
                         groupBox.Visible = false;
                     }
                 }
-            }
+            }*/
+        }
+
+        private void CancleButton_Click(Object sender, EventArgs e)
+        {
+            MessageBox.Show("주문을 취소합니다.");
         }
         
+        private void PrintButton_Click(Object sender, EventArgs e)
+        {
+            MessageBox.Show("주문을 출력합니다.");
+        }
         private Control CloneControl(Control original)
         {
             Control newControl = (Control)Activator.CreateInstance(original.GetType());
@@ -109,7 +112,11 @@ namespace Kiosk.Order
             newControl.Text = original.Text;
             newControl.Enabled = original.Enabled;
             newControl.Visible = original.Visible;
+            newControl.Name = original.Name;
+
             int index = 0;
+            int btn_index = 0;
+
             if(newControl is ListBox listbox)
             {
                 listbox.Name = "Clone";
@@ -134,9 +141,21 @@ namespace Kiosk.Order
                 }
 
             }
+
             if (newControl is Button button)
             {
-                button.Click += new EventHandler(CallButton_Click);
+                if(button.Name.Equals("Order_cancle"))
+                {
+                    button.Click += new EventHandler(CancleButton_Click);
+                }
+                else if(button.Name.Equals("Order_call"))
+                {
+                    button.Click += new EventHandler(CallButton_Click);
+                }
+                else if(button.Name.Equals("Order_print"))
+                {
+                    button.Click += new EventHandler(PrintButton_Click);
+                }
             }
 
 
@@ -144,16 +163,11 @@ namespace Kiosk.Order
             return newControl;
         }
 
-        private void Button_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         public GroupBox CloneGroupBox(GroupBox original)
         {
             // 새로운 GroupBox 생성
             GroupBox newgroupBox = new GroupBox();
-            int GroupBoxNumber = this.Controls.OfType<GroupBox>().Count()+1;
+            int GroupBoxNumber = this.Controls.OfType<GroupBox>().Count();
 
             // 원본 GroupBox의 속성을 새로운 GroupBox에 복사
             newgroupBox.Text = "Clone GroupBox";
