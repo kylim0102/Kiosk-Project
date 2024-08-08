@@ -2265,7 +2265,9 @@ internal class TCP_IP
         {
             sql = "TRUNCATE TABLE TCP_Data";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
+            Console.WriteLine("Temporary Table의 데이터를 초기화합니다.");
             int result = cmd.ExecuteNonQuery();
+
             if (result > 0) 
             {
                 delete = true;

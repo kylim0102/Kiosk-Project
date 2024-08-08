@@ -34,13 +34,17 @@ namespace Kiosk.Order
             // Form이 로드될 때 Tcp/Ip Server On
             await con.TcpServerOn();
 
-            //GroupBox clonedGroupBox = CloneGroupBox(groupBox);
-            //this.Controls.Add(clonedGroupBox);
         }
 
         #region CatchFromClientData(DataTable 수신)
         private void CatchFromClientData(DataTable table)
         {
+            /*
+                수신 과정
+                Client(DataTable) 송신 → Server(DataTable) 수신 → TemporaryTable 생성 → DataAdapter로 가져와서 DataGridView에 삽입
+                → TemporaryTable Data 포맷 → Client(DataTable) 송신 → 반복
+            */
+
             //통신으로 받은 datatable을 저장할 table
             TCP_IP.CreateTemporary();
 
@@ -74,6 +78,10 @@ namespace Kiosk.Order
 
                         data = TCP_IP.SelectTemporary();
                         dataGridView1.DataSource = data;
+                        Console.WriteLine("InvokeRequired");
+
+                        GroupBox clonedGroupBox = CloneGroupBox(groupBox);
+                        this.Controls.Add(clonedGroupBox);
                     }));
                 }
                 else
@@ -82,10 +90,18 @@ namespace Kiosk.Order
 
                     data = TCP_IP.SelectTemporary();
                     dataGridView1.DataSource = data;
+                    Console.WriteLine("Non InvokeRequired / datarow: "+data.Rows.Count);
+                    if(data.Rows.Count>1)
+                    {
+                        GroupBox clonedGroupBox = CloneGroupBox(groupBox);
+                        this.Controls.Add(clonedGroupBox);
+                    }
                 }
-
-                TCP_IP.DeleteTemporary();
             }
+
+
+            // Temporary Table 비우기
+            TCP_IP.DeleteTemporary();
         }
         #endregion
 
@@ -136,6 +152,12 @@ namespace Kiosk.Order
         private void CallButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("호출벨을 울립니다.");
+            Button button = sender as Button;
+
+            GroupBox groupBox = button.Parent as GroupBox;
+
+            this.Controls.Remove(groupBox);
+            
         }
 
         private void CancleButton_Click(Object sender, EventArgs e)
@@ -162,7 +184,7 @@ namespace Kiosk.Order
 
             int index = 0;
             int btn_index = 0;
-
+            
             if(newControl is ListBox listbox)
             {
                 listbox.Name = "Clone";
