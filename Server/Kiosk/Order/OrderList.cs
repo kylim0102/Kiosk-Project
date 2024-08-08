@@ -96,6 +96,7 @@ namespace Kiosk.Order
                         GroupBox clonedGroupBox = CloneGroupBox(groupBox);
                         this.Controls.Add(clonedGroupBox);
                     }
+                    Console.WriteLine("그룹박스 갯수: "+this.Controls.OfType<GroupBox>().Count());
                 }
             }
 
@@ -171,6 +172,18 @@ namespace Kiosk.Order
         }
         #endregion
 
+        private DataTable GetDataGridViewForDataTable(DataGridView data)
+        {
+            if (data.DataSource is DataTable dataTable)
+            {
+                return dataTable;
+            }
+            else
+            {
+                throw new InvalidOperationException("DataGridView's DataSource is not a DataTable.");
+            }
+        }
+
         #region CloneControl(그룹박스 안에 있는 컨트롤 복사)
         private Control CloneControl(Control original)
         {
@@ -184,6 +197,8 @@ namespace Kiosk.Order
 
             int index = 0;
             int btn_index = 0;
+
+            data = GetDataGridViewForDataTable(dataGridView1);
             
             if(newControl is ListBox listbox)
             {
@@ -194,11 +209,20 @@ namespace Kiosk.Order
                     string itemNumber = row["itemNumber"].ToString().Trim();
                     if (!itemNumber.Contains("-"))
                     {
-                        listbox.Items.Add("제품:" + row["itemName"].ToString());
+                        //listbox.Items.Add("제품:" + row["itemName"].ToString());
+                        listbox.Items.Add($"제품: {row["itemName"].ToString()}({row["itemCount"].ToString()})");
                     }
                     else
                     {
-                        listbox.Items.Add("옵션:" + row["itemName"].ToString());
+                        //listbox.Items.Add("옵션:" + row["itemName"].ToString());
+                        if(row["itemName"].Equals("ICE") || row["itemName"].Equals("HOT"))
+                        {
+                            listbox.Items.Add($"옵션2: {row["itemName"].ToString()}");
+                        }
+                        else
+                        {
+                            listbox.Items.Add($"옵션1: {row["itemName"].ToString()}({row["itemCount"].ToString()})");
+                        }
                     }
                     if ((index+1)% 3 == 0)
                     { 
@@ -241,7 +265,7 @@ namespace Kiosk.Order
             newgroupBox.Name = "Copy" + GroupBoxNumber;
             newgroupBox.Size = original.Size;
 
-            newgroupBox.Location = new Point(original.Location.X + original.Width + 40, original.Location.Y);
+            newgroupBox.Location = new Point((original.Location.X + original.Width)*GroupBoxNumber+40, original.Location.Y);
 
             // 원본 groupBox의 컨트롤들을 복사
             foreach (Control control in original.Controls)
