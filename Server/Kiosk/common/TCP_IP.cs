@@ -1,4 +1,5 @@
-﻿using Kiosk.pPanel.common;
+﻿using Kiosk.Order;
+using Kiosk.pPanel.common;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Mozilla;
 using System;
@@ -25,9 +26,10 @@ namespace Kiosk.pPanel.common
         private NetworkStream clientStream;
         private BinaryFormatter formatter;
 
+        #region GetIPv4Address(현재 네트워크의 IPv4 주소를 가져옴)
         public string GetIPv4Address()
         {
-            string ipAddress = "";
+            string ipAddress = string.Empty;
 
             foreach (NetworkInterface Interface in NetworkInterface.GetAllNetworkInterfaces())
             {
@@ -51,7 +53,9 @@ namespace Kiosk.pPanel.common
             }
             return ipAddress;
         }
+        #endregion
 
+        #region TcpServerOn(Tcp/Ip Server 시작, Client 접속 대기)
         public async Task TcpServerOn()
         {
             string IPv4Address = GetIPv4Address();
@@ -62,18 +66,33 @@ namespace Kiosk.pPanel.common
 
             listener.Start();
 
-            Console.WriteLine("Client의 접속을 기다리는 중...");
-
-            while (true)
+            try
             {
-                TcpClient Client = await listener.AcceptTcpClientAsync();
-                clients.Add(Client);
+                while (true)
+                {
+                    TcpClient Client = await listener.AcceptTcpClientAsync();
+                    Console.WriteLine("Client의 접속을 기다리는 중...");
+                    lock (clients)
+                    {
+                        clients.Add(Client);
+                        Console.WriteLine("Client가 접속했습니다. count: "+clients.Count);
+                    }
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("Listner가 켜지있지 않습니다.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR: "+ex.ToString());
             }
         }
-
-        public async Task<int> GetClientsCount()
+        #endregion
+        
+        public int GetClientCount()
         {
-            return await Task.Run(() => clients.Count);
+            return clients.Count;
         }
 
         public DataTable DeserializeDataTable(byte[] data)
@@ -93,61 +112,65 @@ namespace Kiosk.pPanel.common
         {
             if (clients.Count <= 0)
             {
-                MessageBox.Show("현재 접속된 클라이언트가 없습니다.");
+                Console.WriteLine("현재 접속된 클라이언트가 없습니다.");
                 return null;
             }
-
-            client = clients[0]; // 첫 번째 클라이언트를 가져옵니다
-
-            try
+            else
             {
-                using (var networkStream = client.GetStream())
+                int count = clients.Count;
+                client = clients[count-1]; // 첫 번째 클라이언트를 가져옵니다
+
+                try
                 {
-                    if (networkStream == null || !client.Client.Connected)
+                    using (var networkStream = client.GetStream())
                     {
-                        Console.WriteLine("연결이 끊어진 상태입니다.");
-                        return null;
-                    }
+                        if (networkStream == null || !client.Client.Connected)
+                        {
+                            Console.WriteLine("연결이 끊어진 상태입니다.");
+                            return null;
+                        }
 
-                    byte[] buffer = new byte[4096];
-                    int bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length);
+                        byte[] buffer = new byte[4096];
+                        int bytesRead = await networkStream.ReadAsync(buffer, 0, buffer.Length);
 
-                    if (bytesRead > 0)
-                    {
-                        byte[] data = buffer.Take(bytesRead).ToArray();
-                        DataTable table = DeserializeDataTable(data);
-                        Console.WriteLine($"Received DataTable with {table.Rows.Count} rows.");
-                        return table;
-                    }
-                    else
-                    {
-                        Console.WriteLine("클라이언트가 데이터를 보내지 않았습니다.");
-                        return null;
+                        if (bytesRead > 0)
+                        {
+                            byte[] data = buffer.Take(bytesRead).ToArray();
+                            DataTable table = DeserializeDataTable(data);
+                            Console.WriteLine($"Received DataTable with {table.Rows.Count} rows.");
+                            
+                            return table;
+                        }
+                        else
+                        {
+                            Console.WriteLine("클라이언트가 데이터를 보내지 않았습니다.");
+                            return null;
+                        }
                     }
                 }
-            }
-            catch (IOException ioEx)
-            {
-                Console.WriteLine("네트워크 오류가 발생했습니다: " + ioEx.Message);
-                await CheckClientConnectionsAsync(client);
-                return null;
-            }
-            catch (ObjectDisposedException objEx)
-            {
-                Console.WriteLine("클라이언트 연결이 이미 종료되었습니다: " + objEx.Message);
-                await CheckClientConnectionsAsync(client);
-                return null;
-            }
-            catch (InvalidOperationException invOpEx)
-            {
-                Console.WriteLine("소켓 작업 중 오류 발생: " + invOpEx.Message);
-                await CheckClientConnectionsAsync(client);
-                return null;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("데이터 수신 중 오류가 발생했습니다: " + ex.Message);
-                throw;
+                catch (IOException ioEx)
+                {
+                    Console.WriteLine("네트워크 오류가 발생했습니다: " + ioEx.Message);
+                    await CheckClientConnectionsAsync(client);
+                    return null;
+                }
+                catch (ObjectDisposedException objEx)
+                {
+                    Console.WriteLine("클라이언트 연결이 이미 종료되었습니다: " + objEx.Message);
+                    await CheckClientConnectionsAsync(client);
+                    return null;
+                }
+                catch (InvalidOperationException invOpEx)
+                {
+                    Console.WriteLine("소켓 작업 중 오류 발생: " + invOpEx.Message);
+                    await CheckClientConnectionsAsync(client);
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("데이터 수신 중 오류가 발생했습니다: " + ex.Message);
+                    throw;
+                }
             }
         }
 
@@ -221,24 +244,6 @@ namespace Kiosk.pPanel.common
                 Console.WriteLine($"오류 발생 : {ex.Message}");
             }
         }
-
-
-
-
-
-
-        public bool GetWaitingConnection()
-        {
-            if (listener != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf.WellKnownTypes;
+using Kiosk.pPanel.common;
 using MySqlX.XDevAPI.Relational;
 using Org.BouncyCastle.Asn1.Crmf;
 using System;
@@ -15,84 +16,126 @@ using System.Windows.Forms;
 
 namespace Kiosk.Order
 {
-    /*
-     TCP 통신으로 datatable을  받아오면  통신이 끊길 시 datatable이 소멸되기때문에 이 datatable로 만든 그룹박스도 삭제가 된다
-     그러므로 통신으로 받아온 datatable을 temporytable에 저장하거나 로컬저장소에 저장을 해서 
-     그 저장된 data들을 가지고 그룹박스를 생성하고 띄워야한다.
-     음료가 나가게 되면 temporytable을 삭제하는 방 ㅂ ㅓㅂ 으로 가야할것 같다
-     
-     */
-
     public partial class OrderList : Form
     {
         DataTable data = new DataTable();
-        private TCP_IP tcp = new TCP_IP();
+        private TcpConnection con = new TcpConnection();
+        private System.Windows.Forms.Timer timer;
 
-        private void OrderList_Load(object sender, EventArgs e)
+        private async void OrderList_Load(object sender, EventArgs e)
         {
-            GroupBox clonedGroupBox = CloneGroupBox(groupBox);
-            this.Controls.Add(clonedGroupBox);
+
+            // Timer 설정(Timer를 통해 Client의 수를 비동기적으로 초기화)
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 1000;
+            timer.Tick += Timer_Tick;
+            timer.Start();
+
+            // Form이 로드될 때 Tcp/Ip Server On
+            await con.TcpServerOn();
+
+            //GroupBox clonedGroupBox = CloneGroupBox(groupBox);
+            //this.Controls.Add(clonedGroupBox);
         }
 
-        public OrderList(DataTable table)
+        #region CatchFromClientData(DataTable 수신)
+        private void CatchFromClientData(DataTable table)
         {
-            InitializeComponent();
             //통신으로 받은 datatable을 저장할 table
             TCP_IP.CreateTemporary();
 
-            string itemNumber = null;
-            string itemName = null;
-            int itemCount = 0;
-            int payment = 0;
-            foreach (DataRow row in  table.Rows)
+            if (table == null)
             {
-                itemNumber = row["itemNumber"].ToString();
-                itemName = row["itemName"].ToString();
-                itemCount = Convert.ToInt32(row["itemCount"]);
-                payment = Convert.ToInt32(row["payment"]);
+                Console.WriteLine("Data 없음");
+            }
+            else
+            {
+                Console.WriteLine($"Received DataTable with {table.Rows.Count} rows.");
+                string itemNumber = null;
+                string itemName = null;
+                int itemCount = 0;
+                int payment = 0;
+                foreach (DataRow row in table.Rows)
+                {
+                    itemNumber = row["itemNumber"].ToString();
+                    itemName = row["itemName"].ToString();
+                    itemCount = Convert.ToInt32(row["itemCount"]);
+                    payment = Convert.ToInt32(row["payment"]);
 
-                TCP_IP.TemporaryTCPInsert(itemNumber, itemName, itemCount, payment);
+                    TCP_IP.TemporaryTCPInsert(itemNumber, itemName, itemCount, payment);
+                }
+
+                // DataGridView의 DataSource를 UI스레드에서 설정
+                if(InvokeRequired)
+                {
+                    BeginInvoke(new Action(() =>
+                    {
+                        dataGridView1.DataSource = null;
+
+                        data = TCP_IP.SelectTemporary();
+                        dataGridView1.DataSource = data;
+                    }));
+                }
+                else
+                {
+                    dataGridView1.DataSource = null;
+
+                    data = TCP_IP.SelectTemporary();
+                    dataGridView1.DataSource = data;
+                }
+
+                TCP_IP.DeleteTemporary();
+            }
+        }
+        #endregion
+
+        #region Client Count Update(클라이언트가 접속 시 비동기적으로 수를 UI에 업데이트)
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // 클라이언트 수를 비동기적으로 가져와 업데이트
+            UpdateClientCount();
+        }
+
+        private void UpdateClientCount()
+        {
+            if(InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(UpdateClientCount));
+                return;
             }
 
-            data = TCP_IP.SelectTemporary();
-            dataGridView1.DataSource = data;
+            int clientCount = con.GetClientCount();
+            waitingCon.Text = clientCount.ToString();
         }
-  
+        #endregion
 
+        #region OrderList(Tcp/Ip로 DataTable을 받은 후 Temporary Table에 저장하고 DataGridView로 표시)
+        public OrderList()
+        {
+            InitializeComponent();
+        }
+        #endregion
 
+        #region Button Event(OrderList에서 각종 버튼의 예시 이벤트)
+        // 출력 버튼 클릭 이벤트
         private void button3_Click(object sender, EventArgs e)
         {
             string list1 = string.Join(Environment.NewLine, listBox1.Items.Cast<string>());
             
             MessageBox.Show(list1,groupBox.Text);
         }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            string list2 = string.Join(Environment.NewLine, listBox1.Items.Cast<string>());
-
-            MessageBox.Show(list2, groupBox.Text);
-        }
-
+        // 호출 버튼 클릭 이벤트
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("1번 호출벨을 울립니다.");
             groupBox.Visible = false;
         }
+        #endregion
 
+        #region GroupBox in Button(그룹박스 안에 버튼 클릭 이벤트)
         private void CallButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("호출벨을 울립니다.");
-/*            foreach(Control control in this.Controls)
-            {
-                if(control is GroupBox groupBox)
-                {
-                    if(groupBox.Name == "Copy3")
-                    {
-                        groupBox.Visible = false;
-                    }
-                }
-            }*/
         }
 
         private void CancleButton_Click(Object sender, EventArgs e)
@@ -104,6 +147,9 @@ namespace Kiosk.Order
         {
             MessageBox.Show("주문을 출력합니다.");
         }
+        #endregion
+
+        #region CloneControl(그룹박스 안에 있는 컨트롤 복사)
         private Control CloneControl(Control original)
         {
             Control newControl = (Control)Activator.CreateInstance(original.GetType());
@@ -139,7 +185,6 @@ namespace Kiosk.Order
                     }
                     index++;
                 }
-
             }
 
             if (newControl is Button button)
@@ -158,11 +203,11 @@ namespace Kiosk.Order
                 }
             }
 
-
-
             return newControl;
         }
+        #endregion
 
+        #region CloneGroupBox(그릅박스를 복사)
         public GroupBox CloneGroupBox(GroupBox original)
         {
             // 새로운 GroupBox 생성
@@ -187,6 +232,26 @@ namespace Kiosk.Order
 
             return newgroupBox;
         }
+        #endregion
 
+        // Server Tcp/Ip Connection Button
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("test");
+        }
+
+        private async void test(object sender, EventArgs e)
+        {
+            DataTable table = await con.GetDataTableFromClient();
+            if (table == null)
+            {
+                DataTable Blank = new DataTable();
+                CatchFromClientData(Blank);
+            }
+            else
+            {
+                CatchFromClientData(table);
+            }
+        }
     }
 }

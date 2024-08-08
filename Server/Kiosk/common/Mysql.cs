@@ -2184,7 +2184,7 @@ internal class TCP_IP
         }
         try
         {
-            sql = "create temporary table if not exists temp_TCPData(idx int auto_increment primary key,itemNumber varchar(10) not null,itemName varchar(100) not null,itemCount int not null,payment int not null,regdate date);";
+            sql = "create temporary table if not exists TCP_Data(idx int auto_increment primary key,itemNumber varchar(10) not null,itemName varchar(100) not null,itemCount int not null,payment int not null,regdate date);";
 
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
             {
@@ -2208,7 +2208,7 @@ internal class TCP_IP
         }
         try
         {
-            sql = "insert into temp_TCPData (itemNumber, itemName, itemCount, payment,regdate) values (@itemNumber, @itemName, @itemCount, @payment,Now())";
+            sql = "insert into TCP_Data (itemNumber, itemName, itemCount, payment,regdate) values (@itemNumber, @itemName, @itemCount, @payment,Now())";
 
             using (MySqlCommand cmd = new MySqlCommand(sql, conn))
             {
@@ -2236,7 +2236,7 @@ internal class TCP_IP
         }
         try
         {
-            sql = "select itemNumber, itemName, itemCount, payment from temp_TCPData";
+            sql = "select itemNumber, itemName, itemCount, payment from TCP_Data";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
             {
@@ -2252,4 +2252,31 @@ internal class TCP_IP
     }
     #endregion
 
+
+    #region DeleteTempData(Temporary 테이블 내의 모든 데이터 초기화 및 삭제)
+    public static bool DeleteTemporary()
+    {
+        bool delete = false;
+        if (conn.State == ConnectionState.Closed)
+        {
+            conn.Open();
+        }
+        try
+        {
+            sql = "TRUNCATE TABLE TCP_Data";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            int result = cmd.ExecuteNonQuery();
+            if (result > 0) 
+            {
+                delete = true;
+            }
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message, "MYSQL ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        return delete;
+    }
+    #endregion
 }
