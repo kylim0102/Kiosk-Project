@@ -34,22 +34,28 @@ namespace Kiosk.pPanel
         #region TemporaryView_Load(TemporaryView가 Load될 때 Temporary Table 데이터를 DataGridView로 보여주고, DB의 OrderTable에 저장)
         private async void TemporaryViewcs_Load(object sender, EventArgs e)
         {
-            DataTable dt = TemporaryTable.all();
+            DataTable table = TemporaryTable.GetAllData();
+
             try
             {
-               
-                dt.TableName = "check_cart";
+                table.TableName = "check_cart";
+                bool con = await tCP_Client.Connection(table);
 
-                await tCP_Client.Connection(dt);
-                
-                MessageBox.Show("커넥션 실행");  // 연결이 성공적으로 이루어진 경우 메시지 박스
+                if (con)
+                {
+                    Console.WriteLine("Success Connection To Server!");
+                }
+                else
+                {
+                    Console.WriteLine("Fail Connection To Server!, Please Check Connection");
+                }
             }
             catch (Exception ex)
             {
                 // 예외 처리
-                MessageBox.Show($"Connection error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Connection error: {ex.Message}", "TCP CONNECTION ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            dataGridView1.DataSource = dt;
+            dataGridView1.DataSource = table;
 
             string itemNumber = null;
             string itemName = null;
@@ -58,15 +64,20 @@ namespace Kiosk.pPanel
             int orderNumber = order.MaxOrderNumberFromDate();
 
 
-            for(int i = 0; i < dt.Rows.Count; i++)
+            for(int i = 0; i < table.Rows.Count; i++)
             {
-                DataRow row = dt.Rows[i];
+                DataRow row = table.Rows[i];
                 itemNumber = row["itemNumber"].ToString();
                 itemName = row["itemName"].ToString();
                 itemCount = Convert.ToInt32(row["itemCount"]);
                 payment = Convert.ToInt32(row["payment"]);
 
                 order.insertItem(itemNumber, itemName, itemCount, payment, orderNumber);
+            }
+
+            foreach(DataRow row in table.Rows)
+            {
+
             }
 
             MessageBox.Show("주문이 완료되었습니다");

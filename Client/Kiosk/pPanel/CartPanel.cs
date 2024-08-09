@@ -184,11 +184,13 @@ namespace Kiosk.pPanel
 
         #endregion
 
+        #region AddCartButton(추가주문 버튼 클릭 이벤트)
         private void button3_Click(object sender, EventArgs e)
         {
             this.Visible = false;
             kioskPanel.Visible = true;
         }
+        #endregion
 
         #region OrderButton Event(결제하기 버튼 이벤트)
         private void button2_Click(object sender, EventArgs e)

@@ -480,7 +480,7 @@ namespace Kiosk.common
         #endregion
 
         #region CopyOrderTableToDataTable(OrderTable에 있는 데이터를 DataTable로 복사)
-        public static DataTable all()
+        public static DataTable GetAllData()
         {
             DataTable dataTable = CreateDataTable();
             MySqlConnection con = DB_Connection();
