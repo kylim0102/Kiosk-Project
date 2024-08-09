@@ -26,6 +26,7 @@ namespace Kiosk.common
                 await stream.WriteAsync(data, 0, data.Length);
             }
 
+            #region SerializeDataTable(DataTable을 역직렬화)
             public byte[] SerializeDataTable(DataTable table)
             {
                 if (table == null)
@@ -48,6 +49,7 @@ namespace Kiosk.common
                     }
                 }
             }
+            #endregion
 
             #region TcpConnection(Server와 TCP/IP 통신 연결)
             public async Task<bool> Connection(DataTable table)

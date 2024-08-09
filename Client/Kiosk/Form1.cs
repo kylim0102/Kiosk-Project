@@ -24,12 +24,10 @@ namespace Kiosk
 
         public Form1()
         {
-
             InitializeComponent();
             cartPanel = new pPanel.CartPanel(kioskPanel);
             kioskPanel.ButtonClicked += kioskPanel_ButtonClicked;
             cartPanel.ButtonClicked += Cart_To_TemporaryView;
-
         }
 
         #region KioskPanel To CartPanel Button Event(제품 목록 → 장바구니)
@@ -82,7 +80,6 @@ namespace Kiosk
         #region CartPanel To KioskPanel Button Event(장바구니 → 제품 목록)
         private void Cart_To_TemporaryView(object sender, EventArgs e)
         {
-            MessageBox.Show("템프러리 뷰 창으로 이동합니다.");
             TemporaryView temporaryView = new TemporaryView(this);
             temporaryView.Show();
             cartPanel.Visible = false;

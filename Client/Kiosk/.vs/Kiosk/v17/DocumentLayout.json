@@ -3,24 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|c:\\users\\yj\\desktop\\kiosk-project\\client\\kiosk\\ppanel\\temporaryview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:ppanel\\temporaryview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|c:\\users\\yj\\desktop\\kiosk-project\\client\\kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|c:\\users\\yj\\desktop\\kiosk-project\\client\\kiosk\\common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\common\\tcp_ip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:common\\tcp_ip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|c:\\users\\yj\\desktop\\kiosk-project\\client\\kiosk\\ppanel\\cartpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:ppanel\\cartpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|c:\\users\\yj\\desktop\\kiosk-project\\client\\kiosk\\ppanel\\temporaryview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:ppanel\\temporaryview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|c:\\users\\yj\\desktop\\kiosk-project\\client\\kiosk\\common\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:common\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|c:\\users\\yj\\desktop\\kiosk-project\\client\\kiosk\\ppanel\\temporaryview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0BAA6CFE-7AA9-48B1-BAA2-0A4B532F17B4}|Kiosk.csproj|solutionrelative:ppanel\\temporaryview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 384,
-          "SelectedChildIndex": 20,
+          "SelectedChildIndex": 23,
           "Children": [
             {
               "$type": "Bookmark",
@@ -114,66 +110,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "TemporaryView.cs",
               "DocumentMoniker": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\pPanel\\TemporaryView.cs",
               "RelativeDocumentMoniker": "pPanel\\TemporaryView.cs",
               "ToolTip": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\pPanel\\TemporaryView.cs",
               "RelativeToolTip": "pPanel\\TemporaryView.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAAAE8AAAAAAAAA",
+              "ViewState": "AQIAACQAAAAAAAAAAAAywFkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-09T06:22:06.975Z",
+              "WhenOpened": "2024-08-09T07:19:00.274Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "TemporaryView.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\pPanel\\TemporaryView.cs",
               "RelativeDocumentMoniker": "pPanel\\TemporaryView.cs",
               "ToolTip": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\pPanel\\TemporaryView.cs [\uB514\uC790\uC778]",
               "RelativeToolTip": "pPanel\\TemporaryView.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-09T06:22:05.294Z",
+              "WhenOpened": "2024-08-09T07:17:28.273Z",
               "EditorCaption": " [\uB514\uC790\uC778]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Todo.cs",
-              "DocumentMoniker": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\common\\Todo.cs",
-              "RelativeDocumentMoniker": "common\\Todo.cs",
-              "ToolTip": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\common\\Todo.cs",
-              "RelativeToolTip": "common\\Todo.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAxwB0AAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-09T04:35:29.519Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TCP_IP.cs",
-              "DocumentMoniker": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\common\\TCP_IP.cs",
-              "RelativeDocumentMoniker": "common\\TCP_IP.cs",
-              "ToolTip": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\common\\TCP_IP.cs",
-              "RelativeToolTip": "common\\TCP_IP.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAcwEQAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-05T12:30:04.159Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Mysql.cs",
-              "DocumentMoniker": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\common\\Mysql.cs",
-              "RelativeDocumentMoniker": "common\\Mysql.cs",
-              "ToolTip": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\common\\Mysql.cs",
-              "RelativeToolTip": "common\\Mysql.cs",
-              "ViewState": "AQIAAG4BAAAAAAAAAAAcwOIBAAAqAAAA",
+              "Title": "CartPanel.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\pPanel\\CartPanel.cs",
+              "RelativeDocumentMoniker": "pPanel\\CartPanel.cs",
+              "ToolTip": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\pPanel\\CartPanel.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "pPanel\\CartPanel.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-07T08:25:55.824Z",
+              "WhenOpened": "2024-08-09T07:12:28.792Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\YJ\\Desktop\\Kiosk-Project\\Client\\Kiosk\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAA9wE8AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-09T07:11:56.887Z",
               "EditorCaption": ""
             }
           ]
