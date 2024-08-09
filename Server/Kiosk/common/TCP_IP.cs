@@ -215,6 +215,28 @@ namespace Kiosk.pPanel.common
         }
         #endregion
 
+        public void ResetClient()
+        {
+            int count = 1;
+            int clientCount = GetClientCount();
+            Console.WriteLine($"모든 클라이언트를 초기화합니다. 현재 접속 중인 클라이언트 수: {clientCount}");
+
+            if (clientCount > 0)
+            {
+                foreach (TcpClient client in clients)
+                {
+                    Console.WriteLine($"No.{count} Client Close");
+                    client.Close();
+                    count++;
+                }
+                clients.Clear();
+            }
+            else
+            {
+                Console.WriteLine("초기화 할 클라이언트가 없습니다.");
+            }
+        }
+
         #region Dummy Event
         public void Disconnection()
         {

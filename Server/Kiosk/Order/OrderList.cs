@@ -303,8 +303,7 @@ namespace Kiosk.Order
         // Server Tcp/Ip Connection Button
         private void button5_Click(object sender, EventArgs e)
         {
-            int GroupBoxNumber = this.Controls.OfType<GroupBox>().Count();
-            Console.WriteLine("GroupBox Count: "+GroupBoxNumber);
+            con.ResetClient();
         }
 
         #region ClientCount(새로운 클라이언트가 접속하면 Data를 수신 후 DataGridView로 출력)
@@ -322,5 +321,10 @@ namespace Kiosk.Order
             }
         }
         #endregion
+
+        private void Order_call_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
