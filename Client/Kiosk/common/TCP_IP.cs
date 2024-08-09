@@ -19,12 +19,13 @@ namespace Kiosk.common
         {
             private TcpClient client;
             private NetworkStream stream;
+
             private async Task HandelClient(DataTable table)
             {
                 byte[] data = SerializeDataTable(table);
                 await stream.WriteAsync(data, 0, data.Length);
-
             }
+
             public byte[] SerializeDataTable(DataTable table)
             {
                 if (table == null)
@@ -48,21 +49,31 @@ namespace Kiosk.common
                 }
             }
 
-            public async Task Connection(DataTable table)
+            #region TcpConnection(Server와 TCP/IP 통신 연결)
+            public async Task<bool> Connection(DataTable table)
             {
+                bool connection = false;
+
                 try
                 {
                     client = new TcpClient();
                     await client.ConnectAsync(IPAddress.Parse("192.168.78.234"), 8090);
                     stream = client.GetStream();
                     _ = HandelClient(table);
+
+                    connection = true;
                 }
                 catch (Exception ex)
                 {
                     // 예외 처리
+                    connection = false;
+
                     MessageBox.Show($"Connection error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+                return connection;
             }
+            #endregion
         }
     }
 }
