@@ -95,21 +95,19 @@ namespace Kiosk.ItemManage.ItemPanel
         private void button1_Click(object sender, EventArgs e)
         {
             //
-            string a = listBox1.SelectedItem.ToString().Split(',')[0].Trim();
-            int idx = Convert.ToInt32(a.Split(':')[1].Trim());
+            string a = listBox1.SelectedItem.ToString().Split(',')[1].Trim();
+            string itemName = a.Split(':')[1].Trim();
             //int idx = Convert.ToInt32(listBox1.SelectedItem.ToString().Substring(7, 1));
-
-
 
             if (MessageBox.Show("추가하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
                 {
-                    string query = "UPDATE kiosk.itemtable SET `on/off` = 'y' WHERE idx = @idx"; // 테이블 쿼리
+                    string query = "UPDATE kiosk.itemtable SET `on/off` = 'y' WHERE itemName = @itemName"; // 테이블 쿼리
                     MySqlCommand cmd = new MySqlCommand(query, conn);
 
                     // 파라미터 추가
-                    cmd.Parameters.AddWithValue("@idx", idx);
+                    cmd.Parameters.AddWithValue("@itemName", itemName);
                     int rowsAffected = cmd.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
@@ -136,8 +134,8 @@ namespace Kiosk.ItemManage.ItemPanel
         private void button2_Click(object sender, EventArgs e)
         {
             //
-            string a = listBox2.SelectedItem.ToString().Split(',')[0].Trim();
-            int idx = Convert.ToInt32(a.Split(':')[1].Trim());
+            string a = listBox2.SelectedItem.ToString().Split(',')[1].Trim();
+            string itemName = a.Split(':')[1].Trim();
             //int idx = Convert.ToInt32(listBox2.SelectedItem.ToString().Substring(7, 1));
 
 
@@ -146,11 +144,11 @@ namespace Kiosk.ItemManage.ItemPanel
                 try
                 {
 
-                    string query = "UPDATE kiosk.itemtable SET `on/off` = 'n' WHERE idx = @idx"; // 테이블 쿼리
+                    string query = "UPDATE kiosk.itemtable SET `on/off` = 'n' WHERE itemName = @itemName"; // 테이블 쿼리
                     MySqlCommand cmd = new MySqlCommand(query, conn);
 
                     // 파라미터 추가
-                    cmd.Parameters.AddWithValue("@idx", idx);
+                    cmd.Parameters.AddWithValue("@itemName", itemName);
                     int rowsAffected = cmd.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
@@ -274,15 +272,9 @@ namespace Kiosk.ItemManage.ItemPanel
         #endregion
         // TAB2 AREA
 
-
-
-
-
         #region Dummy Event
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String select = listBox1.SelectedItem.ToString();
-            //MessageBox.Show(select.Substring(7,1)); //상품의 idx 값 가져오기
         }
 
         private void tabPage1_Click(object sender, EventArgs e)

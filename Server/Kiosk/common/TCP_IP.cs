@@ -23,8 +23,8 @@ namespace Kiosk.pPanel.common
         private TcpClient client;
         private readonly BindingList<TcpClient> clients = new BindingList<TcpClient>();
 
-        private NetworkStream clientStream;
-        private BinaryFormatter formatter;
+        //private NetworkStream clientStream;
+        //private BinaryFormatter formatter;
 
         #region GetIPv4Address(현재 네트워크의 IPv4 주소를 가져옴)
         public string GetIPv4Address()
@@ -89,12 +89,15 @@ namespace Kiosk.pPanel.common
             }
         }
         #endregion
-        
+
+        #region TcpClientCount(Client의 수를 반환)
         public int GetClientCount()
         {
             return clients.Count;
         }
+        #endregion
 
+        #region GetDataFromClient(Client로부터 Data를 수신)
         public DataTable DeserializeDataTable(byte[] data)
         {
             using (var memoryStream = new MemoryStream(data))
@@ -104,9 +107,6 @@ namespace Kiosk.pPanel.common
                 return dataTable;
             }
         }
-
-
-
 
         public async Task<DataTable> GetDataTableFromClient()
         {
@@ -173,7 +173,9 @@ namespace Kiosk.pPanel.common
                 }
             }
         }
+        #endregion
 
+        #region DisConnectionClient(Client와의 연결을 끊음)
         private void RemoveClient(TcpClient clientToRemove)
         {
             lock (clients)
@@ -186,13 +188,11 @@ namespace Kiosk.pPanel.common
                 }
             }
         }
-
         public async Task CheckClientConnectionsAsync(TcpClient clientToRemove)
         {
             while (true)
             {
-                await Task.Delay(1000); // 5초마다 체크
-
+                await Task.Delay(1000); // 1초마다 체크
                 lock (clients)
                 {
                     foreach (var client in clients.ToList())
@@ -213,7 +213,9 @@ namespace Kiosk.pPanel.common
                 }
             }
         }
+        #endregion
 
+        #region Dummy Event
         public void Disconnection()
         {
             try
@@ -244,7 +246,7 @@ namespace Kiosk.pPanel.common
                 Console.WriteLine($"오류 발생 : {ex.Message}");
             }
         }
-
+        #endregion
     }
 }
 
