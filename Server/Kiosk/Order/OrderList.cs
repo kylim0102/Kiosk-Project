@@ -22,8 +22,14 @@ namespace Kiosk.Order
         private TcpConnection con = new TcpConnection();
         private System.Windows.Forms.Timer timer;
 
+        public OrderList()
+        {
+            InitializeComponent();
+        }
+
         private async void OrderList_Load(object sender, EventArgs e)
         {
+            groupBox.Visible = false;
 
             // Timer 설정(Timer를 통해 Client의 수를 비동기적으로 초기화)
             timer = new System.Windows.Forms.Timer();
@@ -33,7 +39,6 @@ namespace Kiosk.Order
 
             // Form이 로드될 때 Tcp/Ip Server On
             await con.TcpServerOn();
-
         }
 
         #region CatchFromClientData(DataTable 수신)
@@ -126,30 +131,9 @@ namespace Kiosk.Order
         }
         #endregion
 
-        #region OrderList(Tcp/Ip로 DataTable을 받은 후 Temporary Table에 저장하고 DataGridView로 표시)
-        public OrderList()
-        {
-            InitializeComponent();
-        }
-        #endregion
-
-        #region Button Event(OrderList에서 각종 버튼의 예시 이벤트)
-        // 출력 버튼 클릭 이벤트
-        private void button3_Click(object sender, EventArgs e)
-        {
-            string list1 = string.Join(Environment.NewLine, listBox1.Items.Cast<string>());
-            
-            MessageBox.Show(list1,groupBox.Text);
-        }
-        // 호출 버튼 클릭 이벤트
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("1번 호출벨을 울립니다.");
-            groupBox.Visible = false;
-        }
-        #endregion
-
         #region GroupBox in Button(그룹박스 안에 버튼 클릭 이벤트)
+
+        #region CallButton(호출 버튼)
         private void CallButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("호출벨을 울립니다.");
@@ -160,18 +144,39 @@ namespace Kiosk.Order
             this.Controls.Remove(groupBox);
             
         }
+        #endregion
 
+        #region CancleButton(주문 취소 버튼)
         private void CancleButton_Click(Object sender, EventArgs e)
         {
             MessageBox.Show("주문을 취소합니다.");
         }
-        
+        #endregion
+
+        #region CallButton(주문 출력 버튼)
         private void PrintButton_Click(Object sender, EventArgs e)
         {
-            MessageBox.Show("주문을 출력합니다.");
+            Button Click_button = sender as Button;
+
+            GroupBox GroupBox = Click_button.Parent as GroupBox;
+
+            string order_text = string.Empty;
+
+            foreach(Control control in GroupBox.Controls)
+            {
+                if(control is ListBox listBox)
+                {
+                    order_text = string.Join(Environment.NewLine, listBox.Items.Cast<string>());
+                }
+            }
+            MessageBox.Show(order_text);
         }
         #endregion
 
+        #endregion
+
+        #region CloneControl(그룹박스 안에 있는 컨트롤 복사)
+        //DataGridView에서 DataTable을 추출
         private DataTable GetDataGridViewForDataTable(DataGridView data)
         {
             if (data.DataSource is DataTable dataTable)
@@ -184,9 +189,9 @@ namespace Kiosk.Order
             }
         }
 
-        #region CloneControl(그룹박스 안에 있는 컨트롤 복사)
         private Control CloneControl(Control original)
         {
+            #region CloneControlSetting(기존 컨트롤의 속성들을 복사한 컨트롤에 세팅)
             Control newControl = (Control)Activator.CreateInstance(original.GetType());
             newControl.Location = original.Location;
             newControl.Size = original.Size;
@@ -194,13 +199,16 @@ namespace Kiosk.Order
             newControl.Enabled = original.Enabled;
             newControl.Visible = original.Visible;
             newControl.Name = original.Name;
+            newControl.Visible = true;
+            #endregion
 
             int index = 0;
             int btn_index = 0;
 
             data = GetDataGridViewForDataTable(dataGridView1);
-            
-            if(newControl is ListBox listbox)
+
+            #region ListBoxSetting(TCP/IP로 수신받은 데이터를 ListBox에 담아 UI 출력)
+            if (newControl is ListBox listbox)
             {
                 listbox.Name = "Clone";
                 listbox.Items.Add("------------------------------");
@@ -232,7 +240,9 @@ namespace Kiosk.Order
                     index++;
                 }
             }
+            #endregion
 
+            #region ButtonSettingEvent(GroupBox 안에 있는 버튼에 맞는 이벤트 구분하여 세팅)
             if (newControl is Button button)
             {
                 if(button.Name.Equals("Order_cancle"))
@@ -248,12 +258,13 @@ namespace Kiosk.Order
                     button.Click += new EventHandler(PrintButton_Click);
                 }
             }
+            #endregion
 
             return newControl;
         }
         #endregion
 
-        #region CloneGroupBox(그릅박스를 복사)
+        #region CloneGroupBox(그룹박스를 복사)
         public GroupBox CloneGroupBox(GroupBox original)
         {
             // 새로운 GroupBox 생성
@@ -261,12 +272,21 @@ namespace Kiosk.Order
             int GroupBoxNumber = this.Controls.OfType<GroupBox>().Count();
 
             // 원본 GroupBox의 속성을 새로운 GroupBox에 복사
-            newgroupBox.Text = "Clone GroupBox";
+            newgroupBox.Text = "No."+GroupBoxNumber+" Order";
             newgroupBox.Name = "Copy" + GroupBoxNumber;
             newgroupBox.Size = original.Size;
 
-            newgroupBox.Location = new Point((original.Location.X + original.Width)*GroupBoxNumber+40, original.Location.Y);
-
+            // 그룹박스가 원본 밖에 없는 경우
+            if(GroupBoxNumber < 2)
+            {
+                newgroupBox.Location = original.Location;
+            }
+            else
+            {
+                //newgroupBox.Location = new Point((original.Location.X + original.Width) * GroupBoxNumber + 40, original.Location.Y);
+                newgroupBox.Location = new Point(original.Location.X + original.Width + 40, original.Location.Y);
+            }
+            
             // 원본 groupBox의 컨트롤들을 복사
             foreach (Control control in original.Controls)
             {
@@ -283,10 +303,12 @@ namespace Kiosk.Order
         // Server Tcp/Ip Connection Button
         private void button5_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("test");
+            int GroupBoxNumber = this.Controls.OfType<GroupBox>().Count();
+            Console.WriteLine("GroupBox Count: "+GroupBoxNumber);
         }
 
-        private async void test(object sender, EventArgs e)
+        #region ClientCount(새로운 클라이언트가 접속하면 Data를 수신 후 DataGridView로 출력)
+        private async void ClientCount(object sender, EventArgs e)
         {
             DataTable table = await con.GetDataTableFromClient();
             if (table == null)
@@ -299,5 +321,6 @@ namespace Kiosk.Order
                 CatchFromClientData(table);
             }
         }
+        #endregion
     }
 }

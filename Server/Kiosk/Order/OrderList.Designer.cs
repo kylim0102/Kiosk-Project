@@ -62,7 +62,6 @@
             this.Order_print.TabIndex = 5;
             this.Order_print.Text = "출력";
             this.Order_print.UseVisualStyleBackColor = true;
-            this.Order_print.Click += new System.EventHandler(this.button3_Click);
             // 
             // Order_call
             // 
@@ -72,7 +71,6 @@
             this.Order_call.TabIndex = 4;
             this.Order_call.Text = "호출";
             this.Order_call.UseVisualStyleBackColor = true;
-            this.Order_call.Click += new System.EventHandler(this.button2_Click);
             // 
             // Order_cancle
             // 
@@ -87,22 +85,6 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 12;
-            this.listBox1.Items.AddRange(new object[] {
-            "------------------------------",
-            "제품: 아메리카노(1)",
-            "옵션: 샷추가(2)",
-            "옵션: ICE",
-            "",
-            "------------------------------",
-            "제품: 아메리카노(2)",
-            "옵션: ICE",
-            "",
-            "------------------------------",
-            "제품: 레몬에이드(1)",
-            "옵션: 연하게",
-            "옵션: ICE",
-            "",
-            "------------------------------"});
             this.listBox1.Location = new System.Drawing.Point(6, 20);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(209, 148);
@@ -150,7 +132,7 @@
             this.waitingCon.Size = new System.Drawing.Size(48, 16);
             this.waitingCon.TabIndex = 11;
             this.waitingCon.Text = "Wait..";
-            this.waitingCon.TextChanged += new System.EventHandler(this.test);
+            this.waitingCon.TextChanged += new System.EventHandler(this.ClientCount);
             // 
             // OrderList
             // 

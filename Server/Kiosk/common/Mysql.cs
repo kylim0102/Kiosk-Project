@@ -323,7 +323,8 @@ namespace Kiosk.pPanel.common
     internal class ItemTable
     {
         private static MySqlConnection mysql = oGlobal.GetConnection();
-        private string sql = null;
+        string sql = null;
+
         int result = 0;
 
         public int ItemRegister(string name, int price, string content, string category)
@@ -331,7 +332,7 @@ namespace Kiosk.pPanel.common
             try
             {
                 string now = DateTime.Now.ToString("yyyy-MM-dd");
-                string sql = "insert into itemtable(itemName, price, content, regdate, category) values(@itemName, @price, @content, @regdate, @category)";
+                sql = "insert into itemtable(itemName, price, content, regdate, category) values(@itemName, @price, @content, @regdate, @category)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, mysql);
 
