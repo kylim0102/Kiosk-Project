@@ -66,6 +66,5 @@ namespace Kiosk
         #endregion
 
         #endregion
-
     }
 }

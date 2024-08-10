@@ -203,7 +203,6 @@ namespace Kiosk.Order
             #endregion
 
             int index = 0;
-            int btn_index = 0;
 
             data = GetDataGridViewForDataTable(dataGridView1);
 
@@ -300,11 +299,12 @@ namespace Kiosk.Order
         }
         #endregion
 
-        // Server Tcp/Ip Connection Button
+        #region ClientResetButton(접속중인 Client들을 모두 초기화)
         private void button5_Click(object sender, EventArgs e)
         {
             con.ResetClient();
         }
+        #endregion
 
         #region ClientCount(새로운 클라이언트가 접속하면 Data를 수신 후 DataGridView로 출력)
         private async void ClientCount(object sender, EventArgs e)
@@ -321,10 +321,5 @@ namespace Kiosk.Order
             }
         }
         #endregion
-
-        private void Order_call_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

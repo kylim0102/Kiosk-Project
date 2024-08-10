@@ -23,9 +23,6 @@ namespace Kiosk.pPanel.common
         private TcpClient client;
         private readonly BindingList<TcpClient> clients = new BindingList<TcpClient>();
 
-        //private NetworkStream clientStream;
-        //private BinaryFormatter formatter;
-
         #region GetIPv4Address(현재 네트워크의 IPv4 주소를 가져옴)
         public string GetIPv4Address()
         {
@@ -215,6 +212,7 @@ namespace Kiosk.pPanel.common
         }
         #endregion
 
+        #region ResetClient(현재 접속중인 Client들을 모두 초기화)
         public void ResetClient()
         {
             int count = 1;
@@ -236,6 +234,7 @@ namespace Kiosk.pPanel.common
                 Console.WriteLine("초기화 할 클라이언트가 없습니다.");
             }
         }
+        #endregion
 
         #region Dummy Event
         public void Disconnection()
