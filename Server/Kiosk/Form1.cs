@@ -4,6 +4,8 @@ using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.IO;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +16,7 @@ namespace Kiosk
     {
         private TcpConnection con = new TcpConnection();
         private pPanel.Chart chart;
+        private string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
         public Form1()
         {
@@ -22,7 +25,18 @@ namespace Kiosk
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            Form1 form = this;
+            string cafe = Path.Combine(desktopPath, "Kiosk_Image", "카페.jpg");
+            Image image = Image.FromFile(cafe);
+
+            form.BackgroundImage = image;
+            form.Dock = DockStyle.Fill;
+            form.BackgroundImageLayout = ImageLayout.Stretch;
+
+            groupBox2.BackColor = Color.Transparent;
+            groupBox2.Parent = form;
+            groupBox1.BackColor = Color.Transparent;
+            groupBox1.Parent = form;
         }
 
         #region Main Controller
