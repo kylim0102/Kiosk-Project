@@ -3,12 +3,14 @@ using Kiosk.pPanel.common;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace Kiosk.ItemManage.ItemPanel
 {
     public partial class Itemmanage : UserControl
     {
+        GoogleStorage google = new GoogleStorage();
         StorageConnection storageConnection = new StorageConnection();
         MySqlConnection conn = oGlobal.GetConnection();
 
@@ -75,6 +77,11 @@ namespace Kiosk.ItemManage.ItemPanel
 
 
             #region 스토리지 연결
+            foreach(string items in google.GoogleAllDownload())
+            {
+                listBox3.Items.Add(items);
+            }
+            /*
             storageConnection.BlobContainerClient(); // 스토리지 연결
 
             List<BlobItem> items = new List<BlobItem>();
@@ -85,6 +92,7 @@ namespace Kiosk.ItemManage.ItemPanel
             {
                 listBox3.Items.Add(items[i].Name);
             }
+            */
             #endregion
         }
         #endregion
@@ -200,7 +208,8 @@ namespace Kiosk.ItemManage.ItemPanel
             string url = Download_Path.Text + "\\";
 
             //다운로드 버튼
-            storageConnection.Download(Selected_File.Text, url);
+            //storageConnection.Download(Selected_File.Text, url);
+            google.GoogleDownload(url,Selected_File.Text);
         }
         #endregion
 
@@ -222,14 +231,17 @@ namespace Kiosk.ItemManage.ItemPanel
 
             if (!string.IsNullOrEmpty(select_file) && !string.IsNullOrEmpty(modify_file))
             {
-                storageConnection.ModifyBlob(Selected_File.Text, Modify_File.Text);
+                //storageConnection.ModifyBlob(Selected_File.Text, Modify_File.Text);
+                google.GoogleModify(select_file,modify_file);
                 listBox3.Items.Clear();
 
-                List<BlobItem> items = new List<BlobItem>();
-                items = storageConnection.GetBlobs();
+                List<string> items = google.GoogleAllDownload();
+
+                //List<BlobItem> items = new List<BlobItem>();
+                //items = storageConnection.GetBlobs();
                 for (int i = 0; i < items.Count; i++)
                 {
-                    listBox3.Items.Add(items[i].Name);
+                    listBox3.Items.Add(items[i]);
                 }
             }
             else
@@ -253,14 +265,16 @@ namespace Kiosk.ItemManage.ItemPanel
                 DialogResult dialog = MessageBox.Show("삭제 후에는 복구가 불가능합니다.\n정말 삭제하시겠습니까?", "AZURE SOTRAGE MANAGER", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if (dialog == DialogResult.OK)
                 {
-                    storageConnection.DeleteBlob(Selected_File.Text);
+                    //storageConnection.DeleteBlob(Selected_File.Text);
+                    google.GoogleDelete(file);
                     listBox3.Items.Clear();
 
-                    List<BlobItem> items = new List<BlobItem>();
-                    items = storageConnection.GetBlobs();
+                    List<string> items = google.GoogleAllDownload();
+                    //List<BlobItem> items = new List<BlobItem>();
+                    //items = storageConnection.GetBlobs();
                     for (int i = 0; i < items.Count; i++)
                     {
-                        listBox3.Items.Add(items[i].Name);
+                        listBox3.Items.Add(items[i]);
                     }
                 }
                 else

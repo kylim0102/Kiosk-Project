@@ -1,7 +1,28 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\ldh97\\desktop\\kiosk-project\\server\\kiosk\\itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\ldh97\\desktop\\kiosk-project\\server\\kiosk\\itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\itemmanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\ldh97\\desktop\\kiosk-project\\server\\kiosk\\itemmanage\\itempanel\\itempanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\itempanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\ldh97\\desktop\\kiosk-project\\server\\kiosk\\itemmanage\\itempanel\\itempanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:itemmanage\\itempanel\\itempanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\ldh97\\desktop\\kiosk-project\\server\\kiosk\\common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\oglobal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -9,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 383,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,6 +87,69 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{c9c0ae26-aa77-11d2-b3f0-0000f87570ee}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ItemPanel.cs",
+              "DocumentMoniker": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\ItemPanel.cs",
+              "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\ItemPanel.cs",
+              "ToolTip": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\ItemPanel.cs",
+              "RelativeToolTip": "ItemManage\\ItemPanel\\ItemPanel.cs",
+              "ViewState": "AQIAAEAAAAAAAAAAAAArwP4AAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T08:16:38.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ItemPanel.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\ItemPanel.cs",
+              "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\ItemPanel.cs",
+              "ToolTip": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\ItemPanel.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "ItemManage\\ItemPanel\\ItemPanel.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T08:16:36.485Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Itemmanage.cs",
+              "DocumentMoniker": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs",
+              "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\Itemmanage.cs",
+              "ToolTip": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs",
+              "RelativeToolTip": "ItemManage\\ItemPanel\\Itemmanage.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T05:57:51.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Itemmanage.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs",
+              "RelativeDocumentMoniker": "ItemManage\\ItemPanel\\Itemmanage.cs",
+              "ToolTip": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\ItemManage\\ItemPanel\\Itemmanage.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "ItemManage\\ItemPanel\\Itemmanage.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T05:57:45.648Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "oGlobal.cs",
+              "DocumentMoniker": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\oGlobal.cs",
+              "RelativeDocumentMoniker": "common\\oGlobal.cs",
+              "ToolTip": "C:\\Users\\ldh97\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\oGlobal.cs",
+              "RelativeToolTip": "common\\oGlobal.cs",
+              "ViewState": "AQIAACABAAAAAAAAAAAtwDwBAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-10T04:06:58.329Z",
+              "EditorCaption": ""
             }
           ]
         },

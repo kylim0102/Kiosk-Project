@@ -10,6 +10,9 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using Google.Cloud.Storage.V1;
+using Google.Cloud.SecretManager.V1;
+using Google.Apis.Auth.OAuth2;
 
 namespace Kiosk.pPanel.common
 {
@@ -51,6 +54,7 @@ namespace Kiosk.pPanel.common
         #endregion
     }
 
+    #region Azure Storage Manage
     internal class StorageConnection
     {
         #region Azure Storage Connection And Get Controller(Azure 스토리지에 접속 후 스토리지 컨트롤러를 반환)
@@ -74,15 +78,12 @@ namespace Kiosk.pPanel.common
         }
         #endregion
 
-
-
         #region Get Azure Storage All Blobs(Azure 스토리지에 있는 모든 목록을 반환)
         public List<BlobItem> GetBlobs()
         {
             // 컨테이너 클라이언트 생성
             var containerClient = BlobContainerClient();
 
-            int size = containerClient.GetBlobs().Count();
             List<BlobItem> items = containerClient.GetBlobs().ToList();
 
             return items;
@@ -142,8 +143,6 @@ namespace Kiosk.pPanel.common
             }
         }
         #endregion
-
-
 
         #region Get Local Storage File Path Scanner(Local 스토리지에서 선택한 파일의 경로와 파일명을 반환)
         public string LocalStorageScan() // 파일 경로 탐색기
@@ -205,8 +204,6 @@ namespace Kiosk.pPanel.common
             }
         }
         #endregion
-
-
 
         #region Azure Storage Delete Blob(Azure 스토리지에서 선택한 파일 삭제)
         public void DeleteBlob(string blobName)
@@ -278,6 +275,93 @@ namespace Kiosk.pPanel.common
         }
         #endregion
     }
+    #endregion
+
+    #region Google Storage Manage
+    internal class GoogleStorage
+    {
+        private string bucketName = "kiosk-project";
+        private string secret_id = "kiosk-project-key";
+        private string jsonkey = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"..","..","Key","kiosk-project.json");
+        //private string jsonkey = Path.Combine(@"C:\Users\ldh97\Desktop\Kiosk-Project\Server\Kiosk\Key\kiosk-project.json");
+
+        private StorageClient GetGoogleClient()
+        {
+            Console.WriteLine("제이슨 키 확인ㄴ"+jsonkey);
+
+            // JSON 파일에서 인증 정보를 로드
+            GoogleCredential credential;
+            using (var stream = new FileStream(jsonkey, FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream);
+            }
+
+            // Google Cloud Storage Client 생성
+            StorageClient client = StorageClient.Create(credential);
+
+            return client;
+        }
+
+        public bool GoogleUpload(string filepath)
+        {
+            bool result = false;
+
+            using(var filestream  = File.OpenRead(filepath))
+            {
+                var filename = Path.GetFileName(filepath);
+                var objectInfo = GetGoogleClient().UploadObject(bucketName,filename,null,filestream);
+                result = true;
+                Console.WriteLine($"파일이 업로드 되었습니다. 파일: {objectInfo.Name}");
+            }
+
+            return result;
+        }
+
+        public void GoogleDownload(string filepath, string filename)
+        {
+            using (var fileStream = File.OpenWrite(filepath+filename))
+            {
+                Console.WriteLine($"파일을 다운로드 합니다. 파일명: {filename}");
+                // 파일 다운로드
+                GetGoogleClient().DownloadObject(bucketName,filename,fileStream );
+            }
+        }
+
+        public List<string> GoogleAllDownload()
+        {
+            List<string> items = new List<string>();
+            StorageClient client = GetGoogleClient();
+
+
+            foreach(var obj in client.ListObjects(bucketName))
+            {
+                items.Add(obj.Name);
+            }
+
+            return items;
+        }
+
+        public void GoogleDelete(string filename)
+        {
+            if(GoogleAllDownload().Contains(filename))
+            {
+                GetGoogleClient().DeleteObject(bucketName, filename);
+            }
+            else
+            {
+                MessageBox.Show("선택한 파일이 존재하지 않습니다!","GOOGLE STORAGE ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        public void GoogleModify(string delete_file, string modify_file)
+        {
+            GoogleDelete(delete_file);
+
+            GoogleUpload(modify_file);
+        }
+    }
+    #endregion
 
     // UserControl에서 Main으로 DataTable 값을 전달 하기 위한 Delegate 정의    
     public delegate void delDataTableSender(object oSender, DataTable dt);

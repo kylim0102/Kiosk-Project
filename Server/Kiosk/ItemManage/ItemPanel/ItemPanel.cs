@@ -13,6 +13,7 @@ namespace Kiosk.ItemManage.ItemPanel
         private MySqlConnection mysql = oGlobal.GetConnection();
         private ItemTable item_table = new ItemTable();
         private CategoryTable category_table = new CategoryTable();
+        GoogleStorage google = new GoogleStorage();
 
         public ItemPanel()
         {
@@ -110,7 +111,8 @@ namespace Kiosk.ItemManage.ItemPanel
                     MessageBox.Show("업로드된 제품 사진이 없습니다!", "File Upload Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                bool upload = storage.Upload(file_path.Text);
+                //bool upload = storage.Upload(file_path.Text);
+                bool upload = google.GoogleUpload(file_path.Text);
 
                 // Mysql, Azure 동시 예외처리
                 if (result < 0)
@@ -250,6 +252,7 @@ namespace Kiosk.ItemManage.ItemPanel
                 try
                 {
                     result = itemUpdate.ItemDelete(idx);
+                    google.GoogleDelete(textBox2.Text+".jpg");
                 }
                 catch (Exception ex)
                 {

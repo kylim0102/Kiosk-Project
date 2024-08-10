@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "copper-imprint-432105-r5",
+  "private_key_id": "f4c8a6eb7b8a0a5a9049d697094397096ef77b0e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC30hd3mG/BE3JK\nRv+57k6k0d2AbkEiE0wnWF6sttZ0JhIrRhu6cQC+I/2h4VfNSkeag4A/sP2kRcF4\nak0byQ7h/CffGcVToloiFBGKe37srnLnwxcoFHn14fh4UOu+oCBfuW8eG4CkzKAo\ndgsNd6Oki0RdpI0m3A8DXhhD9u7X4V/Na41db7IKZ1PTPRAz52ubQ81Uf1Wk0CXP\n8HOvmR9hXI8qmi7WspQ/ENlIgHU/Rk900hX5dhmvoALa39C9OqrvaVMs4KooJCfW\n9Lme+Ug9PIKXQN1trPayOh5DdTlzcEt7A4+9vUV4Kaf54VOS73ImxntsA64xIE5q\nAUrazK6FAgMBAAECggEAQB1Irx+dlwfb3Llv15+dkZJbgkCyehql/LEvcGljWmau\n/qX45OomOqud+vj4oXNvjx6fvFdU2Je19/SHyZGynbLQC1pXP6kIbAt45MbXSeE8\n1cZvjLy7nz3+ZqS+3SHHuOuaLLOmBpUSpZoql7treehTY6AR1YR6vg9zQj1eKDBs\naE8Ke8bPRCOGS+gsVd0+IVcCcA/pVnl6bWlDt4lQrD0XidBmWRKxJkqissuu89cy\nyNoQ2/4zYG/7QKsM9zifRrnxOyQGyrfuF/1bvNHzDG7/bAOdClKo6NvhM/qpbeBR\nGjMFMmQLoPfk+gdpDmDGK0wxz1BlqamRPT15tZ4uDwKBgQD5Wn9h0759yQSqTd64\nXLEjgsFW8UQVipPntHetChM0D3nAStUfZo6El0mV+m2/CSzwMmGiE/+G57HdJ/p0\nuBw13fgVfnyh2m4fqlSirRt90dpsKOECrcRZDEmV/oLvwWcAbTRNzv5uBYfq8OGv\nA4faO3tGPjusbeLDs/9ooMw1lwKBgQC8uGur1XmN3KN2Vz0iZxJ9FZ/NNaybB/oT\n+gXXYt6zGT4LxYN8g6e+/JwyK7cA0522l2S8YLYQWKwL8btk4CkB0UX3mbbBz+xZ\nzqKuArgiaIm6sn/lKm3LsxzDbQCbdK2QtUFNMcx83g44rToXWDMOjBnYb+IOilnN\n8VbKwd+YQwKBgQDQnaQhBnRC7GEY0plZiUMyQHzc7nFVzGC948CUZu92CNSFypXP\n9Y+a4q/P6HrU7ypHsv74CN8p0MKAEqh56ma/snuSEAbZqtOjbm/swgNUGrQw9Wp7\nQUIaditCcHK/gAFa3AJ8bodzKPFz4CAQulV4gXc7Z2mpcy3bKcavlIgE9QKBgCd6\ntRuXZvxkYdXJ3kIqKdX9BhcZ2Wf9PTWcokgyqL/y0eYIhb8wk5ECq3Jbbsc/fcjK\n1woJeUzmH+fHxBoQQsPckbSAdZkJ9Dm9Xo7khry7/cQOv26jd6CbcbL4RJ5AxGZ3\nZJfPiSW+Fl+I7ZQgoV2ztVxv22yLSMoqaKu17x6dAoGBAL2vksCm6vnwiLYsCS61\nepEOp9oky6qW403yu1IqOevmbVp3tQzYFOg33o9XivyNDw+MAF0XUkXqZa4RxT99\nqMd42MES3e2jtm2d345Sw/pujZD1AS8NbmT0civvkrGTo6UCQuh9E0CghOq/7Gpl\nQ1NmGZjnQtpI6lfLDAfVtJGO\n-----END PRIVATE KEY-----\n",
+  "client_email": "kiosk-project@copper-imprint-432105-r5.iam.gserviceaccount.com",
+  "client_id": "109232360031583671254",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/kiosk-project%40copper-imprint-432105-r5.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
