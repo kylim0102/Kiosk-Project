@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -145,6 +146,12 @@ namespace Kiosk.common
         #region GetItemList(Kiosk 제품 선택 창에서 제품에 대한 정보를 Button으로 출력)
         public List<Button> CheckItem(string category)
         {
+            // 바탕화면 경로
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            // image 폴더 경로
+            string imagePath = Path.Combine(desktopPath, "Kiosk_Image");
+            //Select_Item_Picture.Image = Image.FromFile(imagePath + "\\" + label1.Text + ".jpg");
+
             List<Button> itemlist = new List<Button>();
             try
             {
@@ -163,6 +170,7 @@ namespace Kiosk.common
                     button.Text = itemName;
                     button.Name = itemName;
                     button.Tag = new { itemName, price, content };
+                    button.Image = Image.FromFile(imagePath+"\\"+itemName+".jpg");
 
                     itemlist.Add(button);
                 }

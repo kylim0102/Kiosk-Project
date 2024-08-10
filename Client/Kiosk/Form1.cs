@@ -21,6 +21,7 @@ namespace Kiosk
         pPanel.KioskPanel kioskPanel = new pPanel.KioskPanel();
         pPanel.CartPanel cartPanel;
         private StorageConnection storage = new StorageConnection();
+        GoogleConnection google = new GoogleConnection();
 
         public Form1()
         {
@@ -65,15 +66,28 @@ namespace Kiosk
 
             if(!Directory.Exists(imagePath))
             {
-                Directory.CreateDirectory(imagePath);
                 Console.WriteLine("바탕화면에 이미지 폴더가 생성되었습니다.");
+                Directory.CreateDirectory(imagePath);
+                Console.WriteLine("스토리지에서 이미지 파일을 가져옵니다.");
+                //storage.AllFileDownload(imagePath + "\\");
+
+                List<string> items = google.GoogleAllDownload();
+                foreach(string download in items)
+                {
+                    google.GoogleDownload(imagePath+"\\", download);
+                }
             }
             else
             {
                 Console.WriteLine("폴더가 이미 존재합니다.");
+                List<string> items = google.GoogleAllDownload();
+                foreach (string download in items)
+                {
+                    google.GoogleDownload(imagePath + "\\", download);
+                }
             }
 
-            storage.AllFileDownload(imagePath+"\\");
+            
         }
         #endregion
 
