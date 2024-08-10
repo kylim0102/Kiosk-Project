@@ -281,17 +281,17 @@ namespace Kiosk.pPanel.common
     internal class GoogleStorage
     {
         private string bucketName = "kiosk-project";
-        private string secret_id = "kiosk-project-key";
-        private string jsonkey = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"..","..","Key","kiosk-project.json");
+        private string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+        //private string jsonkey = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"..","..","Key","kiosk-project.json");
         //private string jsonkey = Path.Combine(@"C:\Users\ldh97\Desktop\Kiosk-Project\Server\Kiosk\Key\kiosk-project.json");
 
         private StorageClient GetGoogleClient()
         {
-            Console.WriteLine("제이슨 키 확인ㄴ"+jsonkey);
-
+            string key = Path.Combine(desktopPath, "Key", "kiosk-project-key.json");
             // JSON 파일에서 인증 정보를 로드
             GoogleCredential credential;
-            using (var stream = new FileStream(jsonkey, FileMode.Open, FileAccess.Read))
+            using (var stream = new FileStream(key, FileMode.Open, FileAccess.Read))
             {
                 credential = GoogleCredential.FromStream(stream);
             }
