@@ -80,10 +80,16 @@ namespace Kiosk
             else
             {
                 Console.WriteLine("폴더가 이미 존재합니다.");
+
+                // 이미 다운로드된 이미지가 있는지 체크
                 List<string> items = google.GoogleAllDownload();
                 foreach (string download in items)
                 {
-                    google.GoogleDownload(imagePath + "\\", download);
+                    string filePath = Path.Combine(imagePath, download);
+                    if (!File.Exists(filePath))
+                    {
+                        google.GoogleDownload(imagePath + "\\", download);
+                    }
                 }
             }
 

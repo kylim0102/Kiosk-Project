@@ -170,7 +170,7 @@ namespace Kiosk.common
                     button.Text = itemName;
                     button.Name = itemName;
                     button.Tag = new { itemName, price, content };
-                    button.Image = Image.FromFile(imagePath+"\\"+itemName+".jpg");
+                    button.Image = Image.FromFile(imagePath + "\\" + itemName + ".jpg");
 
                     itemlist.Add(button);
                 }

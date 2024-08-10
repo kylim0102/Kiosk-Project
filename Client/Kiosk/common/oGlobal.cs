@@ -115,20 +115,6 @@ namespace Kiosk.common
             return client;
         }
 
-        public bool GoogleUpload(string filepath)
-        {
-            bool result = false;
-
-            using (var filestream = File.OpenRead(filepath))
-            {
-                var filename = Path.GetFileName(filepath);
-                var objectInfo = GetGoogleClient().UploadObject(bucketName, filename, null, filestream);
-                result = true;
-                Console.WriteLine($"파일이 업로드 되었습니다. 파일: {objectInfo.Name}");
-            }
-
-            return result;
-        }
 
         public void GoogleDownload(string filepath, string filename)
         {
@@ -154,25 +140,6 @@ namespace Kiosk.common
             return items;
         }
 
-        public void GoogleDelete(string filename)
-        {
-            if (GoogleAllDownload().Contains(filename))
-            {
-                GetGoogleClient().DeleteObject(bucketName, filename);
-            }
-            else
-            {
-                MessageBox.Show("선택한 파일이 존재하지 않습니다!", "GOOGLE STORAGE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-        }
-
-        public void GoogleModify(string delete_file, string modify_file)
-        {
-            GoogleDelete(delete_file);
-
-            GoogleUpload(modify_file);
-        }
     }
 
     #endregion
