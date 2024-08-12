@@ -25,7 +25,20 @@ namespace Kiosk.pPanel
         public CartPanel(KioskPanel kioskPanel)
         {
             InitializeComponent();
+            BackgroundImageSet();
             this.kioskPanel = kioskPanel;
+        }
+
+        private void BackgroundImageSet()
+        {
+            CartPanel panel = this;
+
+            string cafe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Image", "카페.jpg");
+            Image image = Image.FromFile(cafe);
+
+            panel.BackgroundImage = image;
+            panel.Dock = DockStyle.Fill;
+            panel.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         #region CreateCartPenalFromTemporaryTable(TemporaryTable의 데이터를 CartPenal에서 동적으로 UI를 구현)
@@ -168,10 +181,43 @@ namespace Kiosk.pPanel
                     btn.Click += (sender, e) =>
                     {
                         TemporaryTable.Delete(itemNumber);
-                        MessageBox.Show("삭제되었습니다.");
                         tableLayoutPanel1.Controls.Clear();
                         DataTable all = TemporaryTable.GetTemporaryDataTable();
-                        LoadData(all);
+                        if (all.Rows.Count < 1)
+                        {
+                            MessageBox.Show("장바구니에 담긴 상품이 없습니다.\n제품 선택창으로 이동합니다.","ITEM CART MANAGER",MessageBoxButtons.OK,MessageBoxIcon.Information);
+
+                            this.Visible = false;
+                            kioskPanel.Visible = true;
+
+                            foreach (Control control in kioskPanel.Controls)
+                            {
+                                if (control is Button)
+                                {
+                                    Button cart = (Button)control;
+                                    if (cart.Name.Equals("Cart_btn"))
+                                    {
+                                        cart.Text = "장바구니 (" + all.Rows.Count + ")";
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            LoadData(all);
+
+                            foreach (Control control in kioskPanel.Controls)
+                            {
+                                if (control is Button)
+                                {
+                                    Button cart = (Button)control;
+                                    if (cart.Name.Equals("Cart_btn"))
+                                    {
+                                        cart.Text = "장바구니 (" + all.Rows.Count + ")";
+                                    }
+                                }
+                            }
+                        }
                     };
                     #endregion
                 }

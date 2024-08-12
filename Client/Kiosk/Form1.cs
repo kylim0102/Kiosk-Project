@@ -26,17 +26,27 @@ namespace Kiosk
         public Form1()
         {
             InitializeComponent();
+
+            BackgroundImageSet();
+
             cartPanel = new pPanel.CartPanel(kioskPanel);
             kioskPanel.ButtonClicked += kioskPanel_ButtonClicked;
             cartPanel.ButtonClicked += Cart_To_TemporaryView;
         }
 
+        private void BackgroundImageSet()
+        {
+            string cafe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Image", "카페.jpg");
+            Image image = Image.FromFile(cafe);
+
+            panel1.BackgroundImage = image;
+            panel1.Dock = DockStyle.Fill;
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
         #region KioskPanel To CartPanel Button Event(제품 목록 → 장바구니)
         private void kioskPanel_ButtonClicked(object sender, EventArgs e)
         {
-            // 버튼 클릭 시 실행될 코드 작성
-            MessageBox.Show("버튼이 클릭되었습니다!");
-
             DataTable data = TemporaryTable.GetTemporaryDataTable();    //추가
             // cartPanel에 데이터 로드
             cartPanel.LoadData(data);                                   //추가

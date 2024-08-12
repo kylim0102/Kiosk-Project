@@ -36,11 +36,6 @@ namespace Kiosk.pPanel
             main_form = kiosk;
         }
 
-        private void OpenNewForm()
-        {
-
-        }
-
         private void item_Load(object sender, EventArgs e)
         {
             tableLayoutPanel1.Controls.Clear();
@@ -140,6 +135,7 @@ namespace Kiosk.pPanel
                             if (otherCheckBox != checkBox && otherCheckBox.Checked)
                             {
                                 otherCheckBox.Checked = false;
+                                textBox2.Text = "1";
                             }
                         }
                     }
@@ -176,7 +172,7 @@ namespace Kiosk.pPanel
             }
 
 
-            MessageBox.Show("option_name1: "+option_name1+"\noption_name2: "+ option_name2 + "\noption_price1: "+option_price1+"\noption_price2: "+option_price2);
+            //MessageBox.Show("option_name1: "+option_name1+"\noption_name2: "+ option_name2 + "\noption_price1: "+option_price1+"\noption_price2: "+option_price2);
         }
         #endregion
 
@@ -209,11 +205,6 @@ namespace Kiosk.pPanel
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
 
@@ -261,7 +252,7 @@ namespace Kiosk.pPanel
             }
             else
             {
-                MessageBox.Show("최소 수량은 1개입니다.");
+                textBox2.Text = "1";
             }
         }
         #endregion
@@ -275,35 +266,62 @@ namespace Kiosk.pPanel
             int itemCount = Convert.ToInt32(textBox1.Text);
             int optionNumber = 0;
 
+            // 첫주문
             if(TemporaryTable.CheckTemporary() == 0)
             {
                 itemNumber = 1;
-                //제품등록
-                TemporaryTable.InsertTemporary(itemNumber.ToString(),itemName,itemCount,price,0);
-                //옵션등록
-                if(!option_name1.Equals(""))
+                // 옵션이 없으면 제품만 등록
+                if (option_name1 == null && option_name2 == null)
                 {
-                    TemporaryTable.InsertTemporary(itemNumber+"-"+(TemporaryTable.GetItemOptionNumber(itemNumber)+1), option_name1, Convert.ToInt32(textBox2.Text), option_price1, 0);
+                    TemporaryTable.InsertTemporary(itemNumber.ToString(), itemName, itemCount, price, 0);
                 }
-
-                if(!option_name2.Equals(""))
+                else if (option_name1 != null && option_name2 == null)
                 {
-                    TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber)+1), option_name2, 1, option_price2, 0);
+                    TemporaryTable.InsertTemporary(itemNumber.ToString(), itemName, itemCount, price, 0);
+                    TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber) + 1), option_name1, Convert.ToInt32(textBox2.Text), option_price1, 0);
+                }
+                else if (option_name1 == null && option_name2 != null)
+                {
+                    TemporaryTable.InsertTemporary(itemNumber.ToString(), itemName, itemCount, price, 0);
+                    TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber) + 1), option_name2, 1, option_price2, 0);
+                }
+                else if(option_name1 != null && option_name2 != null)
+                {
+                    TemporaryTable.InsertTemporary(itemNumber.ToString(), itemName, itemCount, price, 0);
+                    TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber) + 1), option_name1, Convert.ToInt32(textBox2.Text), option_price1, 0);
+                    TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber) + 1), option_name2, 1, option_price2, 0);
+                }
+                else
+                {
+                    MessageBox.Show("제품 선택 중 에러가 발생했습니다.","ITEM SELECT ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
             }
             else
             {
                 itemNumber = TemporaryTable.GetMaxItemNumber() + 1;
-                //제품등록
-                TemporaryTable.InsertTemporary(itemNumber.ToString(),itemName, itemCount, price, 0);
-                if (!option_name1.Equals(""))
+                if (option_name1 == null && option_name2 == null)
                 {
+                    TemporaryTable.InsertTemporary(itemNumber.ToString(), itemName, itemCount, price, 0);
+                }
+                else if (option_name1 != null && option_name2 == null)
+                {
+                    TemporaryTable.InsertTemporary(itemNumber.ToString(), itemName, itemCount, price, 0);
                     TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber) + 1), option_name1, Convert.ToInt32(textBox2.Text), option_price1, 0);
                 }
-
-                if (!option_name2.Equals(""))
+                else if(option_name1 == null && option_name2 != null)
                 {
+                    TemporaryTable.InsertTemporary(itemNumber.ToString(), itemName, itemCount, price, 0);
                     TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber) + 1), option_name2, 1, option_price2, 0);
+                }
+                else if(option_name1 != null && option_name2 != null)
+                {
+                    TemporaryTable.InsertTemporary(itemNumber.ToString(), itemName, itemCount, price, 0);
+                    TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber) + 1), option_name1, Convert.ToInt32(textBox2.Text), option_price1, 0);
+                    TemporaryTable.InsertTemporary(itemNumber + "-" + (TemporaryTable.GetItemOptionNumber(itemNumber) + 1), option_name2, 1, option_price2, 0);
+                }
+                else
+                {
+                    MessageBox.Show("제품 선택 중 에러가 발생했습니다.", "ITEM SELECT ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 

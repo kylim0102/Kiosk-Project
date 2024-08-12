@@ -37,6 +37,9 @@
             this.OptionIncrease = new System.Windows.Forms.Button();
             this.OptionDecrease = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.Increase = new System.Windows.Forms.Button();
@@ -44,46 +47,45 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Select_Item_Picture)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("굴림", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Bold);
             this.button1.Location = new System.Drawing.Point(63, 357);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(132, 39);
             this.button1.TabIndex = 8;
-            this.button1.Text = "취소";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Text = "취 소";
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
-            this.button3.Font = new System.Drawing.Font("굴림", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Bold);
             this.button3.Location = new System.Drawing.Point(256, 357);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(150, 39);
             this.button3.TabIndex = 10;
             this.button3.Text = "장바구니 담기";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Select_Item_Picture
             // 
+            this.Select_Item_Picture.ErrorImage = null;
             this.Select_Item_Picture.Location = new System.Drawing.Point(24, 10);
             this.Select_Item_Picture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Select_Item_Picture.Name = "Select_Item_Picture";
             this.Select_Item_Picture.Size = new System.Drawing.Size(217, 231);
             this.Select_Item_Picture.TabIndex = 11;
             this.Select_Item_Picture.TabStop = false;
-            this.Select_Item_Picture.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -109,24 +111,26 @@
             // 
             // OptionIncrease
             // 
+            this.OptionIncrease.BackColor = System.Drawing.Color.White;
             this.OptionIncrease.Location = new System.Drawing.Point(110, 291);
             this.OptionIncrease.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OptionIncrease.Name = "OptionIncrease";
             this.OptionIncrease.Size = new System.Drawing.Size(22, 21);
             this.OptionIncrease.TabIndex = 18;
             this.OptionIncrease.Text = "▲";
-            this.OptionIncrease.UseVisualStyleBackColor = true;
+            this.OptionIncrease.UseVisualStyleBackColor = false;
             this.OptionIncrease.Click += new System.EventHandler(this.OptionIncrease_Click);
             // 
             // OptionDecrease
             // 
+            this.OptionDecrease.BackColor = System.Drawing.Color.White;
             this.OptionDecrease.Location = new System.Drawing.Point(53, 291);
             this.OptionDecrease.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OptionDecrease.Name = "OptionDecrease";
             this.OptionDecrease.Size = new System.Drawing.Size(18, 21);
             this.OptionDecrease.TabIndex = 17;
             this.OptionDecrease.Text = "▼";
-            this.OptionDecrease.UseVisualStyleBackColor = true;
+            this.OptionDecrease.UseVisualStyleBackColor = false;
             this.OptionDecrease.Click += new System.EventHandler(this.OptionDecrease_Click);
             // 
             // groupBox1
@@ -146,6 +150,36 @@
             this.groupBox1.Size = new System.Drawing.Size(200, 239);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
+            this.label7.Location = new System.Drawing.Point(6, 104);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(56, 22);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "수량";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(6, 152);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(102, 22);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "제품설명";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(6, 59);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 22);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "가격";
             // 
             // label4
             // 
@@ -168,24 +202,26 @@
             // 
             // Increase
             // 
+            this.Increase.BackColor = System.Drawing.Color.White;
             this.Increase.Location = new System.Drawing.Point(130, 105);
             this.Increase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Increase.Name = "Increase";
             this.Increase.Size = new System.Drawing.Size(22, 21);
             this.Increase.TabIndex = 25;
             this.Increase.Text = "▲";
-            this.Increase.UseVisualStyleBackColor = true;
+            this.Increase.UseVisualStyleBackColor = false;
             this.Increase.Click += new System.EventHandler(this.Increase_Click);
             // 
             // Decrease
             // 
+            this.Decrease.BackColor = System.Drawing.Color.White;
             this.Decrease.Location = new System.Drawing.Point(70, 104);
             this.Decrease.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Decrease.Name = "Decrease";
             this.Decrease.Size = new System.Drawing.Size(18, 21);
             this.Decrease.TabIndex = 24;
             this.Decrease.Text = "▼";
-            this.Decrease.UseVisualStyleBackColor = true;
+            this.Decrease.UseVisualStyleBackColor = false;
             this.Decrease.Click += new System.EventHandler(this.Decrease_Click);
             // 
             // label3
@@ -220,36 +256,6 @@
             this.label1.Size = new System.Drawing.Size(76, 16);
             this.label1.TabIndex = 21;
             this.label1.Text = "상품 이름";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(6, 59);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 22);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "가격";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(6, 152);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 22);
-            this.label6.TabIndex = 29;
-            this.label6.Text = "제품설명";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(6, 104);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 22);
-            this.label7.TabIndex = 30;
-            this.label7.Text = "수량";
             // 
             // item
             // 

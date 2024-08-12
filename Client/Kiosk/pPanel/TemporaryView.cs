@@ -18,9 +18,6 @@ namespace Kiosk.pPanel
 {
     public partial class TemporaryView : Form
     {
-        //private TcpClient client;
-        //private NetworkStream stream;
-        //private static TemporaryTable TemporaryTable = new TemporaryTable();
         private Order order = new Order();
         private TCP_Client tCP_Client = new TCP_Client();
         private Form1 mainPage;

@@ -127,7 +127,7 @@ namespace Kiosk.Order
             }
 
             int clientCount = con.GetClientCount();
-            waitingCon.Text = clientCount.ToString();
+            waitingCon.Text = clientCount.ToString()+"건";
         }
         #endregion
 
@@ -296,13 +296,6 @@ namespace Kiosk.Order
             }
 
             return newgroupBox;
-        }
-        #endregion
-
-        #region ClientResetButton(접속중인 Client들을 모두 초기화)
-        private void button5_Click(object sender, EventArgs e)
-        {
-            con.ResetClient();
         }
         #endregion
 

@@ -59,7 +59,7 @@ namespace Kiosk.common
                 try
                 {
                     client = new TcpClient();
-                    await client.ConnectAsync(IPAddress.Parse("192.168.78.234"), 8090);
+                    await client.ConnectAsync(IPAddress.Parse("192.168.35.64"), 8090);
                     stream = client.GetStream();
                     _ = HandelClient(table);
 

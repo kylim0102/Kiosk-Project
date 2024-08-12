@@ -467,11 +467,6 @@ namespace Kiosk.common
             try
             {
                 sql = "select itemNumber, itemName, itemCount, payment from temp_cart where itemNumber = substring_index(itemNumber,'-',1) and orderNumber = '0' order by itemNumber"; // 수정
-                /*
-                    Temporary Table에는 기본적으로 결제 이전이기 때문에 orderNumber는 0으로 정보가 들어감.
-                    Temporary Table → MySql OrderTable로 이동할 때 orderNumber를 수정하는 개념이 아닌가 싶습니다.
-                    결론은 Temporary Table을 조회할 때 orderNumber가 0인 데이터를 조회할 이유가 있나 싶어요
-                */
 
                 MySqlCommand cmd = new MySqlCommand(sql, con);
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))

@@ -40,9 +40,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(254, 25);
+            this.label1.Location = new System.Drawing.Point(249, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(265, 60);
+            this.label1.Size = new System.Drawing.Size(216, 48);
             this.label1.TabIndex = 1;
             this.label1.Text = "장바구니";
             // 
@@ -52,22 +52,21 @@
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 129);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 103);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(748, 512);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(727, 410);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(580, 695);
+            this.label5.Location = new System.Drawing.Point(581, 531);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 40);
+            this.label5.Size = new System.Drawing.Size(33, 32);
             this.label5.TabIndex = 6;
             this.label5.Text = "0";
             // 
@@ -75,37 +74,39 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(440, 695);
+            this.label6.Location = new System.Drawing.Point(458, 531);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(127, 40);
+            this.label6.Size = new System.Drawing.Size(104, 32);
             this.label6.TabIndex = 7;
             this.label6.Text = "합계 :";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(498, 754);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
+            this.button2.Location = new System.Drawing.Point(398, 583);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(142, 48);
+            this.button2.Size = new System.Drawing.Size(164, 54);
             this.button2.TabIndex = 6;
-            this.button2.Text = "주문하기";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Text = "결제";
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(63, 754);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.Font = new System.Drawing.Font("굴림", 16F, System.Drawing.FontStyle.Bold);
+            this.button3.Location = new System.Drawing.Point(179, 583);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(142, 48);
+            this.button3.Size = new System.Drawing.Size(164, 54);
             this.button3.TabIndex = 8;
             this.button3.Text = "추가 주문";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // CartPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -113,9 +114,8 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CartPanel";
-            this.Size = new System.Drawing.Size(754, 848);
+            this.Size = new System.Drawing.Size(730, 676);
             this.Load += new System.EventHandler(this.CartPanel_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

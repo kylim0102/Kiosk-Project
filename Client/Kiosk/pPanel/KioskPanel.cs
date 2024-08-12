@@ -24,6 +24,23 @@ namespace Kiosk.pPanel
         public KioskPanel()
         {
             InitializeComponent();
+
+            BackgroundImageSet();
+        }
+
+        private void BackgroundImageSet()
+        {
+            KioskPanel panel = this;
+            
+            string cafe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Image", "카페.jpg");
+            Image image = Image.FromFile(cafe);
+
+            panel.BackgroundImage = image;
+            panel.Dock = DockStyle.Fill;
+            panel.BackgroundImageLayout = ImageLayout.Stretch;
+
+            panel2.BackColor = Color.Transparent;
+            panel2.Parent = panel;
         }
 
         #region 페이지 만들기 위한 설정
@@ -191,11 +208,42 @@ namespace Kiosk.pPanel
         }
         public void button4_Click(object sender, EventArgs e)
         {
-            ButtonClicked?.Invoke(this, EventArgs.Empty);
+            string button_name = Cart_btn.Text.Split(' ')[1];
+            if(button_name.Equals("(0)"))
+            {
+                MessageBox.Show("장바구니에 선택된 제품이 없습니다.","알림",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                ButtonClicked?.Invoke(this, EventArgs.Empty);
+            }
         }
+
+        // 결제 버튼
         private void button3_Click(object sender, EventArgs e)
         {
+            string button_name = Cart_btn.Text.Split(' ')[1];
+            if (button_name.Equals("(0)"))
+            {
+                MessageBox.Show("장바구니에 선택된 제품이 없습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                cartPanel = new pPanel.CartPanel(this);
+                DataTable data = TemporaryTable.GetTemporaryDataTable();    //추가
+                                                                            // cartPanel에 데이터 로드
+                cartPanel.LoadData(data);                                   //추가
 
+                KioskPanel kiosk = this;
+
+                //Form form = kiosk.FindForm();
+                Form1 form = kiosk.FindForm() as Form1;
+
+                TemporaryView temporaryView = new TemporaryView(form);
+                temporaryView.Show();
+            }
         }
         #endregion
     }
