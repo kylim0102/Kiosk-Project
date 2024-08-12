@@ -61,7 +61,25 @@ namespace Kiosk.pPanel.common
             Console.WriteLine("Tcp/Ip Server On");
             Console.WriteLine("Server IPv4 Address: " + IPv4Address);
 
-            listener.Start();
+            try
+            {
+                listener.Start();
+            }
+            catch (SocketException socket)
+            {
+                if (socket.SocketErrorCode == SocketError.AddressAlreadyInUse)
+                {
+                    Console.WriteLine("TCP Server가 이미 활성화 되어 있습니다.");
+                }
+                else
+                {
+                    Console.WriteLine("TCP Listner가 이미 8090 포트에서 활성화 중 에러가 발생했습니다. " + socket.Message);
+                }
+            }
+            catch (InvalidOperationException invalid)
+            {
+                Console.WriteLine("이미 활성회 된 TCP Listner가 존재합니다.");
+            }
 
             try
             {
@@ -72,7 +90,7 @@ namespace Kiosk.pPanel.common
                     lock (clients)
                     {
                         clients.Add(Client);
-                        Console.WriteLine("Client가 접속했습니다. count: "+clients.Count);
+                        Console.WriteLine("Client가 접속했습니다. count: " + clients.Count);
                     }
                 }
             }
@@ -82,7 +100,7 @@ namespace Kiosk.pPanel.common
             }
             catch (Exception ex)
             {
-                Console.WriteLine("ERROR: "+ex.ToString());
+                Console.WriteLine("ERROR: " + ex.ToString());
             }
         }
         #endregion

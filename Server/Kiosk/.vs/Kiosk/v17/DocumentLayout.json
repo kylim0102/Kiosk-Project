@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\order\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\\uC774\uB3D9\uD6C8\\desktop\\kiosk-project\\server\\kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\order\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:order\\orderlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|c:\\users\\\uC774\uB3D9\uD6C8\\desktop\\kiosk-project\\server\\kiosk\\ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:ppanel\\list.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:common\\mysql.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AD4218D2-247D-4EE2-860A-0C134FF2C758}|Kiosk.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 383,
-          "SelectedChildIndex": 17,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -90,52 +82,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "list.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\list.cs",
-              "RelativeDocumentMoniker": "pPanel\\list.cs",
-              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\pPanel\\list.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "pPanel\\list.cs [\uB514\uC790\uC778]",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-12T06:22:21.061Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "OrderList.cs",
-              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Order\\OrderList.cs",
-              "RelativeDocumentMoniker": "Order\\OrderList.cs",
-              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Order\\OrderList.cs",
-              "RelativeToolTip": "Order\\OrderList.cs",
-              "ViewState": "AQIAAG0AAAAAAAAAAADwvysBAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-12T06:21:03.773Z",
+              "WhenOpened": "2024-08-12T10:17:16.748Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "OrderList.cs [\uB514\uC790\uC778]",
-              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Order\\OrderList.cs",
-              "RelativeDocumentMoniker": "Order\\OrderList.cs",
-              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Order\\OrderList.cs [\uB514\uC790\uC778]",
-              "RelativeToolTip": "Order\\OrderList.cs [\uB514\uC790\uC778]",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\Form1.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "Form1.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-12T06:21:02.352Z",
-              "EditorCaption": " [\uB514\uC790\uC778]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Mysql.cs",
-              "DocumentMoniker": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
-              "RelativeDocumentMoniker": "common\\Mysql.cs",
-              "ToolTip": "C:\\Users\\\uC774\uB3D9\uD6C8\\Desktop\\Kiosk-Project\\Server\\Kiosk\\common\\Mysql.cs",
-              "RelativeToolTip": "common\\Mysql.cs",
-              "ViewState": "AQIAAAUGAAAAAAAAAAAkwBsGAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-12T06:19:44.883Z"
+              "WhenOpened": "2024-08-12T10:17:15.705Z"
             }
           ]
         },

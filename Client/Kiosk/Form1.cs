@@ -36,7 +36,7 @@ namespace Kiosk
 
         private void BackgroundImageSet()
         {
-            string cafe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Image", "카페.jpg");
+            string cafe = Path.GetFullPath(@"../../Image/카페.jpg");
             Image image = Image.FromFile(cafe);
 
             panel1.BackgroundImage = image;

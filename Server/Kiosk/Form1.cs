@@ -27,7 +27,8 @@ namespace Kiosk
         {
             Form1 form = this;
             //private string jsonkey = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"..","..","Key","kiosk-project.json");
-            string cafe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"..","..","Image","카페.jpg");
+            //string cafe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"..","..","Image","카페.jpg");
+            string cafe = Path.GetFullPath(@"../../Image/카페.jpg");
             Image image = Image.FromFile(cafe);
 
             form.BackgroundImage = image;
