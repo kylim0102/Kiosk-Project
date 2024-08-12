@@ -19,18 +19,17 @@ namespace Kiosk.Order
         private OrderTable_Option OrderTable_Option = new OrderTable_Option();
         private Pay pay = new Pay();
 
-
         public Order_Manage()
         {
             InitializeComponent();
+
+            this.FormClosing += new FormClosingEventHandler(Order_Manage_Closing);
 
             // Timer 초기화 및 설정
             timer = new Timer();
             timer.Interval = 1000;
             timer.Tick += Timer_Tick;
         }
-
-
 
         #region Order Manage On Load(Order Page 로딩 시 현재시각, 카테고리 별 TabControl Tab 세팅, 제품 옵션 세팅)
         private void Order_Manage_Load(object sender, EventArgs e)
@@ -59,11 +58,6 @@ namespace Kiosk.Order
                 menulist.TabPages.Add(tab);
             }
 
-            /*
-                테스트 용으로 MySql 탭에 모든 Item을 넣어둠.
-                후에 코드 정리할 때 삭제하면 되는 부분
-            */
-
             TabPage now = menulist.TabPages[0];
             List<Button> buttons = itemTable.GetAllItems();
 
@@ -76,20 +70,24 @@ namespace Kiosk.Order
                 now.Controls.Add(btn);
             }
 
-
-
             // db에 저장되어있는거 들고와서 selected_menu 넣기 
             DataTable data = orderTable.GetAllOrderTable();
             selected_menu.DataSource = data;
 
-
-
             //옵션 내용
             LoadOptionsFromDatabase();
-
         }
         #endregion
 
+        #region Order Manage On Closing(폼이 닫힐 때 DataGridView 비우기)
+        private void Order_Manage_Closing(object sender, FormClosingEventArgs e)
+        {
+            if(selected_menu.Rows.Count > 0)
+            {
+                button1_Click(sender, e);
+            }
+        }
+        #endregion
 
         #region Now Time(현재 시각 이벤트)
         private void Timer_Tick(object sender, EventArgs e)
@@ -102,6 +100,7 @@ namespace Kiosk.Order
             date.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
         #endregion
+
 
 
         #region Order Manage Add DataGridView From Selected item(제품 버튼 클릭 시 해당 제품의 정보가 Datagridview로 추가)
@@ -185,7 +184,7 @@ namespace Kiosk.Order
                                 string num = selectedCellValue;
                                 if (num.Contains("-"))
                                 {
-                                    MessageBox.Show("메뉴를 선택해주세요");
+                                    MessageBox.Show("메뉴를 선택해주세요","알림",MessageBoxButtons.OK,MessageBoxIcon.Error);
                                     return;
                                 }
 
@@ -202,7 +201,7 @@ namespace Kiosk.Order
                             }
                             else
                             {
-                                MessageBox.Show("셀을 선택해주세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("메뉴를 선택해주세요.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         };
                         buttonIndex++;
@@ -353,15 +352,12 @@ namespace Kiosk.Order
         #endregion
 
 
-
         #region Order_Manage 에서 상품 삭제
-
-        // datagridview 에서 전체 상품 삭제
         private void button1_Click(object sender, EventArgs e)
         {
             if (selected_menu.Rows.Count == 0)
             {
-                MessageBox.Show("삭제할 항목이 없습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("삭제할 항목이 없습니다.", "알림", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // 데이터가 없으면 함수 종료
             }
             else
@@ -369,9 +365,7 @@ namespace Kiosk.Order
                 //delete * 문
                 pay.deleteOrder();
 
-                MessageBox.Show("전체 상품 삭제가 완료되었습니다");
-
-                DataTable data = orderTable.GetAllOrderTable();
+               DataTable data = orderTable.GetAllOrderTable();
                 selected_menu.DataSource = data;
             }
         }
@@ -381,31 +375,40 @@ namespace Kiosk.Order
             // 선택한 itemNumber
             string num = GetSelectedCellValue();
 
-            if (num.Contains("-") == true)
+            if(num == null)
             {
-                pay.delete_SelectedOption(num);
-
-                MessageBox.Show("삭제되었습니다.");
-
-                DataTable data = orderTable.GetAllOrderTable();
-                selected_menu.DataSource = data;
+                MessageBox.Show("삭제할 항목이 없습니다!\n다시 확인해주세요.","알림",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return;
             }
             else
             {
-                DialogResult resulted = MessageBox.Show("옵션까지 지워집니다.", "삭제", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                if (resulted == DialogResult.OK)
+                if (num.Contains("-") == true)
                 {
                     pay.delete_SelectedOption(num);
+
                     MessageBox.Show("삭제되었습니다.");
+
                     DataTable data = orderTable.GetAllOrderTable();
                     selected_menu.DataSource = data;
                 }
                 else
                 {
-                    return;
-                }
+                    DialogResult resulted = MessageBox.Show("옵션까지 지워집니다.", "삭제", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (resulted == DialogResult.OK)
+                    {
+                        pay.delete_SelectedOption(num);
+                        MessageBox.Show("삭제되었습니다.");
+                        DataTable data = orderTable.GetAllOrderTable();
+                        selected_menu.DataSource = data;
+                    }
+                    else
+                    {
+                        return;
+                    }
 
+                }
             }
+            
 
         }
         #endregion

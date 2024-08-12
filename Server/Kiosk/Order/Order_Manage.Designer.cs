@@ -56,18 +56,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(859, 22);
+            this.label1.Location = new System.Drawing.Point(752, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 15);
+            this.label1.Size = new System.Drawing.Size(61, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "영업일자 :";
             // 
             // date
             // 
             this.date.AutoSize = true;
-            this.date.Location = new System.Drawing.Point(936, 22);
+            this.date.Location = new System.Drawing.Point(819, 18);
             this.date.Name = "date";
-            this.date.Size = new System.Drawing.Size(45, 15);
+            this.date.Size = new System.Drawing.Size(38, 12);
             this.date.TabIndex = 2;
             this.date.Text = "label2";
             // 
@@ -85,15 +85,14 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.selected_menu.DefaultCellStyle = dataGridViewCellStyle1;
             this.selected_menu.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.selected_menu.Location = new System.Drawing.Point(0, 36);
-            this.selected_menu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.selected_menu.Location = new System.Drawing.Point(0, 29);
             this.selected_menu.Name = "selected_menu";
             this.selected_menu.ReadOnly = true;
             this.selected_menu.RowHeadersVisible = false;
             this.selected_menu.RowHeadersWidth = 51;
             this.selected_menu.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.selected_menu.RowTemplate.Height = 23;
-            this.selected_menu.Size = new System.Drawing.Size(488, 429);
+            this.selected_menu.Size = new System.Drawing.Size(427, 343);
             this.selected_menu.TabIndex = 0;
             this.selected_menu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -101,12 +100,11 @@
             // 
             this.menulist.Controls.Add(this.Mysql_tab);
             this.menulist.ItemSize = new System.Drawing.Size(100, 25);
-            this.menulist.Location = new System.Drawing.Point(530, 36);
-            this.menulist.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.menulist.Location = new System.Drawing.Point(464, 29);
             this.menulist.Name = "menulist";
             this.menulist.SelectedIndex = 0;
             this.menulist.ShowToolTips = true;
-            this.menulist.Size = new System.Drawing.Size(522, 504);
+            this.menulist.Size = new System.Drawing.Size(457, 403);
             this.menulist.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.menulist.TabIndex = 1;
             this.menulist.SelectedIndexChanged += new System.EventHandler(this.Selected_Index_Changed);
@@ -114,10 +112,9 @@
             // Mysql_tab
             // 
             this.Mysql_tab.Location = new System.Drawing.Point(4, 29);
-            this.Mysql_tab.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Mysql_tab.Name = "Mysql_tab";
-            this.Mysql_tab.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Mysql_tab.Size = new System.Drawing.Size(514, 471);
+            this.Mysql_tab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Mysql_tab.Size = new System.Drawing.Size(449, 370);
             this.Mysql_tab.TabIndex = 4;
             this.Mysql_tab.Text = "All";
             this.Mysql_tab.UseVisualStyleBackColor = true;
@@ -126,11 +123,10 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.option1);
-            this.tabControl1.Location = new System.Drawing.Point(535, 549);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tabControl1.Location = new System.Drawing.Point(468, 439);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(518, 159);
+            this.tabControl1.Size = new System.Drawing.Size(453, 127);
             this.tabControl1.TabIndex = 2;
             // 
             // option1
@@ -140,11 +136,10 @@
             this.option1.Controls.Add(this.op3);
             this.option1.Controls.Add(this.op2);
             this.option1.Controls.Add(this.op1);
-            this.option1.Location = new System.Drawing.Point(4, 25);
-            this.option1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.option1.Location = new System.Drawing.Point(4, 22);
             this.option1.Name = "option1";
-            this.option1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.option1.Size = new System.Drawing.Size(510, 130);
+            this.option1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.option1.Size = new System.Drawing.Size(445, 101);
             this.option1.TabIndex = 0;
             this.option1.Text = "옵션";
             // 
@@ -152,10 +147,9 @@
             // 
             this.op4.BackColor = System.Drawing.Color.DarkViolet;
             this.op4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.op4.Location = new System.Drawing.Point(403, 18);
-            this.op4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.op4.Location = new System.Drawing.Point(353, 14);
             this.op4.Name = "op4";
-            this.op4.Size = new System.Drawing.Size(86, 94);
+            this.op4.Size = new System.Drawing.Size(75, 75);
             this.op4.TabIndex = 14;
             this.op4.UseVisualStyleBackColor = false;
             // 
@@ -163,10 +157,9 @@
             // 
             this.op3.BackColor = System.Drawing.Color.DarkViolet;
             this.op3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.op3.Location = new System.Drawing.Point(280, 18);
-            this.op3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.op3.Location = new System.Drawing.Point(245, 14);
             this.op3.Name = "op3";
-            this.op3.Size = new System.Drawing.Size(86, 94);
+            this.op3.Size = new System.Drawing.Size(75, 75);
             this.op3.TabIndex = 13;
             this.op3.UseVisualStyleBackColor = false;
             // 
@@ -174,10 +167,9 @@
             // 
             this.op2.BackColor = System.Drawing.Color.DarkViolet;
             this.op2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.op2.Location = new System.Drawing.Point(146, 18);
-            this.op2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.op2.Location = new System.Drawing.Point(128, 14);
             this.op2.Name = "op2";
-            this.op2.Size = new System.Drawing.Size(86, 94);
+            this.op2.Size = new System.Drawing.Size(75, 75);
             this.op2.TabIndex = 12;
             this.op2.UseVisualStyleBackColor = false;
             // 
@@ -185,10 +177,9 @@
             // 
             this.op1.BackColor = System.Drawing.Color.DarkViolet;
             this.op1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.op1.Location = new System.Drawing.Point(13, 18);
-            this.op1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.op1.Location = new System.Drawing.Point(11, 14);
             this.op1.Name = "op1";
-            this.op1.Size = new System.Drawing.Size(86, 94);
+            this.op1.Size = new System.Drawing.Size(75, 75);
             this.op1.TabIndex = 11;
             this.op1.UseVisualStyleBackColor = false;
             this.op1.Click += new System.EventHandler(this.op1_Click);
@@ -197,9 +188,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(40, 488);
+            this.label2.Location = new System.Drawing.Point(35, 390);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(171, 24);
+            this.label2.Size = new System.Drawing.Size(137, 19);
             this.label2.TabIndex = 3;
             this.label2.Text = "총 결제 금액: ";
             // 
@@ -207,21 +198,20 @@
             // 
             this.payment.AutoSize = true;
             this.payment.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Bold);
-            this.payment.Location = new System.Drawing.Point(221, 488);
+            this.payment.Location = new System.Drawing.Point(193, 390);
             this.payment.Name = "payment";
-            this.payment.Size = new System.Drawing.Size(24, 24);
+            this.payment.Size = new System.Drawing.Size(20, 19);
             this.payment.TabIndex = 9;
             this.payment.Text = "0";
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.LightGray;
+            this.button1.BackColor = System.Drawing.Color.White;
             this.button1.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(394, 472);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button1.Location = new System.Drawing.Point(345, 378);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 55);
+            this.button1.Size = new System.Drawing.Size(78, 44);
             this.button1.TabIndex = 12;
             this.button1.Text = "전체 삭제";
             this.button1.UseVisualStyleBackColor = false;
@@ -229,13 +219,12 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.LightGray;
+            this.button2.BackColor = System.Drawing.Color.White;
             this.button2.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(143, 594);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button2.Location = new System.Drawing.Point(125, 475);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(173, 68);
+            this.button2.Size = new System.Drawing.Size(151, 54);
             this.button2.TabIndex = 13;
             this.button2.Text = "결 제";
             this.button2.UseVisualStyleBackColor = false;
@@ -252,11 +241,9 @@
             this.groupBox1.Controls.Add(this.menulist);
             this.groupBox1.Controls.Add(this.selected_menu);
             this.groupBox1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(31, 41);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Location = new System.Drawing.Point(27, 33);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(1086, 715);
+            this.groupBox1.Size = new System.Drawing.Size(950, 572);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "주문 관리";
@@ -264,13 +251,12 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.LightGray;
+            this.button3.BackColor = System.Drawing.Color.White;
             this.button3.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(298, 471);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button3.Location = new System.Drawing.Point(261, 377);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(89, 55);
+            this.button3.Size = new System.Drawing.Size(78, 44);
             this.button3.TabIndex = 14;
             this.button3.Text = "삭제";
             this.button3.UseVisualStyleBackColor = false;
@@ -278,14 +264,13 @@
             // 
             // Order_Manage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1151, 785);
+            this.ClientSize = new System.Drawing.Size(1007, 628);
             this.Controls.Add(this.date);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Order_Manage";
             this.Text = "Order_Manage";
             this.Load += new System.EventHandler(this.Order_Manage_Load);

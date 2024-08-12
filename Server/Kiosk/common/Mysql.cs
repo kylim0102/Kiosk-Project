@@ -1569,6 +1569,11 @@ internal class ChartList
         int max = 0;
         try
         {
+            if(mysql.State == ConnectionState.Closed)
+            {
+                mysql.Open();
+            }
+
             sql = "select count(itemName) as max from ordertable where orderNumber != '0'  AND itemNumber = substring_index(itemNumber,'-',1)";
             using (MySqlCommand cmd = new MySqlCommand(sql, mysql))
             {
