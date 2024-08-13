@@ -323,7 +323,29 @@ namespace Kiosk.pPanel.common
             {
                 Console.WriteLine($"파일을 다운로드 합니다. 파일명: {filename}");
                 // 파일 다운로드
-                GetGoogleClient().DownloadObject(bucketName,filename,fileStream );
+                GetGoogleClient().DownloadObject(bucketName,filename,fileStream);
+            }
+        }
+
+        public void GoogleDownloadMainImage()
+        {
+            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string imagePath = Path.Combine(desktop,"Kiosk_Image");
+
+            if (!Directory.Exists(imagePath))
+            {
+                Console.WriteLine("바탕화면에 이미지 폴더를 생성합니다.");
+                Directory.CreateDirectory(imagePath);
+                Console.WriteLine("스토리지에서 이미지 파일을 가져옵니다.");
+                imagePath = imagePath + "\\";
+                GoogleDownload(imagePath, "카페.jpg");
+            }
+            else
+            {
+                Console.WriteLine("폴더가 이미 존재합니다.");
+
+                imagePath = imagePath + "\\";
+                GoogleDownload(imagePath, "카페.jpg");
             }
         }
 

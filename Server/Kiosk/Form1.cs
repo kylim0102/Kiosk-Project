@@ -17,23 +17,18 @@ namespace Kiosk
         private TcpConnection con = new TcpConnection();
         private pPanel.Chart chart;
         private string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        private GoogleStorage google = new GoogleStorage();
 
         public Form1()
         {
             InitializeComponent();
+            google.GoogleDownloadMainImage();
+            BackGroundImageSet();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Form1 form = this;
-            //private string jsonkey = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"..","..","Key","kiosk-project.json");
-            //string cafe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"..","..","Image","카페.jpg");
-            string cafe = Path.GetFullPath(@"../../Image/카페.jpg");
-            Image image = Image.FromFile(cafe);
-
-            form.BackgroundImage = image;
-            form.Dock = DockStyle.Fill;
-            form.BackgroundImageLayout = ImageLayout.Stretch;
 
             groupBox2.BackColor = Color.Transparent;
             groupBox2.Parent = form;
@@ -41,6 +36,18 @@ namespace Kiosk
             groupBox1.Parent = form;
         }
 
+        private void BackGroundImageSet()
+        {
+            Form1 form = this;
+
+            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string imagePath = Path.Combine(desktop, "Kiosk_Image");
+            Image image = Image.FromFile(imagePath + "\\" + "카페.jpg"); ;
+
+            form.BackgroundImage = image;
+            form.Dock = DockStyle.Fill;
+            form.BackgroundImageLayout = ImageLayout.Stretch;
+        }
         #region Main Controller
 
         #region Show Chart(차트 창 보기)
