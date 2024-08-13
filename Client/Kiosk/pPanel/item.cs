@@ -109,6 +109,7 @@ namespace Kiosk.pPanel
                 string imagePath = Path.Combine(desktopPath, "Kiosk_Image");
 
                 Select_Item_Picture.Image = Image.FromFile(imagePath+"\\"+label1.Text+".jpg");
+                Console.WriteLine(imagePath + "\\" + label1.Text + ".jpg");
                 Select_Item_Picture.SizeMode = PictureBoxSizeMode.StretchImage;
             }
             catch(Exception ex)

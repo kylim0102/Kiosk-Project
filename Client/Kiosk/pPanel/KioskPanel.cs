@@ -25,15 +25,18 @@ namespace Kiosk.pPanel
         {
             InitializeComponent();
 
-            BackgroundImageSet();
+            //BackgroundImageSet();
         }
 
         private void BackgroundImageSet()
         {
             KioskPanel panel = this;
-            
-            string cafe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Image", "카페.jpg");
-            Image image = Image.FromFile(cafe);
+
+            // 바탕화면 경로 가져오기
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            // image 폴더 경로
+            string imagePath = Path.Combine(desktopPath, "Kiosk_Image");
+            Image image = Image.FromFile(imagePath + "\\" + "카페.jpg");
 
             panel.BackgroundImage = image;
             panel.Dock = DockStyle.Fill;

@@ -26,22 +26,26 @@ namespace Kiosk
         public Form1()
         {
             InitializeComponent();
-
-            BackgroundImageSet();
-
             cartPanel = new pPanel.CartPanel(kioskPanel);
             kioskPanel.ButtonClicked += kioskPanel_ButtonClicked;
             cartPanel.ButtonClicked += Cart_To_TemporaryView;
         }
 
-        private void BackgroundImageSet()
+        private void BackgroundImageSet(string filepath)
         {
-            string cafe = Path.GetFullPath(@"../../Image/카페.jpg");
-            Image image = Image.FromFile(cafe);
+            Image image = Image.FromFile(filepath + "\\" + "카페.jpg");
 
             panel1.BackgroundImage = image;
             panel1.Dock = DockStyle.Fill;
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
+
+            cartPanel.BackgroundImage = image;
+            cartPanel.Dock = DockStyle.Fill;
+            cartPanel.BackgroundImageLayout = ImageLayout.Stretch;
+
+            kioskPanel.BackgroundImage = image;
+            kioskPanel.Dock = DockStyle.Fill;
+            kioskPanel.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         #region KioskPanel To CartPanel Button Event(제품 목록 → 장바구니)
@@ -103,7 +107,7 @@ namespace Kiosk
                 }
             }
 
-            
+            BackgroundImageSet(imagePath);
         }
         #endregion
 
